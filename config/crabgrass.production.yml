@@ -36,12 +36,12 @@ enabled_tools:
 email:
   delivery_method: :smtp
   smtp_settings:
-    domain: localhost
+    domain: crisiscommons.org
     address: smtp.gmail.com
     port: 587
     authentication: :plain
-    user_name: xxxxxx@gmail.com
-    password: xxxxxxx
+    user_name: admin@crisiscommons.org
+    password: 8G6689cr1s1sm4p
 
 ##
 ## SITES
