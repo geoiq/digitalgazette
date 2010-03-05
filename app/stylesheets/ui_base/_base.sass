@@ -90,10 +90,6 @@
   font-size= !sized
   font-weight: normal
 
-=full-width
-  +columns(14,14)
-  width: 764px
-
 =partial-width
   +columns(10,10)
   width: 540px
@@ -126,6 +122,7 @@
   background-position: 0 50%
   padding-left: 20px
   min-height: 16px
+  line-height:  1.6
   &.twenty
     padding-left: 22px
     min-height: 24px
@@ -205,8 +202,7 @@ h6
 //
 //misc
 //
-.full-width
-  +full-width
+
 
 
 /* content container */
@@ -218,7 +214,7 @@ h6
 //
 
 #title-box-full, #info-box-full
-  +full-width
+  width: 764px
   height: 16px
   h3
     font-size: 15px
@@ -263,18 +259,22 @@ h6
       li.current
         a
           font-weight: bold
+    &.extended_sidebar
+      width: 540px
+      padding-left: 224px
+
 
 /* @end */
 
 
 /* groups page feed, me-section page feed, group landing/wiki section, site-home wiki section */
-#sitehome-wiki
+#sitehome-wiki, #group-wiki
   #wiki-area
-    margin: 10px 0 40px 0
+    margin: 10px 0 15px
 
 #pages, #group-wiki, #sitehome-wiki
   +partial-width
-  margin: 30px 0 0
+  margin: 30px 0 15px
   h3
     +bordered-btm(!medium_grey_border)
     padding: 0 0 8px
@@ -284,6 +284,12 @@ h6
     span
       a
         +blue-link
+
+#group-wiki
+  margin-top: 0
+  
+#pages
+  margin: 0
 
 #pages, #group-wiki
   article
@@ -339,10 +345,11 @@ h6
           +blue-link
 
 #pages.full
-  +full-width
+  +clearfix
+  width: 764px
   h3
     +bordered-btm(!medium_grey_border)
-    +full-width
+    width: 764px
     padding: 0 0 8px
     float: left
     display: inline
@@ -354,14 +361,9 @@ h6
     display: inline
     a
       +blue-link
-
-
-#pages.full
-  +clearfix
-  +full-width
   article
-    +full-width
     +bordered-btm(!light_grey_border, "dotted")
+    width: 764px
     margin: 0
     padding: 10px 0
     .pages-info
@@ -463,10 +465,10 @@ td.reply
   min-height: 24px
 #browse-content
   +clearfix
-  +full-width
+  width: 764px
   nav
     +clearfix
-    +full-width
+    width: 764px
 button.icon_16
   +zero
   vertical-align: text-top
@@ -485,11 +487,11 @@ button.icon_16
 #identity-image
   +columns(4,4)
   +bordered(!almost_black)
-  width: 204px
-  height: 204px
+  width: 202px
+  height: 202px
   float: left
   margin: 0
-  background: !white_bg
+  background= !white_bg
 
 
 #image-label
@@ -612,7 +614,7 @@ button.icon_16
 
 
 nav#nav-full
-  +full-width
+  width: 764px
   height: 28px
   ul
     +clearfix
@@ -648,14 +650,22 @@ nav#nav-full
   a
     +blue-link
 
+.pagination.secondary
+  width: 100%
+  margin-top: 4em
+  margin-bottom: 2em
+
 #sidebar
   +bordered
   width: 184px
   padding: 10px
   float: right
   margin: 0
+  .round
+    +border-radius(5px)
   ul
     +clearfix
+    overflow: visible
   ul#nav4
     li
       +bordered-btm(!medium_grey_border,"dotted")
@@ -697,11 +707,10 @@ nav#nav-full
     td
       padding: 8px 8px 8px 0
 .shy_parent:hover
-  .shy:hover
+  .shy
     opacity: 1
 .shy
   opacity: 0
-  font-size: 8px
 .pagination
   font-weight: normal
   font-size: 11px
@@ -722,7 +731,7 @@ nav#tabs
 
 #action-bar
   +bordered-top-btm
-  +full-width
+  width: 764px
   clear: both
   height: 21px
   h4
@@ -760,7 +769,7 @@ table
       font-size: 10px
 
 #social-activities
-  +full-width
+  width: 764px
   table
     width: 100%
     tr
@@ -771,7 +780,7 @@ table
         font-size: 10px
 
 #messages
-  +full-width
+  width: 764px
   table
     width: 100%
     tr
@@ -840,6 +849,7 @@ table
     font-size: 12px
   .tag1
     font-size: 10px
+
 #wiki-content
   article
     h2
@@ -851,6 +861,7 @@ table
 
 footer.page
   +container
+  padding-top: 2em
   ul#crabgrass
     +columns(10)
     +full

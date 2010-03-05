@@ -832,6 +832,7 @@ en:
 
   edit_settings: "Edit Settings"
   basic_settings: "Basic Settings"
+  basic_info: "Basic Information"
   view_all: "View All"
   send_invites: "Send Invites"
   view_requests: "View Requests"
@@ -934,8 +935,9 @@ en:
   approved: "approved"
 
   my_requests_link: "my requests"
-  requests_to_me: "to me"
-  requests_from_me: "from me"
+  all_requests: "All Requests"
+  requests_to_me: "Requests to me"
+  requests_from_me: "Requests from me"
   incoming: "Incoming"
   outgoing: "Outgoing"
   state: "state"
@@ -1040,6 +1042,10 @@ en:
   page_with_message: "with message"
   pagination_next: "Next"
   pagination_previous: "Previous"
+
+  pagination_older: "Older"
+  pagination_newer: "Newer"
+
 
   view_posts_link: "view"
 
@@ -1428,7 +1434,7 @@ en:
   survey_introduction_tab: "Introduction"
   survey_create_tab: "Create Survey"
   survey_edit_tab: "Edit Survey"
-  survey_list_all_tab: "List All Responses"
+  survey_list_all_tab: "List Responses"
   survey_my_response_tab: "My Response"
   survey_rate_responses_tab: "Rate Responses"
   survey_take_tab: "Take Survey"
@@ -1573,6 +1579,7 @@ en:
   last_seen: "last seen"
 
   directory_of_people: Directory of People
+  directory_peers_description: "A list of your friends and all the people in your groups and networks."
   no_contacts_msg: You have no friends.
   my_peers_explain: users I share a common group with
   no_peers_msg: You have no peers.
