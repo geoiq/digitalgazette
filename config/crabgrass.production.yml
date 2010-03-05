@@ -12,14 +12,10 @@
 ##
 ## GLOBAL
 ##
-
-enabled_languages:
-  - en
-  - es
-  - pt
-  - ar
 enabled_mods:
-#  - super_admin
+  - super_admin
+  - moderation
+  - translator
 enabled_tools:
   - asset_tool
   - core_tools
@@ -48,10 +44,12 @@ email:
 ##
 
 sites:
-  - name: blue
-    admin_group: blueadmins
-  - name: red
-    admin_group: redadmins
+  - name: site1
+    admin_group: rainbow
+    moderation_group: rainbow
+    translation_group: animals
+#  - name: red
+#    admin_group: redadmins
 
 ##
 ## SITE DEFAULTS
@@ -64,7 +62,6 @@ show_exceptions: false
 email_sender: "robot@$current_host"
 tracking: true
 available_page_types:
-  - WikiPage
   - AssetPage
   - EventPage
   - ExternalVideoPage
