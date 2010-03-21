@@ -565,14 +565,14 @@ ActiveRecord::Schema.define(:version => 20100308201918) do
     t.integer  "wiki_id",                :limit => 11
     t.integer  "photo_id",               :limit => 11
     t.integer  "layout_id",              :limit => 11
-    t.boolean  "may_see",                                    :default => true
-    t.boolean  "may_see_committees"
-    t.boolean  "may_see_networks"
-    t.boolean  "may_see_members"
-    t.boolean  "may_request_membership"
+    t.boolean  "may_see",                :default => true
+    t.boolean  "may_see_committees",     :default => true
+    t.boolean  "may_see_networks",       :default => true
+    t.boolean  "may_see_members",        :default => true
+    t.boolean  "may_request_membership", :default => true
     t.integer  "membership_policy",      :limit => 11,       :default => 0
-    t.boolean  "may_see_groups"
-    t.boolean  "may_see_contacts"
+    t.boolean  "may_see_groups",         :default => true
+    t.boolean  "may_see_contacts",       :default => true
     t.boolean  "may_request_contact",                        :default => true
     t.boolean  "may_pester",                                 :default => true
     t.boolean  "may_burden"
@@ -759,7 +759,7 @@ ActiveRecord::Schema.define(:version => 20100308201918) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.integer  "task_list_id",     :limit => 11
+    t.integer  "task_list_id",     :limited => 11
     t.string   "name"
     t.text     "description",      :limit => 16777215
     t.text     "description_html", :limit => 16777215
