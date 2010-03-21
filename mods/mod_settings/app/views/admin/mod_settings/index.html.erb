@@ -1,0 +1,28 @@
+<% @info_box = '<h1>Plugin Settings</h1>' -%>
+<i>Various site settings defined by plugins (mods).</i>
+<br /><br />
+<% form_tag(:controller => 'admin/sites', :action => 'update') do -%>
+<%= submit_tag("Save") %>
+<br /><br />
+<%=
+ Formy.form do |f|
+   ModSetting.each do |setting|
+     f.row do |r|
+       r.label "#{setting.label} (from #{setting.mod})"
+       r.info setting.description
+       case setting.type
+       when :integer
+         r.input text_field('site', setting.name)
+       when :string
+         r.input text_field('site', setting.name)
+       when :text
+         r.input text_area('site', setting.name)
+       when :boolean
+         r.input check_box('site', setting.name)
+       when :enumerable
+         r.input select('site', setting.name, options_for_select(setting.select_options), :multiple => setting.multiple)
+       end
+     end
+   end
+ end %>
+<% end -%>

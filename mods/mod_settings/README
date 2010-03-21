@@ -1,0 +1,18 @@
+Summary
+-------
+
+Allows other plugins to register settings, which can be configured via the Admin UI.
+
+Installation
+------------
+
+Add the following line to your routes.rb:
+
+  map.from_plugin :mod_settings rescue NameError
+
+And make sure you added the mod to your enabled_mods list...
+
+Authors
+-------
+
+Niklas E. Cathor <niklas@brueckenschlaeger.de>
