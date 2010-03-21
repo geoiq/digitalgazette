@@ -1,3 +1,6 @@
+.DS_Store
+*/config/database.yml
+*/config/crabrass.*.yml
 log/*.log
 log/searchd.*
 tmp/**/*
