@@ -161,7 +161,7 @@ class GroupsController < Groups::BaseController
 
   def group_created_success
     flash_message :title => 'Group Created', :success => 'now make sure to configure your group'
-    redirect_to groups_url(:action => 'edit')
+    redirect_to groups_profiles_url(:action => 'edit')
   end
 
   def search_template(template)

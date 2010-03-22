@@ -1,0 +1,19 @@
+PublicHome
+==========
+
+This mod uses the site home as a first landing point before logging in.
+This way the sites content is also accessible for people who do not have
+a login yet.
+
+
+Copyright (c) 2009 azul@riseup.net, released under the AGPL license
+
+
+Adjustments
+-----------
+
+* I adjusted this so that public_home can be configured per site. For this
+  the included migration needs to be run:
+    script/generate plugin_migration public_home && rake db:migrate
+
+  -- niklas <niklas@brueckenschlaeger.de>

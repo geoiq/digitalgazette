@@ -9,51 +9,65 @@
 # See doc/CONFIGURATION for more details.
 #
 
-##
-## GLOBAL
-##
+#
+# development tips:
+#
+#  * to work with super_admin, enable super_admin mod and site 'site1'.
+#
+
+title: "CrisisCommons"
+
+# enabled_languages:
+#   - en_US
+#   - es_ES
+
+tracking: true
+chat: true
+# limited: true #if set to true, then a user can only see people, groups, and pages from the current site. stuff from other sites will appear invisible.
+
 enabled_mods:
   - super_admin
   - moderation
   - translator
+  - mod_settings
+  - public_home
+
 enabled_tools:
   - asset_tool
   - core_tools
   - event_tool
-  - ranked_vote_tool
   - rate_many_tool
-  - task_list_tool
   - wiki_tool
   - survey_tool
   - gallery_tool
   - external_video_tool
   - announcement_tool
   - feed_tool
-#email:
-#  delivery_method: :sendmail
-#  smtp_settings:
-#    domain: localhost
-#    address: smtp.gmail.com
-#    port: 587
-#    authentication: :plain
-#    user_name: xxxxxx@gmail.com
-#    password: xxxxxxx
+  - task_list_tool
+
+translation_group: translation 
+
+text_editor: html_preferred
+
+# use_full_geonames_data: true
 
 ##
 ## SITES
 ##
 
 sites:
-  - name: site1
-    admin_group: rainbow
-    moderation_group: rainbow
-    translation_group: animals
+  - name: crisiscommons
+    admin_group: crisiscommonsadmin
+    moderation_group: crisiscommonsmoderation
+    translation_group: crisiscommonstranslation
 #  - name: red
 #    admin_group: redadmins
 
 ##
 ## SITE DEFAULTS
 ##
+
+default_page_access: view
 
 pagination_size: 30
 default_language: en
