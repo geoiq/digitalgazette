@@ -453,7 +453,7 @@ ActiveRecord::Schema.define(:version => 20100308201918) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "resolved",                               :default => true
-    t.boolean  "public"
+    t.boolean  "public",            :default => true
     t.integer  "created_by_id",      :limit => 11
     t.integer  "updated_by_id",      :limit => 11
     t.text     "summary",            :limit => 16777215

@@ -52,10 +52,12 @@ It would be nice to use these eventually:
 
     config.registerButton("cg-createlink", "Insert Web Link", [_editor_url + "images/ed_buttons_main.png",6,1], false, <%=toolbar_create_link_function(@wiki)%>);
 
+    config.registerButton("cg-insertmap", "Insert a Map", [_editor_url + "images/ed_buttons_main.png",2,8], false, <%=toolbar_create_map_function(@wiki)%>);
+
     config.toolbar = [
       ["formatblock", "bold", "italic"],
       ["separator", "insertorderedlist", "insertunorderedlist", "outdent", "indent"],
-      ["separator", "cg-insertimage", "cg-createlink"]
+      ["separator", "cg-insertimage", "cg-createlink", "cg-insertmap"]
     ];
 
     config.formatblock = {
