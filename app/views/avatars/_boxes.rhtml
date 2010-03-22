@@ -18,7 +18,7 @@
 -%>
   <li class='<%=side%> <%=online%>'>
     <%= link_to avatar_for(entity, size), url %>
-    <div><span class='round'><%=h entity.both_names %></span></div>
+    <div><span class='round'><%=h entity.display_name %></span></div>
   </li>
 <% end -%>
 </ul>
