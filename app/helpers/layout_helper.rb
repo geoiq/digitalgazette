@@ -312,8 +312,7 @@ module LayoutHelper
  #     end
  #   else
       # no image
-      content_tag :h2, current_site.title
-      # <h2><%= current_site.title %></h2>
+      content_tag :h2, link_to(current_site.title, '/')
  #   end
   end
 

@@ -65,16 +65,16 @@ en:
   contributions: "Contributions"
   contributors: "Contributors"
   users: "Members"
-  groups: "Projects"
-  networks: "Chapters"
+  groups: "Groups"
+  networks: "Organizations"
   committees: "Committees"
   councils: "Councils"
-  group: "Project"
-  network: "Chapter"
+  group: "Group"
+  network: "Organization"
   committee: "Committee"
   council: "Council"
   contact: "Friend"
-  member_groups_of_network: "Member Projects"
+  member_groups_of_network: "Member Groups"
   peers: "Peers"
   all: "All"
   none: "None"
@@ -100,7 +100,7 @@ en:
   recent_activity: "Recent Activity"
   activity: "Activity"
   recent_pages: "Recent Pages"
-  group_pages: "Project Pages"
+  group_pages: "Group Pages"
   recently_created: "Recently Created"
   most_active: "Most Active"
   most_stars: "Most Stars"
@@ -113,7 +113,7 @@ en:
 
   search_headline: "Search"
   search_input_caption: "Search for pages"
-  search_this_group: "this project only"
+  search_this_group: "this group only"
   search_this_person: "this person only"
   search_link: "Search"
 
@@ -225,11 +225,11 @@ en:
   ##
 
   menu_me: "Me"
-  menu_groups: "Projects"
+  menu_groups: "Groups"
   menu_home: "Home"
   menu_chat: "Chat"
   menu_people: "People"
-  menu_networks: "Chapters"
+  menu_networks: "Organizations"
   menu_link_logout: "Logout"
   menu_link_account: "Account"
   menu_admin: "Admin"
@@ -510,7 +510,7 @@ en:
   add_photo_to_gallery: "Click on a Photo to add it"
   cancel_link: "cancel"
   file_must_be_image_error: "File must be an image to be part of a gallery."
-  group_not_allowed_to_view_image_error: "The project that owns this page is not allowed to view this image."
+  group_not_allowed_to_view_image_error: "The group that owns this page is not allowed to view this image."
   add_another_file: "Add another file"
   slideshow_delay_input: "Update every {{input_field}} seconds"
   add_comment: "Add Comment"
@@ -563,7 +563,7 @@ en:
   view_unread_pages_option: "Unread Pages"
   view_public_pages_option: "The Commons"
   view_networks_pages_option: "My Work in the Commons"
-  view_groups_pages_option: "My Projects and Me"
+  view_groups_pages_option: "My Groups and Me"
 
   view_work_pages_description: "Pages that you own, participated in, or are watching."
   view_watched_pages_description: "Pages that you are watching."
@@ -571,8 +571,8 @@ en:
   view_owner_pages_description: "Pages you own."
   view_unread_pages_description: "Unread pages that you own, participated in, or are watching."
   view_public_pages_description: "All pages that you have access too, including public pages."
-  view_networks_pages_description: "All pages of your projects and chapters and those shared between you and other users."
-  view_groups_pages_description: "All pages of your projects and your own pages."
+  view_networks_pages_description: "All pages of your groups and organizations and those shared between you and other users."
+  view_groups_pages_description: "All pages of your groups and your own pages."
 
   my_tasks: "Tasks"
   my_tasks_headline: "My Tasks"
@@ -710,26 +710,26 @@ en:
   profile_saved: "Your profile has been saved."
 
   profile_option_may_see_committees: "Show committees"
-  profile_option_may_see_networks: "Show chapterss"
-  profile_option_may_see_members: "Show project members"
+  profile_option_may_see_networks: "Show organizationss"
+  profile_option_may_see_members: "Show group members"
   profile_option_may_request_membership: "Allow membership requests"
-  profile_option_may_see_groups: "Show project memberships"
+  profile_option_may_see_groups: "Show group memberships"
   profile_option_may_see_contacts: "Show your friends"
   profile_option_may_request_contact: "May request to be friends"
   profile_option_may_pester: "May pester me"
   profile_option_allow_peers: "Visible to peers"
   profile_option_may_see: "Profile is visible"
 
-  user_profile_description_may_see_groups: "Allow people to see what projects you are a member of."
+  user_profile_description_may_see_groups: "Allow people to see what groups you are a member of."
   user_profile_description_may_see_contacts: "Allow people to see your list of friends."
   user_profile_description_may_request_contact: "Allow people to request to be your friend."
   user_profile_description_may_pester: "Allow people to share content with you and send you invitations."
-  user_profile_description_allow_peers: "If checked, people you share a common project with will be able to view your private profile."
+  user_profile_description_allow_peers: "If checked, people you share a common group with will be able to view your private profile."
   user_profile_description_may_see: "If checked, the profile information below will be visible. Otherwise, your profile will be hidden entirely."
 
-  group_profile_description_may_see_groups: "Allow people to see the projects that are part of this {{group_type}}."
+  group_profile_description_may_see_groups: "Allow people to see the groups that are part of this {{group_type}}."
   group_profile_description_may_see_committees: "Allow people to see what committees this {{group_type}} has."
-  group_profile_description_may_see_networks: "Allow people to see what chapters this {{group_type}} is part of."
+  group_profile_description_may_see_networks: "Allow people to see what organizations this {{group_type}} is part of."
   group_profile_description_may_see_members: "Allow people to see the membership list of this {{group_type}}."
   group_profile_description_may_request_membership: "Allow people to request to be a member of this {{group_type}}."
   group_profile_description_may_see: "If checked, the profile information below will be visible. Otherwise, the profile for this {{group_type}} will be hidden entirely."
@@ -746,33 +746,33 @@ en:
   allow_membership_requests: 'Allow Membership Requests'
   group_home_headline: "{{group_type}} Home"
   group_home_welcome: "Welcome"
-  group_administration_not_allowed: "You cannot administer this project."
-  page_not_part_of_group: "Page not part of this project"
-  group_successfully_updated: "Project was successfully updated."
-  only_last_menber_can_delete_group: "You can only delete a project if you are the last member"
-  group_successfully_created: "Project was successfully created."
-  dont_understand_group_type: "Could not understand project type {{type}}"
+  group_administration_not_allowed: "You cannot administer this group."
+  page_not_part_of_group: "Page not part of this group"
+  group_successfully_updated: "Group was successfully updated."
+  only_last_menber_can_delete_group: "You can only delete a group if you are the last member"
+  group_successfully_created: "Group was successfully created."
+  dont_understand_group_type: "Could not understand group type {{type}}"
   dont_have_permission_to_create_committees: "You do not have permission to create committees under {{group}}"
-  group_publicly_visible_description: Project appears in public directory and project <i>profile</i> is viewable by non-members at {{domain}}/yourprojectname.
-  committee_publicly_visible_description: Committees are viewable by non-members at {{domain}}/yourprojectname
+  group_publicly_visible_description: Group appears in public directory and group <i>profile</i> is viewable by non-members at {{domain}}/yourgroupname.
+  committee_publicly_visible_description: Committees are viewable by non-members at {{domain}}/yourgroupname
   group_members_publicly_visible: Make Members Publicly Visible
-  group_members_publicly_visible_description: Members are viewable by non-members at {{domain}}/yourprojectname. Also, the name of the project will be listed on each members profile page ({{domain}}/username)
+  group_members_publicly_visible_description: Members are viewable by non-members at {{domain}}/yourgroupname. Also, the name of the group will be listed on each members profile page ({{domain}}/username)
   page_list: Page list
-  recent_network_pages: "Recent Chapter Pages"
-  recent_member_group_pages: "Recent Activity from Your Projects in {{network}}"
-  create_group_link: "create project"
+  recent_network_pages: "Recent Organization Pages"
+  recent_member_group_pages: "Recent Activity from Your Groups in {{network}}"
+  create_group_link: "create group"
   typing: typing
   away: away
-  you_are_not_member_of_any_group: You are not a member of any project.
+  you_are_not_member_of_any_group: You are not a member of any group.
   back_to_group: back_to {{group_name}}
   when_does_feature_expire: When does this feature expire?
   unfeature_button: Unfeature!
   feature_button: Feature!
   reactivate_button: Reactivate!
-  no_group_named: there is no project named <b>{{name}}</b>.
-  group_wiki: Project Wiki
+  no_group_named: there is no group named <b>{{name}}</b>.
+  group_wiki: Group Wiki
   rss_feed: RSS Feed
-  group_has_no_public_profile: This project does not have a public profile.
+  group_has_no_public_profile: This group does not have a public profile.
   pending_tasks: 'pending tasks'
   completed_tasks: 'completed tasks'
   no_committees: no committees
@@ -780,11 +780,11 @@ en:
   founded: Founded
   not_set: not set
   no_members: (no members)
-  new_group: "New project"
+  new_group: "New group"
   group_language: "The main language of this {{group}}."
   group_location: "The main location of this {{group}}."
   group_summary: "Brief information regarding this {{group}}."
-  new_network: "New chapter"
+  new_network: "New organization"
   group_membership_count: "{{count}} Members"
   membership_exists_error: "Membership already exists for {{member}}"
   you_are_a_member_already_error: "You are a member already"
@@ -797,7 +797,7 @@ en:
   featured_content_header: "Featured"
   edit_featured_content_for_group: Edit Featured Content For {{group_name}}
   edit_featured_content_link: "edit featured content"
-  mark_pages_as_featured_content_for_group: Here you can mark pages as featured content of this project.
+  mark_pages_as_featured_content_for_group: Here you can mark pages as featured content of this group.
   current_featured_content: Current Featured Content
   not_featured_content: Not yet Featured Content
   expired_featured_content: Expired Featured Content
@@ -809,17 +809,17 @@ en:
 
   # directory
 
-  my_networks: "My Chapters"
-  my_networks_link: "my chapters"
-  network_directory_link: "chapter directory"
+  my_networks: "My Organizations"
+  my_networks_link: "my organizations"
+  network_directory_link: "organization directory"
 
-  my_groups: "My Projects"
-  group_directory: "Project Directory"
-  directory_of_networks: "Directory of Chapters"
-  directory_of_groups: "Directory of Projects"
+  my_groups: "My Groups"
+  group_directory: "Group Directory"
+  directory_of_networks: "Directory of Organizations"
+  directory_of_groups: "Directory of Groups"
 
-  my_groups_link: "My Projects"
-  group_directory_link: "Project Directory"
+  my_groups_link: "My Groups"
+  group_directory_link: "Group Directory"
 
   new_people_in_weeks: "new people in last 2 weeks"
 
@@ -847,7 +847,7 @@ en:
   send_join_request: "Send request to join {{group_name}}"
   group_destroyed_message: "{{group_type}} Destroyed"
 
-  remove_group_link: "Remove Project"
+  remove_group_link: "Remove Group"
 
   # results
 
@@ -883,7 +883,7 @@ en:
 
   # networks
 
-  network_initial_member: "Choose a group to be an initial member of this chapter."
+  network_initial_member: "Choose a group to be an initial member of this organization."
 
   # menu items
 
@@ -900,7 +900,7 @@ en:
   # appearance
 
   edit_layout_heading: "Edit Layout"
-  group_icon: "Project Icon"
+  group_icon: "Group Icon"
   select_page_types: "Select Page Types"
   select_visible_group_widgets: "Select the widgets visible on your group's front page"
 
@@ -909,7 +909,7 @@ en:
   # profiles
 
   may_request_membership_description: "A \"join group\" link will appear on your group page. This will send a request for membership to your group that can be accepted or rejected."
-  open_group: "Open Project"
+  open_group: "Open Group"
   open_group_description: "Users are immediately added to the group - request don't have to be approved"
 
 
@@ -921,7 +921,7 @@ en:
   add_contact_info: "When another user is your friend, they are able to see when you are logged in and they have access to see your full profile. Once you become a friend of another person, they also become your friend."
   join_request_info: "You will not become a member of this group until your request has been approved. You can track the status of your requests by visiting: {{my_requests_url}}."
 
-  network_invite_info: "Enter the names of the groups you would like to invite to join this chapter."
+  network_invite_info: "Enter the names of the groups you would like to invite to join this organization."
 
   approve_contact_info: "A friend request already exists from this user. Do you wish to approve it?"
   approve_contact_request: "Approve contact request"
@@ -944,11 +944,11 @@ en:
   state: "state"
   action: "action"
   request_to_friend_description: "{{user}} would like to be the friend of {{other_user}}"
-  request_to_join_our_network_description: "group {{group}} was invited to join chapter {{network}}"
+  request_to_join_our_network_description: "group {{group}} was invited to join organization {{network}}"
   request_to_join_us_description: "{{user}} was invited to join {{group}}"
   request_to_join_us_via_email_description: "{{email}} was invited to join {{group}}"
   request_to_join_you_description: "{{user}} requested to join {{group}}"
-  request_to_join_your_network_description: "{{group}} requested to join chapter {{network}}"
+  request_to_join_your_network_description: "{{group}} requested to join organization {{network}}"
   request_to_destroy_our_group_description: "{{user}} has proposed to destroy {{group_type}} {{group}}"
   request_to_destroy_our_group_email: |
     The {{group_type}} '{{group}}' will be destroyed enough members approve this proposal.
@@ -1013,8 +1013,8 @@ en:
   unread: "unread"
   read: "read"
   all_people: "All People"
-  all_groups: "All Projects"
-  all_networks: "All Chapters"
+  all_groups: "All Groups"
+  all_networks: "All Organizations"
   # ^^ i think this should go away soon, as soon as we have a better group directory.
   all_states: "All States"
   page_name_description: "Optional unique name (used to create the URL for this page)"
@@ -1249,7 +1249,7 @@ en:
   external_video_page_display: "External Video"
 
   discussion_page_description: "Discuss a particular topic with groups or other users."
-  discussion_page_display: "Project Discussion"
+  discussion_page_display: "Group Discussion"
 
   message_page_description: "Send a personal message to individual recipients."
   message_page_display: "Personal Message"
@@ -1581,7 +1581,7 @@ en:
   last_seen: "last seen"
 
   directory_of_people: Directory of People
-  directory_peers_description: "A list of your friends and all the people in your groups and chapters."
+  directory_peers_description: "A list of your friends and all the people in your groups and organizations."
   no_contacts_msg: You have no friends.
   my_peers_explain: users I share a common group with
   no_peers_msg: You have no peers.
@@ -1644,7 +1644,7 @@ en:
   welcome_hide_link: "Hide Welcome"
   welcome_title: "Welcome to {{site_title}}"
   welcome_heading: "Welcome to {{site_title}}, {{user_name}}!"
-  welcome_message: "CrisisCommons is an open community that anyone can join. If you are technical, work with a non-profit, member of a government organization, or just a citizen or volunteer that wants to help, you can browse the community or sign up to contribute."
+  welcome_message: "The Frontier Digital Gazette is developed by the Transnational Crisis Project as an open and collaborative platform to connect government, NGO's, and citizens."
   welcome_login_message: ""
 
   welcome_edit_profile_link: "Edit your profile"
@@ -1660,7 +1660,7 @@ en:
   welcome_find_groups_text: "Browse the group directory for groups to join."
 
   welcome_create_group_link: "Create a new group"
-  welcome_create_group_text: "Create a new group and invite other people to join. Projects allow you to share and collaborate with other people."
+  welcome_create_group_text: "Create a new group and invite other people to join. Groups allow you to share and collaborate with other people."
 
   welcome_create_page_link: "Create a new page"
   welcome_create_page_text: "You can create new discussions, new wiki pages, upload images and files, start task lists, and much more..."
@@ -1671,15 +1671,15 @@ en:
 
   have_your_say: "Have Your Say!"
   contribute_to_site: "Contribute to Site"
-  create_a_group: "Create a Project"
-  create_a_network: "Create a Chapter"
+  create_a_group: "Create a Group"
+  create_a_network: "Create a Organization"
   see_tips_to_get_started: "See Tips to get started"
   hide_tips: "Hide Tips"
   most_active_members: "Most Active Members"
   recently_active_members: "Recently Active Members"
-  most_active_groups: "Most Active Projects"
-  recently_active_groups: "Recently Active Projects"
-  network_settings: "Chapter Settings"
+  most_active_groups: "Most Active Groups"
+  recently_active_groups: "Recently Active Groups"
+  network_settings: "Organization Settings"
 
   administer_site: "Administer Site"
   edit_appearance: "Edit Appearance"
@@ -1702,7 +1702,7 @@ en:
 
   make_public_requested: "Make Public Requested"
   moderation: "Moderation"
-  admins_may_moderate: "Allow council members to moderate the content of the project"
+  admins_may_moderate: "Allow council members to moderate the content of the group"
   admins_may_moderate_description: "When this option is selected, council members will have access to a moderation tool which allows them to review and remove pages and comments."
 
   ##

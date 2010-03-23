@@ -5,6 +5,9 @@
     = link_to_active(I18n.t(:menu_link_account), {:controller => '/me', :action => 'edit'}, @active_tab == :account)
     = '&bull;'
     = link_to(I18n.t(:menu_link_logout), :controller => '/account', :action => 'logout')
+    - if may_admin_site?
+      = '&bull;'
+      = admin_option
 
     = call_hook :top_right_links
 
