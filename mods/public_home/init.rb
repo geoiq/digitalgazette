@@ -1,5 +1,6 @@
 
 Dispatcher.to_prepare do
+  require "public_home"
   ModSetting.register(:mod => 'public_home',
                       :name => :public_home,
                       :type => :boolean,

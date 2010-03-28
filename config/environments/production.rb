@@ -37,6 +37,7 @@ MAKE_ASSET_BUNDLES = true
 ##
 
 # use syslog if available
+=begin
 begin
   require 'syslog_logger'
   #RAILS_DEFAULT_LOGGER = SyslogLogger.new
@@ -44,6 +45,7 @@ begin
 rescue LoadError => exc
   # i guess there is no syslog_logger
 end
+=end
 
 # the default log level for production should be to only log warnings.
 config.log_level = :warn

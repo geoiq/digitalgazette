@@ -5,7 +5,12 @@ class Groups::DirectoryController < Groups::BaseController
   before_filter :set_group_type
 
   def index
-    logged_in? ? redirect_to(:action => 'my') : redirect_to(:action => 'search')
+    if logged_in?
+      my_groups
+      @groups.empty? ? redirect_to(:action => 'search') : redirect_to(:action => 'my')
+    else 
+      redirect_to(:action => 'search')
+    end
   end
 
   def recent
@@ -47,13 +52,14 @@ class Groups::DirectoryController < Groups::BaseController
     else
       @second_nav = 'all'
       @misc_header = '/groups/directory/browse_header'
-      @request_path = '/groups/directory/search'
+      request_root = (@group_type == :group) ? '/groups' : '/networks'
+      @request_path = request_root+'/directory/search'
       render_list
     end
   end
 
   def my
-    @groups = current_user.primary_groups.alphabetized('').paginate(pagination_params)
+    @groups || my_groups 
     @show_committees = true
     @second_nav = 'my'
     render_list
@@ -68,6 +74,10 @@ class Groups::DirectoryController < Groups::BaseController
 
 
   protected
+
+  def my_groups
+    @groups = current_user.primary_groups.alphabetized('').paginate(pagination_params)
+  end
 
   def render_list
     render :template => 'groups/directory/list'
