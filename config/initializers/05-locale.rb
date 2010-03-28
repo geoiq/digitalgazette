@@ -14,6 +14,7 @@ unless Conf.enabled_languages.blank?
   end
 end
 
+RAILS_DEFAULT_LOGGER.info "locale_paths: #{locale_paths.inspect}"
 # set the load paths
 I18n.load_path << locale_paths
 I18n.default_locale = :en
