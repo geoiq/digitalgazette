@@ -1,0 +1,12 @@
+<style>#maker_map_<%= @map_id %> {width: 100%; height: 400px;}</style>
+
+<h2><%= @map["title"] %></h2>
+<div class="geocommons_map" id="maker_map_<%= @map_id %>"></div><br/>
+ <script type="text/javascript" charset="utf-8" src="http://maker.f1.local/javascripts/embed.js"></script>
+<script type="text/javascript" charset="utf-8">
+  Maker.maker_host='http://maker.f1.local';Maker.finder_host='http://finder.f1.local';Maker.core_host='http://f1.local';
+  Maker.load_map("maker_map_<%= @map_id %>", "<%= @map_id %>");
+</script>
+
+
+<p><%= @map["description"] %></p>

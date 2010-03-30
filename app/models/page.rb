@@ -82,6 +82,15 @@ class Page < ActiveRecord::Base
   acts_as_site_limited
   attr_protected :owner
 
+  acts_as_solr :fields => [
+    {:title => {:boost => 4.0}},
+    :data_id,
+    {:summary => { :boost => 2.0 }},
+    {:tags => { :boost => 6.0 }},
+    :owner_name,
+    :created_at,
+    :public
+    ]  
   ##
   ## NAMES SCOPES
   ##

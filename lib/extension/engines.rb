@@ -85,12 +85,12 @@ Engines::Plugin.class_eval do
     Dispatcher.to_prepare {
       model_class  = Kernel.const_get(model_class.to_s)  # \ weird, yet
       mixin_module = Kernel.const_get(mixin_module.to_s) # / required.
-      if modname = mixin_module.const_get("ClassMethods")
-        model_class.send(:extend, modname)
-      end rescue NameError
-      if modname = mixin_module.const_get("InstanceMethods")
-        model_class.send(:include, modname)
-      end rescue NameError
+      # if modname = mixin_module.const_get("ClassMethods")
+      #   model_class.send(:extend, modname)
+      # end rescue NameError
+      # if modname = mixin_module.const_get("InstanceMethods")
+      #   model_class.send(:include, modname)
+      # end rescue NameError
       if mixin_module.respond_to? :add_to_class_definition
         model_class.instance_eval &(mixin_module.add_to_class_definition())
       end

@@ -44,4 +44,8 @@ module ControllerExtension::WikiPopup
     render :partial => 'wiki/link_popup', :locals => {:wiki => @wiki}
   end
 
+  #  TODO - ajturner - this isn't loading from the mod
+  def map_popup_show
+    render :partial => 'wiki/map_popup', :locals => {:wiki => @wiki}
+  end
 end
