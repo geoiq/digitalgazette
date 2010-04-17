@@ -48,7 +48,7 @@ end
 =end
 
 # the default log level for production should be to only log warnings.
-config.log_level = :warn
+config.log_level = :debug
 if defined? Engines
   Engines.logger = ActiveSupport::BufferedLogger.new(config.log_path)
   Engines.logger.level = Logger::WARN

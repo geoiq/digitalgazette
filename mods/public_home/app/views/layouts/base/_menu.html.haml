@@ -10,12 +10,14 @@
     = me_option
     =# people_option
     =# groups_option
-    -# if current_site.has_networks?
-      =# networks_option
+    - if current_site.has_networks?
+      = networks_option
   - else
     = home_option
     =# people_option
     =# groups_option
+    - if current_site.has_networks?
+      = networks_option
 
   = call_hook :top_menu, :group => @group || nil
 
