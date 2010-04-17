@@ -5,8 +5,12 @@ FFMPEG_COMMAND   = `which ffmpeg`.chomp   unless defined? FFMPEG_COMMAND
 INKSCAPE_COMMAND = `which inkscape`.chomp unless defined? INKSCAPE_COMMAND
 GPG_COMMAND      = `which gpg`.chomp      unless defined? GPG_COMMAND
 
-OPENOFFICE = `which openoffice`.chomp.any || `which openoffice.org`.chomp.any
-if OPENOFFICE
+openoffice_command = false
+%w{openoffice openoffice.org soffice}.each do |command|
+	openoffice_command = `which #{command}`.chomp if `which #{command}`.any?
+end
+if openoffice_command.any?
+  OPENOFFICE = openoffice_command
   OPENOFFICE_DAEMON_PORT = 8100
   OPENOFFICE_COMMAND = "#{RAILS_ROOT}/lib/od_converter.py"
   OPENOFFICE_DAEMON_COMMAND = '%s -headless -accept="socket,port=%s;urp;"' % [OPENOFFICE, OPENOFFICE_DAEMON_PORT]
