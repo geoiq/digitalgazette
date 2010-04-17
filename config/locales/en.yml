@@ -1656,11 +1656,11 @@ en:
   welcome_find_people_link: "Find people"
   welcome_find_people_text: "Browse the user directory for people you know."
 
-  welcome_find_groups_link: "Find groups"
-  welcome_find_groups_text: "Browse the group directory for groups to join."
+  welcome_find_groups_link: "Find projects"
+  welcome_find_groups_text: "Browse the project directory for projects to join."
 
-  welcome_create_group_link: "Create a new group"
-  welcome_create_group_text: "Create a new group and invite other people to join. Groups allow you to share and collaborate with other people."
+  welcome_create_group_link: "Create a new project"
+  welcome_create_group_text: "Create a new project and invite other people to join. Projects allow you to share and collaborate with other people."
 
   welcome_create_page_link: "Create a new page"
   welcome_create_page_text: "You can create new discussions, new wiki pages, upload images and files, start task lists, and much more..."

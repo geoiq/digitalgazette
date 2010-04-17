@@ -20,12 +20,15 @@ class UnauthenticatedUser
   def current_status
     ""
   end
-
+  def all_group_ids
+     []
+  end
   def member_of?(group)
     false
   end
 
   def method_missing(method)
+    RAILS_DEFAULT_LOGGER.error "UnauthenticatedUser#PermissionDenied (#{method})"
     raise PermissionDenied
   end
 
