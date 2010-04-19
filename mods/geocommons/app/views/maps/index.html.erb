@@ -1,6 +1,0 @@
-<dl>
-<%- @maps.each do |map| -%>
-  <dt><%= link_to(map["title"], map_path(map["pk"])) %></dt>
-  <dd><%= map["description"] %></dd>
-<%- end -%>
-</dl>

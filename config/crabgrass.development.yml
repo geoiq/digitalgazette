@@ -9,8 +9,15 @@
 # See doc/CONFIGURATION for more details.
 #
 
+title: Digital Gazette
+chat: false
+default_language: en
+enabled_languages:
+  - en
+  - ar
+  - fr
+#  - es_ES
 
-title: CrisisCommons
 ##
 ## GLOBAL
 ##
@@ -20,21 +27,22 @@ enabled_mods:
   - translator
   - mod_settings
   - public_home
-  - website_mod
-
+  - digitalgazette
 enabled_tools:
   - asset_tool
   - core_tools
-  - event_tool
-  - ranked_vote_tool
-  - rate_many_tool
-  - task_list_tool
   - wiki_tool
-  - survey_tool
-  - gallery_tool
-  - external_video_tool
-  - announcement_tool
-  - feed_tool
+  - geocommons
+#  - event_tool
+#  - ranked_vote_tool
+#  - rate_many_tool
+#  - task_list_tool
+#  - survey_tool
+#  - gallery_tool
+#  - external_video_tool
+#  - announcement_tool
+#  - feed_tool
+  
 #email:
 #  delivery_method: :sendmail
 #  smtp_settings:
@@ -50,10 +58,10 @@ enabled_tools:
 ##
 
 sites:
-  - name: crisiscommons
-    admin_group: crisiscommonsadmin
-    moderation_group: crisiscommonsmoderation
-    translation_group: crisiscommonstranslation
+  - name: pakistan
+    admin_group: pakistanadmin
+    moderation_group: pakistanmoderation
+    translation_group: pakistantranslation
 #  - name: red
 #    admin_group: redadmins
 
@@ -81,4 +89,3 @@ available_page_types:
   - ArticlePage
   - Gallery
   - WikiPage
-

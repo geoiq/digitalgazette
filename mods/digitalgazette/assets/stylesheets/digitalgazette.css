@@ -1,0 +1,225 @@
+/* Digital Gazette */
+  .page {
+/*    padding: 20px 100px 40px 100px;     */
+    line-height: 1.0;
+  }
+  .outline {
+    border: 1px solid #aaa;      
+  }
+  div#banner, div#footer  {
+    background-color: #72d8fa;
+  }
+    
+  #banner-ribbon {
+    background-color: #99cf21;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #FFF;
+    margin: 0px 20px 5px -10px;
+    padding: 10px 10px 0 10px;
+  }
+  #banner-ribbon .nav_icons {
+      float: right;
+  }
+  #masthead-title, #subtitle {
+    font-family: "Times New Roman", serif;        
+  }
+  #masthead-title {
+    padding: 0;
+    font-variant: small-caps;
+    color: #FFF;
+    font-size: 1.8em;
+    margin: 20px 0 -20px 10px;
+    text-align: left;
+  }
+  #masthead-title h1 {
+    color: #FFF;
+  }
+  #masthead-title a {
+      text-decoration: none;
+      color: #FFF;
+  }
+  #subtitle h2 {
+    color: #000;
+    margin: 10px 0;
+  }
+  #subtitle strong {
+      color: #1b641b;
+  }
+  #subtitle {
+    font-size: 1.2em;
+    margin: 10px 0 -10px 10px;
+    text-align: left;
+  }
+  #subtitle span.lead-in { font-size: 0.8em; color: #1b641b;}
+  
+  #tri-left {
+    margin-left: -10px;
+    width: 10px;
+    height: 10px;
+    background-image: url(images/digitalgazette/tri-left.png);
+  }
+.nav_icons li, .nav-links li {
+  margin-right: 20px;
+}
+.nav_icons li, .nav-links li {
+  float: left;
+  list-style: none;
+  text-align: center;
+}
+
+.nav_icons li .last {
+  margin-right: 0px;
+}
+.nav_icons li a, .nav-links li a {
+  text-decoration: none;
+  color: #FFF;    
+}
+#credits {
+  float: right;
+  color: #FFF;
+}
+#intro {
+  margin-top: 20px;
+  color: #8e3242;
+  font-size: 1.2em;
+}
+#intro strong{
+  font-size: 1.8em;
+}
+#intro-map {
+  height: 420px
+}
+div#intro-navigation {
+  background-color: #b2cfd0;
+  color: #FFF;
+  font-size: 1.2em;
+}
+div#intro-navigation h3 {
+  color: #FFF;
+}
+#user .nav-links {
+  float: right;
+}
+#user {
+    margin: 0 5px 5px 0;
+}
+#user a {
+    color: #FFF;
+}
+#login {
+  background-color: #FFF;
+  padding: 5px 10px;
+  margin-right: 15px;
+}
+#signup {
+  margin: 0;
+}
+#login input {
+  background-color: #EEE;
+  color: #000;
+  border: 0px;
+}
+#login a {
+  color: #72d8fa;
+  padding-top: 4px;
+  font-size: 1.2em;
+}
+#login li, #signup li {
+  margin-right: 5px;
+  padding: 0;
+}
+.search {
+  margin: 4px 0;
+}
+input#search {
+  color: #AAA;
+  padding: 4px;
+  margin: 0 5px 0 0;
+  font-size: 1.2em;
+}
+.search a {
+  margin-top: 4px;
+  font-size: 1.4em;
+  margin: 0;
+}
+.search li {
+  margin: 0;
+}
+#about-links {
+  margin: 0;
+  color: #FFF;
+  font-size: 1.1em;
+}
+#about-links li {
+  margin: 0 10px 0 0;
+}
+ul.action-buttons {
+    padding: 0;
+}
+.action-buttons li {
+  list-style: none;
+  width: 200px;
+  margin-top: 40px;
+}
+.action-buttons li a {
+  text-decoration: none;
+  clear: both;
+  margin: 10px;
+  padding: 10px;  
+  text-align: center;
+  background-color: #99cf21;
+  color: #FFF;
+    -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius : 5px;
+  border: 1px solid #FFF;
+}
+.action-buttons li a:hover {
+    background-color: #aaa;
+}
+/* Override Crabgrass*/
+body #content #content-container #content-wrap {
+    width: 950px;
+    margin-top: 5px;
+}
+
+body #content #content-container {
+    width: 950px;
+    padding: 0;
+}
+#title h2 {
+    color: #7b3b4c;
+}
+.summary {
+    font-style: italic;
+}
+.info_box {
+    display:none;
+}
+body #content #content-container #content-wrap #alpha10 {
+}
+#main-content, #main-content-right {
+    width: 740px;
+}
+
+.content-box h1, .wiki h1 {
+    font-size: 16px;
+    color: #7b3b4c;
+}
+.page_title h3 {
+    color: #7b3b4c;
+    font-size: 22px;
+    margin-bottom: 3px;
+}
+.search-box {
+    width: 200px;
+    padding: 3px;
+    font-size: 1.1em;
+}
+input.search-submit {
+    margin-top: 6px;
+}
+fieldset {
+    border:none;
+    margin:0;
+    padding: 0;
+}

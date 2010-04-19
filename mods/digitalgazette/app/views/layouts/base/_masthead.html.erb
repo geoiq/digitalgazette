@@ -1,0 +1,30 @@
+
+      <div id="banner" class="span-24">
+        <span class="span-14" id="masthead-title">
+          <span class="lead-in">The</span><br />
+            <%= custom_masthead_site_title %>
+        </span>
+        <%= render :partial => '/layouts/base/login'  %>
+
+        <div class="span-24" id="banner-ribbon">
+          <span class="span-15" id="subtitle">
+            <h2>
+            Malakand Division
+            </h2>
+            <strong>North West Frontier Province, Pakistan</strong>
+          </span>
+          <span class="span-9 last">
+            <ul class="nav_icons">
+              <li class="first"><a id="maps_link" href="/maps">
+                <%= image_tag("icon_globe.png", :plugin => "digitalgazette") %><br/>
+                Maps</a></li>
+              <li><a id="wiki_link" href="/pages/all">
+                <%= image_tag("icon_pencil.png", :plugin => "digitalgazette") %><br/>
+                Wiki</a></li>
+              <li class="last" style="margin-right: 0px"><a id="reports_link" href="/files">
+                <%= image_tag("icon_report.png", :plugin => "digitalgazette") %><br/>
+                Reports</a></li>
+            </ul>
+          </span>
+        </div>
+      </div> <!-- banner -->      

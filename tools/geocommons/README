@@ -1,0 +1,26 @@
+Geocommons
+==========
+
+A mod for adding integration into GeoCommons.
+
+Adds support for /maps
+
+
+Setup
+=====
+
+* Create a Site
+* Create a Network (public)
+* Modify the site to 
+** site = Site.find :first
+** site.public_home = true
+** site.network = Network.find_by_name("public")
+
+
+Example
+=======
+
+Example goes here.
+
+
+Copyright (c) 2010 [name of plugin creator], released under the MIT license

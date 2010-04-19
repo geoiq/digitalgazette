@@ -1,0 +1,60 @@
+<%# THIS IS JUST A TEMPORARY STOP GAP FOR NOW. NOTHING HERE IS FOR THE FUTURE %>
+<% content_for :style do %>
+
+
+<% end %>
+        <span class="span-24 last" id="intro">
+          <%= @group.profiles.public.summary_html %>
+        </span>
+        <div id="intro-navigation" class="span-24"> 
+          <span class="span-14" id="intro-map">
+            <%# display_media(@group.profiles.public.cover) %>
+            <%= image_tag("pakistan_satellite.jpg", :plugin => "digitalgazette") %>
+          </span>
+          <span class="span-10 last" id="intro-text">
+            <h3>Wiki</h3>
+            <div id='featured_panel' class="tab_content tab_area" style="display:none" onclick="<%= load_panel('featured') %>">
+ <%= big_spinner %>
+</div>
+          
+            <h3>Reports</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          </span>
+        </div> <!-- intro-navigation -->
+  
+<!--
+<% default_hash = @show_featured ? 'featured' : 'recent-pages' -%>
+<% content_for :script do %>
+  <%= "onHashChanged = showTabByHash;" %>
+  <%= "defaultHash = defaultHash || '#{default_hash}';" %>
+<% end %>
+
+
+
+
+<%# content_for :left_sidebar do %>
+  <%# render :partial => 'sidebar' %>
+<%# end %>
+
+<% content_for :misc_header do %>
+<%= link_to(I18n.t(:edit), groups_menu_items_url(:action => :index), :class=>'small_icon pencil_16') if may_edit_menu? %>
+    <% if false && params[:welcome_box] && logged_in? -%>
+      <div id='welcome_box'>
+        <div class="inset_box round">
+          <%# render :partial => '/me/dashboard/welcome_box_content' %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+<% end %>
+
+<%# if @announcements.any? %>
+  <%# render :partial => 'announcement_page/announcements'  %>
+<%# end -%>
+
+<div id="sitehome">
+  <%# render :partial => 'widgets/wiki', :locals => {:wiki => @group.profiles.public.wiki, :editable => may_update_profile?, :no_title => true} %>
+</div>
+
+-->

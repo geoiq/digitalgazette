@@ -1,7 +1,7 @@
 class CreateModeratedFlags < ActiveRecord::Migration
 
   def self.up
-    create_table :moderated_flags do |t|
+    create_table :moderated_flags, :force => true do |t|
       t.column :type, 	:string, :null => false
       t.column :vetted_at,	:datetime
       t.column :vetted_by_id,	:integer

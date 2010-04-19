@@ -3,6 +3,18 @@ en:
   ## TO BE DESTROYED
   ##
 
+
+  developers_invited: "Developers Invited"
+  venture_of: "A Venture of"
+  who_we_are: "Who we are"
+  how_to_use: "How to use this site"
+  what_is_this: "What is this"
+  sitemap: "Sitemap"
+  
+  view_maps: "View existing Maps"
+  build_map_by_location: "Buid a Map by Location"
+  build_map_by_topic: "Build a Map by Topic"
+  
   #upload_attachment: "Upload Attachment"
   #rename {{upload_images}} -> {{upload}}
 
@@ -112,7 +124,7 @@ en:
   loadingdotdotdot: "Loading..."
 
   search_headline: "Search"
-  search_input_caption: "Search for pages"
+  search_input_caption: "Search for articles"
   search_this_group: "this group only"
   search_this_person: "this person only"
   search_link: "Search"
@@ -285,7 +297,7 @@ en:
   ## ACCOUNT
   ##
 
-  signup_link: "New Account"
+  signup_link: "Create Account"
   signup_email_info: "Optional: used if you forget your password"
   forgot_password_link: "Forgot Password"
   signup_info: Choose your login name and your password then click "{{sign_up}}"

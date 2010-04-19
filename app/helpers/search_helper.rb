@@ -1,6 +1,6 @@
 module SearchHelper
   def mini_search_text_field_tag
-    text_field_tag('search[text]', '', :class => 'text',
+    text_field_tag('search[text]', '', :class => 'search-box',
                                       :size => 17,
                                       :value => I18n.t(:search_input_caption),
                                       :onfocus => hide_default_value,

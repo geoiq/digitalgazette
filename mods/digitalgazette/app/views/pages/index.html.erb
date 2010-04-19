@@ -1,0 +1,55 @@
+<h3>Welcome to the Wiki</h3>
+
+<div class="span-12 prepend-4">
+
+<% form_tag(search_url, :id => "search") do %>
+What do you wish to learn about?  
+<%= mini_search_text_field_tag %><input class="search-submit" size="25"  type="image" src="/images/ui/search-icon.png" />
+<%- end -%>
+</div>
+<div class="span-6 prepend-6">
+  <h4>...or Browse Articles by Topic</h4>
+</div>
+<div class="span-6 prepend-4">
+  <h5>Political Structures</h5>
+  <ul>
+    <li>Subtopic 1</li>
+    <li>Subtopic 2</li>
+    <li>Subtopic 3</li>
+    <li>Subtopic 4</li>
+  </ul>
+</div>
+<div class="span-6 last">
+  <h5>Societal Structures</h5>
+  <ul>
+    <li>Subtopic 1</li>
+    <li>Subtopic 2</li>
+    <li>Subtopic 3</li>
+    <li>Subtopic 4</li>
+  </ul>
+</div>
+<div class="span-6 prepend-4">
+  <h5>Religious Structures</h5>
+  <ul>
+    <li>Subtopic 1</li>
+    <li>Subtopic 2</li>
+    <li>Subtopic 3</li>
+    <li>Subtopic 4</li>
+  </ul>
+</div>
+<div class="span-6 last">
+  <h5>Emergent Structures</h5>
+  <ul>
+    <li>Subtopic 1</li>
+    <li>Subtopic 2</li>
+    <li>Subtopic 3</li>
+    <li>Subtopic 4</li>
+  </ul>
+</div>
+
+<%- content_for :right_sidebar do -%>
+  <h5 class="dash_box">
+    Most Viewed
+  </h5>
+  
+<%- end -%>

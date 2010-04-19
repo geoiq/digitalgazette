@@ -1,0 +1,54 @@
+<%#
+  after_load_js = %Q[
+   after_load_function = function() {
+     Field.focus('login')}}); return false;
+  }]
+%>
+<span id="user" class="column span-9 last">
+  <%- if logged_in? -%>
+    <ul id="login" class="nav-links">
+    <li><%= link_to(I18n.t(:profile), '/'+current_user.login) %></li>
+    <li><%= link_to_active(I18n.t(:menu_link_account), {:controller => '/me', :action => 'edit'}, @active_tab == :account) %></li>
+    <li><%= link_to(I18n.t(:menu_link_logout), :controller => '/account', :action => 'logout') %></li>
+        <%= "<li>#{admin_option}</li>" if may_admin_site? -%>
+    <%- call_hook :top_right_links -%>
+    </ul>
+  <%- elsif !@login_form_already_rendered -%>
+          <% form_tag :controller => 'account', :action => 'login' do -%>
+          <%= hidden_field_tag 'redirect', params[:redirect] || request.request_uri %>
+          
+          <ul id="login" class="nav-links">
+            <li><%= text_field_tag 'login', I18n.t(:username), :size => 14  %></li>
+            <li><%= password_field_tag 'password', I18n.t(:password), :size => 14 %></li>
+            <li class="last"><%= submit_tag I18n.t(:log_in) %></li>
+          </ul>
+          <% end -%>
+          <br/>
+          <ul id="signup" class="nav-links">
+            <li class="first"><a href="/"><%= I18n.t(:forgot_password_link) %></a>/</li>
+            <li class="last"><a href="/"><%= I18n.t(:signup_link) %></a></li>
+          </ul>
+
+  <%- end -%>
+          
+          <br/>
+           <% form_tag(search_url, :id => "search") do %>
+          <ul class="search nav-links">
+            <li><%= mini_search_text_field_tag %></li>
+            <li><input class="search-submit" size="25"  type="image" src="/images/ui/search-icon.png" /></li>
+            <!-- <li><input type="text" size="25" name="search" value="Ask a question" id="search"></li> -->
+            <!-- <li class="last"><a href="/">Go</a></li> -->
+          </ul>
+          
+          <br/>
+          <%- end -%>
+          <ul id="about-links" class="nav-links">
+            <li><a href="/about/what"><%= I18n.t(:what_is_this) %></a> |</li>
+            <li><a href="/about/how"><%= I18n.t(:how_to_use) %></a> |</li>
+            <li><a href="/about/who"><%= I18n.t(:who_we_are) %></a></li>
+            <!-- <li class="last"><a href="/"><%= I18n.t(:sitemap) %></a></li> -->
+          </ul>      
+        </span>
+
+
+

@@ -1,0 +1,18 @@
+<style>#maker_map {width: 100%; height: 400px;}</style>
+<div class="geocommons_map" class="span-24" id="maker_map">
+</div><br/>
+ <script type="text/javascript" charset="utf-8" src="http://maker.digitalgazette.org/javascripts/embed.js"></script>
+<script type="text/javascript" charset="utf-8">
+Maker.maker_host='http://maker.digitalgazette.org';Maker.finder_host='http://finder.digitalgazette.org';Maker.core_host='http://core.digitalgazette.org';
+  Maker.load_map("maker_map", "8");
+</script>
+
+<%- content_for :right_sidebar do -%>
+  About the maps
+  
+<ul class="action-buttons vertical">
+<li><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></li>
+<li><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></li>
+<li><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></li>
+</ul>
+<%- end -%>
