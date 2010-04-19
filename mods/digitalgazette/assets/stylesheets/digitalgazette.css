@@ -3,6 +3,13 @@
 /*    padding: 20px 100px 40px 100px;     */
     line-height: 1.0;
   }
+a {
+    text-decoration: none;
+    color: #FFF;
+}
+a:hover {
+    text-decoration: underline;
+}  
   .outline {
     border: 1px solid #aaa;      
   }
@@ -74,12 +81,15 @@
   text-decoration: none;
   color: #FFF;    
 }
-#credits {
-  float: right;
-  color: #FFF;
+#footer {
+  color: #FFF;    
+}
+
+.credits {
+  margin-top: 5px;
+  font-weight: bold;
 }
 #intro {
-  margin-top: 20px;
   color: #8e3242;
   font-size: 1.2em;
 }
@@ -175,6 +185,43 @@ ul.action-buttons {
 }
 .action-buttons li a:hover {
     background-color: #aaa;
+}
+#intro-text,  #intro-text h5 a {
+    margin: 5px;
+    color: #FFF;
+}
+#intro-text h5 { font-size: 1.6em;}
+#intro-text p { margin-bottom: 2px; }
+#intro-text h3, #intro-text strong {
+    color: #70a0a0;  
+    margin: 0;
+}
+#intro-map {
+    background-image: url("/plugin_assets/digitalgazette/images/pakistan_satellite.jpg");
+    width: 520px;
+    height: 400px;
+}
+#intro-map-about {
+    width:520px;
+    height:100px; 
+    margin: 140px 0px;     
+    background-color: #000;
+    font-size: 1.4em;
+    opacity: 0.7;
+    /* for IE */
+    filter:alpha(opacity=70);
+}
+#intro-map-about a, #intro-map-about a {
+    color: #FFF;
+    font-weight: bold;
+    color: #FFF;
+}
+#intro-map-about p {
+    margin: 20px 50px;
+    padding-top: 20px;
+}
+#intro-text {
+    color: #edffff;
 }
 /* Override Crabgrass*/
 body #content #content-container #content-wrap {

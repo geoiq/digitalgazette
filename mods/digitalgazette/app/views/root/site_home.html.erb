@@ -1,25 +1,15 @@
-<%# THIS IS JUST A TEMPORARY STOP GAP FOR NOW. NOTHING HERE IS FOR THE FUTURE %>
-<% content_for :style do %>
-
-
-<% end %>
         <span class="span-24 last" id="intro">
           <%= @group.profiles.public.summary_html %>
         </span>
         <div id="intro-navigation" class="span-24"> 
-          <span class="span-14" id="intro-map">
-            <%# display_media(@group.profiles.public.cover) %>
-            <%= image_tag("pakistan_satellite.jpg", :plugin => "digitalgazette") %>
-          </span>
+          <div class="span-14" id="intro-map">
+            <div id="intro-map-about"><p>
+            <%= link_to I18n.t(:create_and_explore), '#' %> <%= I18n.t(:using_our_data) %> 
+            <%= link_to I18n.t(:upload_your_own), '#' %></p>       
+            </div>
+          </div>
           <span class="span-10 last" id="intro-text">
-            <h3>Wiki</h3>
-            <div id='featured_panel' class="tab_content tab_area" style="display:none" onclick="<%= load_panel('featured') %>">
- <%= big_spinner %>
-</div>
-          
-            <h3>Reports</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+          <%= render :partial => 'widgets/wiki', :locals => {:wiki => @group.profiles.public.wiki, :editable => may_update_profile?, :no_title => true} %>            
           </span>
         </div> <!-- intro-navigation -->
   
@@ -47,7 +37,7 @@
       </div>
     <% end -%>
   </div>
-<% end %>
+<% end if false  %>
 
 <%# if @announcements.any? %>
   <%# render :partial => 'announcement_page/announcements'  %>

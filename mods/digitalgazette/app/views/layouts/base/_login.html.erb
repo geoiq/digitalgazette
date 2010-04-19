@@ -18,8 +18,8 @@
           <%= hidden_field_tag 'redirect', params[:redirect] || request.request_uri %>
           
           <ul id="login" class="nav-links">
-            <li><%= text_field_tag 'login', I18n.t(:username), :size => 14  %></li>
-            <li><%= password_field_tag 'password', I18n.t(:password), :size => 14 %></li>
+            <li><%= text_field_tag 'login', '', :size => 14  %></li>
+            <li><%= password_field_tag 'password', '', :size => 14 %></li>
             <li class="last"><%= submit_tag I18n.t(:log_in) %></li>
           </ul>
           <% end -%>
