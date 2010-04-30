@@ -254,7 +254,7 @@ footer
 everywhere
 ********************/
 .txtRed{color:#a76272;}
-.txtWhite{color:#fff;}
+.txtWhite, .txtWhite a, .txtWhite a:visited {color:#fff;}
 .txtDrkGray{color:#8c99b2;}
 .pad10{padding:10px;}
 .pad10h{padding: 0 10px;}

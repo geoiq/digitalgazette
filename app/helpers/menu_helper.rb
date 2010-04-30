@@ -11,7 +11,7 @@ module MenuHelper
       link_to_active(label, url, options[:active]),
       :class => 'topnav'
     )
-    content_tag(:li,
+    content_tag(:span,
       [menu_heading, options[:menu_items]].combine("\n"),
       :class => ['menu', (options[:active] && 'current')].combine,
       :id => id
