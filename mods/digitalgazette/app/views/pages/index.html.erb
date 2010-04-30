@@ -1,13 +1,26 @@
-<h3>Welcome to the Wiki</h3>
+       	<h2 class="pageTitle txtRed span-6 first">
+            	Welcome to the Wiki
+            </h2>
+            <div class="pageSubNavTop span-10 prepend-1 txtAlignCenter">
+            	<a href="#">HOW DO I DO THIS?</a> | 
+                <a href="#">WRITE A NEW ARTICLE</a>
+            </div>
+            <br class="clear" />
+            <p class="span-5 first" style="padding-top: 5px;">
+            	What do you wish to learn about? 
+            </p>
+            <div class="span-5">
+              <% form_tag(search_url, :id => "wikiSearch") do %>
 
-<div class="span-12 prepend-4">
-
-<% form_tag(search_url, :id => "search") do %>
-What do you wish to learn about?  
-<%= mini_search_text_field_tag %><input class="search-submit" size="25"  type="image" src="/images/ui/search-icon.png" />
-<%- end -%>
-</div>
-<div class="span-6 prepend-6">
+              <%= mini_search_text_field_tag %>
+                    <input type="submit" value="" id="btnWikiSubmit" />
+                  <%- end -%>
+            </div>  
+            <br class="clear" />
+            <p class="txtAlignCenter">
+            	<a href="#" class="lnkBlack">Browse Articles by Topic</a>
+            </p> 
+<!-- <div class="span-6 prepend-6">
   <h4>...or Browse Articles by Topic</h4>
 </div>
 <div class="span-6 prepend-4">
@@ -45,11 +58,18 @@ What do you wish to learn about?
     <li>Subtopic 3</li>
     <li>Subtopic 4</li>
   </ul>
-</div>
+</div> -->
 
+
+            
 <%- content_for :right_sidebar do -%>
-  <h5 class="dash_box">
-    Most Viewed
-  </h5>
-  
+  <div class="roundTop txtDrkGray">
+    <h3><strong>MOST VIEWED</strong></h3>
+  </div>
+  <div class="subPageRightLinks">
+    <a href="wiki_sub.html">Article 1</a>
+    <a href="wiki_sub.html">Article 2</a>
+    <a href="wiki_sub.html">Article 3</a>
+  </div>
+  <div class="roundBtm"></div>
 <%- end -%>

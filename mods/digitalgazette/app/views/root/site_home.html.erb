@@ -1,26 +1,33 @@
-        <span class="span-24 last" id="intro">
-          <%= @group.profiles.public.summary_html %>
-        </span>
-        <div id="intro-navigation" class="span-24"> 
-          <div class="span-14" id="intro-map">
-            <div id="intro-map-about"><p>
-            <%= link_to I18n.t(:create_and_explore), '#' %> <%= I18n.t(:using_our_data) %> 
-            <%= link_to I18n.t(:upload_your_own), '#' %></p>       
+
+  <div id="contentLeft" class="span-12 prepend-1">
+        	<h2 id="mainHeadLine">
+            	Ebitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta  auta corehen
+            </h2>
+            <p>
+            	Ebitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehenEbitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehen
+            </p>
+
+          <%# @group.profiles.public.summary_html %>
+
+
+             <div class="homeBkt span-4 first">
+             <%= link_to(image_tag("lnkMap.jpg", :plugin => "digitalgazette", :alt => "maps"), "/maps", :title => "Maps") %>
             </div>
-          </div>
-          <span class="span-10 last" id="intro-text">
-          <%= render :partial => 'widgets/wiki', :locals => {:wiki => @group.profiles.public.wiki, :editable => may_update_profile?, :no_title => true} %>            
-          </span>
-        </div> <!-- intro-navigation -->
-  
-<!--
-<% default_hash = @show_featured ? 'featured' : 'recent-pages' -%>
-<% content_for :script do %>
-  <%= "onHashChanged = showTabByHash;" %>
-  <%= "defaultHash = defaultHash || '#{default_hash}';" %>
-<% end %>
-
-
+            <div class="homeBkt span-4">
+             <%= link_to(image_tag("lnkWiki.jpg", :plugin => "digitalgazette", :alt => "wiki"), "/pages", :title => "Wiki") %>
+            </div>
+            <div class="homeBkt span-4 last">
+             <%= link_to(image_tag("lnkReports.jpg", :plugin => "digitalgazette", :alt => "reports"), "/pages/all", :title => "Reports") %>
+            </div>
+</div>
+<div id="contentRight" class="span-11 last txtAlignCenter">
+  <div id="homePicHolder">
+    <%= image_tag("homePic.jpg", :plugin => "digitalgazette", :id => "homePic") %>
+  </div><!--#homePicHolder// -->
+</div>          
+<%# content_for :right_sidebar do %>
+  <%# render :partial => 'sidebar' %>  
+<%# end %>
 
 
 <%# content_for :left_sidebar do %>
@@ -43,8 +50,6 @@
   <%# render :partial => 'announcement_page/announcements'  %>
 <%# end -%>
 
-<div id="sitehome">
+<!-- <div id="sitehome">
   <%# render :partial => 'widgets/wiki', :locals => {:wiki => @group.profiles.public.wiki, :editable => may_update_profile?, :no_title => true} %>
-</div>
-
--->
+</div> -->
