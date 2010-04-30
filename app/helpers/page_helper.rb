@@ -627,7 +627,8 @@ module PageHelper
   end
 
   def summary_for(page)
-    text_with_more(page.summary, :p, :class=>'cover', :more_url=> page_url(page), :length => 300)
+    klass = page.cover.nil? ? '' : 'cover'
+    text_with_more(page.summary, :p, :class => klass, :more_url=> page_url(page), :length => 300)
   end
 
   def owner_image(page, options={})
@@ -636,8 +637,8 @@ module PageHelper
     url = url_for_entity(page.owner)
     img_tag = avatar_for page.owner, 'small'
     if options[:with_tooltip]
-      owner_entity = display_name.is_a?(Group) ? 'group' : 'user'
-      details = "'#{page.title}' is owned by #{owner_entity} #{display_name}"
+      owner_entity = I18n.t((page.owner.is_a?(Group) ? 'group' : 'user').to_sym).downcase
+      details = I18n.t(:page_owned_by, :title => page.title, :entity => owner_entity, :name => display_name)
       render :partial => 'pages/page_details', :locals => {:url => url, :img_tag => img_tag, :details => details}
     else
       link_to(img_tag, url, :class => 'imglink tooltip', :title => display_name)
@@ -647,9 +648,10 @@ module PageHelper
   def page_html_attributes(page)
     icon = page.icon || :page_text_blue
 
-    classes = %w(cover small_icon)
+    classes = %w(small_icon)
     classes << "#{icon}_16"
     classes << 'unread' if page_is_unread(page)
+    classes << 'cover' unless page.cover.nil?
     { :class => classes.join(' ') }
   end
 
