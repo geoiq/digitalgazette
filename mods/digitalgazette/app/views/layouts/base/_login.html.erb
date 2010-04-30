@@ -6,10 +6,10 @@ Field.focus('login')}}); return false;
 %>
 <div id="hdrLogin" class="span-12 first txtWhite">
   <%- if logged_in? -%>
-  <li><%= link_to(I18n.t(:profile), '/'+current_user.login) %></li>
-  <li><%= link_to_active(I18n.t(:menu_link_account), {:controller => '/me', :action => 'edit'}, @active_tab == :account) %></li>
-  <li><%= link_to(I18n.t(:menu_link_logout), :controller => '/account', :action => 'logout') %></li>
-  <%= "<li>#{admin_option}</li>" if may_admin_site? -%>
+    <%= link_to(I18n.t(:profile), '/'+current_user.login) %> |
+    <%= link_to_active(I18n.t(:menu_link_account), {:controller => '/me', :action => 'edit'}, @active_tab == :account) %> |
+  <%= link_to(I18n.t(:menu_link_logout), :controller => '/account', :action => 'logout') %>
+  <%= "| #{admin_option}" if may_admin_site? -%>
   <%- call_hook :top_right_links -%>
 </ul>
 <%- elsif !@login_form_already_rendered -%>
