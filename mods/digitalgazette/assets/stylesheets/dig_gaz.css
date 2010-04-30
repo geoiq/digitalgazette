@@ -1,0 +1,270 @@
+/********************
+elements
+********************/
+body{
+	color: #000;
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;	
+	font-size: 14px;
+}
+a{outline:none;text-decoration:none;}
+a:hover{}
+div{position:relative;}
+
+/********************
+header
+********************/
+#header{
+	background: #27874c url(img/bg_header.jpg) repeat-x center top;
+	height: 159px;
+}
+#header form{display: inline;}
+#hdrLogin a:hover{
+	color: #f3f3f3;
+	text-decoration:underline;
+}
+#hdrLogin #btnLogin{
+	background: none;
+	border: none;
+	color: #000;
+	cursor: pointer;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#hdrLogo{
+	margin-top: 20px;	
+}
+#hdrLogo a{
+	background: url(img/logo_hdr.png) no-repeat 0 0;
+	display: block;
+	height: 99px;
+	width: 325px;
+}
+#search{
+	background: url(img/bg_search.gif) no-repeat 0 0;
+	float: right;
+	height: 24px;
+	line-height: 24px;
+	margin: 30px 0 0 0;
+	text-align: left;
+	width: 217px;
+}
+#txtSearch,#txtWikiSearch{
+	background: none;
+	border: none;
+	margin: -1px 0 0 3px;	
+}
+#btnSearch,#btnWikiSubmit{
+	background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
+	border: none;
+	cursor: pointer;
+	display: block;
+	float: right;
+	height: 20px;
+	margin: 2px 7px 0 0;
+	width: 16px;
+}
+#btnSearch{
+	font-weight: bold;
+}
+#topSubNav{
+	margin-top: 48px;
+}
+#topSubNav a{
+	color: #000;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#topSubNav a:hover{text-decoration:underline;}
+#navMenu{
+	background: url(img/bg_navMenu.gif) repeat-x center top;
+	height: 76px;
+	margin-top: -4px;
+}
+#navLinks{
+	height: 61px;
+	margin: 5px auto;
+	width: 556px;
+}
+#navLinks a{
+	background-position: center bottom;	
+	border-right: 1px solid #fff;
+	display: block;
+	float: left;
+	height: 61px;
+	margin: 0 2px;
+	width: 181px;
+}
+#navLinks a:hover{
+	background-position: center top;
+}
+#lnkMaps{background: url(img/bg_lnkMaps.png) no-repeat 0 0;}
+#lnkWiki{background: url(img/bg_lnkWiki.png) no-repeat 0 0;}
+#lnkReports{background: url(img/bg_lnkReports.png) no-repeat 0 0;}
+
+/********************
+main content
+********************/
+#lnkFeedback{
+	background: url(img/bg_lnkFeedBack.gif) no-repeat 0 0;
+	height: 76px;
+	position: absolute;
+	left: 0;
+	top: 270px;
+	width: 21px;
+}
+#mainHeadLine{
+	color: #a76272;
+	font-size: 20px;
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+.homeBkt{text-align: center;}
+.homeBkt img{
+	height: 172px;
+	width: 133px;
+}
+#homePicHolder{
+	background: url(img/bg_homePicHolder.jpg) no-repeat 0 0;
+	height: 470px;
+	margin: 10px auto;
+	text-align: left;
+	width: 392px;
+}
+#homePic{
+	height: 349px;
+	margin: 20px 0 20px 31px;
+	width: 332px;
+}
+.pageTitle{
+	font-size: 26px;
+	margin-bottom: 20px;
+}
+.pageSubNav, .pageSubNavTop{
+	font-size: 14px;
+	font-weight: bold;
+	margin: 30px 0 0 0;
+	padding: 0;
+	text-align: center;
+}
+.pageSubNavTop{
+	margin: 15px 0 0 0;	
+}
+.pageSubNav a, .pageSubNavTop a{
+	color: #000;
+	text-decoration: none;
+}
+.pageSubNav a:hover, .pageSubNavTop a:hover{text-decoration:underline;}
+#whatLinkList{
+	left: -36px;
+	list-style: none outside none;
+	margin: 10px 0 0 0;
+	position: relative;
+	width: 226px;
+}
+#whatLinkList li{
+	margin: 0;
+	padding: 0;
+}
+#whatLinkList a{
+	background: #e4e8ec;
+	border-bottom: 1px solid #fff;
+	color: #8c99b2;
+	display: block;	
+	line-height: 40px;
+	text-align: center;
+	text-transform: uppercase;
+}
+#whatLinkList a:hover, #whatLinkList a.active{
+	background: #bec6d1;	
+	color: #fff;
+}
+#whatLinkList li#topLi a{
+	background: #fff url(img/bg_topLi.gif) no-repeat left top;
+}
+#whatLinkList li#btmLi a{
+	background: #fff url(img/bg_btmLi.gif) no-repeat left top;
+	border: none;
+}
+#whatLinkList li#topLi a.active, #whatLinkList li#topLi a:hover, #whatLinkList li#btmLi a.active, #whatLinkList li#btmLi a:hover{
+	background-position: left bottom;	
+}
+.roundTop h3{
+	font-size: 16px;	
+}
+.subPageRightLinks{
+	background: #e4e8ec;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: 226px;
+}
+.subPageRightLinks a{
+	color: #000;
+	display: block;
+	line-height: 30px;
+	padding-left: 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.subPageRightLinks a:hover{text-decoration: underline;}
+#wikiSearch{
+	background: url(img/bg_searchWiki.gif) no-repeat 0 0;
+	height: 26px;
+	width: 219px;
+}
+#btnWikiSubmit{margin-top:3px;}
+#txtWikiSearch{margin:3px 0 0 5px;}
+.wikiTitle{
+	font-size: 16px;
+	font-weight: bold;	
+	margin: 0;
+}
+.roundTopGrn{
+	background: url(img/roundTopGrn.gif) no-repeat 0 0;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+}
+.wikiTOC{
+	background: #d0e5d8;
+}
+.wikiTOC a{
+	color: #000;
+	display: block;
+	line-height: 30px;
+	padding-left: 10px;
+	text-decoration: none;
+}
+.wikiTOC a:hover{text-decoration: underline;}
+.roundBtmGrn{
+	background: url(img/roundBtmGrn.gif) no-repeat left bottom;
+	height: 20px;
+	line-height: 30px;
+}
+
+#givenow {
+    margin-left: 10px;
+}
+/********************
+footer
+********************/
+
+
+/********************
+everywhere
+********************/
+.txtRed{color:#a76272;}
+.txtWhite{color:#fff;}
+.txtDrkGray{color:#8c99b2;}
+.pad10{padding:10px;}
+.pad10h{padding: 0 10px;}
+.pad10v{padding: 10px 0;}
+.underline{text-decoration:underline;}
+.txtAlignRight{text-align:right;}
+.txtAlignCenter{text-align:center;}
+.roundTop{background: url(img/roundTop.gif) no-repeat left top;height:30px;line-height:30px;}
+.roundBtm{background: url(img/roundBtm.gif) no-repeat left bottom;height: 20px;}
+.lnkBlack{color:#000;text-decoration:none;}
+.lnkBlack:hover{text-decoration:underline;}
+.container {text-align: left;}
+

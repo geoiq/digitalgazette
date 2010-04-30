@@ -21,7 +21,7 @@
     %nav#third-level
       = yield :third_nav
         
-#content
+#holder.container
   #content-container
     #content-wrap
       /
@@ -37,10 +37,9 @@
 
       - if yield :right_sidebar
 
-        %div#alpha10
-          #main-content
-            = yield
-        %aside#sidebar
+        %div#subPageLeft.span-17.append-1.first
+          = yield
+        %div#subPageRight.span-6.last.txtAlignCenter
           = yield :right_sidebar
 
       - elsif yield :left_sidebar
