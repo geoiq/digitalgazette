@@ -1,0 +1,40 @@
+<%
+  form.row do |r|
+    r.label I18n.t(:year_published)
+    r.label_for 'year_published'
+    r.input text_field('page', 'year_published', :size => 40)
+    #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  end
+  form.row do |r|
+    r.label I18n.t(:publisher)
+    r.label_for 'publisher'
+    r.input text_field('page', 'publisher', :size => 40)
+    #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  end   
+  form.row do |r|
+    r.label I18n.t(:methodology)
+    r.label_for 'methodology'
+    r.input select('page', 'methodology', [["Guess","Guess"], ["Measured","Measured"], ["Asked","Asked"]], :id => 'page_methodology')
+    #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  end   
+  form.row do |r|
+    r.label I18n.t(:sample_size)
+    r.label_for 'sample_size'
+    r.input select('page', 'sample_size', [["1","1"], ["2","2"], ["3","3"]], :id => 'page_sample_size')
+    # r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  end         
+  form.row do |r|
+    r.label I18n.t(:certification)
+    r.label_for 'certification'
+    r.input check_box('page', 'certification')
+    #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  end        
+  form.row do |r|
+    r.label I18n.t(:file)
+    r.label_for 'asset_uploaded_data'
+    r.input file_field('asset', 'uploaded_data', :size => 29)
+    r.info help(:upload_file)
+  end
+%>
+
+

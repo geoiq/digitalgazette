@@ -1,0 +1,20 @@
+- content_for :third_nav do
+  = render :partial => 'pages/tabs'
+=# title_for(params[:view])
+%div
+  %span{:class => ''}= info_for(params[:view])
+  %span.right= pagination_for(@pages)
+= action_bar(all_pages_settings)
+- action_bar_form(mark_me_pages_path) do
+  = render :partial => '/common/action_bar/hidden_form_fields'
+  = all_pages_list
+
+
+- content_for :right_sidebar do
+  = link_to(image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now"), "/asset_page/create/asset",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
+  %div.roundTop.txtDrkGray
+    %h3
+      %strong= "MOST VIEWED"
+  %div.subPageRightLinks
+    = link_to("Article 1", "/")
+  %div.roundBtm

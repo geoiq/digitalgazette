@@ -8,11 +8,14 @@ Maker.maker_host='http://maker.digitalgazette.org';Maker.finder_host='http://fin
 </script>
 
 <%- content_for :right_sidebar do -%>
-  About the maps
-  
-<ul class="action-buttons vertical">
-<li><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></li>
-<li><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></li>
-<li><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></li>
-</ul>
+<%= link_to(image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now"), "/pages/new",  :style => "display: block; text-align: center;", :id => "givenow")
+ %>  
+    <div id="whatMenu" class="span-6 last txtAlignCenter">
+    	<ul id="whatLinkList">
+        <li id="topLi">
+          <%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></li>
+    <li><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></li>
+      <li id="btmLi"><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></li>
+        </ul>
+    </div><!--#whatMenu//-->
 <%- end -%>

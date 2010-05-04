@@ -27,6 +27,13 @@ en:
   source: "Source"
   legal: "The Legals"
   
+  
+  methodology: "Methodology"
+  publisher: "Published by"
+  year_published: "Year Published"
+  sample_size: "Sample Size"
+  certification: "Certification to Post"
+     
   ##
   ## TO BE DESTROYED
   ##
