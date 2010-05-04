@@ -1,4 +1,28 @@
 %div#page_sidebar
+  - if logged_in?
+    - if @page.deleted?
+      %ul.side_list.commands
+        %ul.side_list.commands
+          = undelete_line
+          = destroy_line
+          = details_line 
+          = history_line
+    - else
+      %ul.side_list.commands
+        = watch_line
+        = star_line
+      - if (access_changing_commands = [share_line, notify_line, share_all_line, public_line].compact).any?
+        %ul.side_list.commands.rule
+          = access_changing_commands
+      %ul.side_list.commands.rule
+        = delete_line
+        -# move_line
+        = details_line
+        = history_line
+        = view_line
+    = call_hook :page_sidebar_actions
+
+
   - if !(tag_content = page_tags).nil? || may_update_tags?
     %h4= I18n.t(:tags)
     %div.tags
@@ -32,28 +56,7 @@
       %ul
         = edit_attachments_line
 
-  - if logged_in?
-    - if @page.deleted?
-      %ul.side_list.commands
-        %ul.side_list.commands
-          = undelete_line
-          = destroy_line
-          = details_line 
-          = history_line
-    - else
-      %ul.side_list.commands
-        = watch_line
-        = star_line
-      - if (access_changing_commands = [share_line, notify_line, share_all_line, public_line].compact).any?
-        %ul.side_list.commands.rule
-          = access_changing_commands
-      %ul.side_list.commands.rule
-        = delete_line
-        -# move_line
-        = details_line
-        = history_line
-        = view_line
-    = call_hook :page_sidebar_actions
+
 
 //%section#attachments
 //  %h4 attachments

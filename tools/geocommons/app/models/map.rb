@@ -38,7 +38,7 @@ class Map < Page
     conditions[:since] = Time.parse(params[:since]).strftime("%Y-%m-%dT%H:%M:%SZ") if params.include?(:since)
     conditions[:until] = Time.parse(params[:until]).strftime("%Y-%m-%dT%H:%M:%SZ") if params.include?(:until)
     conditions[:source] = params[:source] unless params[:source].blank?
-    conditions[:state] = "complete"
+    conditions[:state] = "saved"
     
     logger.debug "Query: #{@query}"
     @results = GeocommonsSearch::Search.paginate(@query, conditions)

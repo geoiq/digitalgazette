@@ -268,3 +268,7 @@ everywhere
 .lnkBlack:hover{text-decoration:underline;}
 .container {text-align: left;}
 
+textarea {width: 600px; height: 400px;}
+#action-bar, #pages.full, #pages.full article, #third-level-container nav#third-level {
+    width: 700px;
+}

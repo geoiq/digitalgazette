@@ -195,11 +195,6 @@ module GeocommonsSearch
         query = add_to_query(query, "max_longitude_rf:[#{minlng} TO #{maxlng}]")
       end
 
-      # Cull out platial for now
-      unless(query[/platial/i])
-        query = add_to_query(query,"platial",true)
-      end
-      
       #unless options[:show_copies]
       #  if (options[:user_login])
       #    query = add_to_query(query, "is_copy_b:false OR user_login_s:\"#{options[:user_login]}\"")
