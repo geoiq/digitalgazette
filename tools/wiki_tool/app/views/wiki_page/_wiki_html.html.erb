@@ -9,4 +9,6 @@
   <blockquote class="error"><%=h @wiki_inline_error %></blockquote>
 <% end %>
 <%= wiki_body_html  %>
+
+<%= link_to("Edit", page_url(@page, :action => "edit"), :style => "color: black") %>
 <% end %>

@@ -39,7 +39,8 @@ module WikiPageHelper
   end
 
   def wiki_body_html(wiki = @wiki)
-    html = wiki.body_html
+    #html = wiki.body_html
+    html = wiki.body
     return html unless logged_in? and current_user.may?(:edit, wiki.page)
 
     doc = Hpricot(html)
