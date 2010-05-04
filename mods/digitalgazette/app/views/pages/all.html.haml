@@ -16,5 +16,6 @@
     %h3
       %strong= "MOST VIEWED"
   %div.subPageRightLinks
-    = link_to("Article 1", "/")
+    - @recent.each do |page|
+      = link_to(h(page.title), page_url(page))
   %div.roundBtm

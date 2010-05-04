@@ -3,6 +3,7 @@ class MapsController < ApplicationController
   def index
     params[:query] = "*" unless params.include?("query")
     @maps, @tags = Map.search(params)
+    @popular, @tags = Map.search(:query => "*", :limit => 5)
   end
   
   def show

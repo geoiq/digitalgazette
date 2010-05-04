@@ -91,6 +91,14 @@ class Page < ActiveRecord::Base
     :created_at,
     :public
     ]  
+    
+    def self.popular(type = "Page", limit = 5)
+      type.constantize.find_by_solr("*", :limit => limit).docs
+    end
+    def self.recent(type = "Page", limit = 5)
+      type.constantize.find_by_solr("*", :limit => limit,:order => 'created_at desc').docs
+    end
+        
   ##
   ## NAMES SCOPES
   ##

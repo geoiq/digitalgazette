@@ -1,4 +1,4 @@
-class Page < Page
+class Page < ActiveRecord::Base
 
    #add_column :pages, :publisher, :string
    #add_column :pages, :year, :integer
@@ -6,4 +6,6 @@ class Page < Page
    #add_column :pages, :sample_size, :string
    #add_column :pages, :certification, :string
     
+
+
 end
