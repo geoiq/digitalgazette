@@ -1,30 +1,20 @@
-<style>#maker_map {width: 100%; height: 400px;}</style>
+<style>
+#maker_map {width: 100%; height: 500px;}
+#holder {width: 100%;}
+</style>
 <div class="geocommons_map" class="span-24" id="maker_map">
 </div><br/>
- <script type="text/javascript" charset="utf-8" src="http://maker.digitalgazette.org/javascripts/embed.js"></script>
+<% geoiq = ((RAILS_ENV == "development") ? "f1.local" : "digitalgazette.org") %>
+
+ <script type="text/javascript" charset="utf-8" src="http://maker.<%= geoiq %>/javascripts/embed.js"></script>
 <script type="text/javascript" charset="utf-8">
-Maker.maker_host='http://maker.digitalgazette.org';Maker.finder_host='http://finder.digitalgazette.org';Maker.core_host='http://core.digitalgazette.org';
+Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%= geoiq %>';Maker.core_host='http://core.<%= geoiq %>';
   Maker.load_map("maker_map", "8");
 </script>
-
-        
-          <%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %>
-          <%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %>
-          <%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %>        
-          
-<%- content_for :right_sidebar do -%>
-<%= link_to(image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now"), "/pages/new",  :style => "display: block; text-align: center;", :id => "givenow")
- %>  
-    <!-- <div id="whatMenu" class="span-6 last txtAlignCenter"> -->
-      <div class="roundTop txtDrkGray">
-        <h3><strong>MOST VIEWED</strong></h3>
-      </div>
-      <div class="subPageRightLinks">
-        <%- @popular.each do |page| %>
-        <%= link_to(h(page["title"]), "/maps/#{page['pk']}") %>
-        <%- end -%>
-      </div>
-      <div class="roundBtm"></div>    
-    <!-- </div> -->
-    
-<%- end -%>
+<center>
+  <ul class="controlButtons">
+    <li><span><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>        
+  </ul>
+</center>
