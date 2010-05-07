@@ -147,7 +147,7 @@ en:
   loadingdotdotdot: "Loading..."
 
   search_headline: "Search"
-  search_input_caption: "Search for articles"
+  search_input_caption: "Search" # the gazette?
   search_this_group: "this group only"
   search_this_person: "this person only"
   search_link: "Search"

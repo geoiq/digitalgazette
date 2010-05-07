@@ -1,12 +1,12 @@
-       	<h2 class="pageTitle txtRed span-6 first">
-            	Welcome to the Wiki
-            </h2>
-            <div class="pageSubNavTop span-10 prepend-1 txtAlignCenter">
-            	<a href="#">HOW DO I DO THIS?</a> | 
-                <a href="#">WRITE A NEW ARTICLE</a>
+<h2 class="pageTitle txtRed span-6 first">
+  Welcome to the Wiki
+</h2>
+            <div class="span-10 txtAlignCenter last">
+            	  <%= link_to("HOW DO I DO THIS?", "/about/how") %>| 
+                <%= link_to("WRITE A NEW ARTICLE", "/wiki_page/create/wiki") %>
             </div>
             <br class="clear" />
-            <p class="span-5 first" style="padding-top: 5px;">
+            <p class="span-8 first" style="padding-top: 5px;">
             	What do you wish to learn about? 
             </p>
             <div class="span-5">
@@ -17,53 +17,123 @@
                   <%- end -%>
             </div>  
             <br class="clear" />
-            <p class="txtAlignCenter">
-            	<a href="#" class="lnkBlack">Browse Articles by Topic</a>
-            </p> 
-<!-- <div class="span-6 prepend-6">
+<div class="span-6 prepend-4 last">
   <h4>...or Browse Articles by Topic</h4>
 </div>
-<div class="span-6 prepend-4">
-  <h5>Political Structures</h5>
+<br />
+<div class="span-8 first">
+  <h5>Political</h5>
   <ul>
-    <li>Subtopic 1</li>
-    <li>Subtopic 2</li>
-    <li>Subtopic 3</li>
-    <li>Subtopic 4</li>
+    <li>Local Government</li>
+    <li>Provincial Public Administration</li>
+    <li>Malakand Division Public Administration</li>
+    <li>Provincially Administered Tribal Areas (PATA) Governance</li>
+    <li>Elders and Influentials</li>
+    <li>Political Parties</li>
+    <li>Groups</li>
+    <li>Judicial System</li>
+    <li>Prisons</li>
+    <li>Federal Law Enforcement</li>
+    <li>Intelligence Bureau</li>
+    <li>Army</li>
+    <li>Provincial Law Enforcement (Paramilitary)</li>
+    <li>Local Law Enforcement</li>
   </ul>
 </div>
-<div class="span-6 last">
-  <h5>Societal Structures</h5>
+<div class="span-8 last">
+  <h5>Religious</h5>
   <ul>
-    <li>Subtopic 1</li>
-    <li>Subtopic 2</li>
-    <li>Subtopic 3</li>
-    <li>Subtopic 4</li>
+<li>Sunni Theological/Jurisprudential Dimension
+<span style="display:none">Barelvi
+Deobandi
+Panjperis
+Mawdudis
+Ahl-e-Hadith</span></li>
+
+<li>Shia Theological/Jurisprudential Dimension
+<span style="display:none">
+Athna Ashari
+Ismaeli  
+</span>
+</li>
+<li>Other Theological/Jurisprudential Groups
+<span style="display:none">Ahmadi</span></li>
+
+<li>Sufi Mystical Dimension
+  <span style="display:none">
+Chishtiya
+Naqshbandiya
+Suherwardhiya    
+  </span></li>
+
+
+<li>Organized Political Dimension
+<span style="display:none">Jamaat-e-Islami (JI)
+Jamiat-e-Ulamia Islam (JUI)
+Tehrik-e-Nifaz-e-Shariat-e-Muhammad (TNSM)</span></li>
+
   </ul>
 </div>
-<div class="span-6 prepend-4">
-  <h5>Religious Structures</h5>
+<div class="span-8">
+  <h5>Social</h5>
   <ul>
-    <li>Subtopic 1</li>
-    <li>Subtopic 2</li>
-    <li>Subtopic 3</li>
-    <li>Subtopic 4</li>
+<li>Linguistic Identities
+<span style="display:none">Pakhtun
+Non Pakhtuns</span>
+  </li>
+
+
+<li>Pakhtuns
+<span style="display:none">Mohmand
+Painda Khel
+Safi
+Salarzai
+Shinwari
+Tarkranri
+Ushirida
+Yusufazai</span></li>
+
+<li>Non Pakhtuns
+  <span style="display:none">
+Ajars
+Gujjars
+Hazaras
+Hindko
+Kohistanis
+Siraikis
+'Ethnic Sikhs'
+'Ethnic Hindus'
+'Ethnic Christians'
+  </span></li>
+
+
+<li>Non Ethno Linguistic Identities
+  <span style="display:none">
+Inger (Blacksmiths)
+Nai (Barbers)
+Paracha (Traders and Muleteers)
+Tarkan (Carpenters)
+Banrhia (Hindu/Sikh Shop Owners)  
+</span></li>
+<li>Religious Descent
+  <span style="display:none">
+Akhundzadgan, Miangulan, and Sahibzadgan
+Miangan
+Hereditary Mullah
+Sayyeds    
+  </span></li>
   </ul>
 </div>
-<div class="span-6 last">
+<div class="span-8 last">
   <h5>Emergent Structures</h5>
   <ul>
-    <li>Subtopic 1</li>
-    <li>Subtopic 2</li>
-    <li>Subtopic 3</li>
-    <li>Subtopic 4</li>
   </ul>
-</div> -->
+</div> 
 
 
             
 <%- content_for :right_sidebar do -%>
-  <%= link_to(image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now"), "/wiki_page/create/wiki",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
+  <%= link_to(image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
  %>
  <div class="roundTop txtDrkGray">
    <h3><strong>MOST VIEWED</strong></h3>

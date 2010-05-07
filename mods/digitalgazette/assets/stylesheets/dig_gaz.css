@@ -68,9 +68,10 @@ header
 }
 #topSubNav{
 	margin-top: 48px;
+	color: #FFF;
 }
 #topSubNav a{
-	color: #000;
+	color: #FFF;
 	text-decoration: none;
 	text-transform: uppercase;
 }
@@ -150,7 +151,7 @@ main content
 	margin: 15px 0 0 0;	
 }
 .pageSubNav a, .pageSubNavTop a{
-	color: #000;
+	color: #267a48;
 	text-decoration: none;
 }
 .pageSubNav a:hover, .pageSubNavTop a:hover{text-decoration:underline;}
@@ -168,7 +169,7 @@ main content
 #whatLinkList a{
 	background: #e4e8ec;
 	border-bottom: 1px solid #fff;
-	color: #8c99b2;
+	color: #616f89;
 	display: block;	
 	line-height: 40px;
 	text-align: center;
@@ -272,3 +273,34 @@ textarea {width: 600px; height: 400px;}
 #action-bar, #pages.full, #pages.full article, #third-level-container nav#third-level {
     width: 700px;
 }
+
+/************************************************
+	Round Corners Button Rollover Example 2	
+************************************************/
+
+.controlButtons {
+    margin-top: -15px;
+}
+.controlButtons  li {
+     display:inline;
+     list-style:none;
+     margin-right:20px;
+     font-size: 1.4em;
+ }
+  
+.controlButtons  li a {
+     background:#fff;
+     border: 1px solid #ccc;
+     padding:30px 15px;
+     -webkit-border-radius:10px;
+     -moz-border-radius:15px;
+ }
+  
+.controlButtons  li a:hover {
+     background:#5d9ddd;
+     border:1px solid #2a7ecd;
+     color:#fff;
+     -webkit-border-radius:10px;
+     -moz-border-radius:15px;
+ }
+
