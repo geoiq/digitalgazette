@@ -313,3 +313,6 @@ textarea {width: 600px; height: 400px;}
 .pages-info h4 {
     font-size: 1.4em;
 }
+#details  {
+	padding-left: 0;
+}

@@ -11,7 +11,7 @@ class GroupsController < Groups::BaseController
   helper 'groups/search'
 
   before_filter :fetch_group, :except => [:create, :new, :index]
-  before_filter :login_required, :except => [:index, :show, :archive, :tags, :search, :pages]
+  before_filter :login_required, :except => [:index, :show, :archive, :tags, :search, :pages, :people, :list_groups]
   verify :method => [:post, :put], :only => [:create, :update]
   verify :method => :delete, :only => :destroy
   cache_sweeper :avatar_sweeper, :only => [:edit, :update, :create]
