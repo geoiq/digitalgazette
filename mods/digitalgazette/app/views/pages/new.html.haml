@@ -4,6 +4,6 @@
 - content_for :right_sidebar do
   %div#whatMenu.span-6.last.txtAlignCenter
     %ul#whatLinkList
-      %li#topLi= link_to("Build a Map", "/maps/new")
-      %li#mdlLi= link_to("Write an Article", "/wiki_page/create/wiki")
-      %li#btmLi= link_to("Add to the Library", "/asset_page/create/asset")
+      %li#topLi= link_to("Build a Map", "/maps/new?group=#{params[:group_id] || (@user ? @user.groups.first.name : nil)}")
+      %li#mdlLi= link_to("Write an Article", "/wiki_page/create/wiki?group=#{params[:group_id] || (@user ? @user.groups.first.name : nil)}")
+      %li#btmLi= link_to("Add to the Library", "/asset_page/create/asset?group=#{params[:group_id] || (@user ? @user.groups.first.name : nil)}")

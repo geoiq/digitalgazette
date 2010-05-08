@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
 protected
-  def render_search_results
+  def render_search_results2
     @path.default_sort('updated_at') if @path.search_text.empty?
     @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
 
@@ -17,8 +17,8 @@ protected
     end
 
     full_url = search_url + @path
-    handle_rss :title => full_url, :link => full_url,
-               :image => avatar_url(:id => @user.avatar_id||0, :size => 'huge')
+    handle_rss :title => full_url, :link => full_url
+      # ,:image => avatar_url(:id => @user.avatar_id||0, :size => 'huge')
   end
 
 

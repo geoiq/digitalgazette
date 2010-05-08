@@ -19,7 +19,7 @@ Field.focus('login')}}); return false;
 <%= password_field_tag 'password', '', :size => 10 %>
 <%= submit_tag I18n.t(:log_in), :id => "btnLogin" %>
 <% end -%>
-<a href="#" class="txtWhite"><%= I18n.t(:forgot_password_link) %></a> | <a href="#" class="txtWhite"><%= I18n.t(:signup_link) %></a>
+<a href="#" class="txtWhite"><%= I18n.t(:forgot_password_link) %></a> | <a href="/account" class="txtWhite"><%= I18n.t(:signup_link) %></a>
 <%- end -%>
 </div><!--#hdrLogin//-->                   
 <br class="clear" />

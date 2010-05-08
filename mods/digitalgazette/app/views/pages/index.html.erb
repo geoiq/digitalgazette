@@ -22,44 +22,43 @@
 </div>
 <br />
 <div class="span-8 first">
-  <h5>Political</h5>
+  <h5><%= link_to("Political", "/search/tag/political") %></h5>
   <ul>
-    <li>Local Government</li>
-    <li>Provincial Public Administration</li>
-    <li>Malakand Division Public Administration</li>
-    <li>Provincially Administered Tribal Areas (PATA) Governance</li>
-    <li>Elders and Influentials</li>
-    <li>Political Parties</li>
-    <li>Groups</li>
-    <li>Judicial System</li>
-    <li>Prisons</li>
-    <li>Federal Law Enforcement</li>
-    <li>Intelligence Bureau</li>
-    <li>Army</li>
-    <li>Provincial Law Enforcement (Paramilitary)</li>
-    <li>Local Law Enforcement</li>
+    <li><%=link_to("Local Government", "/search/tag/local+government") %></li>
+    <li><%=link_to("Provincial Public Administration", "/search/tag/provincial+public+administration") %></li>
+    <li><%=link_to("Malakand Division Public Administration", "/search/tag/malakand") %></li>
+    <li><%=link_to("Provincially Administered Tribal Areas (PATA) Governance", "/search/tag/pata") %></li>
+    <li><%=link_to("Elders and Influentials", "/search/tag/elders+and+influentials") %></li>
+    <li><%=link_to("Political Parties", "/search/tag/political+parties") %></li>
+    <li><%=link_to("Groups", "/search/tag/groups") %></li>
+    <li><%=link_to("Judicial System", "/search/tag/judicial+system") %></li>
+    <li><%=link_to("Prisons", "/search/tag/prisons") %></li>
+    <li><%=link_to("Federal Law Enforcement", "/search/tag/federal+law+enforcement") %></li>
+    <li><%=link_to("Intelligence Bureau", "/search/tag/intelligence+bureau") %></li>
+    <li><%=link_to("Army", "/search/tag/army") %></li>
+    <li><%=link_to("Provincial Law Enforcement (Paramilitary)", "/search/tag/provincial+law+enforcement") %></li>
+    <li><%=link_to("Local Law Enforcement", "/search/tag/local+law+enforcement") %></li>
   </ul>
 </div>
 <div class="span-8 last">
-  <h5>Religious</h5>
+  <h5><%= link_to("Religious","/search/tag/religious") %></h5>
   <ul>
-<li>Sunni Theological/Jurisprudential Dimension
+<li><%= link_to("Sunni Theological/Jurisprudential Dimension", "/search/tag/sunni") %>
 <span style="display:none">Barelvi
 Deobandi
 Panjperis
 Mawdudis
 Ahl-e-Hadith</span></li>
 
-<li>Shia Theological/Jurisprudential Dimension
+<li><%= link_to("Shia Theological/Jurisprudential Dimension", "/search/tag/shia") %>
 <span style="display:none">
 Athna Ashari
 Ismaeli  
-</span>
-</li>
-<li>Other Theological/Jurisprudential Groups
+</span></li>
+<li><%= link_to("Other Theological/Jurisprudential Groups", "/search/tag/other+theological+groups") %>
 <span style="display:none">Ahmadi</span></li>
 
-<li>Sufi Mystical Dimension
+<li><%= link_to("Sufi Mystical Dimension", "/search/tag/sufi") %>
   <span style="display:none">
 Chishtiya
 Naqshbandiya
@@ -67,7 +66,7 @@ Suherwardhiya
   </span></li>
 
 
-<li>Organized Political Dimension
+<li><%= link_to("Organized Political Dimension","/search/tag/organized+political+dimension") %>
 <span style="display:none">Jamaat-e-Islami (JI)
 Jamiat-e-Ulamia Islam (JUI)
 Tehrik-e-Nifaz-e-Shariat-e-Muhammad (TNSM)</span></li>
@@ -75,15 +74,14 @@ Tehrik-e-Nifaz-e-Shariat-e-Muhammad (TNSM)</span></li>
   </ul>
 </div>
 <div class="span-8">
-  <h5>Social</h5>
+  <h5><%= link_to("Social", "/search/tag/social") %></h5>
   <ul>
-<li>Linguistic Identities
+<li><%= link_to("Linguistic Identities", "/search/tag/linguistic") %>
 <span style="display:none">Pakhtun
-Non Pakhtuns</span>
-  </li>
+Non Pakhtuns</span></li>
 
 
-<li>Pakhtuns
+<li><%= link_to("Pakhtuns", "/search/tag/pakhtuns") %>
 <span style="display:none">Mohmand
 Painda Khel
 Safi
@@ -93,7 +91,7 @@ Tarkranri
 Ushirida
 Yusufazai</span></li>
 
-<li>Non Pakhtuns
+<li><%= link_to("Non Pakhtuns", "/search/tag/non+pakhtuns") %>
   <span style="display:none">
 Ajars
 Gujjars
@@ -107,7 +105,7 @@ Siraikis
   </span></li>
 
 
-<li>Non Ethno Linguistic Identities
+<li><%= link_to("Non Ethno Linguistic Identities", "/search/tag/non-ethno") %>
   <span style="display:none">
 Inger (Blacksmiths)
 Nai (Barbers)
@@ -115,19 +113,18 @@ Paracha (Traders and Muleteers)
 Tarkan (Carpenters)
 Banrhia (Hindu/Sikh Shop Owners)  
 </span></li>
-<li>Religious Descent
+<li><%= link_to("Religious Descent", "/search/tag/religious+descent") %>
   <span style="display:none">
 Akhundzadgan, Miangulan, and Sahibzadgan
 Miangan
 Hereditary Mullah
 Sayyeds    
   </span></li>
+
   </ul>
 </div>
 <div class="span-8 last">
-  <h5>Emergent Structures</h5>
-  <ul>
-  </ul>
+
 </div> 
 
 
