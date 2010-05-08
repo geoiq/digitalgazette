@@ -304,3 +304,12 @@ textarea {width: 600px; height: 400px;}
      -moz-border-radius:15px;
  }
 
+.pages-status ul {
+    background: none;
+}
+.pages-status li {
+     list-style:none;    
+}
+.pages-info h4 {
+    font-size: 1.4em;
+}
