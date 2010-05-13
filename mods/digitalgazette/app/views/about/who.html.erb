@@ -1,15 +1,10 @@
-<h2 class="pageTitle txtRed">Who is involved.</h2>
+<h2 class="pageTitle txtRed">The Community of Users and Contributors</h2>
             <p>
-            	Ebitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehenEbitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehen Ebitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehenEbitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehen
+<strong>The Digital Gazette relies on the input of its users.</strong> In our efforts to ensure that the Digital Gazette provides you with high quality information from the community level, to the biggest picture information and everything in between, we have reached out to the local and international analytical, governmental, humanitarian, security, development, and academic communities.
+Featured Partners—
             </p>
             <p>
-            	Ebitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehenEbitatis atquid ma sequi solentia nonse sanihitatur? Quid quibus adit rerspe neceris et repeles eos dolupta spellorest, cupta velent desequae et auta corehen
-            </p>
-            <div class="pageSubNav">
-            	<%= link_to("THE COMMUNITIES BEHIND US", "/networks/directory/search") %> | 
-                <%= link_to("JOIN THE COMMUNITY", "/account/signup") %>
-            </div>
-            <br class="clear" />
+              <strong>Featured Partners</strong>
             <div class="pageSubNav" id="logos">
               <%= link_to(image_tag("spdi.png", :plugin => "digitalgazette"), "/spdi") %>
               <%= link_to(image_tag("acted.png", :plugin => "digitalgazette"), "/acted") %>
@@ -18,28 +13,25 @@
               <%= link_to(image_tag("rspn.png", :plugin => "digitalgazette"), "/rspn") %>
               <%= link_to(image_tag("khpalkor.png", :plugin => "digitalgazette"), "/khpalkor") %>
             </div>
+            </p>
 
+                
+<p><strong>The Digital Gazette connects people.</strong> If you live in a community that lacks healthcare services for women, you will be able to share that information and prompt the international donor community to bring the attention and resources to fulfill that need. Interested in learning more about women’s access to healthcare? You can hear—from the local perspective—where there are unmet needs from local government, local community-based organizations, and a core of active and engaged citizens.</p>
+<p>Users from across the globe are able to share, connect, and engage on all topics related to Malakand Division. The development community will have direct access to information, a local voice, and a local perspective. No longer will the local community feel they aren’t being listened to, or that the global community has no way to hear their concerns.</p>
+            <div class="pageSubNav">
+            	<%= link_to("THE COMMUNITIES BEHIND US", "/networks/directory/search") %> | 
+                <%= link_to("JOIN THE COMMUNITY", "/account/signup") %>
+            </div>
+            <br class="clear" />
+
+<%- content_for :left_sidebar do -%>
+<h2 class="pageTitle txtRed">Who is involved</h2>
+<p>The Digital Gazette is all about <strong>you.</strong></p>
+<p>Your participation is crucial to ensuring the success of the Digital Gazette. It requires the active participation of knowledgeable, engaged users to create a rich picture of Malakand Division—local priorities, perspectives, and context.</p>
+<p>Local and international partners are signing up to join the effort. What is their common goal? To provide a locally-based, information resource for those organizations and individuals who care about creating lasting peace and prosperity for the people of Malakand Division. </p>
+
+
+<%- end -%>
 <%- content_for :right_sidebar do -%>
-    <div id="whatMenu" class="span-6 last txtAlignCenter">
-    	<a href="/pages/new" style="display: block; text-align: center;" id="givenow">
-    	  <%= image_tag("btn_giveNow.gif", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Give Now") %>
-        </a>
-    	<ul id="whatLinkList">
-            	<li id="topLi">
-                	<a href="#">HOW YOU CAN HELP</a>
-                </li>
-            	<li>
-                	<a href="#">WHAT WE BELIEVE</a>
-                </li>
-            	<li>
-                	<a href="#">WHO FUNDS THIS?</a>
-                </li>
-            	<li>
-                	<a href="#">WHY WE CARE</a>
-                </li>
-            	<li id="btmLi">
-                	<a href="#">FREQUENTLY ASKED QUESTIONS</a>
-                </li>
-        </ul>
-    </div><!--#whatMenu//-->
+<%= render :partial => "about/who_sidebar" %>
 <%- end -%>

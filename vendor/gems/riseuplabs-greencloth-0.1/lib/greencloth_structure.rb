@@ -139,7 +139,7 @@ module GreenclothStructure
   #    </ul>
   #  </ul>
   def generate_toc_html(tree, level, prefix='')
-    html = ["<ul#{level == 1 ? ' class="toc"' : ''}>"]
+    html = ["<strong>Table of Contents</strong><ul#{level == 1 ? ' class="toc"' : ''}>"]
     tree.children.each_with_index do |node,i|
       number = [prefix, i+1].join
       link = '<a href="#%s"><span>%s</span> %s</a>' % [node.name, number, node.text]

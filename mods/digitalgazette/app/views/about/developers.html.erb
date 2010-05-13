@@ -1,0 +1,25 @@
+<p><%= image_tag("geocommons_logo.png", :plugin => "digitalgazette", :style => "float:left;padding-right:5px") %><strong>GeoCommons</strong> is a free and public version of some pretty innovative technology. GeoCommons is a community in which users can contribute and share open data, build shareable maps, and connect the world. All data and maps in the GeoCommons Community are public and can be shared with other public websites and users. In addition, GeoCommons provides a valuable data repository where  users can find and import data into their own devices. We chose to go with GeoCommons because they’ve built the most user-friendly GIS mapping tool out there. These folks are creating new technology to advance the way we think, analyze, do business, and respond to humanitarian needs. Beneath their java-loving exteriors, the GeoCommons group is full of do-gooders just looking to make this world a better place.
+</p>
+<p><%= image_tag("crabgrass_logo.png", :plugin => "digitalgazette", :style => "float:left;padding-right:5px") %><strong>Crabgrass</strong> is a software libre web application designed for social networking, group collaboration, and network organizing. Rather than relying on top down information gathering and dissemination, Crabgrass works with the community to share information from the ground up. This is a different kind of social network. Not the kind for finding out what movies your friends like, but building information—together. We like Crabgrass because we believe that more discoveries are made and more interesting paths are taken when we all contribute.
+</p>
+
+<%- content_for :left_sidebar do -%>
+<h2 class="pageTitle txtRed">Developers</h2>
+<p>We chose open platforms - not proprietary, closed systems because we want people and organizations to use the Digital Gazette as they see fit, not as we dictate!
+</p>
+<ul>
+<li>GIS Mapping by <a href="http://geocommons.com/" title="GeoCommons">GeoCommons</a></li>
+<li>Content Management by <a href="http://crabgrass.riseup.net/" title="CrabGrass">CrabGrass</a></li>
+</ul>
+
+<p>Learn more about our partners at their pages, linked above.</p>
+
+<p>
+  If you’re a techie, feel free to take a look under the hood, <a href="http://github.com/ajturner/crabgrass" title="ajturner's crabgrass at master - GitHub">snag some code</a>, and build whatever you like. If you create something cool, come back and tell us about it so we can add to our platform. Let’s embrace the open sourced nature of this thing and see what it can do.
+</p>
+
+
+<%- end -%>
+<%- content_for :right_sidebar do -%>
+<%= render :partial => "about/who_sidebar" %>
+<%- end -%>

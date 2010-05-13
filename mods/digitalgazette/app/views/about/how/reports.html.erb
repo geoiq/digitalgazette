@@ -1,0 +1,23 @@
+
+<h2 class="pageTitle txtRed">Wiki</h2>
+
+<h3>How do I do it?</h3>
+
+<p>
+  Instructions coming soon...
+</p>
+                        
+<%- content_for :left_sidebar do -%>
+<h2 class="pageTitle txtRed">How to use this?</h2>
+
+<strong>What's the Point?</strong>
+
+<p>We wanted to create something better and more tailored than a simple web search. Locate, examine, and absorb all of the reports on Malakand Division you want to read and upload your own!</p> 
+<p>Do you have a report that anyone interested in Malakand Division should read? Do you have the rights to share it? Please upload and share this information for all to read.</p>
+<p>Curious about uploading? Click here. (link to How to Upload section)</p>
+
+
+<%- end -%>
+<%- content_for :right_sidebar do -%>
+<%= render :partial => 'about/what_sidebar' %>
+<%- end -%>

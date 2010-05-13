@@ -6,23 +6,25 @@
                 <%= link_to("WRITE A NEW ARTICLE", "/wiki_page/create/wiki") %>
             </div>
             <br class="clear" />
-            <p class="span-8 first" style="padding-top: 5px;">
-            	What do you wish to learn about? 
-            </p>
-            <div class="span-5">
-              <% form_tag(search_url, :id => "wikiSearch") do %>
+            <div id="wikisearch_box">
+            
+            <div id="what_do_you">What do you wish to learn about?</div>
+              <div id="search_me"><% form_tag(search_url, :id => "wikiSearch") do %>
 
               <%= mini_search_text_field_tag %>
                     <input type="submit" value="" id="btnWikiSubmit" />
                   <%- end -%>
             </div>  
+</div>  
+
+
             <br class="clear" />
 <div class="span-6 prepend-4 last">
   <h4>...or Browse Articles by Topic</h4>
 </div>
 <br />
-<div class="span-8 first">
-  <h5><%= link_to("Political", "/search/tag/political") %></h5>
+<div id="political_topics" class="span-8 first">
+  <h5 class="topic_header"><%= link_to("Political", "/search/tag/political") %></h5>
   <ul>
     <li><%=link_to("Local Government", "/search/tag/local+government") %></li>
     <li><%=link_to("Provincial Public Administration", "/search/tag/provincial+public+administration") %></li>
@@ -40,8 +42,8 @@
     <li><%=link_to("Local Law Enforcement", "/search/tag/local+law+enforcement") %></li>
   </ul>
 </div>
-<div class="span-8 last">
-  <h5><%= link_to("Religious","/search/tag/religious") %></h5>
+<div id="relig_soc_topics" class="span-8 last">
+  <h5 class="topic_header"><%= link_to("Religious","/search/tag/religious") %></h5>
   <ul>
 <li><%= link_to("Sunni Theological/Jurisprudential Dimension", "/search/tag/sunni") %>
 <span style="display:none">Barelvi
@@ -72,9 +74,7 @@ Jamiat-e-Ulamia Islam (JUI)
 Tehrik-e-Nifaz-e-Shariat-e-Muhammad (TNSM)</span></li>
 
   </ul>
-</div>
-<div class="span-8">
-  <h5><%= link_to("Social", "/search/tag/social") %></h5>
+  <h5 class="topic_header"><%= link_to("Social", "/search/tag/social") %></h5>
   <ul>
 <li><%= link_to("Linguistic Identities", "/search/tag/linguistic") %>
 <span style="display:none">Pakhtun
