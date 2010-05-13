@@ -3,7 +3,7 @@
 <% if @map.nil? %>
   <strong>No map found - please search to find what you are looking for.</strong>
 <%- else -%>
-<h2><%= @map["title"] %></h2>
+<h2><%# @map["title"] %></h2>
 <div class="geocommons_map" id="maker_map_<%= @map_id %>"></div><br/>
  <script type="text/javascript" charset="utf-8" src="http://maker.digitalgazette.org/javascripts/embed.js"></script>
 <script type="text/javascript" charset="utf-8">

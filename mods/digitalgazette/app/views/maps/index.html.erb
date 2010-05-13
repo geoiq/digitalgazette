@@ -4,16 +4,18 @@
 </style>
 <div class="geocommons_map" class="span-24" id="maker_map">
 </div><br/>
-<% geoiq, map_id = ((RAILS_ENV == "development") ? ["f1.local","8"] : ["digitalgazette.org", "30"]) %>
+<% geoiq, map_id = ((RAILS_ENV == "development") ? ["f1.local","8"] : ["digitalgazette.org", "29"]) %>
  <script type="text/javascript" charset="utf-8" src="http://maker.<%= geoiq %>/javascripts/embed.js"></script>
 <script type="text/javascript" charset="utf-8">
 Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%= geoiq %>';Maker.core_host='http://core.<%= geoiq %>';
-  Maker.load_map("maker_map", map_id);
+  Maker.load_map("maker_map", <%= map_id %>);
 </script>
 <center>
   <ul class="controlButtons">
     <li><span><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>        
+    <li><span><%= link_to I18n.t(:build_map_by_location), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_topic), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
+    <!-- <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>       --> 
   </ul>
 </center>
