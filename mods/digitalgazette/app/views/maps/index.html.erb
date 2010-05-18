@@ -1,8 +1,8 @@
 <style>
-#maker_map {width: 100%; height: 500px;}
+#maker_map {width: 100%; height: 500px; z-index: 1;}
 #holder {width: 100%;}
 </style>
-<div class="geocommons_map" class="span-24" id="maker_map">
+<div class="geocommons_map" class="span-24" id="maker_map" >
 </div><br/>
 <% geoiq, map_id = ((RAILS_ENV == "development") ? ["f1.local","8"] : ["digitalgazette.org", "29"]) %>
  <script type="text/javascript" charset="utf-8" src="http://maker.<%= geoiq %>/javascripts/embed.js"></script>
@@ -11,7 +11,7 @@ Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%
   Maker.load_map("maker_map", <%= map_id %>);
 </script>
 <center>
-  <ul class="controlButtons">
+  <ul class="controlButtons" style="z-index: 1000;">
     <li><span><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></span></li>
     <li><span><%= link_to I18n.t(:build_map_by_location), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
     <li><span><%= link_to I18n.t(:build_map_by_topic), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
