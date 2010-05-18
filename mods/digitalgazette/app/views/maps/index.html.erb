@@ -13,8 +13,8 @@ Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%
 <center>
   <ul class="controlButtons">
     <li><span><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_location), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_topic), "http://maker.digitalgazette.org/maps/new?user=public&f1token=de98b16ab71328c472049cba0b5753ef379084af" %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_location), "/maps/new" %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_topic), "/maps/new" %></span></li>
     <!-- <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
     <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>       --> 
   </ul>
