@@ -125,7 +125,7 @@ main content
 	width: 133px;
 }
 #homePicHolder{
-	background: url(img/bg_homePicHolder.jpg) no-repeat 0 0;
+	background: url(img/picture_background.png) no-repeat 0 0;
 	height: 470px;
 	margin: 10px auto;
 	text-align: left;
@@ -133,7 +133,7 @@ main content
 }
 #homePic{
 	height: 349px;
-	margin: 20px 0 20px 31px;
+	margin: 20px 0 20px 15px;
 	width: 332px;
 }
 .pageTitle{
