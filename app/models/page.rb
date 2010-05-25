@@ -96,7 +96,7 @@ class Page < ActiveRecord::Base
       type.constantize.find_by_solr("*", :limit => limit).docs
     end
     def self.recent(type = "Page", limit = 5)
-      type.constantize.find_by_solr("*", :limit => limit,:order => 'created_at_t desc').docs
+      type.constantize.find_by_solr("*", :limit => limit,:order => 'created_at_t asc').docs
     end
         
   ##

@@ -191,6 +191,7 @@ main content
 }
 .roundTop h3{
 	font-size: 16px;	
+	padding-top: 8px;
 }
 .subPageRightLinks{
 	background: #e4e8ec;
@@ -202,8 +203,9 @@ main content
 .subPageRightLinks a{
 	color: #000;
 	display: block;
-	line-height: 30px;
-	padding-left: 10px;
+	line-height: 20px;
+	text-indent: -10px;
+	padding-left: 20px;
 	text-decoration: none;
 	text-transform: uppercase;
 }
@@ -265,7 +267,7 @@ everywhere
 .underline{text-decoration:underline;}
 .txtAlignRight{text-align:right;}
 .txtAlignCenter{text-align:center;}
-.roundTop{background: url(img/roundTop.gif) no-repeat left top;height:30px;line-height:30px;}
+.roundTop{background: url(img/roundTop.gif) no-repeat left top;height:30px;line-height:30px; margin-top: 10px;}
 .roundBtm{background: url(img/roundBtm.gif) no-repeat left bottom;height: 20px;}
 .lnkBlack{color:#000;text-decoration:none;}
 .lnkBlack:hover{text-decoration:underline;}

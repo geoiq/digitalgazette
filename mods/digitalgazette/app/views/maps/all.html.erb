@@ -5,3 +5,28 @@
   <dd><%= map["description"] %></dd>
 <%- end -%>
 </dl>
+
+<%- content_for :right_sidebar do -%>
+
+    <div id="whatMenu" class="span-6 last txtAlignCenter">
+        <a href="/pages/new" style="display: block; text-align: center;" id="givenow">
+          <%= image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data") %>
+        </a>
+        <ul id="whatLinkList">
+        <li id="topLi">
+          <a href="/maps">MAPS OVERVIEW</a>
+        </li>
+        <li>
+          <a href="/maps/new">VIEW EXISTING MAPS</a>
+        </li>
+        <li>
+          <a href="/maps/new">BUILD A MAP BY LOCATION</a>
+        </li>
+        <li id="btmLi">
+          <a href="/maps/new">BUILD A MAP BY TOPIC</a>
+        </li>
+        </ul>
+    </div><!--#whatMenu//-->
+
+<%- end -%>
+

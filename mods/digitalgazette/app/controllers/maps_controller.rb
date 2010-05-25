@@ -3,7 +3,7 @@ class MapsController < ApplicationController
   def index
     params[:query] = "*" unless params.include?("query")
     @maps, @tags = Map.search(params)
-    @popular, @tags = Map.search(:query => "*", :limit => 5)
+    @popular, @tags = Map.search(:query => "*", :limit => 50)
   end
   
   def show
@@ -14,7 +14,7 @@ class MapsController < ApplicationController
 
   def all
     params[:query] = "*" unless params.include?("query")
-    @maps, @tags = Map.search(params)
+    @maps, @tags = Map.search(params.merge(:limit => 50))
   end
   
   def new
