@@ -1,0 +1,13 @@
+<h2 class="pageTitle txtRed">Who Funds This?</h2>
+
+<p>The Digital Gazette is an effort headed by The <a href="http://crisisproject.org">Transnational Crisis Project</a>. Crisis Project is an independent, non-profit research organization, and like all non-profits, thrives on grant funding and is in a constant search for more! Soon we will have a PayPal account up and running, so you can buy us a cup of coffee—please stay tuned.
+</p>
+<p><%= link_to(image_tag("smithrichardsonfoundation.png", :style => "float:left; padding-right: 5px;", :plugin => "digitalgazette"), "http://srf.org")%>The Digital Gazette received funding for this pilot project through a generous grant from the <a href="http://www.srf.org/" title="Smith Richardson Foundation">Smith Richardson Foundation (SRF)</a>. Founded in 1935 by the creator of the Vicks cold remedies, SRF was formed to support public debate, public policy development, and ensure the vitality of social, economic, and governmental institutions.
+</p>
+<p>In addition to grant funding, Crisis Project has provided substantial contributions to the Digital Gazette from its own resources.
+</p>
+<p>Read more about <a href="/about/how_to_help">How You Can Help.</a> 
+</p>
+<%- content_for :right_sidebar do -%>
+<%= render :partial => 'about/what_sidebar' %>
+<%- end -%>

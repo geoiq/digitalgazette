@@ -13,8 +13,8 @@ Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%
 <center>
   <ul class="controlButtons" style="z-index: 1000;">
     <li><span><%= link_to I18n.t(:view_maps), {:controller => "maps", :action => "all"} %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_location), "/maps/new" %></span></li>
-    <li><span><%= link_to I18n.t(:build_map_by_topic), "/maps/new" %></span></li>
+    <li><span><%= link_to I18n.t(:build_a_map), "/maps/new" %></span></li>
+    <li><span><%= link_to I18n.t(:upload_map_data), "/maps/upload" %></span></li>
     <!-- <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
     <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>       --> 
   </ul>

@@ -23,6 +23,8 @@ en:
   using_our_data: "using our Data or"
   build_map_by_location: "Buid a Map by Location"
   build_map_by_topic: "Build a Map by Topic"
+  build_a_map: "Build a Map"
+  upload_map_data: "Upload Map Data"
   location: "Location"
   topic: "Topic"
   source: "Source"
@@ -851,7 +853,7 @@ en:
 
   my_groups: "My Groups"
   group_directory: "Group Directory"
-  directory_of_networks: "Directory of Organizations"
+  directory_of_networks: "Our Partners"
   directory_of_groups: "Directory of Groups"
 
   my_groups_link: "My Groups"

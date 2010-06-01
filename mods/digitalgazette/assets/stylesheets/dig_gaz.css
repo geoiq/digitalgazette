@@ -252,7 +252,7 @@ main content
 footer
 ********************/
 #footer_wrapper {
-    z-index: -1000;
+    z-index: 1;
 }
 
 /********************
