@@ -5,12 +5,7 @@
 <p>Users from across the globe are able to share, connect, and engage on all topics related to Malakand 
 Division. The development community will have direct access to information, a local voice, and a local perspective. No longer will the local community feel they aren’t being listened to, or that the global community has no way to hear their concerns.</p>
   
-            <div class="pageSubNav">
-              <a href="#">I'M A CHARITY</a> | 
-                <a href="#">I'M GOVERNMENT</a> | 
-                <a href="#">I'M A RESEARCHER</a> | 
-                <a href="#" style="border:none;">I'M A DONOR</a>
-            </div> 
+<%= render :partial => "about/who_buttons", :local => {:page => params[:action]}  %>
                         
 <%- content_for :right_sidebar do -%>
 <%= render :partial => 'about/what_sidebar' %>

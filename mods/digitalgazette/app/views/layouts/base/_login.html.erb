@@ -1,9 +1,11 @@
+<div id="top_heading">
 <%#
 after_load_js = %Q[
 after_load_function = function() {
 Field.focus('login')}}); return false;
 }]
 %>
+
 <div id="hdrLogin" class="span-12 first txtWhite">
   <%- if logged_in? -%>
     <%= link_to(I18n.t(:profile), '/'+current_user.login) %> |
@@ -21,12 +23,7 @@ Field.focus('login')}}); return false;
 <% end -%>
 <a href="#" class="txtWhite"><%= I18n.t(:forgot_password_link) %></a> | <a href="/account" class="txtWhite"><%= I18n.t(:signup_link) %></a>
 <%- end -%>
-</div><!--#hdrLogin//-->                   
-<br class="clear" />
-<h1 id="hdrLogo" class="span-9 first">
-  <a href="/"><%# custom_masthead_site_title %></a>
-</h1>
-<div id="hdrRight" class="span-13 last txtAlignRight">
+</div><!--#hdrLogin//-->
   <div id="search">
     <% form_tag(search_url) do %>
     <%= mini_search_text_field_tag %>            	  
@@ -35,14 +32,17 @@ Field.focus('login')}}); return false;
     <br class="clear" />
     <%- end -%>
   </div><!--#search//-->
-  <br class="clear" />
-  <div id="topSubNav">
-    <a href="/about/what"><%= I18n.t(:what_is_this) %></a> |
-    <a href="/about/how"><%= I18n.t(:how_to_use) %></a> | 
-    <a href="/about/who"><%= I18n.t(:who_we_are) %></a>
-  </div><!--#topSubNav//-->
-</div><!--#hdrRight//-->
-<br class="clear"/>
+         
+</div><!-- top_heading//-->
+
+<div id="hdrLogo" class="">
+  <a href="/"><%# custom_masthead_site_title %></a>
+</div>
+  <div id="headerMenu">
+    <a href="/about/what"><%= image_tag("what.png", :alt => I18n.t(:what_is_this), :plugin => "digitalgazette") %></a> |
+    <a href="/about/how"><%= image_tag("how.png", :alt => I18n.t(:how_to_use), :plugin => "digitalgazette") %></a> | 
+    <a href="/about/who"><%= image_tag("who.png", :alt => I18n.t(:who_we_are), :plugin => "digitalgazette") %></a>
+  </div><!--#headerMenu//-->  
 
 
 

@@ -1,6 +1,5 @@
-%ul.pages-status
-  %li= "Provided by" + username
-  %li= "Added " + date
+%div.listing_data
+  %p= "Provided by " + username + " | Added on " + date
 /  %li= "Views: #{views_count}" if local_assigns[:views_count]
 /  %li=# contributors if local_assigns[:contributors]
 /  %li= stars_count if local_assigns[:stars_count]

@@ -8,7 +8,8 @@ body{
 }
 a{outline:none;text-decoration:none;}
 a:hover{}
-div{position:relative;}
+div{
+}
 
 /********************
 header
@@ -18,8 +19,25 @@ header
 	height: 159px;
 }
 #header form{display: inline;}
+#buffer{
+	height:5px;
+	width:950px;
+}
+
+#top_heading{
+	width:950px;
+	height: 30px;
+}
+
+#hdrLogin{
+	width:450px;
+	float: left;
+	height: 30px;
+	vertical-align: middle;
+}
+
 #hdrLogin a:hover{
-	color: #f3f3f3;
+	color: #FFF;
 	text-decoration:underline;
 }
 #hdrLogin #btnLogin{
@@ -31,44 +49,53 @@ header
 	text-transform: uppercase;
 }
 #hdrLogo{
-	margin-top: 20px;	
+	margin-top: 5px;
+	width: 500px;
+	height: 100px;
+	line-height: normal;
+	float: left;
 }
 #hdrLogo a{
 	background: url(img/logo_hdr.png) no-repeat 0 0;
-	display: block;
 	height: 99px;
 	width: 325px;
+	display: block;
 }
 #search{
 	background: url(img/bg_search.gif) no-repeat 0 0;
 	float: right;
-	height: 24px;
+	height: 30px;
 	line-height: 24px;
-	margin: 30px 0 0 0;
 	text-align: left;
 	width: 217px;
+	vertical-align: middle;
 }
 #txtSearch,#txtWikiSearch{
 	background: none;
 	border: none;
-	margin: -1px 0 0 3px;	
 }
 #btnSearch,#btnWikiSubmit{
 	background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
 	border: none;
 	cursor: pointer;
-	display: block;
 	float: right;
 	height: 20px;
-	margin: 2px 7px 0 0;
 	width: 16px;
+	margin: 2px 5px 0 0;
 }
 #btnSearch{
 	font-weight: bold;
 }
-#topSubNav{
-	margin-top: 48px;
+#headerMenu{
+	margin-top: 30px;
 	color: #FFF;
+	width: 450px;
+	float: right;
+	text-align: right;
+	margin-bottom: 5px;
+	font-size: 40px;
+	font-weight: normal;
+	height: 40px;
 }
 #topSubNav a{
 	color: #FFF;
@@ -105,6 +132,7 @@ header
 /********************
 main content
 ********************/
+
 #lnkFeedback{
 	background: url(img/bg_lnkFeedBack.gif) no-repeat 0 0;
 	height: 76px;
@@ -118,27 +146,60 @@ main content
 	font-size: 20px;
 	margin-bottom: 20px;
 	line-height: 1.5;
+	float: left;
 }
 .homeBkt{text-align: center;}
 .homeBkt img{
 	height: 172px;
 	width: 133px;
 }
+
+
 #homePicHolder{
 	background: url(img/picture_background.png) no-repeat 0 0;
 	height: 470px;
 	margin: 10px auto;
 	text-align: left;
 	width: 392px;
+	float: right;
+	display: block;
 }
 #homePic{
 	height: 349px;
 	margin: 20px 0 20px 15px;
 	width: 332px;
 }
+#holder{
+	width: 950px;
+	float: none;
+}
 .pageTitle{
 	font-size: 26px;
-	margin-bottom: 20px;
+	color: #a76272;
+	width: 674px;
+	height: 27px;
+	float: left;
+	display: block;
+	padding: 0;
+	line-height: 27px;
+	margin: 0 0 10px 0;
+	vertical-align: top;
+	text-align: left;
+}
+.pageTitle h2{
+	margin: 0 0 0 0;
+}
+.simpleMessage{
+	text-align: center;
+	line-height: 150%;
+}
+.Gazettestats{
+	text-align: center;
+	line-height: 150%;	
+}
+.DG-image{
+	float: left;
+	width: 700px;
 }
 .pageSubNav, .pageSubNavTop{
 	font-size: 14px;
@@ -155,12 +216,13 @@ main content
 	text-decoration: none;
 }
 .pageSubNav a:hover, .pageSubNavTop a:hover{text-decoration:underline;}
+
 #whatLinkList{
-	left: -36px;
 	list-style: none outside none;
-	margin: 10px 0 0 0;
-	position: relative;
 	width: 226px;
+	display: block;
+	margin: 10px 0 0 0;
+	padding: 0;
 }
 #whatLinkList li{
 	margin: 0;
@@ -189,33 +251,64 @@ main content
 #whatLinkList li#topLi a.active, #whatLinkList li#topLi a:hover, #whatLinkList li#btmLi a.active, #whatLinkList li#btmLi a:hover{
 	background-position: left bottom;	
 }
+#dynamicLinkList{
+	width: 196px;
+	display: block;
+	padding: 0 15px 0 15px;
+	margin: 0 0 0 0;
+	list-style-type: none;
+	text-align: left;
+	line-height: 100%;
+	list-style-image: url(none);
+}
+#dynamicLinkList a:hover{
+	color:#093;
+}
 .roundTop h3{
 	font-size: 16px;	
-	padding-top: 8px;
+}
+.rightmenubar{
+	float: right;
+	width: 226px;
+	text-align: center;
 }
 .subPageRightLinks{
 	background: #e4e8ec;
-	margin: 0;
-	padding: 0;
-	text-align: left;
 	width: 226px;
+	padding-top: 5px;
 }
-.subPageRightLinks a{
+.subPageRightLinks ul li{
+margin-top: 10px;	
+}
+.subPageRightLinks ul li a{
 	color: #000;
+	font-size: 12px;
 	display: block;
-	line-height: 20px;
-	text-indent: -10px;
-	padding-left: 20px;
+	padding-left: 0px;
+	padding-right: 5px;
+	text-indent: 0px;
 	text-decoration: none;
-	text-transform: uppercase;
+	text-transform: inherit;
 }
 .subPageRightLinks a:hover{text-decoration: underline;}
 #wikiSearch{
-	background: url(img/bg_searchWiki.gif) no-repeat 0 0;
+	background: url(img/bg_search.gif) no-repeat 0 0;
 	height: 26px;
 	width: 219px;
 }
-#btnWikiSubmit{margin-top:3px;}
+.WikiOptions{
+	text-align: right;
+	color:#093;
+	font-size: 12px;
+	margin-bottom: 2px;
+}
+.WikiOptions a:link{
+	color:#093;
+}
+.WikiOptions a:hover{
+	color:#093;
+}	
+
 #txtWikiSearch{margin:3px 0 0 5px;}
 .wikiTitle{
 	font-size: 16px;
@@ -245,14 +338,25 @@ main content
 	line-height: 30px;
 }
 
-#givenow {
-    margin-left: 10px;
+.threeBlocks{
+	width: 170px;
+	padding: 20px;
+	background-color: #e0f1e7;
+	float: left;
+	font-size: 90%;
+	line-height: 135%;
+	margin-bottom: 20px;
+	margin-right: 10px;
+	height: 155px;
+	display: block;
 }
+
+
 /********************
 footer
 ********************/
 #footer_wrapper {
-    z-index: 1;
+    z-index: -1000;
 }
 
 /********************
@@ -267,8 +371,16 @@ everywhere
 .underline{text-decoration:underline;}
 .txtAlignRight{text-align:right;}
 .txtAlignCenter{text-align:center;}
-.roundTop{background: url(img/roundTop.gif) no-repeat left top;height:30px;line-height:30px; margin-top: 10px;}
-.roundBtm{background: url(img/roundBtm.gif) no-repeat left bottom;height: 20px;}
+.roundTop{
+	background: url(img/roundTop.gif) no-repeat left top;
+	height:30px;
+	line-height:30px;
+	margin-top: 10px;
+}
+.roundBtm{
+	background: url(img/roundBtm.gif) no-repeat left bottom;
+	height: 20px;
+}
 .lnkBlack{color:#000;text-decoration:none;}
 .lnkBlack:hover{text-decoration:underline;}
 .container {text-align: left;}
@@ -321,7 +433,8 @@ textarea {width: 600px; height: 400px;}
 	padding-left: 0;
 }
 .topic_header {
- color: #28874;
+	line-height: 110%;
+	margin: 0 0 5px 0;
 }
 
 
@@ -338,8 +451,9 @@ textarea {width: 600px; height: 400px;}
 .content_box {
     padding: 0 1em;
 }
+
 #wiki-content {
-/*    width: 400px;*/
+	/*    width: 400px;*/
     margin-left: 250px;
 }
 ul.toc {
@@ -383,6 +497,9 @@ ul.tabset.top  {
     border-bottom: 3px solid #28874D;
 	border-bottom: #28874D;
 }
+.black_bullet {
+	color: #000
+}
 
 ul.tabset a {
 }
@@ -394,20 +511,23 @@ ul.tabset a {
     padding-top:3px;
     width:100%;
 }
-
+.political_topics a:links{
+color:#093;
+}
+a:link {
+	text-decoration: none;
+	color:#000
+}
+a:visited {
+	text-decoration: none;
+	color: #063;
+}
 a:hover {
 	text-decoration: underline;
 	color: #093;
 }
-a:link {
-	color: #000;
-}
-a:visited {
-	text-decoration: none;
-	color: #000;
-}
 a:active {
-	color: #000;
+	color: #093;
 }
 .page_title1 {
 	font-style: normal;
@@ -442,41 +562,27 @@ a:active {
 }
 #browse {
 	width: 650px;
-	padding-top: 20px;
+	padding-top: 5px;
 	float: left;
 	font-weight: bold;
-	padding-left: 0px;
-	padding-bottom: 10px;
 	font-size: 12px;
 	color: #999;
+	text-align: center;
+	line-height: 160%;
+	height: 30px;
+	padding-bottom: 15px;
+	border-bottom-color: #CCC;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
 }
-.topic_header {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	color: #28874D;
-}
-#politics_topics {
-	float: left;
-	width: 300px;
-	text-decoration: none;
-	font-size: 12px;
-	color: #28874a;
-}
+
 #relig_soc_topics {
 	float: left;
-	width: 300px;
-	padding-left: 35px;
+	width: 320px;
+	padding-left: 10px;
+	margin-top: 10px;
 }
 
-
-#browse_topics {
-	width: 650px;
-	float: left;
-	font-size: 12px;
-	color: #28774d;
-	padding-bottom: 30px;
-}
 #what_do_you {
 	font-family: Arial, Helvetica, sans-serif;
 	width: 310px;
@@ -486,20 +592,18 @@ a:active {
 	font-weight: bold;
 	color: #FFF;
 	vertical-align: middle;
-	padding-top: 25px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
 	text-align: right;
+	height: 0px;
+	padding: 30px 0 30px 0;
+	line-height: 15px;
 }
 #search_me {
-	float: left;
-	height: 70px;
-	width: 300px;
+	float: right;
+	height: 26px;
+	width: 295px;
 	vertical-align: middle;
 	white-space: normal;
-	padding-top: 23px;
-	padding-left: 15px;
+	padding: 25px 0 24px 25px;
 }
 #sidebar {
 	float: right;
@@ -563,8 +667,198 @@ a:active {
 	font-style: normal;
 	color: #000;
 }
-
-
-.small {
-    font-size: 0.8em;
+.browse_articles {
+	color: #999;
+	font-size: 12px;
+	padding-top: 25px;
+	text-align: center;
+	padding-bottom: 15px;
+}
+.topic_header a{
+color:#093;
+font-size: 14px;
+}
+.political_topics{
+	width: 320px;
+	float: left;
+	margin-top: 10px;
+	}
+.second_level{
+	list-style-position: inside;
+	font-size: 10px;
+	}
+.bullet_indent{
+margin-left: 20px;
+padding-left: 5px;
+margin-top: 0px;
+	}
+.group_entry{
+	width: 650px;
+	margin-top: 10px;
+	padding-top: 4px;
+	display: block;
+	float: left;
+	height: 100px;
+	border-top: solid #CCC 1px;
+}
+.wiki_results{
+	width: 900px;
+	margin-top: 10px;
+	padding-top: 4px;
+	display: block;
+	float: left;
+	height: 60px;
+	border-top: solid #CCC 1px;
+	}
+	.report_results{
+	width: 900px;
+	margin-top: 10px;
+	padding-top: 4px;
+	display: block;
+	float: left;
+	height: 75px;
+	border-top: solid #CCC 1px;
+	}
+#report_filters{
+	border-bottom-color: #CCC;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-top-color: #CCC;
+	display: block;
+	margin-bottom: 5px;
+	height: 35px;
+	width: 650px;
+	float: left;
+	}
+.letter_pagination{
+	color: #999;
+	font-size:10px;
+	float: left;
+	display: block;
+}
+.letter_pagination a{
+	color: #093;	
+}
+.by_country{
+	color: #999;
+	font-size:10px;
+	width: 300px;
+	float: right;
+	}
+#country_submit{
+	background-color: #CCC;
+	font-size: 9px;
+	height: 14px;
+}
+#select_country_id{
+	background-color: #CCC;
+	font-size: 9px;
+	height: 14px;
+	width: 150px;
+	float: left;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+.listing_icon{
+	float: left;
+	width: 50px;
+	height: 100px;
+	display: block;
+	}
+#listing_info{
+	padding-left: 60px;
+	}
+#listing_info p{
+	margin: 0 0 0 0;
+	line-height: 120%;
+	font-size: 11px;
+}
+#listing_title{
+	color: #093;
+	font-size: 14px;
+	}
+.listing_data p{
+	font-size: 10px;
+	color: #999;
+	font-style: italic;
+	padding-left: 60px;
+		}
+.pageSubhead{
+	color:#a76272;
+	font-size: 18px;
+	text-align:left;
+	margin: 0 0 0 0;
+}
+.leftsidebar{
+	width: 175px;
+	padding: 20px;
+	background-color: #e0f1e7;
+	float: left;
+	font-size: 90%;
+	line-height: 135%;
+	margin-bottom: 20px;
+	list-style-image: url(none);
+}
+div#main{
+	width: 450px;
+	float: left;
+	padding-left: 20px;
+	line-height: 135%;
+	}
+div#main_full{
+	width: 650px;
+	line-height: 135%;
+	margin-right: 20px;
+	height: inherit;
+	}	
+div#main_full_home{
+	width: 425px;
+	line-height: 135%;
+	margin-right: 20px;
+	height: inherit;
+	}		
+.bottom_buttons{
+	text-align: center;
+	margin: 0 0 0 0;
+	}
+.charity{
+	display: block;
+	}
+.charity a{
+	background-image: url(../images/charity.png);	
+	}	
+.charity a:hover{
+	}
+.leftsidebar li{
+	list-style-image: url(none);
+	padding-left: 1px;
+	margin: 4px 0 0 -6px;
+}
+.bottom_buttons_maps{
+	z-index: 1000;
+	margin: 0 0 0 0;
+	text-align: center;
+}
+.blackText{
+	color: #000;
+	}
+.main_buttons{
+	float: left;
+	width: 150px;
+	}
+.Home_page_content{
+	width: 500px;
+	float: left;
+	padding-right: 35px;
+}
+#subPageLeft {
+	line-height: 135%;
+    
+}
+a.inlineLinks {
+    color:#093;
+}
+ul {
+    list-style-image: url(img/triangle_bullet.png);
+    list-style-type: disc;
 }

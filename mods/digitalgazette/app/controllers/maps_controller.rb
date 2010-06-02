@@ -17,10 +17,11 @@ class MapsController < ApplicationController
     @maps, @tags = Map.search(params.merge(:limit => 50))
   end
   
-  def new
-    
+  def upload
   end
-  def edit
-    
+
+  def new
+  end
+  def edit    
   end  
 end

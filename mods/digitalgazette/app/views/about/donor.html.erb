@@ -2,13 +2,8 @@
 
 <p></p>
   
-<div class="pageSubNav">
-  <a href="/about/charity">I'M A CHARITY</a> | 
-    <a href="/about/government">I'M GOVERNMENT</a> | 
-    <a href="/about/researcher">I'M A RESEARCHER</a> | 
-    <a href="/about/donor" style="border:none;">I'M A DONOR</a>
-</div> 
-            
+<%= render :partial => "about/who_buttons", :local => {:page => params[:action]}  %>
+
 <%- content_for :right_sidebar do -%>
 <%= render :partial => 'about/what_sidebar' %>
 <%- end -%>
