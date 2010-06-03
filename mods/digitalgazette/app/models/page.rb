@@ -7,5 +7,10 @@ class Page < ActiveRecord::Base
    #add_column :pages, :certification, :string
     
 
+   #attr_accessor :methodology_focusgroups
+   #attr_accessor :methodology_interviews
+   #attr_accessor :methodology_survey
+   #attr_accessor :methodology_opensource
+   #attr_accessor :methodology_unknown
 
 end

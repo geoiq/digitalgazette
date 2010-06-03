@@ -3,3 +3,4 @@
 map.resources :maps, {:collection => {:all => :get, :upload => :get}}
 
 map.connect '/about/:id', :controller => 'about', :action => 'show'
+map.connect '/reports', :controller => 'reports', :action => 'index'

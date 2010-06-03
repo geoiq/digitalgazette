@@ -4,21 +4,23 @@
           <td>&nbsp;</td>
           <td><%= @page.publisher %></td>
         </tr>
+        <%- if @page.research_report -%>
         <tr>
           <td align='right'><b><%= I18n.t(:methodology) %>:</b></td>
           <td>&nbsp;</td>
           <td><%= @page.methodology %></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td align='right'><b><%= I18n.t(:certification) %>:</b></td>
           <td>&nbsp;</td>
           <td><%= @page.certification %></td>
-        </tr>
+        </tr> -->
         <tr>
           <td align='right'><b><%= I18n.t(:sample_size) %>:</b></td>
           <td>&nbsp;</td>
           <td><%= @page.sample_size %></td>
         </tr>
+        <%- end # if page.research_report -%>
         <tr>
           <td align='right'><b><%= I18n.t(:year_published) %>:</b></td>
           <td>&nbsp;</td>

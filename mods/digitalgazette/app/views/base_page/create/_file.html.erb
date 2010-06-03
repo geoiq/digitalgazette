@@ -2,7 +2,7 @@
   form.row do |r|
     r.label I18n.t(:year_published)
     r.label_for 'year_published'
-    r.input text_field('page', 'year_published', :size => 40)
+    r.input text_field('page', 'year_published', :size => 10)
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
   end
   form.row do |r|
@@ -11,22 +11,84 @@
     r.input text_field('page', 'publisher', :size => 40)
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
   end   
+
   form.row do |r|
-    r.label I18n.t(:methodology)
-    r.label_for 'methodology'
-    r.input select('page', 'methodology', [["Guess","Guess"], ["Measured","Measured"], ["Asked","Asked"]], :id => 'page_methodology')
+    r.label "Is this a Research Report?"
+    r.label_for 'research_report'
+    r.input check_box('page', 'research_report')
+    r.info "what is a survey"
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
-  end   
-  form.row do |r|
-    r.label I18n.t(:sample_size)
-    r.label_for 'sample_size'
-    r.input select('page', 'sample_size', [["1","1"], ["2","2"], ["3","3"]], :id => 'page_sample_size')
-    # r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
-  end         
+  end 
+
+  form.raw(%Q{
+    <table id="research_methodologies">
+  <tr>
+    <td>#{check_box('page', 'methodology_opensource', :class => "methodologyOption") }</td>
+    <td>#{check_box('page', 'methodology_survey', :class => "methodologyOption") }</td>
+    <td>#{check_box('page', 'methodology_focusgroups', :class => "methodologyOption") }</td>
+    <td>#{check_box('page', 'methodology_interviews', :class => "methodologyOption") }</td>
+    <td>#{check_box('page', 'methodology_unknown', :class => "methodologyOption") }</td>
+  </tr>
+  <tr>
+    <td>Open Source Research</td>
+    <td>Survey/Poll</td>
+    <td>Focus Groups</td>
+    <td>Interviews/Consultations</td>
+    <td>I don't know</td>
+  </tr>
+  <tr>
+  <td colspan="5">#{I18n.t(:sample_size)} #{text_field('page', 'sample_size', :size => 4, :id => 'page_sample_size') }    </td>
+  </tr>
+</table>})
+  # form.row do |r|
+  #   r.label "Open Source Research"
+  #   r.label_for 'research_report'
+  #   r.input check_box('page', 'methodology_opensource', :class => "methodologyOption")
+  #   r.info "what is a survey"
+  #   #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  # end 
+
+  # form.row do |r|
+  #   r.label "Survey/Poll"
+  #   r.label_for 'methodology_survey'
+  #   r.input check_box('page', 'methodology_survey', :class => "methodologyOption")
+  #   r.info "what is a survey"
+  #   #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  # end 
+  # form.row do |r|
+  #   r.label "Focus Groups"
+  #   r.label_for 'methodology_focusgroups'
+  #   r.input check_box('page', 'methodology_focusgroups', :class => "methodologyOption")
+  #   r.info "what is a survey"
+  #   #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  # end 
+  # form.row do |r|
+  #   r.label "Interviews/Consultations"
+  #   r.label_for 'methodology_interviews'
+  #   r.input check_box('page', 'methodology_interviews', :class => "methodologyOption")
+  #   r.info "what is a survey"
+  #   #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  # end 
+  # form.row do |r|
+  #   r.label "I don't know"
+  #   r.label_for 'methodology_unknown'
+  #   r.input check_box('page', 'methodology_unknown', :class => "methodologyOption")
+  #   r.info "what is a survey"
+  #   #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  # end 
+  # 
+  # form.row do |r|
+  #     r.label I18n.t(:sample_size)
+  #     r.label_for 'sample_size'
+  #     r.input text_field('page', 'sample_size', :size => 4, :id => 'page_sample_size')
+  #     # r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
+  #   end 
+          
   form.row do |r|
     r.label I18n.t(:certification)
     r.label_for 'certification'
     r.input check_box('page', 'certification')
+    r.info "By uploading data you are guaranteeing.... (CRISIS PROJECT COPY)"
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
   end        
   form.row do |r|

@@ -12,11 +12,20 @@
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
   %div.roundTop.txtDrkGray
-    %h3
-      %strong= "MOST VIEWED"
+    %strong= "MOST VIEWED"
   %div.subPageRightLinks
-    - @recent = Page.popular("AssetPage", 5)
-    - @recent.each do |page|
-      = link_to(h(page.title), page_url(page))
+    %ul.dynamicLinkList
+      - @recent = Page.popular("AssetPage", 5)
+      - @recent.each do |page|
+        %li= link_to(h(page.title), page_url(page))
+  %div.roundBtm
+
+  %div.roundTop.txtDrkGray
+    %strong= "MOST RECENT"
+  %div.subPageRightLinks
+    %ul.dynamicLinkList
+      - @recent = Page.recent("AssetPage", 5)
+      - @recent.each do |page|
+        %li= link_to(h(page.title), page_url(page))
   %div.roundBtm
 

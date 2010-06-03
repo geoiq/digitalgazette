@@ -13,7 +13,7 @@
       <%= if @asset.embedding_partial.any?
             render :partial => @asset.embedding_partial
           else
-            asset_link_with_preview(@asset) 
+            asset_link_with_preview(@asset)
           end %>
       </div></div>
       <div class='upload_file_info'>
@@ -28,12 +28,14 @@
 
       <%= render :partial => 'galleries' %>
 
+      <!-- Intentionally Hidden for Now
       <br/>
       <h2 class='section'><%= I18n.t(:history) %></h2>
-      <%= render :partial => 'version_history' %>
+      <%# render :partial => 'version_history' %>
       <br/>
       <h2 class='section'><%= I18n.t(:other_formats) %></h2>
-      <%= render :partial => 'thumbnails' %>
+            <%# render :partial => 'thumbnails' %> 
+        -->
     </div> <!-- end left -->
 
 </div> <!-- end asset_page -->
