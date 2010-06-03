@@ -13,11 +13,11 @@
         = star_line
       - if (access_changing_commands = [share_line, notify_line, share_all_line, public_line].compact).any?
         %ul.side_list.commands.rule
-          = access_changing_commands
+          = access_changing_commands if may_admin_site?
       %ul.side_list.commands.rule
-        = delete_line
+        = delete_line if may_admin_site?
         -# move_line
-        = details_line
+        = details_line if may_admin_site?
         = history_line
         = view_line
     = call_hook :page_sidebar_actions

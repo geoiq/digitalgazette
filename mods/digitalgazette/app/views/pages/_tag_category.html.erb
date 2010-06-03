@@ -1,0 +1,6 @@
+<h5 class="topic_header"><a href="/search/type/<%= asset_type %>/tag/<%= category.downcase %>"><%= category %></a></h5>
+<ul  class="bullet_indent">
+<%- tags.each do |tag| -%>
+  <li><a href="/search/type/<%= asset_type %>/tag/<%= tag.downcase %>"><%= tag %></a></li>
+<%- end -%>
+</ul>

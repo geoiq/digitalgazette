@@ -1,2 +1,14 @@
-%h3
-  = I18n.t(:search_headline)
+%div.pageTitle
+  %h2= "Reports"
+%div.WikiOptions
+  = link_to "HOW DO I UPLOAD A REPORT?", "/about/how"
+%div#wikisearch_box
+  %div#what_do_you
+    = "What kind of report would you like to find?"
+  %div#search_me
+    - form_tag(search_url, :id => "wikiSearch") do
+      = mini_search_text_field_tag
+
+              
+%div#browse
+  %h4= "Browse Reports"

@@ -2,12 +2,15 @@ class PagesController < ApplicationController
   include ControllerExtension::MapPopup
   
   def index
-    @popular = Page.recent("WikiPage", 5)
+    @popular = Page.popular("WikiPage", 5)
+    @recent = Page.recent("WikiPage", 5)
+    render :template => "wiki_page/index"
   end
   
   def all
     params[:view] ||= 'networks'
     @path.default_sort('updated_at')
+    @popular = Page.popular("WikiPage", 5)
     @recent = Page.recent("AssetPage", 5)
         
     fetch_pages_for @path

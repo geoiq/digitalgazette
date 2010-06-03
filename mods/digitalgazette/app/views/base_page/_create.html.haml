@@ -20,7 +20,7 @@
         - sections.each do |section|
           = render :partial => "base_page/create/#{section}", :locals => {:form => form}
 
-      = render :partial => 'base_page/create/sharing', :locals => {:form => form}
+      = render :partial => 'base_page/create/sharing', :locals => {:form => form} if may_admin_site?
     .form_buttons
       = submit_tag "hidden", :name => 'create', :style => 'display:none'
       = submit_tag '&laquo; ' + I18n.t(:back_button), :name => 'cancel'

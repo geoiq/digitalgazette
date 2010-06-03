@@ -204,7 +204,7 @@ en:
   coordinators: "Coordinators"
   participants: "Participants"
   viewers: "Viewers"
-  recipients: "Recipients"
+  recipients: "User Access"
 
   destroy_confirmation: "Are you sure you want to delete this {{thing}}? This action cannot be undone."
   confirmation: "Are you sure?"
@@ -1095,12 +1095,12 @@ en:
 
   announcements: "Announcements"
   watch_checkbox: "Watch For Updates"
-  add_star_link: "Add Star ({{star_count}})"
-  remove_star_link: "Remove Star ({{star_count}})"
-  public_checkbox: "Public"
+  add_star_link: "Favourite This ({{star_count}})"
+  remove_star_link: "Remove Favourite ({{star_count}})"
+  public_checkbox: "Public (Admin Only)"
   public_checkbox_help: "If checked, anyone may view this page."
   move_page_link: "Move {{page_class}}"
-  page_details_link: "{{page_class}} Details"
+  page_details_link: "{{page_class}} Details (Admin Only)"
   print_view_link: "Printable"
 
   # trash
@@ -1108,7 +1108,7 @@ en:
   trash: "Trash"
   trash_description: "The trash is where all your deleted pages live. You can restore a page by clicking {{undelete}} or permanently destroy a page by clicking {{destroy}}."
 
-  delete_page_link: "Delete {{page_class}}"
+  delete_page_link: "Delete {{page_class}} (Admin Only)"
 
   destroy_page_via_shred: "Destroy Immediately"
   destroy_page_via_shred_info: "This will permanently destroy the page. This action cannot be undone."
@@ -1157,7 +1157,7 @@ en:
   grant_access: "Grant Access"
   share_page_email: "Send an email notification"
   share_page_message: "Send a message (optional)"
-  share_page_link: "Share {{page_class}}"
+  share_page_link: "Share {{page_class}} (Admin Only)"
   share_page_options: "Choose options"
   share_page_recipients: "Share page with"
   share_page_recipients_sections: "Choose from your groups or friends"
@@ -1204,7 +1204,7 @@ en:
   only_me: "Me"
   create_page_button: "Create {{page_class}}"
   page_added_to_group: "This page will be added to {{group_type}} {{group_name}}."
-  additional_page_access: "Additional Access"
+  additional_page_access: "Privacy Settings"
   page_owner_error: "Page owner cannot be empty."
 
   # help

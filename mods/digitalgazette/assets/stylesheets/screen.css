@@ -76,7 +76,7 @@ caption {background:#eee;}
 .bottom {margin-bottom:0;padding-bottom:0;}
 
 /* forms.css */
-label {font-weight:bold;}
+/*label {font-weight:bold;}
 fieldset {padding:1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
 legend {font-weight:bold;font-size:1.2em;}
 input[type=text], input[type=password], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
@@ -94,7 +94,7 @@ form.inline p {margin-bottom:0;}
 .success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
 .error a {color:#8a1f11;}
 .notice a {color:#514721;}
-.success a {color:#264409;}
+.success a {color:#264409;}*/
 
 /* grid.css */
 .container {width:950px;margin:0 auto;}

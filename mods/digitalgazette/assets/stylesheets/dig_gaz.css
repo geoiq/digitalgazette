@@ -3,9 +3,16 @@ elements
 ********************/
 body{
 	color: #000;
-	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;	
-	font-size: 14px;
+/*  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;   */
+/*  font-size: 14px;*/
 }
+
+body {
+	font-size:75%;
+	background:#fff;
+	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
 a{outline:none;text-decoration:none;}
 a:hover{}
 div{
@@ -36,6 +43,9 @@ header
 	vertical-align: middle;
 }
 
+#hdrLogin a{
+	color: #FFF;
+}
 #hdrLogin a:hover{
 	color: #FFF;
 	text-decoration:underline;
@@ -73,6 +83,8 @@ header
 #txtSearch,#txtWikiSearch{
 	background: none;
 	border: none;
+    margin-top:-5px;
+    padding-left:5px;	
 }
 #btnSearch,#btnWikiSubmit{
 	background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
@@ -173,7 +185,7 @@ main content
 	width: 950px;
 	float: none;
 }
-.pageTitle{
+.pageTitle {
 	font-size: 26px;
 	color: #a76272;
 	width: 674px;
@@ -251,7 +263,7 @@ main content
 #whatLinkList li#topLi a.active, #whatLinkList li#topLi a:hover, #whatLinkList li#btmLi a.active, #whatLinkList li#btmLi a:hover{
 	background-position: left bottom;	
 }
-#dynamicLinkList{
+.dynamicLinkList{
 	width: 196px;
 	display: block;
 	padding: 0 15px 0 15px;
@@ -261,7 +273,7 @@ main content
 	line-height: 100%;
 	list-style-image: url(none);
 }
-#dynamicLinkList a:hover{
+.dynamicLinkList a:hover{
 	color:#093;
 }
 .roundTop h3{
@@ -359,6 +371,9 @@ footer
     z-index: -1000;
 }
 
+#footer_wrapper .small {
+    padding-right: 5px;
+}
 /********************
 everywhere
 ********************/
@@ -385,7 +400,6 @@ everywhere
 .lnkBlack:hover{text-decoration:underline;}
 .container {text-align: left;}
 
-textarea {width: 600px; height: 400px;}
 #action-bar, #pages.full, #pages.full article, #third-level-container nav#third-level {
     width: 700px;
 }
@@ -433,8 +447,10 @@ textarea {width: 600px; height: 400px;}
 	padding-left: 0;
 }
 .topic_header {
-	line-height: 110%;
-	margin: 0 0 5px 0;
+    background-color:#28874D;
+    line-height:110%;
+    margin:0 0 5px;
+    padding:5px 0 5px 5px;
 }
 
 
@@ -556,7 +572,7 @@ a:active {
 }
 #wikisearch_box {
 	height: 75px;
-	width: 650px;
+	width: 670px;
 	background-color: #28874D;
 	float: left;
 }
@@ -571,9 +587,10 @@ a:active {
 	line-height: 160%;
 	height: 30px;
 	padding-bottom: 15px;
-	border-bottom-color: #CCC;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+/*  border-bottom-color: #CCC;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+*/
 }
 
 #relig_soc_topics {
@@ -707,7 +724,7 @@ margin-top: 0px;
 	padding-top: 4px;
 	display: block;
 	float: left;
-	height: 60px;
+	height: 80px;
 	border-top: solid #CCC 1px;
 	}
 	.report_results{
@@ -765,15 +782,15 @@ margin-top: 0px;
 	height: 100px;
 	display: block;
 	}
-#listing_info{
-	padding-left: 60px;
+.listing_info{
+	padding-left: 80px;
 	}
-#listing_info p{
+.listing_info p{
 	margin: 0 0 0 0;
 	line-height: 120%;
 	font-size: 11px;
 }
-#listing_title{
+.listing_title{
 	color: #093;
 	font-size: 14px;
 	}
@@ -781,7 +798,7 @@ margin-top: 0px;
 	font-size: 10px;
 	color: #999;
 	font-style: italic;
-	padding-left: 60px;
+	padding-left: 80px;
 		}
 .pageSubhead{
 	color:#a76272;
@@ -858,7 +875,16 @@ div#main_full_home{
 a.inlineLinks {
     color:#093;
 }
-ul {
-    list-style-image: url(img/triangle_bullet.png);
-    list-style-type: disc;
+ul.bullet_indent {
+    list-style-image:url("img/ar.jpg");
+}
+.bullet_indent a {
+    color: #000000;
+}
+.topic_header a {color: #FFFFFF;}
+.topic_header a:hover {color: #FFFFFF;}
+
+
+td.label {
+    width: 120px;
 }
