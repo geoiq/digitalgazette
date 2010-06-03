@@ -16,7 +16,7 @@
     r.label "Is this a Research Report?"
     r.label_for 'research_report'
     r.input check_box('page', 'research_report')
-    r.info "what is a survey"
+    r.info "Was this report created using a research methodology and sample sizes?"
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
   end 
 
@@ -88,7 +88,7 @@
     r.label I18n.t(:certification)
     r.label_for 'certification'
     r.input check_box('page', 'certification')
-    r.info "By uploading data you are guaranteeing.... (CRISIS PROJECT COPY)"
+    r.info "You must certify that you are uploading data that allowed to be publicly shared."
     #r.info "%s %s" % [help(:tags), I18n.t(:separate_tags)]
   end        
   form.row do |r|
