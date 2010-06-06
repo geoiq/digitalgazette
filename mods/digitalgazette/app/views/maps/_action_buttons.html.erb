@@ -1,0 +1,9 @@
+<center>
+  <div class="bottom_buttons_maps">
+    <%= link_to image_tag("view.png",:plugin => "digitalgazette", :alt => I18n.t(:view_maps)), {:controller => "maps", :action => "all"} %></span></li>
+    <%= link_to image_tag("build.png",:plugin => "digitalgazette", :alt => I18n.t(:build_a_map)), "/maps/new" %></span></li>
+    <%= link_to image_tag("add.png",:plugin => "digitalgazette", :alt => I18n.t(:upload_map_data)), "/maps/upload" %></span></li>
+    <!-- <li><span><%= link_to I18n.t(:build_map_by_location), {:controller => "maps", :action => "all",:sort => "location"} %></span></li>
+    <li><span><%= link_to I18n.t(:build_map_by_topic), {:controller => "maps", :action => "all",:sort => "topic"} %></span></li>       --> 
+  </div>
+</center>
