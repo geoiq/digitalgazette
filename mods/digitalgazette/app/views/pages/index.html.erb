@@ -46,7 +46,7 @@
  </div>
  <div class="subPageRightLinks">
    <ul class="dynamicLinkList">
-   <%- @popular.each do |page| %>
+   <%- @popular[0..5].each do |page| %>
    <li><%= link_to(h(page.title), page_url(page)) %></li>
    <%- end -%>
  </ul> </div>
@@ -56,8 +56,8 @@
  </div>
  <div class="subPageRightLinks">
    <ul class="dynamicLinkList">   
-   <%- @popular.each do |page| %>
-   <li><%= link_to(h(page.title), page_url(page)) %></li>
+   <%- @recent[0..5].each do |page| %>
+   <li><%= link_to(h(page.title) , page_url(page)) %></li>
    <%- end -%>
  </ul> </div>
  <div class="roundBtm"></div> 

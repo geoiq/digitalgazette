@@ -2,8 +2,10 @@ class PagesController < ApplicationController
   include ControllerExtension::MapPopup
   
   def index
-    @popular = Page.popular("WikiPage", 5)
-    @recent = Page.recent("WikiPage", 5)
+    # @popular = Page.popular("WikiPage", 5)
+    # @recent = Page.recent("WikiPage", 5)
+    # @popular = Page.find_by_path([ 'most_viewed', "5"], ['type', 'wiki_page'])
+    
     render :template => "wiki_page/index"
   end
   
