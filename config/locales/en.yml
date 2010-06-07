@@ -328,7 +328,10 @@ en:
   forgot_password_link: "Forgot Password"
   signup_info: Choose your login name and your password then click "{{sign_up}}"
   login_failure_reason: "Username or password is incorrect."
-  signup_success_message: "Thanks for signing up!"
+  signup_success_message: "<p>Congratulations and welcome to the Digital Gazette!</p>
+<p>Remember to browse around in the Profile and <a href='/me/edit'>Account</a> tabs above to personalize your account.</p>
+<p>Need some ideas on how to get started? See our <a href='/about/how'>'how to'</a> section for tips on checking out information or contributing your perspective to the Digital Gazette.</  p>
+"
   login_name: "Login name"
   signup_success: "Registration successful"
   logout_success: "Goodbye"
@@ -864,8 +867,8 @@ en:
   discover_groups: "Discover {{groups_type}}"
   browse_groups: "Browse {{groups_type}}"
 
-  browse_groups_desc: "Below is an alphabetized list of all {{groups_type}}. You can filter this list by location to find {{groups_type}} near you."
-  discover_groups_desc: "Below is a list of recently created {{groups_type}}. You can filter this list by location to find {{groups_type}} near you."
+  browse_groups_desc: "Below is an alphabetized list of all {{groups_type}}. "
+  discover_groups_desc: "Below is a list of recently created {{groups_type}}. "
 
   # commands
 
@@ -1682,7 +1685,16 @@ en:
   welcome_hide_link: "Hide Welcome"
   welcome_title: "Welcome to {{site_title}}"
   welcome_heading: "Welcome to {{site_title}}, {{user_name}}!"
-  welcome_message: "The Frontier Digital Gazette is developed by the Transnational Crisis Project as an open and collaborative platform to connect government, NGO's, and citizens."
+  welcome_message: "<p>Create your own account on the Digital Gazette to:</p>
+<ul>
+<li>Share local understanding through your reports or wiki articles</li>
+<li>Create your own maps</li>
+<li>Improve the effectiveness of all reconstruction efforts</li>
+<li>Achieve greater visibility for your research or your organization</li>
+</ul>
+<p>We’ll ask you to create a username for your account and a password. If you include your email address, we’ll be able to help out if you forget your password. Once you have an account, you can click on Account and Profile in the top left corner of your screen to customize your account and choose your settings.</p>
+
+"
   welcome_login_message: ""
 
   welcome_edit_profile_link: "Edit your profile"
