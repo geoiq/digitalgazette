@@ -4,7 +4,7 @@
 
             <div class="WikiOptions">
             	  <%= link_to("HOW DO I DO THIS?", "/about/how") %>| 
-                <%= link_to("UPLOAD A NEW REPORT", "/asset_page/create/asset") %>
+                <%= link_to("UPLOAD A NEW REPORT", "/AssetPage/create/asset") %>
             </div>
             <div id="wikisearch_box">            
               <div id="what_do_you">What do you wish to learn about?</div>
@@ -27,13 +27,13 @@
                 -%>
              <div id="browse_topics">
                 <div class="political_topics">
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "asset_page", :category => "Politics", :tags => @tags[:politics]} %>
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "asset_page", :category => "Society", :tags => @tags[:society]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "AssetPage", :category => "Politics", :tags => @tags[:politics]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "AssetPage", :category => "Society", :tags => @tags[:society]} %>
                 </div>
                   <div id="relig_soc_topics">
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "asset_page", :category => "Religion", :tags => @tags[:religion]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "AssetPage", :category => "Religion", :tags => @tags[:religion]} %>
                   <br style="clear:both" /> <!-- line everything up -->
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "asset_page", :category => "Development", :tags => @tags[:development]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "AssetPage", :category => "Development", :tags => @tags[:development]} %>
                   </div>                
               </div>
 
