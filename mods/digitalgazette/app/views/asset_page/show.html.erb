@@ -1,5 +1,4 @@
 <% content_for :right_sidebar do %>
-
   <h2 class='section'><%= I18n.t(:information) %></h2>
   <%= render :partial => 'information' %>
   
@@ -16,8 +15,12 @@
             asset_link_with_preview(@asset)
           end %>
       </div></div>
-      <div class='upload_file_info'>
-      <p><%= download_link %> &nbsp;&nbsp; <%= upload_link %></p>
+      <section id="posts">
+        <h4>Summary</h4>
+      <p><%= @page.summary %></p>
+      </section>
+      <div class='upload_file_info'>      
+      <p><%= download_link %> &nbsp;&nbsp; <%#= upload_link %></p>
       <div id="upload_new" style="display: none;">
         <% form_tag page_url(@page, :action => 'update'), :multipart => true do -%>
           <%= file_field_tag 'asset[uploaded_data]' %>

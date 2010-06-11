@@ -1,9 +1,17 @@
-<h2 class="pageTitle txtRed">How to use this.</h2>
-<p><strong>The Digital Gazette relies on the input of its users.</strong> In our efforts to ensure that the Digital Gazette provides you with high quality information from the community level, to the biggest picture information and everything in between, we have reached out to the local and international analytical, governmental, humanitarian, security, development, and academic communities.
+<h2 class="pageTitle txtRed">How Do I Use This</h2>
+<p>Take a deep breath and don’t let the technology overwhelm you. The Digital Gazette is a portal to loads of really interesting and helpful information about Malakand Division, Pakistan.
 </p>
 
+<p>There are three main parts of the Digital Gazette:</p>
+<ul>
+<li><a href="/about/how_maps" class="inlineLinks">Maps</a> — See information applied to sophisticated satellite maps</li>
+<li><a href="/about/how_wiki" class="inlineLinks">Wiki</a> — An archive of articles that users can update, edit, or add to, enriching each article</li>
+<li><a href="/about/how_reports" class="inlineLinks">Reports</a> — Read reports on Malakand Division from a wide variety of sources</li>
+</ul>
+
+
 <p>
-Click on the links to the right to learn more about <%= link_to("the maps", "/about/how/maps") %>, <%= link_to("wiki articles", "/about/how/wiki") %>, or <%= link_to("reports", "/about/how/reports") %>.
+Click on the links to the right to learn more about <%= link_to("the maps", "/about/how/maps", :class => "inlineLinks") %>, <%= link_to("wiki articles", "/about/how/wiki", :class => "inlineLinks") %>, or <%= link_to("reports", "/about/how/reports", :class => "inlineLinks") %>.
 </p>
 <%- content_for :right_sidebar do -%>
 <%= render :partial => 'about/how_sidebar' %>

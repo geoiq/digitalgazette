@@ -1,18 +1,13 @@
-- if @second_nav == 'all'
-  - content_for :third_nav do
-    =# render :partial => '/groups/directory/all_groups_tabs'
+- content_for :right_sidebar do
+  
+  %p= ""
 
-- if @misc_header
-  =# render :partial => @misc_header
+/%section#group_listing
+/  - if @second_nav == 'all'
+/    %div#filter_by_location{:style => "display:none"}
+/      =# render :partial => '/locations/search_form_html'
 
-%p= "The following organizations have joined the Digital Gazette to share information and contribute to the effort to sustainably rebuild Malakand Division."
-
-%section#group_listing
-  - if @second_nav == 'all'
-    %div#filter_by_location{:style => "display:none"}
-      =# render :partial => '/locations/search_form_html'
-
-  %div#group_directory_list= render :partial => '/groups/directory/group_directory_list'
+%div#group_directory_list= render :partial => '/groups/directory/group_directory_list'
 
 - if @include_location_filter_DEPRECATED
   =# javascript_tag remote_function(:url => {:controller=>'/locations', :action=>'countries_with_profiles_options', :replace_id => 'select_country_id'}) 

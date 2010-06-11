@@ -1,4 +1,11 @@
 %div#page_sidebar
+  - if !(tag_content = page_tags).nil? || may_update_tags?
+    %h4= I18n.t(:tags)
+    %div.tags
+      = tag_content
+    %ul.side_list.commands
+      = edit_tags_line
+      
   - if logged_in?
     - if @page.deleted?
       %ul.side_list.commands
@@ -22,13 +29,6 @@
         = view_line
     = call_hook :page_sidebar_actions
 
-
-  - if !(tag_content = page_tags).nil? || may_update_tags?
-    %h4= I18n.t(:tags)
-    %div.tags
-      = tag_content
-    %ul.side_list.commands
-      = edit_tags_line
 
   - if @page.group_participations.any? or @page.user_participations.any?
     %section#contributors

@@ -3,8 +3,8 @@
 </div>
 
             <div class="WikiOptions">
-            	  <%= link_to("HOW DO I DO THIS?", "/about/how") %>| 
-                <%= link_to("WRITE A NEW ARTICLE", "/wiki_page/create/wiki") %>
+            	  <%= link_to("HOW DO I USE THIS?", "/about/how") %>| 
+                <%= link_to("WRITE A NEW ARTICLE", "/WikiPage/create/wiki") %>
             </div>
             <div id="wikisearch_box">            
               <div id="what_do_you">What do you wish to learn about?</div>
@@ -20,20 +20,20 @@
                   <h4>... or Browse Articles by Topic</h4>
               </div>
               <%- @tags = 
-                {:politics => ["Conflict","Judicial System","Law Enforcement" ,"Military","Public" "Administration","Political Parties"], 
+                {:politics => ["Conflict","Judicial System","Law Enforcement" ,"Military","Public Administration","Political Parties"], 
                   :society => ["Gender","Livelihoods and Land Use","Non-Pakhtuns","Pakhtuns","Socio-economic Classes","Youth"],
                   :religion => ["Other Religious Sects","Religious Political Movements","Shia Belief and Practice","Sufi Belief and Practice","Sunni Belief and Practice"],
                   :development => ["Agriculture","Civil Society","Communication","Economy","Education","Energy","Health","Housing","Humanitarian Response","Natural Resources","Transport","Social Welfare","Water Supply and Sanitation"]}
                 -%>
              <div id="browse_topics">
                 <div class="political_topics">
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "wiki_page", :category => "Politics", :tags => @tags[:politics]} %>
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "wiki_page", :category => "Society", :tags => @tags[:society]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "WikiPage", :category => "Politics", :tags => @tags[:politics]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "WikiPage", :category => "Society", :tags => @tags[:society]} %>
                 </div>
                   <div id="relig_soc_topics">
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "wiki_page", :category => "Religion", :tags => @tags[:religion]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "WikiPage", :category => "Religion", :tags => @tags[:religion]} %>
                   <br style="clear:both" /> <!-- line everything up -->
-                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "wiki_page", :category => "Development", :tags => @tags[:development]} %>
+                  <%= render :partial => "/pages/tag_category", :locals => {:asset_type => "WikiPage", :category => "Development", :tags => @tags[:development]} %>
                   </div>                
               </div>
 
