@@ -1,10 +1,20 @@
-
-<dl>
+<div class="pageTitle ">
+  <h2>Welcome to the Maps Library</h2>
+</div>
 <%- @maps.each do |map| -%>
-  <dt><%= link_to(map["title"], map_path(map["pk"])) %></dt>
-  <dd><%= map["description"] %></dd>
+<div class="group_entry">
+  <div class="listing_icon"><%= image_tag("map.jpg", :plugin => "digitalgazette", :width => "70px") %></div>
+  <div class="listing_info">
+    <%= link_to(map["title"], map_path(map["pk"])) %>
+    <p><%= map["description"] %></p>
+  </div>
+  <div class="listing_data">
+    <p>
+      Built by <%= map["user_login"] %> on <%= map["created_at"] %>
+    </p>
+  </div>
+</div>
 <%- end -%>
-</dl>
 
 <%- content_for :right_sidebar do -%>
 

@@ -545,6 +545,9 @@ a:hover {
 a:active {
 	color: #093;
 }
+.listing_info a, .listing_info a:visited {
+	color: #006633;
+}
 .page_title1 {
 	font-style: normal;
 	font-variant: normal;
