@@ -97,10 +97,18 @@ class Page < ActiveRecord::Base
     ]  
     
     def self.popular(type = "Page", limit = 5)
+      begin
       type.constantize.find_by_solr("*", :limit => limit).docs
+      rescue
+	[]
+      end
     end
     def self.recent(type = "Page", limit = 5)
+      begin
       type.constantize.find_by_solr("*", :limit => limit,:order => 'created_at_t asc').docs
+      rescue
+	[]
+      end
     end
 
    before_save :combine_methodologies
