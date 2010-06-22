@@ -489,7 +489,8 @@ ul.tabset {
 
 .info_box.tabs {
     text-align: right;
-    margin-left: 700px;
+    float: right;
+ /*   margin-left: 700px;*/
 }
 
 .info_box.tabs li.tab a {
