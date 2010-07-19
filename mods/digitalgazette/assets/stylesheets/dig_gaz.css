@@ -489,10 +489,8 @@ ul.tabset {
 
 .info_box.tabs {
     text-align: right;
-    float: right;
  /*   margin-left: 700px;*/
 }
-
 .info_box.tabs li.tab a {
     color: rgb(153, 153, 153);    
     font-size:12px;
