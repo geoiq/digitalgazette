@@ -48,7 +48,6 @@ class Group < ActiveRecord::Base
 
   # finds groups that user may see
   named_scope :visible_by, lambda { |user|
-    logger.error "VIsible_by: #{user.inspect}"
     group_ids = user ? Group.namespace_ids(user.all_group_ids) : []
     # The grouping serves as a distinct.
     # A DISTINCT term in the select seems to get striped of by rails.

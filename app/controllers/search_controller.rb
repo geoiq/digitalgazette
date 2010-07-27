@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
-  # prepend_before_filter :login_with_http_auth
-  # before_filter :login_required, :fetch_user
+  prepend_before_filter :login_with_http_auth
+  before_filter :login_required, :fetch_user
 
 
   # # POST /search/results
@@ -47,7 +47,7 @@ class SearchController < ApplicationController
 
     full_url = search_url + @path
     handle_rss :title => full_url, :link => full_url,
-        :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil)
+               :image => avatar_url(:id => @user.avatar_id||0, :size => 'huge')
   end
 
   def authorized?

@@ -28,8 +28,7 @@ into paths and then redirects.
 
 class PagesController < ApplicationController
 
-  #before_filter :login_required, :except => [:search]
-  before_filter :public_or_login_required, :except => [:search]
+  before_filter :login_required, :except => [:search]
   stylesheet 'page_creation', :action => :new
   stylesheet 'messages'
   permissions 'pages', 'groups/base', 'groups/memberships', 'groups/requests'
@@ -163,9 +162,4 @@ class PagesController < ApplicationController
   end
 
 
-  def public_or_login_required
-    return true unless @pages
-    !(@pages.collect {|p| p.public? }.include?(false)) or login_required
-  end
-  
 end

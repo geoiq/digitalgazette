@@ -58,7 +58,7 @@ module UserExtension::Users
         def most_active
           max_visit_count = find(:first, :select => 'MAX(relationships.total_visits) as id').id || 1
           select = "users.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
-          find(:all, :limit => 13, :select => select) #, :order => 'last_visit_weight + total_visits_weight DESC')
+          find(:all, :limit => 13, :select => select, :order => 'last_visit_weight + total_visits_weight DESC')
         end
       end
 

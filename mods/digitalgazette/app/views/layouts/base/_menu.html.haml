@@ -12,9 +12,8 @@
     = groups_option
     - if current_site.has_networks?
       = networks_option
-    - if may_admin_site?
-      = admin_option
   - else
     = home_option
+
   = call_hook :top_menu
 

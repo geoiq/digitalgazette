@@ -11,7 +11,7 @@ class GroupsController < Groups::BaseController
   helper 'groups/search'
 
   before_filter :fetch_group, :except => [:create, :new, :index]
-  before_filter :login_required, :except => [:index, :show, :archive, :tags, :search, :pages, :people, :list_groups]
+  before_filter :login_required, :except => [:index, :show, :archive, :tags, :search, :pages]
   verify :method => [:post, :put], :only => [:create, :update]
   verify :method => :delete, :only => :destroy
   cache_sweeper :avatar_sweeper, :only => [:edit, :update, :create]
@@ -161,7 +161,7 @@ class GroupsController < Groups::BaseController
 
   def group_created_success
     flash_message :title => 'Group Created', :success => 'now make sure to configure your group'
-    redirect_to groups_profiles_url(:action => 'edit')
+    redirect_to groups_url(:action => 'edit')
   end
 
   def search_template(template)
