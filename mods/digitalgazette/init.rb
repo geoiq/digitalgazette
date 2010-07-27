@@ -195,52 +195,58 @@ Dispatcher.to_prepare do
     end
   
     UnauthenticatedUser.send(:include, UnauthenticatedUserExtension)
-  
-    module UserExtension::Groups
+
+     
+    # patches UserExtension::Groups
+    module UserGroupsExtension
       def self.included(base)
-        ## DIGITALGAZETTE: Don't order by default.
+        base.instance_eval do
+          ## DIGITALGAZETTE: Don't order by default.
+          has_many(:primary_groups, :class_name => 'Group', :through => :memberships,
+                   :source => :group, :conditions => ::UserExtension::Groups::PRIMARY_GROUPS_CONDITION) do
 
-        has_many(:primary_groups, :class_name => 'Group', :through => :memberships,
-                 :source => :group, :conditions => PRIMARY_GROUPS_CONDITION) do
-
-          # most active should return a list of groups that we are most interested in.
-          # this includes groups we have recently visited, and groups that we visit the most.
-          def most_active
-            max_visit_count = find(:first, :select => 'MAX(memberships.total_visits) as id').id || 1
-            select = "groups.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
-            find(:all, :limit => 13, :select => select)
+            # most active should return a list of groups that we are most interested in.
+            # this includes groups we have recently visited, and groups that we visit the most.
+            def most_active
+              max_visit_count = find(:first, :select => 'MAX(memberships.total_visits) as id').id || 1
+              select = "groups.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
+              find(:all, :limit => 13, :select => select)
+            end
           end
-        end
 
-        has_many(:primary_networks, :class_name => 'Group', :through => :memberships, :source => :group, :conditions => PRIMARY_NETWORKS_CONDITION) do
-          # most active should return a list of groups that we are most interested in.
-          # in the case of networks this should not include the site network
-          # this includes groups we have recently visited, and groups that we visit the most.
-          def most_active(site=nil)
-            site_sql = (!site.nil? and !site.network_id.nil?) ? "groups.id != #{site.network_id}" : ''
-            max_visit_count = find(:first, :select => 'MAX(memberships.total_visits) as id').id || 1
-            select = "groups.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
-            find(:all, :limit => 13, :select => select, :conditions => site_sql)
+          has_many(:primary_networks, :class_name => 'Group', :through => :memberships, :source => :group, :conditions => ::UserExtension::Groups::PRIMARY_NETWORKS_CONDITION) do
+            # most active should return a list of groups that we are most interested in.
+            # in the case of networks this should not include the site network
+            # this includes groups we have recently visited, and groups that we visit the most.
+            def most_active(site=nil)
+              site_sql = (!site.nil? and !site.network_id.nil?) ? "groups.id != #{site.network_id}" : ''
+              max_visit_count = find(:first, :select => 'MAX(memberships.total_visits) as id').id || 1
+              select = "groups.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
+              find(:all, :limit => 13, :select => select, :conditions => site_sql)
+            end
           end
         end
       end
     end
 
-    User.send(:include, DigitalGazette::UserExtension::Groups)
+    User.send(:include, DigitalGazette::UserGroupsExtension)
   
-    module UserExtension::Users
+    # patches UserExtension::Users
+    module UserUsersExtension
       def self.included(base)
-        has_many :friends, :through => :relationships, :conditions => "relationships.type = 'Friendship'", :source => :contact do
+        base.instance_eval do
+          has_many :friends, :through => :relationships, :conditions => "relationships.type = 'Friendship'", :source => :contact do
           def most_active
             max_visit_count = find(:first, :select => 'MAX(relationships.total_visits) as id').id || 1
             select = "users.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
             find(:all, :limit => 13, :select => select)
           end
         end
+        end
       end
     end
 
-    User.send(:include, DigitalGazette::UserExtension::Users)
+    User.send(:include, DigitalGazette::UserUsersExtension)
   end
 end
   
