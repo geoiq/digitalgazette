@@ -65,7 +65,7 @@ owner_users = [['blue','4'],['orange','5'], ['red', '8'], ['kangaroo','10']]
 
 %>
 
-<% for i in 1..100 %>
+<% for i in 0..0 %>
 page<%=i%>:
   id: <%=i%>
   title: "<%= garble(5..50) %>"
@@ -178,19 +178,19 @@ page<%=i%>:
 #   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
 #   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-delete_test: # also serves as flow test.
-  id: 207
-  title: delete test
-  created_by_id: 4
-  created_by_login: blue
-  updated_by_id: 4
-  updated_by_login: blue
-  type: DiscussionPage
-  flow: "<%= FLOW[:deleted] %>"
-  public: 1
-<% updated = rand(46080); created = updated + rand(46080) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# delete_test: # also serves as flow test.
+#   id: 207
+#   title: delete test
+#   created_by_id: 4
+#   created_by_login: blue
+#   updated_by_id: 4
+#   updated_by_login: blue
+#   type: DiscussionPage
+#   flow: "<%= FLOW[:deleted] %>"
+#   public: 1
+# <% updated = rand(46080); created = updated + rand(46080) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
 wiki:
   id: 210
@@ -421,4 +421,20 @@ asset3:
 #  title: an announcement
 #  type: AnnouncementPage
 #  id: 216
+
+
+<% 1.upto(5) do |n| %>
+<% map_name = "map#{n}" %>
+<%= map_name %>:
+  name: <%= map_name %>
+  title: <%= map_name %>
+  public: true
+  type: MapPage
+  updated_by_login: blue
+  created_by_login: blue
+# data_type: nil # now maps don't have any data
+  created_by_id: "4"
+  updated_by_id: "4"
+
+<% end %>
 
