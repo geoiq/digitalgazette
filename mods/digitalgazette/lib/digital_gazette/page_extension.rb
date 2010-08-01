@@ -4,15 +4,15 @@ module DigitalGazette
       base.instance_eval do
         extend(DigitalGazette::PageExtension::ClassMethods)
 
-        acts_as_solr :fields => [
-                                 { :title => { :boost => 4.0 } },
-                                 :data_id,
-                                 { :summary => { :boost => 2.0 } },
-                                 { :tags => { :boost => 6.0 } },
-                                 :owner_name,
-                                 :created_at,
-                                 :public
-                                ]
+        # acts_as_solr :fields => [
+        #                          { :title => { :boost => 4.0 } },
+        #                          :data_id,
+        #                          { :summary => { :boost => 2.0 } },
+        #                          { :tags => { :boost => 6.0 } },
+        #                          :owner_name,
+        #                          :created_at,
+        #                          :public
+        #                         ]
 
         before_save :combine_methodologies
       end
