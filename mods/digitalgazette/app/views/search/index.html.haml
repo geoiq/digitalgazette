@@ -3,6 +3,7 @@
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br/
 = render :partial => 'pages/list', :locals => {:heading => true, :full_width => true}
+= render :partial => 'overlays/list', :locals => {:heading => true, :full_width => true, :title => "Overlays"}
 - if @pages.blank?
   %h2
     = I18n.t(:no_search_results)

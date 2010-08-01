@@ -1,4 +1,4 @@
-class MapPage < Page
+class LayerPage < Page
   acts_as_solr
 
   def self.get_solr_find_condition_by_user_or_uploader(params)
@@ -9,6 +9,7 @@ class MapPage < Page
     # conditions.merge! :groups => (logged_in? ? current_user.get_all_group_ids : [Configuration.everyman_group] )
     conditions
   end
+
   BBOX_REGEX = /bbox:([\d.,-]+)/
   def self.extract_in(query)
     bbox_match = BBOX_REGEX.match(query)
@@ -25,8 +26,8 @@ class MapPage < Page
 
     params[:limit] = 10 if params[:limit].blank? # ||= doesn't work for 'empty' parameters
     params[:page] = 1 if params[:page].blank?
-    conditions = { }.merge({
-      :models => ["Map"],
+    conditions = get_solr_find_condition_by_user_or_uploader(params).merge({
+      :models => ["L"],
       :page => params[:page],
       :per_page => params[:limit],
     })
@@ -38,7 +39,7 @@ class MapPage < Page
     conditions[:since] = Time.parse(params[:since]).strftime("%Y-%m-%dT%H:%M:%SZ") if params.include?(:since)
     conditions[:until] = Time.parse(params[:until]).strftime("%Y-%m-%dT%H:%M:%SZ") if params.include?(:until)
     conditions[:source] = params[:source] unless params[:source].blank?
-    # conditions[:state] = "saved"
+    conditions[:state] = "saved"
 
     logger.debug "Query: #{@query}"
     @results = GeocommonsSearch::Search.paginate(@query, conditions)

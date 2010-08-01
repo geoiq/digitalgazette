@@ -18,6 +18,12 @@ class SearchController < ApplicationController
       redirect_to_search_results
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
+      @tag = @path.first_arg_for("tag")
+      if @tag
+        @overlays = Geocommons::RestAPI::Overlay.paginate_by_tag(@tag)
+      else
+        @overlays = Geocommons::RestAPI::Overlay.paginate(:query => "*")
+      end
       render_search_results
     end
   end
