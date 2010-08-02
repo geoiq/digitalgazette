@@ -1,0 +1,13 @@
+-tags ||=  {:politics => ["Conflict","Judicial System","Law Enforcement" ,"Military","Public Administration","Political Parties"],                 :society => ["Gender","Livelihoods and Land Use","Non-Pakhtuns","Pakhtuns","Socio-economic Classes","Youth"],   :religion => ["Other Religious Sects","Religious Political Movements","Shia Belief and Practice","Sufi Belief and Practice","Sunni Belief and Practice"],    :development => ["Agriculture","Civil Society","Communication","Economy","Education","Energy","Health","Housing","Humanitarian Response","Natural Resources","Transport","Social Welfare","Water Supply and Sanitation"]}
+
+
+
+%div#browse_topics
+  %div.political_topics
+    = render :partial => "/pages/tag_category", :locals => {:asset_type => page_type, :category => "Politics", :tags => tags[:politics]}
+    = render :partial => "/pages/tag_category", :locals => {:asset_type => page_type, :category => "Society", :tags => tags[:society]}
+
+  %div#relig_soc_topics
+    = render :partial => "/pages/tag_category", :locals => {:asset_type => page_type, :category => "Religion", :tags => tags[:religion]}
+    %br{'style' => "clear:both"}
+    = render :partial => "/pages/tag_category", :locals => {:asset_type => page_type, :category => "Development", :tags => tags[:development]}

@@ -1,0 +1,9 @@
+%div.group_entry
+  %div.listing_icon
+  %div.listing_info
+    %a{:href=> overlay.detail_link}
+      %p= overlay.description
+    - if overlay.tags
+      %p
+        - overlay.tags.split(', ').each do |tag|
+          %a{:href => "/search/tag/#{tag.downcase}"}= tag+', '

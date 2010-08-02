@@ -3,4 +3,7 @@
 map.resources :maps, {:collection => {:all => :get, :upload => :get}}
 
 map.connect '/about/:id', :controller => 'about', :action => 'show'
-map.connect '/reports', :controller => 'reports', :action => 'index'
+map.reports '/reports', :controller => 'pages', :action => 'index', :page_type => 'AssetPage'
+map.reports_search '/reports/search/*path', :controller => 'search', :action => 'index', :page_type => "asset"
+map.wiki '/wiki', :controller => 'pages', :action => 'index', :page_type => 'WikiPage'
+map.wiki_search '/wiki/search/*path', :controller => 'search', :action => 'index', :page_type => "wiki"

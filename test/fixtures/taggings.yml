@@ -3,7 +3,7 @@
 
     NOTE!!! IF YOU MODIFY THIS FILE, YOU NEED TO THEN RUN THIS
 
-    rake db:fixtures:load    
+    rake db:fixtures:load
     rake cg:update_page_terms
     rake cg:update_fixtures
 
@@ -12,19 +12,44 @@
 ################################################################################
 ##############################################################################%>
 
---- 
-taggings_004: 
+---
+taggings_004:
   tag_id: "2"
   id: "4"
   taggable_type: Page
   taggable_id: "2"
-taggings_001: 
+taggings_001:
   tag_id: "1"
   id: "1"
   taggable_type: Page
   taggable_id: "1"
-taggings_002: 
+taggings_002:
   tag_id: "1"
   id: "2"
   taggable_type: Page
   taggable_id: "2"
+
+taggings_005:
+  id: 5
+  tag_id: <%= Fixtures.identify("tag_003") %>
+  taggable_id: <%= Fixtures.identify("map1") %>
+  taggable_type: Page
+
+taggings_005:
+  id: 5
+  tag_id: <%= Fixtures.identify("tag_004") %>
+  taggable_id: <%= Fixtures.identify("map1") %>
+  taggable_type: Page
+
+taggings_005:
+  id: 5
+  tag_id: <%= Fixtures.identify("tag_005") %>
+  taggable_id: <%= Fixtures.identify("map2") %>
+  taggable_type: Page
+
+taggings_005:
+  id: 5
+  tag_id: <%= Fixtures.identify("tag_003") %>
+  taggable_id: <%= Fixtures.identify("map3") %>
+  taggable_type: Page
+

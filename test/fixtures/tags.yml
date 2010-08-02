@@ -3,7 +3,7 @@
 
     NOTE!!! IF YOU MODIFY THIS FILE, YOU NEED TO THEN RUN THIS
 
-    rake db:fixtures:load    
+    rake db:fixtures:load
     rake cg:update_page_terms
     rake cg:update_fixtures
 
@@ -12,10 +12,19 @@
 ################################################################################
 ##############################################################################%>
 
---- 
-tags_001: 
+---
+tags_001:
   name: pale
   id: "1"
-tags_002: 
+tags_002:
   name: imperial
   id: "2"
+tags_003:
+  name: crisis
+  id: "3"
+tags_oo4:
+  name: pakistan
+  id: "4"
+tags_005:
+  name: heroin
+  id: "5"
