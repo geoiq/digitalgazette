@@ -1,9 +1,10 @@
 require 'net/http'
 require 'json'
 
-unless defined?(GEOCOMMONS_HOST)
-  raise "You need to define GEOCOMMONS_HOST"
-end
+# FIXME this sucks in the unit tests!
+# unless defined?(GEOCOMMONS_HOST)
+#   raise "You need to define GEOCOMMONS_HOST"
+# end
 
       # WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
       #   count_options = options.except(:page, :per_page, :total_entries, :finder)
@@ -19,6 +20,7 @@ end
 
 module Geocommons
   class RestAPI
+
     def self.find(options={})
       options[:limit] ||= options[:per_page]
       Net::HTTP.start(GEOCOMMONS_HOST) do |http|
