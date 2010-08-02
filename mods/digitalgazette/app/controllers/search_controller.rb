@@ -65,16 +65,18 @@ class SearchController < ApplicationController
   # separate by page types into instance variables
   def split_by_page_types
     @grouped_pages = @pages.group_by{ |page| page.class.name}
+    # splitting grouped pages into it's own instance variables
     SEARCHABLE_PAGE_TYPES.each do |t|
-      instance_variable_set(:"@#{t.downcase.pluralize}",@grouped_pages[t])
+      instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
     end
+    debugger
   end
 
 
   # TODO think about doing this with path finder internals
   def merge_default_path
     merge_path = (["type"] << SEARCHABLE_PAGE_TYPES.map(&:underscore).join("/or/type")).flatten.join('/')
-    @path.merge!("type/asset/or/type/wiki/or/type/map") unless @path.first_arg_for("type")
+    @path.merge!(merge_path) unless @path.first_arg_for("type")
   end
 
 

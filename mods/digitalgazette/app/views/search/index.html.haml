@@ -2,7 +2,9 @@
 = render :partial => 'search/banner', :locals => { :page_type => @page_type }
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br/
-= render :partial => 'pages/list', :locals => {:heading => true, :full_width => true}
+= render :partial => 'pages/list', :locals => {:pages => @wiki_pages, :title => "Articles", :heading => true, :full_width => true}
+= render :partial => 'pages/list', :locals => {:pages => @map_pages, :title => "Maps", :heading => true, :full_width => true}
+= render :partial => 'pages/list', :locals => {:pages => @asset_pages, :title => "Reports", :heading => true, :full_width => true}
 = render :partial => 'overlays/list', :locals => {:heading => true, :full_width => true, :title => "Overlays"}
 - if @pages.blank?
   %h2
