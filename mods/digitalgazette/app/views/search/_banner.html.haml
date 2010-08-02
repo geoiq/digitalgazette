@@ -1,14 +1,7 @@
-%div.pageTitle
-  %h2= "Reports"
-%div.WikiOptions
-  = link_to "HOW DO I UPLOAD A REPORT?", "/about/how"
 %div#wikisearch_box
   %div#what_do_you
-    = "What kind of report would you like to find?"
+    = "What kind of #{page_type} would you like to find?"
   %div#search_me
-    - form_tag(search_url, :id => "wikiSearch") do
+    - form_tag(reports_search_url, :id => "wikiSearch") do
+      = hidden_field_tag("search[type]", page_type.underscore.gsub("_page", ""))
       = mini_search_text_field_tag
-
-              
-%div#browse
-  %h4= "Browse Reports"

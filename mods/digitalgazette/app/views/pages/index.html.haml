@@ -1,11 +1,10 @@
 = render :partial => "pages/#{@page_type.underscore}/header"
-= render :partial => 'search/banner', :locals => { :page_type => @page_type }
+= render :partial => 'search/banner', :locals => {:page_type => @page_type}
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
-%br/
-= render :partial => 'pages/list', :locals => {:heading => true, :full_width => true}
-- if @pages.blank?
-  %h2
-    = I18n.t(:no_search_results)
+
+%div#browse
+  %h4= "... or Browse #{@page_type.pluralize} by Topic"
+= render :partial => 'pages/topics', :locals => { :page_type => (@page_type || "WikiPage") }
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")

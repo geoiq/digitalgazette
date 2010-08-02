@@ -29,18 +29,26 @@ en:
   topic: "Topic"
   source: "Source"
   legal: "The Legals"
-  
-  
+  dg_asset_page: "Report"
+  dg_new_asset_page: "Upload a new Report"
+  dg_wiki_page: "Article"
+  dg_new_wiki: "Create a new Article"
+  dg_wiki_header: "Welcome to Wiki"
+  dg_asset_page_header: "Welcome to the Reports Library"
+  how_to_use: "How do I use this?"
+
+
   methodology: "Methodology"
   publisher: "Author(s)"
   year_published: "Year Published"
   sample_size: "Sample Size"
   certification: "Certification to Post"
-     
+
+
   ##
   ## TO BE DESTROYED
   ##
-  
+
   #upload_attachment: "Upload Attachment"
   #rename {{upload_images}} -> {{upload}}
 

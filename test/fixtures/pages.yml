@@ -3,7 +3,7 @@
 
     NOTE!!! IF YOU MODIFY THIS FILE, YOU NEED TO THEN RUN THIS
 
-    rake db:fixtures:load    
+    rake db:fixtures:load
     rake cg:update_page_terms
     rake cg:update_fixtures
     rake db:test:prepare
@@ -20,19 +20,19 @@
 # Table name: pages
 #
 #  id              :integer(11)   not null, primary key
-#  title           :string(255)   
-#  created_at      :datetime      
-#  updated_at      :datetime      
-#  happens_at      :datetime      
-#  resolved        :boolean(1)    
-#  public          :boolean(1)    
-#  needs_attention :boolean(1)    
-#  created_by_id   :integer(11)   
-#  updated_by_id   :integer(11)   
-#  summary         :string(255)   
-#  controller      :string(255)   
-#  tool_id         :integer(11)   
-#  tool_type       :string(255)   
+#  title           :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  happens_at      :datetime
+#  resolved        :boolean(1)
+#  public          :boolean(1)
+#  needs_attention :boolean(1)
+#  created_by_id   :integer(11)
+#  updated_by_id   :integer(11)
+#  summary         :string(255)
+#  controller      :string(255)
+#  tool_id         :integer(11)
+#  tool_type       :string(255)
 #
 
 <%
@@ -65,7 +65,7 @@ owner_users = [['blue','4'],['orange','5'], ['red', '8'], ['kangaroo','10']]
 
 %>
 
-<% for i in 1..100 %>
+<% for i in 0..0 %>
 page<%=i%>:
   id: <%=i%>
   title: "<%= garble(5..50) %>"
@@ -91,56 +91,56 @@ page<%=i%>:
 <% else %>
   owner_type: User
   owner_id: <%= user_id %>
-  owner_name: <%= user_name %>  
+  owner_name: <%= user_name %>
 <% end %>
   type: DiscussionPage
   public: <%= rand(4) == 0 %>
 <% end %>
 
-ranked_vote:
-  id: 190
-  title: a ranked vote
-  type: RankedVotePage
-  data_type: Poll
-  data_id: 1
-  created_by_id: 1
-  created_by_login: quentin
-  updated_by_id: 3
-  updated_by_login: gerrard
-<% updated = rand(4320); created = updated + rand(4320) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# ranked_vote:
+#   id: 190
+#   title: a ranked vote
+#   type: RankedVotePage
+#   data_type: Poll
+#   data_id: 1
+#   created_by_id: 1
+#   created_by_login: quentin
+#   updated_by_id: 3
+#   updated_by_login: gerrard
+# <% updated = rand(4320); created = updated + rand(4320) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-tasklist1:
-  id: 200
-  title: a task list
-  type: TaskListPage
-  data_type: TaskList
-  data_id: 1
-  created_by_id: 1
-  created_by_login: quentin
-  updated_by_id: 3
-  updated_by_login: gerrard
-<% updated = rand(4320); created = updated + rand(4320) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# tasklist1:
+#   id: 200
+#   title: a task list
+#   type: TaskListPage
+#   data_type: TaskList
+#   data_id: 1
+#   created_by_id: 1
+#   created_by_login: quentin
+#   updated_by_id: 3
+#   updated_by_login: gerrard
+# <% updated = rand(4320); created = updated + rand(4320) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-tasklist2:
-  id: 201
-  title: another task list
-  type: TaskListPage
-  data_type: TaskList
-  data_id: 2
-  created_by_id: 4
-  created_by_login: blue
-  updated_by_id: 5
-  updated_by_login: orange
-  resolved: false
-  public: 1
-<% updated = rand(4320); created = updated + rand(4320) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
-  site_id: 2 # so this can be found by site tests for root controller
+# tasklist2:
+#   id: 201
+#   title: another task list
+#   type: TaskListPage
+#   data_type: TaskList
+#   data_id: 2
+#   created_by_id: 4
+#   created_by_login: blue
+#   updated_by_id: 5
+#   updated_by_login: orange
+#   resolved: false
+#   public: 1
+# <% updated = rand(4320); created = updated + rand(4320) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
+#   site_id: 2 # so this can be found by site tests for root controller
 
 # event1:
 #   id: 202
@@ -153,7 +153,7 @@ tasklist2:
 # <% updated = rand(46080); created = updated + rand(46080) %>
 #   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
 #   created_at: "<%= created.minutes.ago.to_s(:db) %>"
-# 
+#
 # event2:
 #   id: 203
 #   title : other event
@@ -165,7 +165,7 @@ tasklist2:
 # <% updated = rand(46080); created = updated + rand(46080) %>
 #   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
 #   created_at: "<%= created.minutes.ago.to_s(:db) %>"
-# 
+#
 # event3:
 #   id: 204
 #   title : one other event
@@ -178,19 +178,19 @@ tasklist2:
 #   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
 #   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-delete_test: # also serves as flow test.
-  id: 207
-  title: delete test
-  created_by_id: 4
-  created_by_login: blue
-  updated_by_id: 4
-  updated_by_login: blue
-  type: DiscussionPage
-  flow: "<%= FLOW[:deleted] %>" 
-  public: 1
-<% updated = rand(46080); created = updated + rand(46080) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# delete_test: # also serves as flow test.
+#   id: 207
+#   title: delete test
+#   created_by_id: 4
+#   created_by_login: blue
+#   updated_by_id: 4
+#   updated_by_login: blue
+#   type: DiscussionPage
+#   flow: "<%= FLOW[:deleted] %>"
+#   public: 1
+# <% updated = rand(46080); created = updated + rand(46080) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
 wiki:
   id: 210
@@ -234,7 +234,7 @@ malformed_wiki:
 <% updated = rand(46080); created = updated + rand(46080) %>
   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
   created_at: "<%= created.minutes.ago.to_s(:db) %>"
-  
+
 multi_section_wiki:
   id: 240
   title: multi section wiki
@@ -267,34 +267,34 @@ video1:
   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-announcement1:
-  id: 260
-  title: Beauty is in the Street Video Available
-  summary: we even summarize it here.
-  type: AnnouncementPage
-  data_id: 5
-  data_type: Wiki
-  owner_id: 1
-  owner_type: Group
-  public: "1"
-  flow: "<%= FLOW[:announcement]%>"
-  created_by_id: 1
-  created_by_login: quentin
-  updated_by_id: 3
-  updated_by_login: gerrard
-<% updated = rand(4608); created = updated + rand(4608) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# announcement1:
+#   id: 260
+#   title: Beauty is in the Street Video Available
+#   summary: we even summarize it here.
+#   type: AnnouncementPage
+#   data_id: 5
+#   data_type: Wiki
+#   owner_id: 1
+#   owner_type: Group
+#   public: "1"
+#   flow: "<%= FLOW[:announcement]%>"
+#   created_by_id: 1
+#   created_by_login: quentin
+#   updated_by_id: 3
+#   updated_by_login: gerrard
+# <% updated = rand(4608); created = updated + rand(4608) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
 ##
 ## ASSETS
 ##
 
-asset1: 
+asset1:
   owner_name: animals
   owner_id: 2
   owner_type: Group
-  name: 
+  name:
   created_by_login: blue
   updated_by_id: "4"
   public: "1"
@@ -307,7 +307,7 @@ asset1:
   created_by_id: "4"
   id: "211"
   summary: ""
-  flow: 
+  flow:
   posts_count: "0"
   contributors_count: "0"
   data_id: "1"
@@ -316,14 +316,14 @@ asset1:
   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-asset2: 
+asset2:
   owner_name: animals
   owner_id: 2
   owner_type: Group
-  name: 
+  name:
   created_by_login: blue
   updated_by_id: "4"
-  public: 
+  public:
   resolved: "1"
   title: sunset
   data_type: Asset
@@ -333,7 +333,7 @@ asset2:
   created_by_id: "4"
   id: "212"
   summary: ""
-  flow: 
+  flow:
   posts_count: "0"
   contributors_count: "0"
   data_id: "2"
@@ -342,14 +342,14 @@ asset2:
   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-asset3: 
+asset3:
   owner_name: animals
   owner_id: 2
   owner_type: Group
-  name: 
+  name:
   created_by_login: blue
   updated_by_id: "4"
-  public: 
+  public:
   resolved: "1"
   title: crabgrass
   data_type: Asset
@@ -359,7 +359,7 @@ asset3:
   created_by_id: "4"
   id: "213"
   summary: ""
-  flow: 
+  flow:
   posts_count: "0"
   contributors_count: "0"
   data_id: "3"
@@ -368,51 +368,51 @@ asset3:
   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-survey1: 
-  name: 
-  created_by_id: "4"
-  updated_by_id: "4"
-  created_by_login: blue
-  updated_by_login: blue
-  owner_id: 4
-  owner_type: User
-  public: true
-  resolved: "1"
-  title: survey ipsum
-  data_type: Survey
-  type: SurveyPage
-  message_count: "0"
-  id: "214"
-  summary: ""
-  flow: 
-  posts_count: "0"
-  contributors_count: "0"
-  data_id: "1"
-<% updated = rand(4320); created = updated + rand(4320) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# survey1:
+#   name:
+#   created_by_id: "4"
+#   updated_by_id: "4"
+#   created_by_login: blue
+#   updated_by_login: blue
+#   owner_id: 4
+#   owner_type: User
+#   public: true
+#   resolved: "1"
+#   title: survey ipsum
+#   data_type: Survey
+#   type: SurveyPage
+#   message_count: "0"
+#   id: "214"
+#   summary: ""
+#   flow:
+#   posts_count: "0"
+#   contributors_count: "0"
+#   data_id: "1"
+# <% updated = rand(4320); created = updated + rand(4320) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
-survey_blank: 
-  name: 
-  created_by_login: blue
-  updated_by_id: "4"
-  public: true
-  resolved: "1"
-  title: a blank survey
-  data_type: Survey
-  type: SurveyPage
-  updated_by_login: blue
-  message_count: "0"
-  created_by_id: "4"
-  id: "215"
-  summary: ""
-  flow: 
-  posts_count: "0"
-  contributors_count: "0"
-  data_id: "3"
-<% updated = rand(4320); created = updated + rand(4320) %>
-  updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
-  created_at: "<%= created.minutes.ago.to_s(:db) %>"
+# survey_blank:
+#   name:
+#   created_by_login: blue
+#   updated_by_id: "4"
+#   public: true
+#   resolved: "1"
+#   title: a blank survey
+#   data_type: Survey
+#   type: SurveyPage
+#   updated_by_login: blue
+#   message_count: "0"
+#   created_by_id: "4"
+#   id: "215"
+#   summary: ""
+#   flow:
+#   posts_count: "0"
+#   contributors_count: "0"
+#   data_id: "3"
+# <% updated = rand(4320); created = updated + rand(4320) %>
+#   updated_at: "<%= updated.minutes.ago.to_s(:db) %>"
+#   created_at: "<%= created.minutes.ago.to_s(:db) %>"
 
 #announcement:
 #  name:
@@ -421,4 +421,20 @@ survey_blank:
 #  title: an announcement
 #  type: AnnouncementPage
 #  id: 216
+
+
+<% 1.upto(5) do |n| %>
+<% map_name = "map#{n}" %>
+<%= map_name %>:
+  name: <%= map_name %>
+  title: <%= map_name %>
+  public: true
+  type: MapPage
+  updated_by_login: blue
+  created_by_login: blue
+# data_type: nil # now maps don't have any data
+  created_by_id: "4"
+  updated_by_id: "4"
+
+<% end %>
 
