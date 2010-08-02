@@ -1,9 +1,13 @@
 # Include hook code here
 
+require 'ruby-debug'
+
 self.load_once = false if RAILS_ENV =~ /development/
 self.override_views = true
 
-Dispatcher.to_prepare do 
+require 'digital_gazette/page_extension'
+
+Dispatcher.to_prepare do
   module DigitalGazette
 
     module ControllerExtension::WikiPopupExtension
@@ -16,46 +20,47 @@ Dispatcher.to_prepare do
 
     module GroupsControllerExtension
       def self.included(base)
-        base.instance_eval do 
+        base.instance_eval do
           before_filter :login_required, :except => [:index, :show, :archive, :tags, :search, :pages, :people, :list_groups]
         end
       end
-  
+
       def group_created_success
         flash_message :title => 'Group Created', :success => 'now make sure to configure your group'
         redirect_to groups_profiles_url(:action => 'edit')
       end
     end
-  
+
     GroupsController.send(:include, GroupsControllerExtension)
-  
+
     module PagesControllerExtension
       def self.included(base)
-        base.instance_eval do 
+        base.instance_eval do
           skip_before_filter :login_required
           before_filter :public_or_login_required, :except => [:search]
         end
       end
-  
+
       def public_or_login_required
         return true unless @pages
         !(@pages.collect {|p| p.public? }.include?(false)) or login_required
       end
     end
-  
+
     PagesController.send(:include, PagesControllerExtension)
-  
+
     module SearchControllerExtension
       def self.included(base)
         base.instance_eval do
           skip_before_filter :login_required, :fetch_user, :login_with_http_auth
+          alias_method_chain :render_search_results, :digitalgazette
         end
       end
-  
-      def render_search_results
+
+      def render_search_results_with_digitalgazette
         @path.default_sort('updated_at') if @path.search_text.empty?
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
-  
+
         # if there was a text string in the search, generate extracts for the results
         if @path.search_text and @pages.any?
           begin
@@ -64,15 +69,15 @@ Dispatcher.to_prepare do
             RAILS_DEFAULT_LOGGER.warn "failed to extract keywords from sphinx search: #{err}."
           end
         end
-  
+
         full_url = search_url + @path
-        handle_rss :title => full_url, :link => full_url,
-        :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil)
+        handle_rss(:title => full_url, :link => full_url,
+                   :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
       end
     end
-  
+
     SearchController.send(:include, SearchControllerExtension)
-  
+
     module WikiControllerExtension
       def self.included(base)
         base.instance_eval do
@@ -80,14 +85,14 @@ Dispatcher.to_prepare do
         end
       end
     end
-    
+
     WikiController.send(:include, WikiControllerExtension)
-  
+
     module LayoutHelperExtension
       def custom_masthead_site_title
         content_tag :h2, link_to(current_site.title, '/')
       end
-  
+
       def masthead_container
         locals = {}
         appearance = current_site.custom_appearance
@@ -105,11 +110,11 @@ Dispatcher.to_prepare do
         end
         render :partial => 'layouts/base/masthead', :locals => locals
       end
-  
+
     end
 
     LayoutHelper.send(:include, LayoutHelperExtension)
-  
+
     module MenuHelperExtension
       def top_menu(label, url, options={})
         id = options.delete(:id)
@@ -123,7 +128,7 @@ Dispatcher.to_prepare do
           :id => id
         )
       end
-  
+
       def people_option
         top_menu(
           I18n.t(:menu_people),
@@ -138,7 +143,7 @@ Dispatcher.to_prepare do
           :id => 'menu_people'
         )
       end
-    
+
       def groups_option
         top_menu(
           I18n.t(:menu_groups),
@@ -153,7 +158,7 @@ Dispatcher.to_prepare do
           :id => 'menu_groups'
         )
       end
-    
+
       def networks_option
         top_menu(
           I18n.t(:menu_networks),
@@ -168,12 +173,12 @@ Dispatcher.to_prepare do
           :id => 'menu_networks'
         )
       end
-    
+
     end
 
     MenuHelper.send(:include, MenuHelperExtension)
-    
-  
+
+
     module SearchHelperExtension
       def mini_search_text_field_tag
         text_field_tag('search[text]', '', :id => "txtSearch", :class => 'search-box',
@@ -185,18 +190,22 @@ Dispatcher.to_prepare do
     end
 
     SearchHelper.send(:include, SearchHelperExtension)
-  
-    Page.send(:include, PageExtension)
-  
+
+    Page.send(:include, ::DigitalGazette::PageExtension)
+
     module UnauthenticatedUserExtension
+      def groups
+        []
+      end
+
       def all_group_ids
         []
       end
     end
-  
+
     UnauthenticatedUser.send(:include, UnauthenticatedUserExtension)
 
-     
+
     # patches UserExtension::Groups
     module UserGroupsExtension
       def self.included(base)
@@ -230,7 +239,7 @@ Dispatcher.to_prepare do
     end
 
     User.send(:include, DigitalGazette::UserGroupsExtension)
-  
+
     # patches UserExtension::Users
     module UserUsersExtension
       def self.included(base)
@@ -249,4 +258,4 @@ Dispatcher.to_prepare do
     User.send(:include, DigitalGazette::UserUsersExtension)
   end
 end
-  
+
