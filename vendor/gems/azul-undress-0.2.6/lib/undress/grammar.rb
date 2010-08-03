@@ -1,3 +1,4 @@
+require 'ruby-debug'
 module Undress
   # Grammars give you a DSL to declare how to convert an HTML document into a
   # different markup language.
@@ -109,6 +110,7 @@ module Undress
       pre_processing_rules.each do |selector, handler|
         node.search(selector).each { |node| send handler, node }
       end
+
 
       process(node.children).tap do |text|
         post_processing_rules.each do |rule, handler|

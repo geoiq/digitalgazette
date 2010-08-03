@@ -1,6 +1,13 @@
 require "hpricot"
 
 module ::Hpricot #:nodoc:
+  class Attributes
+    def each *args
+      to_hash.each_pair *args
+    end
+  end
+  
+  
   module Elem::Trav
     def set_style(name, value)
       styles[name.to_s] = value.fast_xs

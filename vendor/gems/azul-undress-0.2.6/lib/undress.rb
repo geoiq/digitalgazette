@@ -1,11 +1,13 @@
-require "nokogiri"
+require 'hpricot'
+#require "nokogiri"
+require File.expand_path(File.dirname(__FILE__) + "/hpricot_ext")
 require File.expand_path(File.dirname(__FILE__) + "/core_ext/object")
 require File.expand_path(File.dirname(__FILE__) + "/undress/grammar")
 
 # Load an HTML document so you can undress it. Pass it either a string or an IO
 # object.
 def Undress(html)
-  Undress::Document.new(html)
+  Undress::Document.new(html,{ })
 end
 
 module Undress
@@ -21,8 +23,9 @@ module Undress
   end
 
   class Document #:nodoc:
-    def initialize(html)
-      @doc = Nokogiri::HTML(html)
+    def initialize(html,options={})
+     # @doc = Nokogiri::HTML(html)
+      @doc = Hpricot(html,options)
       xhtmlize!
       cleanup_indentation
     end
