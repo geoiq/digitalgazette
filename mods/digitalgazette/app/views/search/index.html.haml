@@ -5,24 +5,28 @@
 
 
 = widgets_for :wiki, :asset, :map, :overlay
+= widgets_for :most_recent, :most_viewed, {:partials => true}
+
 
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
-  %div.roundTop.txtDrkGray
-    %strong= "MOST VIEWED"
-  %div.subPageRightLinks
-    %ul.dynamicLinkList
-      - @recent = Page.popular("AssetPage", 5)
-      - @recent.each do |page|
-        %li= link_to(h(page.title), page_url(page))
-  %div.roundBtm
+  = box_for :most_viewed, {:limit => 5, :page_type => @page_type}
+  = box_for :recent, {:limit => 5, :page_type => @page_type}
+/  %div.roundTop.txtDrkGray
+/    %strong= "MOST VIEWED"
+/  %div.subPageRightLinks
+/    %ul.dynamicLinkList
+/      - @recent = Page.popular("AssetPage", 5)
+/      - @recent.each do |page|
+/        %li= link_to(h(page.title), page_url(page))
+/  %div.roundBtm
 
-  %div.roundTop.txtDrkGray
-    %strong= "MOST RECENT"
-  %div.subPageRightLinks
-    %ul.dynamicLinkList
-      - @recent = Page.recent("AssetPage", 5)
-      - @recent.each do |page|
-        %li= link_to(h(page.title), page_url(page))
-  %div.roundBtm
+/  %div.roundTop.txtDrkGray
+/    %strong= "MOST RECENT"
+/  %div.subPageRightLinks
+/    %ul.dynamicLinkList
+/      - @recent = Page.recent("AssetPage", 5)
+/      - @recent.each do |page|
+/        %li= link_to(h(page.title), page_url(page))
+/  %div.roundBtm

@@ -10,10 +10,20 @@ class SearchController < ApplicationController
   #     @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
 
 
+  # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
   EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  PAGE_TYPE_PARTIALS = { 
+    "Wiki" => "pages/iist",
+    "asset" => "pages/list",
+    "map" => "pages/list",
+    "overlay" => "overlays/list"
+  }.freeze
+  
   # TODO: check if there is a less hacky way / if this way is sufficient
+  #  - what is meant here ? - kris
   # GET /search
+  # TODO move @dom_id and @partial out of the controller logic some day
   def index
     if request.post?
       # form was POSTed with search query
@@ -21,7 +31,8 @@ class SearchController < ApplicationController
       redirect_to_search_results
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
-      debugger
+      @dom_id = params[:dom_id] || @page_type.underscore+"_list"
+      @partial = params[:partial] || "pages/list"
       @tags = @path.args_for("tag")
       render_search_results
     end
@@ -54,7 +65,7 @@ class SearchController < ApplicationController
 
     if request.xhr?
       render :update do |page|
-        page["#{@page_type.underscore}_list"].replace_html :partial => 'pages/list', :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page[@dom_id].replace_html :partial => 'pages/list', :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
       end
     end
 
@@ -92,9 +103,18 @@ class SearchController < ApplicationController
 
   # add to the path
   def prefix_path
+    path = []
     if params[:page_type]
-      @path.merge!(["type", params[:page_type]])
+      [params[:page_type]].flatten.each do |type|
+        path << "type"
+        path << type
+      end
+      @path.merge!(path)
     end
   end
 
+  def partial_for_page_type
+    PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
+  end
+  
 end
