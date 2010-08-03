@@ -13,6 +13,7 @@ module SearchHelper
     page_types = options[:page_types] || ['wiki']
     options[:path] = PATHS_FOR_BOXES[type.to_sym]
     options[:dom_id] = type.to_s
+    options[:widget] = type.to_s
     ret = ""
     ret << content_tag(:div, :id => type.to_s, :class => 'roundTop txtDarkGrey') do
       content_tag(:strong) { I18n.t(:dg_box_title, :type => type)}
