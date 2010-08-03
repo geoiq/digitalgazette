@@ -13,6 +13,7 @@ class SearchController < ApplicationController
   # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
   EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
   PAGE_TYPE_PARTIALS = { 
     "Wiki" => "pages/list",
     "asset" => "pages/list",
@@ -22,7 +23,6 @@ class SearchController < ApplicationController
   BOX_PARTIALS = { 
     "recent" => "pages/box",
     "most_viewed" => "pages/box"
-  
   }
   
   
@@ -121,11 +121,13 @@ class SearchController < ApplicationController
   end
 
   # TODO somewhere else, more general
-  def partial
+  def partial_for
     if @widget
       BOX_PARTIALS[widget] || raise("you called an illegal widget")
     elsif @page_type      
       PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
+    elsif @partial
+      LEGAL_PARTIALS.include?(@partial) ? partial : raise("you called an illegal partial")
     end
   end
   
