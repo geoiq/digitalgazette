@@ -30,13 +30,13 @@ class SearchController < ApplicationController
     @path.default_sort('updated_at') if @path.search_text.empty?
 
     # if no explicit page type is already set, we limit page types to those we actually want to search in
-    merge_default_path
-    @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
+    # merge_default_path
+    @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
 
     # split results by page types
-    split_by_page_types
+    # split_by_page_types
     # fetch overlays from geocommons
-    get_external_results
+    # get_external_results
 
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
@@ -50,6 +50,13 @@ class SearchController < ApplicationController
     full_url = search_url + @path
     handle_rss(:title => full_url, :link => full_url,
                :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
+
+    if request.xhr?
+      render :update do |page|
+        page["#{@page_type.underscore}_list"].replace_html :partial => 'pages/list', :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+      end
+    end
+
   end
 
 

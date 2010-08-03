@@ -22,6 +22,7 @@ class PagesController < ApplicationController
     rss_for_collection(all_me_pages_path, :all_pages_tab)
     render :action => "all"  #now it also works for the index action
   end
+
   def search
     @path = parse_filter_path(params[:path])
     if @path.empty?
@@ -30,4 +31,5 @@ class PagesController < ApplicationController
       all
     end
   end
+
 end

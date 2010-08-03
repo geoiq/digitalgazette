@@ -7,3 +7,4 @@ map.reports '/reports', :controller => 'pages', :action => 'index', :page_type =
 map.reports_search '/reports/search/*path', :controller => 'search', :action => 'index', :page_type => "asset"
 map.wiki '/wiki', :controller => 'pages', :action => 'index', :page_type => 'WikiPage'
 map.wiki_search '/wiki/search/*path', :controller => 'search', :action => 'index', :page_type => "wiki"
+map.map_search '/map/search/*path', :controller => 'search', :action => 'index', :page_type => 'map'

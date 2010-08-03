@@ -3,14 +3,14 @@
 
 %div
   %header
-    - if local_assigns[:title] && !title.blank?
+    - if
       %h3
         = title
         %div.right
           = render(:partial => pages_dropdown) if local_assigns[:pages_dropdown]
           = pagination_for(pages)
     - else
-      = pagination_for(pages) unless local_assigns[:no_top_pagination]
+      = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
 
   - if pages
     = render(:partial => block_above_pages_list_partial) if local_assigns[:block_above_pages_list_partial]
