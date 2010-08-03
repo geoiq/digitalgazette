@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+module ApplicationHelper
 
   # TODO: think about patching this in core
   # there was no possibility to pass :method => 'get' to pagination links
