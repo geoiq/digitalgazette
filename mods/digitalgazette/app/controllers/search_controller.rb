@@ -2,6 +2,7 @@
 class SearchController < ApplicationController
 
   prepend_before_filter :prefix_path
+  helper_method :list_partial
 
   # backed up from reports_controller.rb
   #     # @popular = Page.popular("AssetPage", 5)
@@ -11,13 +12,14 @@ class SearchController < ApplicationController
 
 
   # TODO move all this into Conf
-  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
+  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","OverlayPage"].freeze
   EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
   PAGE_TYPE_PARTIALS = {
-    "Wiki" => "pages/list",
-    "asset" => "pages/list",
-    "map" => "pages/list",
-    "overlay" => "overlays/list"
+    "WikiPage" => "pages/list",
+    "AssetPage" => "pages/list",
+    "MapPage" => "pages/list",
+    "OverlayPage" => "overlays/list"
   }.freeze
   BOX_PARTIALS = {
     "recent" => "pages/box",
@@ -36,7 +38,7 @@ class SearchController < ApplicationController
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
       @dom_id = params[:dom_id] || @page_type.underscore+"_list"
       @widget = params[:widget]
-      @partial = params[:partial] || "pages/list"
+      @wrapper = params[:wrapper]
       @tags = @path.args_for("tag")
       render_search_results
     end
@@ -70,7 +72,7 @@ class SearchController < ApplicationController
       # TODO clean up this logic, to make it easier to use different partials
       list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page[@dom_id].replace_html :partial => partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
       end
     end
 
@@ -119,11 +121,13 @@ class SearchController < ApplicationController
   end
 
   # TODO somewhere else, more general
-  def partial
+  def list_partial
     if @widget
-      BOX_PARTIALS[widget] || raise("you called an illegal widget")
+      BOX_PARTIALS[widget.to_s] || raise("you called an illegal widget #{widget.to_s}")
     elsif @page_type
-      PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
+      PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
+    elsif @wrapper
+      LEGAL_PARTIALS.include?(@wrapper) ? partial : raise("you called an illegal partial #{@wrapper.to_s}")
     end
   end
 
