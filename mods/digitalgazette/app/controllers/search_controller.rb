@@ -10,10 +10,23 @@ class SearchController < ApplicationController
   #     @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
 
 
-  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","OverlayPage"].freeze
-  EXTERNAL_PAGE_TYPES = ["OverlayPage"].freeze
-  # TODO: check if there is a less hacky way / if this way is sufficient
+  # TODO move all this into Conf
+  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
+  EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  PAGE_TYPE_PARTIALS = {
+    "Wiki" => "pages/list",
+    "asset" => "pages/list",
+    "map" => "pages/list",
+    "overlay" => "overlays/list"
+  }.freeze
+  BOX_PARTIALS = {
+    "recent" => "pages/box",
+    "most_viewed" => "pages/box"
+  }
+
+
   # GET /search
+  # TODO move @dom_id and @partial out of the controller logic some day
   def index
     if request.post?
       # form was POSTed with search query
@@ -21,6 +34,9 @@ class SearchController < ApplicationController
       redirect_to_search_results
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
+      @dom_id = params[:dom_id] || @page_type.underscore+"_list"
+      @widget = params[:widget]
+      @partial = params[:partial] || "pages/list"
       @tags = @path.args_for("tag")
       render_search_results
     end
@@ -30,11 +46,10 @@ class SearchController < ApplicationController
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
 
-
-   if EXTERNAL_PAGE_TYPES.include?(@page_type)
-     @pages = get_external_results
-   else
-     @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
+    if EXTERNAL_PAGE_TYPES.include?(@page_type)
+      @pages = get_external_results
+    else
+      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
    end
 
 
@@ -55,7 +70,7 @@ class SearchController < ApplicationController
       # TODO clean up this logic, to make it easier to use different partials
       list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page["#{@page_type.underscore}_list"].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page[@dom_id].replace_html :partial => partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
       end
     end
 
@@ -93,8 +108,22 @@ class SearchController < ApplicationController
 
   # add to the path
   def prefix_path
+    path = []
     if params[:page_type]
-      @path.merge!(["type", params[:page_type]])
+      [params[:page_type]].flatten.each do |type|
+        path << "type"
+        path << type
+      end
+      @path.merge!(path)
+    end
+  end
+
+  # TODO somewhere else, more general
+  def partial
+    if @widget
+      BOX_PARTIALS[widget] || raise("you called an illegal widget")
+    elsif @page_type
+      PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
     end
   end
 
