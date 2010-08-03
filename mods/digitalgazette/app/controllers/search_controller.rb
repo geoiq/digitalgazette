@@ -14,11 +14,17 @@ class SearchController < ApplicationController
   SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
   EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
   PAGE_TYPE_PARTIALS = { 
-    "Wiki" => "pages/iist",
+    "Wiki" => "pages/list",
     "asset" => "pages/list",
     "map" => "pages/list",
     "overlay" => "overlays/list"
   }.freeze
+  BOX_PARTIALS = { 
+    "recent" => "pages/box",
+    "most_viewed" => "pages/box"
+  
+  }
+  
   
   # TODO: check if there is a less hacky way / if this way is sufficient
   #  - what is meant here ? - kris
@@ -32,6 +38,7 @@ class SearchController < ApplicationController
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
       @dom_id = params[:dom_id] || @page_type.underscore+"_list"
+      @widget = params[:widget]
       @partial = params[:partial] || "pages/list"
       @tags = @path.args_for("tag")
       render_search_results
@@ -65,7 +72,7 @@ class SearchController < ApplicationController
 
     if request.xhr?
       render :update do |page|
-        page[@dom_id].replace_html :partial => 'pages/list', :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page[@dom_id].replace_html :partial => partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
       end
     end
 
@@ -113,8 +120,13 @@ class SearchController < ApplicationController
     end
   end
 
-  def partial_for_page_type
-    PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
+  # TODO somewhere else, more general
+  def partial
+    if @widget
+      BOX_PARTIALS[widget] || raise("you called an illegal widget")
+    elsif @page_type      
+      PAGE_TYPE_PARTIALS[type.to_s] || raise("you called an illegal partial")
+    end
   end
   
 end
