@@ -3,11 +3,12 @@ module SearchHelper
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
-  def widget_for sym, options={}
-    options = options_for_widget(sym,options)
+  def widget_for page_type, options={}
+    options = options_for_widget(page_type,options)
+    widget_id = "#{page_type}_page_list"
     ret = ""
-    ret << content_tag(:div, :id => "#{sym}_page_list") do
-      javascript_tag(remote_function({ :url => search_url(options), :method => 'get'}))+"loading"
+    ret << content_tag(:div, :id => widget_id) do
+      javascript_tag(remote_function({ :url => search_url(options), :method => 'get'}))+spinner(widget_id, :show => true)
     end
     ret
   end
@@ -22,8 +23,8 @@ module SearchHelper
     ret
   end
 
-  def options_for_widget(sym,options)
-    { :page_type => sym}.merge(options)
+  def options_for_widget(page_type, options)
+    { :page_type => page_type}.merge(options)
   end
 
 end
