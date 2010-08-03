@@ -3,25 +3,9 @@
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br
 
-/%div{:id => "wiki_page_list"}
-/  = javascript_tag remote_function :url => wiki_search_url, :method => 'get'
 
-/%div{:id => "asset_page_list"}
-/  = javascript_tag remote_function :url => reports_search_url, :method => 'get'
+= widgets_for :wiki, :asset, :map, :overlay
 
-/%div{:id => "map_page_list"}
-/  = javascript_tag remote_function :url => map_search_url, :method => 'get'
-
-= widgets_for :wiki, :asset, :map
-
-
-=# render :partial => 'pages/list', :locals => {:pages => @wiki_pages, :title => "Articles", :heading => true, :full_width => true}
-=# render :partial => 'pages/list', :locals => {:pages => @map_pages, :title => "Maps", :heading => true, :full_width => true}
-=# render :partial => 'pages/list', :locals => {:pages => @asset_pages, :title => "Reports", :heading => true, :full_width => true}
-=# render :partial => 'overlays/list', :locals => {:heading => true, :full_width => true, :title => "Overlays"}
-- if @pages.blank?
-  %h2
-    = I18n.t(:no_search_results)
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")

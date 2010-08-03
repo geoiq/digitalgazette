@@ -1,3 +1,4 @@
+
 class SearchController < ApplicationController
 
   prepend_before_filter :prefix_path
@@ -9,8 +10,8 @@ class SearchController < ApplicationController
   #     @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
 
 
-  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage"].freeze
-
+  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
+  EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
   # TODO: check if there is a less hacky way / if this way is sufficient
   # GET /search
   def index
@@ -20,6 +21,7 @@ class SearchController < ApplicationController
       redirect_to_search_results
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
+      debugger
       @tags = @path.args_for("tag")
       render_search_results
     end
@@ -29,15 +31,14 @@ class SearchController < ApplicationController
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
 
-    # if no explicit page type is already set, we limit page types to those we actually want to search in
-    # merge_default_path
-    @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
-
-    # split results by page types
-    # split_by_page_types
-    # fetch overlays from geocommons
-    # get_external_results
-
+    
+   if EXTERNAL_PAGE_TYPES.include?(@page_type) 
+      @pages = get_external_results
+   else
+     @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
+    end     
+    
+    
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
       begin
@@ -63,28 +64,30 @@ class SearchController < ApplicationController
   # mix in instance variables from the external api
   def get_external_results
     if @tags
-      @overlays = Geocommons::RestAPI::Overlay.paginate_by_tag(*@tags)
+      Geocommons::RestAPI::Overlay.paginate_by_tag(*@tags)
     else
-      @overlays = Geocommons::RestAPI::Overlay.paginate(:query => @path.arg_for("text"))
+       Geocommons::RestAPI::Overlay.paginate(:query => @path.arg_for("text"))
     end
   end
 
   # separate by page types into instance variables
-  def split_by_page_types
-    @grouped_pages = @pages.group_by{ |page| page.class.name}
-    # splitting grouped pages into it's own instance variables
-    SEARCHABLE_PAGE_TYPES.each do |t|
-      instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
-    end
-    debugger
-  end
+  # NOTE not used anymore, because we get the pages each via ajax
+  # def split_by_page_types
+  #   @grouped_pages = @pages.group_by{ |page| page.class.name}
+  #   # splitting grouped pages into it's own instance variables
+  #   SEARCHABLE_PAGE_TYPES.each do |t|
+  #     instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
+  #   end
+  #   debugger
+  # end
 
 
-  # TODO think about doing this with path finder internals
-  def merge_default_path
-    merge_path = (["type"] << SEARCHABLE_PAGE_TYPES.map(&:underscore).join("/or/type")).flatten.join('/')
-    @path.merge!(merge_path) unless @path.first_arg_for("type")
-  end
+  # NOTE not used anymore 
+  # # TODO think about doing this with path finder internals
+  # def merge_default_path
+  #   merge_path = (["type"] << SEARCHABLE_PAGE_TYPES.map(&:underscore).join("/or/type")).flatten.join('/')
+  #   @path.merge!(merge_path) unless @path.first_arg_for("type")
+  # end
 
 
   # add to the path

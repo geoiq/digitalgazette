@@ -11,6 +11,10 @@ class SearchControllerTest < ActionController::TestCase
     login_as :blue
 
     get :index
+    # NOTE for digital gazette mode
+    assert assigns(:page_type)
+    assert assigns(:tags)
+    # end
     assert_response :success
  end
 
@@ -23,6 +27,26 @@ class SearchControllerTest < ActionController::TestCase
     assert assigns(:pages).total_pages
   end
 
+  def test_typed_search
+    return unless sphinx_working?
+    get :index, :path => ["type", "wiki"]
+    assert assigns(:page_type) == "WikiPage"
+    assert assigns(:pages)
+  end
+  
+  # NOTE only for digital gazette mode
+  def test_external_search
+    get :index, :path => ["type","overlay"]
+    assert assigns(:page_type) == "OverlayPage"
+    assert assigns(:pages)
+    # check if any overlays are present
+    assigns(:pages).each do |page|
+      overlays = true if page.kind_of?(Overlay)
+    end
+    assert overlays
+  end
+  # end
+  
   def test_text_search
     return unless sphinx_working?
 
