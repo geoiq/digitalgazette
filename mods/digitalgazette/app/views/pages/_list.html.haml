@@ -16,7 +16,8 @@
     = render(:partial => block_above_pages_list_partial) if local_assigns[:block_above_pages_list_partial]
     = render :partial => '/pages/page', :collection => pages, :locals => page_locals(local_assigns)
   - else
-    -# we might want to display some "no page found" message here
+    %h2
+      = I18n.t(:no_search_results)
 
   %footer
     - if defined?(pagination_link) && pagination_link.present?

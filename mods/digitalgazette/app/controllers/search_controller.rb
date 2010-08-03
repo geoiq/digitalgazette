@@ -10,8 +10,8 @@ class SearchController < ApplicationController
   #     @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
 
 
-  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","Overlay"].freeze
-  EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","OverlayPage"].freeze
+  EXTERNAL_PAGE_TYPES = ["OverlayPage"].freeze
   # TODO: check if there is a less hacky way / if this way is sufficient
   # GET /search
   def index
@@ -21,7 +21,6 @@ class SearchController < ApplicationController
       redirect_to_search_results
     else
       @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
-      debugger
       @tags = @path.args_for("tag")
       render_search_results
     end
@@ -31,14 +30,14 @@ class SearchController < ApplicationController
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
 
-    
-   if EXTERNAL_PAGE_TYPES.include?(@page_type) 
-      @pages = get_external_results
+
+   if EXTERNAL_PAGE_TYPES.include?(@page_type)
+     @pages = get_external_results
    else
      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
-    end     
-    
-    
+   end
+
+
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
       begin
@@ -53,8 +52,10 @@ class SearchController < ApplicationController
                :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
 
     if request.xhr?
+      # TODO clean up this logic, to make it easier to use different partials
+      list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page["#{@page_type.underscore}_list"].replace_html :partial => 'pages/list', :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page["#{@page_type.underscore}_list"].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
       end
     end
 
@@ -82,7 +83,7 @@ class SearchController < ApplicationController
   # end
 
 
-  # NOTE not used anymore 
+  # NOTE not used anymore
   # # TODO think about doing this with path finder internals
   # def merge_default_path
   #   merge_path = (["type"] << SEARCHABLE_PAGE_TYPES.map(&:underscore).join("/or/type")).flatten.join('/')
