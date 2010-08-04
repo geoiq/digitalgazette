@@ -31,9 +31,26 @@ class SearchControllerTest < ActionController::TestCase
 
   def test_typed_search
     #return unless sphinx_working?
-    get :index, :path => ["type", "wiki"]
-    assert assigns(:page_type) == "WikiPage"
-    assert assigns(:pages)
+    ["WikiPage", "AssetPage"].each do |page_type|
+      get :index, :path => ["type", page_type.underscore.gsub!("_page","")]
+      assert assigns(:page_type) == page_type
+      assert assigns(:pages)
+      assigns(:pages).each do |page|
+        assert page.class.name == page_type
+      end
+      assert_select("div##{page_type.underscore}_list")
+    end
+
+    # test xhr requests
+    ["WikiPage", "AssetPage", "MapPage"].each do |page_type|
+      xhr :get, :index, :path => ["type", page_type.underscore.gsub!("_page","")]
+      assert assigns(:page_type) == page_type
+      assert assigns(:pages)
+      assigns(:pages).each do |page|
+        assert page.class.name == page_type
+      end
+      assert_select("div##{page_type.underscore}_list")
+    end
   end
 
   # NOTE only for digital gazette mode

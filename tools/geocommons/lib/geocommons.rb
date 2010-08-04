@@ -52,13 +52,11 @@ module Geocommons
       end
 
       class << self
-        def paginate_by_tag(*args)
-          options = args.pop if args.last.kind_of?(Hash)
-          options ||= {}
+        def paginate_by_tag(tags, options = {})
           condition = options[:condition] ? options.delete(:condition) : "or"
           condition = " "+condition+" "
           separator = "tag:"
-          query = "tag:" << args.to_a.join(condition+separator)
+          query = "tag:" << tags.to_a.join(condition+separator)
           paginate(options.merge(:query => query))
         end
 
