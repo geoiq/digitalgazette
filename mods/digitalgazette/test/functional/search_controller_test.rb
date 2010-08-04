@@ -38,17 +38,20 @@ class SearchControllerTest < ActionController::TestCase
       assigns(:pages).each do |page|
         assert page.class.name == (page_type+'_page').camelize
       end
-      assert_select("div##{page_type.underscore}_list")
+      assert_select("section#pages")
     end
+  end
 
+  def test_typed_search_xhr
     # test xhr requests
     ["wiki", "asset", "map"].each do |page_type|
-      xhr :get, :index, :path => ["type", page_type.underscore.gsub!("_page","")]
+      xhr :get, :index, :path => ["type", page_type]
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
       assigns(:pages).each do |page|
-        assert page.class.name == page_type
+        assert page.class.name == (page_type+'_page').camelize
       end
+      debugger
       assert_select("div##{page_type.underscore}_list")
     end
   end
@@ -57,7 +60,7 @@ class SearchControllerTest < ActionController::TestCase
   def test_external_search
     # return unless sphinx_working?
     # this only happens via xhr, and will throw errors if called otherwise
-    xhr :get, :index, :path => ["type","overlay"]
+    xhr :get, :index, :path => ["type", "overlay"]
     assert assigns(:page_type) == "overlay"
     assert assigns(:pages)
     # check if any overlays are present
@@ -106,6 +109,9 @@ class SearchControllerTest < ActionController::TestCase
     assert_raises RuntimeError, "illegal widget should be reised for :widget => 'maeh'" do
       xhr :get, :index, :widget => "maeh"
     end
+  end
+
+  def test_illegal_wrapper_recognition
     assert_raises RuntimeError, "illegal partial should be raised for :wrapper => 'jenga'" do
       xhr :get, :index, :wrapper => "jenga"
     end

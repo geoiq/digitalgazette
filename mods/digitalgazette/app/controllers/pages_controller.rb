@@ -2,15 +2,15 @@ class PagesController < ApplicationController
   include ControllerExtension::MapPopup
 
   helper :search
-  
+
   def index
     # @popular = Page.popular("WikiPage", 5)
     # @recent = Page.recent("WikiPage", 5)
     # @popular = Page.find_by_path([ 'most_viewed', "5"], ['type', 'wiki_page'])
-    
+
     # @popular = Page.find_by_path([['limit','5'], [ 'most_viewed', "5"], ['type', 'wiki_page']])
     # @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
-    @page_type = params[:page_type] || "WikiPage" # think about default behaviour
+    @page_type = params[:page_type] || "wiki" # think about default behaviour
     render :template => "pages/index"
   end
 

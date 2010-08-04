@@ -1,4 +1,3 @@
-
 class SearchController < ApplicationController
 
   prepend_before_filter :prefix_path
@@ -6,7 +5,7 @@ class SearchController < ApplicationController
 
   # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
-  EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
+  EXTERNAL_PAGE_TYPES = ["overlay"].freeze
   LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
   PAGE_TYPE_PARTIALS = {
     "wiki" => "pages/list",
