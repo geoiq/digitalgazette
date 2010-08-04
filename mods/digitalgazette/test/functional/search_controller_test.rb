@@ -31,18 +31,18 @@ class SearchControllerTest < ActionController::TestCase
 
   def test_typed_search
     #return unless sphinx_working?
-    ["WikiPage", "AssetPage"].each do |page_type|
-      get :index, :path => ["type", page_type.underscore.gsub!("_page","")]
+    ["wiki", "asset"].each do |page_type|
+      get :index, :path => ["type", page_type]
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
       assigns(:pages).each do |page|
-        assert page.class.name == page_type
+        assert page.class.name == (page_type+'_page').camelize
       end
       assert_select("div##{page_type.underscore}_list")
     end
 
     # test xhr requests
-    ["WikiPage", "AssetPage", "MapPage"].each do |page_type|
+    ["wiki", "asset", "map"].each do |page_type|
       xhr :get, :index, :path => ["type", page_type.underscore.gsub!("_page","")]
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
@@ -58,7 +58,7 @@ class SearchControllerTest < ActionController::TestCase
     # return unless sphinx_working?
     # this only happens via xhr, and will throw errors if called otherwise
     xhr :get, :index, :path => ["type","overlay"]
-    assert assigns(:page_type) == "OverlayPage"
+    assert assigns(:page_type) == "overlay"
     assert assigns(:pages)
     # check if any overlays are present
     overlays = false
@@ -96,18 +96,19 @@ class SearchControllerTest < ActionController::TestCase
 
   def test_partial_recognition
     xhr :get, :index, :wrapper => 'pages/box'
-    assert_template({:partial => "pages/box"}, "pages/box should have been rendered")
+    assert_template( "_box", "pages/box should have been rendered")
     xhr :get, :index, :widget => 'most_viewed'
-    assert_template({:partial => "pages/box"}, "pages/box should have been rendered")
+    assert_template("_box", "pages/box should have been rendered")
     xhr :get, :index, :path => ["type","overlay"]
-    assert_template({ :partial => 'overlays/list'}, "overlays/list should have been rendered")
+    assert_template('_list', "overlays/list should have been rendered")
     xhr :get, :index, :path => ["type","wiki"]
-    assert_template({ :partial => 'pages/list'}, "pages/list should have been rendered for type:wiki")
-    xhr :get, :index, :widget => "maeh"
-    assert_raises "illegal widget should be reised for :widget => 'maeh'"
-    xhr :get, :index, :wrapper => "jenga"
-    asser_raises "illegal partial should be raised for :wrapper => 'jenga'"
+    assert_template('_list', "pages/list should have been rendered for type:wiki")
+    assert_raises RuntimeError, "illegal widget should be reised for :widget => 'maeh'" do
+      xhr :get, :index, :widget => "maeh"
+    end
+    assert_raises RuntimeError, "illegal partial should be raised for :wrapper => 'jenga'" do
+      xhr :get, :index, :wrapper => "jenga"
+    end
   end
-  
-  
+
 end

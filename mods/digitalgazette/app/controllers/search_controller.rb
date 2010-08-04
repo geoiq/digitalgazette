@@ -110,7 +110,7 @@ class SearchController < ApplicationController
     elsif @page_type
       PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
     elsif @wrapper
-      LEGAL_PARTIALS.include?(@wrapper) ? partial : raise("you called an illegal partial #{@wrapper.to_s}")
+      LEGAL_PARTIALS.include?(@wrapper) ? @wrapper : raise("you called an illegal partial #{@wrapper.to_s}")
     end
 
   end
@@ -136,7 +136,7 @@ class SearchController < ApplicationController
     @page_types =  [@path.args_for("type")].flatten.compact.select{ |t|
       t != "type" && SEARCHABLE_PAGE_TYPES.include?(t)}
     @page_types = SEARCHABLE_PAGE_TYPES if @page_types.empty?
-    @page_type = @page_types.first
+    @page_type = @page_types.first if @page_types.size == 1
   end
 
   # retrieve all pages
