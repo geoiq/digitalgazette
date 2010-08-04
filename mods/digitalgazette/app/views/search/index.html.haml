@@ -1,13 +1,13 @@
 = banner_and_header_for(@page_type)
 
-
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br
 
 - if @page_type
   = render :partial => 'pages/list', :locals => {:pages => @pages}
 - else
-  = dynamic_widgets
+  = dynamic_widgets @preferred
+  =# widgets_for [:wiki, :map, :overlay, :asset]
 
 
 - content_for :right_sidebar do

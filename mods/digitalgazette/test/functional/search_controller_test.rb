@@ -29,6 +29,7 @@ class SearchControllerTest < ActionController::TestCase
     assert assigns(:pages).total_pages
   end
 
+  
   def test_typed_search
     #return unless sphinx_working?
     ["wiki", "asset"].each do |page_type|
@@ -40,8 +41,8 @@ class SearchControllerTest < ActionController::TestCase
       end
       assert_select("section#pages")
     end
-  end
-
+  end  
+  
   def test_typed_search_xhr
     # test xhr requests
     ["wiki", "asset", "map"].each do |page_type|
@@ -55,6 +56,18 @@ class SearchControllerTest < ActionController::TestCase
     end
   end
 
+  def test_search_with_preferred_type
+    get :index, :path => ["preferred","asset","text","social"]
+    assert assigns(:pages)
+    assert_template "index"
+    assert assigns(:preferred)
+    assert_select "#?", /(asset|wiki|map|overlay)_list/ do |elements|
+      assert elements.first.attributes["id"] = "#{assigns(:preferred)}_list"
+    end
+    # now there should be xhr requests fired
+    # and in the view, there should be the preferred page type first
+  end
+  
   # NOTE only for digital gazette mode
   def test_external_search
     # return unless sphinx_working?

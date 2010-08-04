@@ -3,26 +3,12 @@ class SearchController < ApplicationController
   prepend_before_filter :prefix_path
   helper_method :list_partial
 
-  # TODO move all this into Conf
-  SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
-  EXTERNAL_PAGE_TYPES = ["overlay"].freeze
-  LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
-  PAGE_TYPE_PARTIALS = {
-    "wiki" => "pages/list",
-    "asset" => "pages/list",
-    "map" => "pages/list",
-    "overlay" => "overlays/list"
-  }.freeze
-  BOX_PARTIALS = {
-    "recent" => "pages/box",
-    "most_viewed" => "pages/box"
-  }.freeze
-
-
+  include SearchHelper
+  
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
-    @preferred = params[:preferred]
+    @preferred = @path.arg_for("preferred")
     if request.post?
       # form was POSTed with search query
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
@@ -31,8 +17,7 @@ class SearchController < ApplicationController
       render_search_results
     end
   end
-
-
+    
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags

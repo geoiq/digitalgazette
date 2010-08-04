@@ -17,4 +17,11 @@ module ApplicationHelper
     will_paginate(things, defaults.merge(options))
   end
 
+  # i had problems, this does exactly, what i want 
+  def better_hidden_field group, name, value
+   "<input type='hidden' id='#{group}_#{name}' name='#{group}[#{name}]' value='#{value}' />"
+
+  end
+  
+  
 end
