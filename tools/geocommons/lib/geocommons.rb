@@ -17,7 +17,7 @@ require 'json'
       #   pager.replace found
       # end
 
-
+require 'external_page'
 module Geocommons
   class RestAPI
 
@@ -36,7 +36,8 @@ module Geocommons
       end
     end
 
-    class Overlay
+    
+    class Overlay < Crabgrass::ExternalPage
       VALID_ATTRIBUTES = %w(short_classification name can_view can_edit author
                             can_download published icon_path id contributor
                             tags layer_size link description source bbox
@@ -51,6 +52,33 @@ module Geocommons
         end
       end
 
+      def cover
+        if icon
+          file = open(icon)
+          def file.original_filename
+            File.base_name(icon)
+          end
+          Asset.build(:uploaded_data => file)
+        end
+      end
+      
+      
+      def updated_at
+        created.to_datetime
+      end
+      
+      def created_at
+        created.to_datetime
+      end
+      
+      def icon
+        icon_path
+      end
+      
+      def title
+        name && !name.empty? ? name : description.truncate(30)
+      end
+      
       class << self
         def paginate_by_tag(tags, options = {})
           condition = options[:condition] ? options.delete(:condition) : "or"
@@ -81,7 +109,9 @@ module Geocommons
             new(entry)
           end
         end
+        
       end
     end
+    
   end
 end

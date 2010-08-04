@@ -9,4 +9,7 @@ module PageHelper
       image_tag(page.class.name.downcase + ".png", :plugin => "digitalgazette", :alt => "Thumbnail for #{page.class.name}")
     end
   end
+
+
+
 end
