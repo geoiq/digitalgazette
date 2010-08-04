@@ -22,6 +22,7 @@ class SearchController < ApplicationController
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
+    @preferred = params[:preferred]
     if request.post?
       # form was POSTed with search query
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2

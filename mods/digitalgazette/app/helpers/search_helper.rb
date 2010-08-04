@@ -28,6 +28,13 @@ module SearchHelper
     end
   end
 
+  # returns widgets in the order implied by the current preffered page type
+  def dynamic_widgets
+    page_types = SEARCHABLE_PAGE_TYPES
+    widgets_for :wiki, :asset, :map, :overlay
+  end
+  
+  
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
