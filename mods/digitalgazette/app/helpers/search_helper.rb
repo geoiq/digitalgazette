@@ -28,9 +28,12 @@ module SearchHelper
     end
   end
 
-  # returns widgets in the order implied by the current preffered page type
+  # returns widgets in the order implied by the currently preferred page type
   def dynamic_widgets
-    page_types = SEARCHABLE_PAGE_TYPES
+    page_types = [params[:preferred]]
+    page_types << SEARCHABLE_PAGE_TYPES
+    page_types.flatten.uniq!
+    
     widgets_for :wiki, :asset, :map, :overlay
   end
   
