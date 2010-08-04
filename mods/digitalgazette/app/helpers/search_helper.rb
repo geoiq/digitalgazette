@@ -1,13 +1,13 @@
 module SearchHelper
 
-  
-  PATHS_FOR_BOXES = 
-    
+
+  PATHS_FOR_BOXES =
+
     { :most_viewed => [["most_viewed"],["limit","5"]],
       :recent => [["limit","5"],["ascending","created_at"]]
-  
+
   }.freeze
-  
+
   # wraps certain widgets into a box
   def box_for type, options={}
     page_types = options[:page_types] || ['wiki']
@@ -22,15 +22,15 @@ module SearchHelper
       content_tag(:ul, :class => "dynamicLinkList") do
         widgets_for(page_types, options)
       end
-    end  
+    end
   end
-  
+
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
   def widget_for page_type, options={}
     options = options_for_widget(page_type,options)
-    widget_id = "#{page_type}_page_list"
+    widget_id = options[:dom_id] || "#{page_type}_page_list"
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
       javascript_tag(remote_function({ :url => search_url(options), :method => 'get'}))+spinner(widget_id, :show => true)
