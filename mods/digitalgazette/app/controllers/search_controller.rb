@@ -61,7 +61,6 @@ class SearchController < ApplicationController
 
   end
 
-
   # mix in instance variables from the external api
   def get_external_results
     if @tags
@@ -82,14 +81,14 @@ class SearchController < ApplicationController
   #   debugger
   # end
 
-
-  # NOTE not used anymore
-  # # TODO think about doing this with path finder internals
-  # def merge_default_path
-  #   merge_path = (["type"] << SEARCHABLE_PAGE_TYPES.map(&:underscore).join("/or/type")).flatten.join('/')
-  #   @path.merge!(merge_path) unless @path.first_arg_for("type")
-  # end
-
+  # TODO think about doing this with path finder internals
+  def default_page_types_path
+    merge_path = []
+    (SEARCHABLE_PAGE_TYPES - EXTERNAL_PAGE_TYPES).each do |page_type|
+      merge_path << "type/#{page_type}"
+    end
+    merge_path.join('/or/')
+  end
 
   # add to the path
   def prefix_path
@@ -114,7 +113,6 @@ class SearchController < ApplicationController
     end
 
   end
-
 
   # retrieve all options, we need to build a proper UI
   def get_options
@@ -141,12 +139,16 @@ class SearchController < ApplicationController
 
   # retrieve all pages
   def get_pages
-    @page_types.each do |page_type|
-      if EXTERNAL_PAGE_TYPES.include?(page_type)
+    # if no explicit pagetype is set, we want to search in all searchable page types
+    if @page_type
+      if EXTERNAL_PAGE_TYPES.include?(@page_type)
         @pages = get_external_results
       else
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
+    else
+      @path.merge!(default_page_types_path)
+      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
     end
   end
 end
