@@ -106,16 +106,16 @@ class SearchController < ApplicationController
   # TODO somewhere else, more general
   def list_partial
     if @widget
-      BOX_PARTIALS[widget.to_s] || raise("you called an illegal widget #{widget.to_s}")
+      BOX_PARTIALS[@widget.to_s] || raise("you called an illegal widget #{@widget.to_s}")
     elsif @page_type
       PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
     elsif @wrapper
       LEGAL_PARTIALS.include?(@wrapper) ? partial : raise("you called an illegal partial #{@wrapper.to_s}")
     end
-    
+
   end
 
-  
+
   # retrieve all options, we need to build a proper UI
   def get_options
     get_page_types
@@ -124,30 +124,30 @@ class SearchController < ApplicationController
     @wrapper = params[:wrapper]
     @tags = @path.args_for("tag")
   end
-  
+
   # create an id for the container we want to update in
   def get_dom_id
     return params[:dom_id] if params[:dom_id]
     @page_type ? @page_type.underscore+"_list" : "pages_list"
   end
-  
+
   # retrieve all page types in the current focus
   def get_page_types
-   @page_types =  [@path.args_for("type")].flatten.compact.select{ |t|      
+    @page_types =  [@path.args_for("type")].flatten.compact.select{ |t|
       t != "type" && SEARCHABLE_PAGE_TYPES.include?(t)}
-    @page_types ||= SEARCHABLE_PAGE_TYPES
+    @page_types = SEARCHABLE_PAGE_TYPES if @page_types.empty?
     @page_type = @page_types.first
   end
 
   # retrieve all pages
   def get_pages
     @pages = []
-    @page_types.each do |page_type|      
+    @page_types.each do |page_type|
       if EXTERNAL_PAGE_TYPES.include?(page_type)
         @pages << get_external_results
       else
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
     end
-  end 
+  end
 end

@@ -5,8 +5,10 @@
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br
 
-
-=# widgets_for :wiki, :asset, :map, :overlay
+- if @page_type
+  = render :partial => 'pages/list', :locals => {:pages => @pages}
+- else
+  = widgets_for :wiki, :asset, :map, :overlay
 
 
 - content_for :right_sidebar do
