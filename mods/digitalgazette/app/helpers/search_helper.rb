@@ -6,6 +6,11 @@ module SearchHelper
     { :most_viewed => [["most_viewed"],["limit",5]],
       :recent => [["limit",5],["ascending","created_at"]]}.freeze
 
+  HEADERS_FOR_PAGE_TYPES = { 
+    "wiki" => true,
+    "asset" => true,
+  }
+  
   # wraps certain widgets into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
@@ -50,4 +55,12 @@ module SearchHelper
     page_type ? {:page_type => page_type }.merge!(options) : options
   end
 
+  def banner_and_header_for page_type
+    if HEADERS_FOR_PAGE_TYPES[page_type]
+      ret = "" 
+      ret << render(:partial => "pages/#{page_type.underscore}/header")
+      ret << render(:partial => 'search/banner', :locals => { :page_type => page_type })
+      ret
+    end
+  end
 end
