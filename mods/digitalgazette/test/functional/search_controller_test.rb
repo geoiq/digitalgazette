@@ -49,9 +49,9 @@ class SearchControllerTest < ActionController::TestCase
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
       assigns(:pages).each do |page|
-        assert page.class.name == (page_type+'_page').camelize
+        assert (page.class.name == (page_type+'_page').camelize)
       end
-      assert @response.body.match('wiki_list')
+      assert @response.body.match("#{page_type}_list").kind_of?(MatchData)
     end
   end
 
@@ -63,12 +63,10 @@ class SearchControllerTest < ActionController::TestCase
     assert assigns(:page_type) == "overlay"
     assert assigns(:pages)
     # check if any overlays are present
-    overlays = false
+    overlays = true
     assigns(:pages).each do |page|
-      overlays = true if page.kind_of?(Geocommons::RestAPI::Overlay)
+      assert page.kind_of?(Geocommons::RestAPI::Overlay)
     end
-    debugger
-    assert overlays
   end
 
   def test_text_search

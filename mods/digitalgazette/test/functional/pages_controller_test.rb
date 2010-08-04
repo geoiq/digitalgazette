@@ -7,11 +7,22 @@ class SearchControllerTest < ActionController::TestCase
            :memberships, :user_participations, :group_participations,
            :pages, :page_terms
 
-  context "SearchController" do
-    setup { true }
-    should "be true" do
-      assert true
+  context "PagesController" do
+
+    context "with page type asset" do
+      setup { get :index, :page_type => 'asset' }
+      should "be successful" do
+        assert_response :success
+      end
     end
+
+    context "with page type wiki" do
+      setup { get :index, :page_type => 'wiki' }
+        should "be successful" do
+        assert_response :success
+      end
+    end
+
   end
 
 
