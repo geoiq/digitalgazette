@@ -8,6 +8,19 @@ self.override_views = true
 require 'digital_gazette/page_extension'
 
 Dispatcher.to_prepare do
+  
+  #
+  # NOTE this functionality is good for letting mods add
+  #      arguments to PathFinder
+  #
+  # TODO find a good place for it in the core
+  #
+  # NOTE this is the only way to do this? ignore warnings
+  # TODO think about making PATH_KEYWORDS unfrozen in core
+  new_path_keywords = PathFinder::ParsedPath::PATH_KEYWORDS.dup
+  new_path_keywords['preferred'] = 1
+  PathFinder::ParsedPath::PATH_KEYWORDS = new_path_keywords.freeze
+  
   module DigitalGazette
 
     module ControllerExtension::WikiPopupExtension
