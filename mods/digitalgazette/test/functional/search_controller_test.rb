@@ -77,4 +77,20 @@ class SearchControllerTest < ActionController::TestCase
     assert_select "article span.search-excerpt", "test", "should highlight exceprts in markup"
   end
 
+  def test_partial_recognition
+    xhr :get, :index, :wrapper => 'pages/box'
+    assert_template({:partial => "pages/box"}, "pages/box should have been rendered")
+    xhr :get, :index, :widget => 'most_viewed'
+    assert_template({:partial => "pages/box"}, "pages/box should have been rendered")
+    xhr :get, :index, :path => ["type","overlay"]
+    assert_template({ :partial => 'overlays/list'}, "overlays/list should have been rendered")
+    xhr :get, :index, :path => ["type","wiki"]
+    assert_template({ :partial => 'pages/list'}, "pages/list should have been rendered for type:wiki")
+    xhr :get, :index, :widget => "maeh"
+    assert_raises "illegal widget should be reised for :widget => 'maeh'"
+    xhr :get, :index, :wrapper => "jenga"
+    asser_raises "illegal partial should be raised for :wrapper => 'jenga'"
+  end
+  
+  
 end

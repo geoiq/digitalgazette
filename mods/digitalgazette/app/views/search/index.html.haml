@@ -1,5 +1,7 @@
-= render :partial => "pages/#{@page_type.underscore}/header"
-= render :partial => 'search/banner', :locals => { :page_type => @page_type }
+- if @page_type
+  = render :partial => "pages/#{@page_type.underscore}/header"
+  = render :partial => 'search/banner', :locals => { :page_type => @page_type }
+
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
 %br
 

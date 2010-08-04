@@ -4,27 +4,20 @@ class SearchController < ApplicationController
   prepend_before_filter :prefix_path
   helper_method :list_partial
 
-  # backed up from reports_controller.rb
-  #     # @popular = Page.popular("AssetPage", 5)
-  #     # @recent = Page.recent("AssetPage", 5)
-  #     @popular = Page.find_by_path([['limit','5'], [ 'most_viewed', "5"], ['type', 'wiki_page']])
-  #     @recent = Page.find_by_path([ ['limit','5'], [ 'ascending', 'created_at'], ['type', 'asset_page']])
-
-
   # TODO move all this into Conf
-  SEARCHABLE_PAGE_TYPES = ["WikiPage","AssetPage","MapPage","OverlayPage"].freeze
+  SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
   EXTERNAL_PAGE_TYPES = ["Overlay"].freeze
   LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
   PAGE_TYPE_PARTIALS = {
-    "WikiPage" => "pages/list",
-    "AssetPage" => "pages/list",
-    "MapPage" => "pages/list",
-    "OverlayPage" => "overlays/list"
+    "wiki" => "pages/list",
+    "asset" => "pages/list",
+    "map" => "pages/list",
+    "overlay" => "overlays/list"
   }.freeze
   BOX_PARTIALS = {
     "recent" => "pages/box",
     "most_viewed" => "pages/box"
-  }
+  }.freeze
 
 
   # GET /search
@@ -35,11 +28,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-      @page_type = @path.first_arg_for("type") ? @path.first_arg_for("type").camelize + 'Page' : 'WikiPage'
-      @dom_id = params[:dom_id] || @page_type.underscore+"_list"
-      @widget = params[:widget]
-      @wrapper = params[:wrapper]
-      @tags = @path.args_for("tag")
       render_search_results
     end
   end
@@ -47,13 +35,8 @@ class SearchController < ApplicationController
 
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
-
-    if EXTERNAL_PAGE_TYPES.include?(@page_type)
-      @pages = get_external_results
-    else
-      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
-   end
-
+    get_options # @page_type @page_types @dom_id @widget @wrapper @tags
+    get_pages # @pages
 
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
@@ -70,9 +53,9 @@ class SearchController < ApplicationController
 
     if request.xhr?
       # TODO clean up this logic, to make it easier to use different partials
-      list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
+      # list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@page_type.underscore}"))}
+        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@dom_id}"))}
       end
     end
 
@@ -129,6 +112,42 @@ class SearchController < ApplicationController
     elsif @wrapper
       LEGAL_PARTIALS.include?(@wrapper) ? partial : raise("you called an illegal partial #{@wrapper.to_s}")
     end
+    
   end
 
+  
+  # retrieve all options, we need to build a proper UI
+  def get_options
+    get_page_types
+    @dom_id = get_dom_id
+    @widget = params[:widget]
+    @wrapper = params[:wrapper]
+    @tags = @path.args_for("tag")
+  end
+  
+  # create an id for the container we want to update in
+  def get_dom_id
+    return params[:dom_id] if params[:dom_id]
+    @page_type ? @page_type.underscore+"_list" : "pages_list"
+  end
+  
+  # retrieve all page types in the current focus
+  def get_page_types
+   @page_types =  [@path.args_for("type")].flatten.compact.select{ |t|      
+      t != "type" && SEARCHABLE_PAGE_TYPES.include?(t)}
+    @page_types ||= SEARCHABLE_PAGE_TYPES
+    @page_type = @page_types.first
+  end
+
+  # retrieve all pages
+  def get_pages
+    @pages = []
+    @page_types.each do |page_type|      
+      if EXTERNAL_PAGE_TYPES.include?(page_type)
+        @pages << get_external_results
+      else
+        @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
+      end
+    end
+  end 
 end
