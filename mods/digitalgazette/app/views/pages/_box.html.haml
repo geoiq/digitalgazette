@@ -1,4 +1,6 @@
-%ul
-  - pages.each do |page|
-    = page_line page do
-      = link_to page.title, page_url(page)
+%div.subPageRightLinks
+  %ul.dynamicLinkList
+    - pages.each do |page|
+      - page_line page do
+        %li
+          = link_to page.title, page_url(page)
