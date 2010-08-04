@@ -51,8 +51,7 @@ class SearchControllerTest < ActionController::TestCase
       assigns(:pages).each do |page|
         assert page.class.name == (page_type+'_page').camelize
       end
-      debugger
-      assert_select("div##{page_type.underscore}_list")
+      assert @response.body.match('wiki_list')
     end
   end
 
@@ -68,6 +67,7 @@ class SearchControllerTest < ActionController::TestCase
     assigns(:pages).each do |page|
       overlays = true if page.kind_of?(Geocommons::RestAPI::Overlay)
     end
+    debugger
     assert overlays
   end
 

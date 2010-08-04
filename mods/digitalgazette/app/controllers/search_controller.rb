@@ -66,7 +66,7 @@ class SearchController < ApplicationController
     if @tags
       Geocommons::RestAPI::Overlay.paginate_by_tag(*@tags)
     else
-       Geocommons::RestAPI::Overlay.paginate(:query => @path.arg_for("text"))
+      Geocommons::RestAPI::Overlay.paginate(:query => @path.arg_for("text"))
     end
   end
 
@@ -140,10 +140,9 @@ class SearchController < ApplicationController
 
   # retrieve all pages
   def get_pages
-    @pages = []
     @page_types.each do |page_type|
       if EXTERNAL_PAGE_TYPES.include?(page_type)
-        @pages << get_external_results
+        @pages = get_external_results
       else
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
