@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  
+  def page_line page, &block
+    "<li class='small_icon #{page.icon}%>_16'>#{yield}</li>"
+  end
+  
   # TODO: think about patching this in core
   # there was no possibility to pass :method => 'get' to pagination links
   def pagination_for(things, options={})

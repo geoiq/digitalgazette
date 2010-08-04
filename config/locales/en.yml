@@ -50,6 +50,7 @@ en:
   dg_overlay_list: "Overlays"
   dg_map_list: "Maps"
   dg_asset_list: "Reports"
+  dg_pages_list: "Pages"
 
 
   dg_box_title: "{{type}}"
