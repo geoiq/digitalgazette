@@ -39,7 +39,7 @@ enabled_tools:
 #  - rate_many_tool
 #  - task_list_tool
 #  - survey_tool
-#  - gallery_tool
+  - gallery_tool
 #  - external_video_tool
 #  - announcement_tool
 #  - feed_tool
