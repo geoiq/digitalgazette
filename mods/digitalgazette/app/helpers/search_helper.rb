@@ -11,19 +11,23 @@ module SearchHelper
     options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
     ret = ""
-    ret << content_tag(:div, :class => 'roundTop txtDarkGrey') do
-      content_tag(:strong) { I18n.t(:dg_box_title, :type => box_type)} +
-      content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
-        content_tag(:ul, :class => "dynamicLinkList") do
-          widget_for(page_type, options)
-        end
+    # box title
+    ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
+      content_tag(:strong) { I18n.t(:dg_box_title, :type => I18n.t("dg_#{box_type}".to_sym))}
+    end
+    # box content
+    ret << content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
+      content_tag(:ul, :class => "dynamicLinkList") do
+        widget_for(page_type, options)
       end
+    end
+    # box footer
+    ret << content_tag(:div, :class => 'roundBtm') do
     end
   end
 
-
   # returns widgets in the order implied by the current preffered page type
-  def dynamic_widgets
+  def dynamic_widgets preferred
     page_types = SEARCHABLE_PAGE_TYPES.include?(preferred) ? [preferred] : []
     page_types << SEARCHABLE_PAGE_TYPES
     page_types = page_types.flatten.compact.uniq
