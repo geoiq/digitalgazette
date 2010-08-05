@@ -36,7 +36,7 @@ module Geocommons
       end
     end
 
-    
+
     class Overlay < Crabgrass::ExternalPage
       VALID_ATTRIBUTES = %w(short_classification name can_view can_edit author
                             can_download published icon_path id contributor
@@ -61,24 +61,24 @@ module Geocommons
           Asset.build(:uploaded_data => file)
         end
       end
-      
-      
+
+
       def updated_at
         created.to_datetime
       end
-      
+
       def created_at
         created.to_datetime
       end
-      
+
       def icon
         icon_path
       end
-      
+
       def title
         name && !name.empty? ? name : description.truncate(30)
       end
-      
+
       class << self
         def paginate_by_tag(tags, options = {})
           condition = options[:condition] ? options.delete(:condition) : "or"
@@ -101,7 +101,21 @@ module Geocommons
         # * +per_page+ - number (>= 1), results to return per page. default: 10
         # * +query+ - query to send, such as tag:foobar
         def paginate(options={})
-          pack_entries(_find({ :page => 1, :per_page => 10 }.merge(options)))
+          page = options[:page] || 1
+          per_page = options[:per_page] || 2
+          WillPaginate::Collection.create(page, per_page, count(options)) do |pager|
+            # @options_from_last_find = nil
+            count_options = options.except :page, :per_page, :total_entries, :finder
+            find_options = count_options.except(:count).update(:offset => pager.offset, :limit => pager.per_page)
+            find_results = pack_entries((_find(options)))
+            pager.replace find_results # remove?
+            # magic counting for user convenience:
+            pager.total_entries = count(options) # remove ?
+          end
+       end
+
+        def count(options)
+          _find(options)["totalResults"]
         end
 
         def pack_entries(result)
@@ -109,9 +123,9 @@ module Geocommons
             new(entry)
           end
         end
-        
+
       end
     end
-    
+
   end
 end

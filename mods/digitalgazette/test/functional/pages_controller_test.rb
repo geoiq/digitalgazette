@@ -2,10 +2,7 @@ require File.dirname(__FILE__) + '/../../../../test/test_helper'
 
 require 'ruby-debug'
 
-class SearchControllerTest < ActionController::TestCase
-  fixtures :users, :groups, :sites,
-           :memberships, :user_participations, :group_participations,
-           :pages, :page_terms
+class PagesControllerTest < ActionController::TestCase
 
   context "PagesController" do
 
@@ -24,6 +21,5 @@ class SearchControllerTest < ActionController::TestCase
     end
 
   end
-
 
 end

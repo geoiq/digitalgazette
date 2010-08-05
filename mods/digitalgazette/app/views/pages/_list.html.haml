@@ -1,14 +1,17 @@
+- # ATTENTION: This partial is currently being overwritten by
+- # tools/geocommons/app/views/pages/_list if this tool is activated
+- # it basically adds logic to handel @maps seperated from pages
 - pages ||= @pages
 = render(:partial => heading_partial) if local_assigns[:heading_partial]
 
-%div
+%section#pages{:class=> local_assigns[:full_width] ? 'full' : ''}
   %header
-    - if
+    - if local_assigns[:title] && !title.blank?
       %h3
         = title
         %div.right
           = render(:partial => pages_dropdown) if local_assigns[:pages_dropdown]
-          = pagination_for(pages)
+          = pagination_for(pages, :method => 'get')
     - else
       = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
 
@@ -22,7 +25,6 @@
   %footer
     - if defined?(pagination_link) && pagination_link.present?
       %span.pagination
-        = pagination_link
+       = pagination_for(pages, :method => 'get')
     - else
-      = pagination_for(pages)
-
+      = pagination_for(pages, :method => 'get')

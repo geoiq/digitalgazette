@@ -46,14 +46,6 @@ class SearchController < ApplicationController
 
   end
 
-  # mix in instance variables from the external api
-  def get_external_results
-    if @tags
-      Geocommons::RestAPI::Overlay.paginate_by_tag(*@tags)
-    else
-      Geocommons::RestAPI::Overlay.paginate(:query => @path.arg_for("text"))
-    end
-  end
 
   # separate by page types into instance variables
   # NOTE not used anymore, because we get the pages each via ajax
@@ -136,4 +128,14 @@ class SearchController < ApplicationController
       @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
     end
   end
+
+  # mix in instance variables from the external api
+  def get_external_results
+    if @tags
+      Geocommons::RestAPI::Overlay.paginate_by_tag(@tags, pagination_params)
+    else
+      Geocommons::RestAPI::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
+    end
+  end
+
 end

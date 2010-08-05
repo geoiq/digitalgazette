@@ -35,6 +35,7 @@ class SearchControllerTest < ActionController::TestCase
       get :index, :path => ["type", page_type]
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
+      assert assigns(:pages).total_pages
       assigns(:pages).each do |page|
         assert page.class.name == (page_type+'_page').camelize
       end
@@ -48,6 +49,7 @@ class SearchControllerTest < ActionController::TestCase
       xhr :get, :index, :path => ["type", page_type]
       assert assigns(:page_type) == page_type
       assert assigns(:pages)
+      assert assigns(:pages).total_pages
       assigns(:pages).each do |page|
         assert (page.class.name == (page_type+'_page').camelize)
       end
@@ -74,6 +76,7 @@ class SearchControllerTest < ActionController::TestCase
     xhr :get, :index, :path => ["type", "overlay"]
     assert assigns(:page_type) == "overlay"
     assert assigns(:pages)
+    assert assigns(:pages).total_pages
     # check if any overlays are present
     overlays = true
     assigns(:pages).each do |page|

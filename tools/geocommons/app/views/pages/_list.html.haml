@@ -9,9 +9,9 @@
         = title
         %div.right
           = render(:partial => pages_dropdown) if local_assigns[:pages_dropdown]
-          = pagination_for(pages)
+          = pagination_for(pages, :method => 'get')
     - else
-      = pagination_for(pages) unless local_assigns[:no_top_pagination]
+      = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
 
   - if maps
     = render :partial => '/pages/map', :collection => maps
@@ -19,12 +19,13 @@
     = render(:partial => block_above_pages_list_partial) if local_assigns[:block_above_pages_list_partial]
     = render :partial => '/pages/page', :collection => pages, :locals => page_locals(local_assigns)
   - else
-    -# we might want to display some "no page found" message here
+    %h2
+      = I18n.t(:no_search_results)
 
   %footer
     - if defined?(pagination_link) && pagination_link.present?
       %span.pagination
-        = pagination_link
+        = pagination_for(pages, :method => 'get')
     - else
-      = pagination_for(pages)
+      = pagination_for(pages, :method => 'get')
 
