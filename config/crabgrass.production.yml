@@ -1,6 +1,3 @@
-
-
-
 #
 # This is the main global crabgrass configuration.
 #
@@ -21,8 +18,7 @@ enabled_languages:
   - fr
 #  - es_ES
 
-text_editor: 1
-
+text_editor: html_preferred
 ##
 ## GLOBAL
 ##
@@ -38,16 +34,16 @@ enabled_tools:
   - core_tools
   - wiki_tool
   - geocommons
-  - event_tool
-  - ranked_vote_tool
-  - rate_many_tool
-  - task_list_tool
-  - survey_tool
+#  - event_tool
+#  - ranked_vote_tool
+#  - rate_many_tool
+#  - task_list_tool
+#  - survey_tool
   - gallery_tool
-#  - external_video_tool
+  - external_video_tool
 #  - announcement_tool
 #  - feed_tool
-  
+
 #email:
 #  delivery_method: :sendmail
 #  smtp_settings:
@@ -65,8 +61,32 @@ enabled_tools:
 sites:
   - name: pakistan
     admin_group: pakistanadmin
-    text_editor: 2
     moderation_group: pakistanmoderation
     translation_group: pakistantranslation
 #  - name: red
 #    admin_group: redadmins
+
+##
+## SITE DEFAULTS
+##
+
+pagination_size: 30
+default_language: en
+enforce_ssl: false
+show_exceptions: false
+email_sender: "robot@$current_host"
+tracking: true
+available_page_types:
+  - AssetPage
+  - EventPage
+  - ExternalVideoPage
+  - TaskListPage
+  - AnnouncementPage
+  - SurveyPage
+  - DiscussionPage
+  - RateManyPage
+  - MessagePage
+  - RankedVotePage
+  - ArticlePage
+  - Gallery
+  - WikiPage

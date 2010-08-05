@@ -1,6 +1,6 @@
 - pages ||= @pages
-- maps ||= @maps
 = render(:partial => heading_partial) if local_assigns[:heading_partial]
+
 %section#pages{:class=> local_assigns[:full_width] ? 'full' : ''}
   %header
     - if local_assigns[:title] && !title.blank?
@@ -12,11 +12,9 @@
     - else
       = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
 
-  - if maps
-    = render :partial => '/pages/map', :collection => maps
   - if pages && pages.any?
     = render(:partial => block_above_pages_list_partial) if local_assigns[:block_above_pages_list_partial]
-    = render :partial => '/pages/page', :collection => pages, :locals => page_locals(local_assigns)
+    = render :partial => '/overlays/overlay', :collection => pages, :locals => page_locals(local_assigns)
   - else
     %h3= I18n.t(:no_search_results)
 

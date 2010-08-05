@@ -25,7 +25,8 @@ Field.focus('login')}}); return false;
 <%- end -%>
 </div><!--#hdrLogin//-->
   <div id="search">
-    <% form_tag(search_url) do %>
+    <% form_tag(search_url()) do %>
+      <%= better_hidden_field :search, :preferred, @page_type %>
     <%= mini_search_text_field_tag %>            	  
     <!-- <input type="text" value="Search" id="txtSearch" name="txtSearch" size="26" /> -->
     <input type="submit" id="btnSearch" value="" />

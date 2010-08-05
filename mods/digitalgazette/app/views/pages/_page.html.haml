@@ -2,7 +2,7 @@
   %div.listing_icon
     = cover_for(page)
   %div.listing_info
-    %a{:href=> page_url(page)}
+    %a{:href=> page_url_for(page)}
       = page.title
     = summary_for(page)
     = notices_for(page) if local_assigns[:with_notice]

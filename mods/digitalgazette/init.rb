@@ -6,8 +6,23 @@ self.load_once = false if RAILS_ENV =~ /development/
 self.override_views = true
 
 require 'digital_gazette/page_extension'
+require 'digital_gazette/better_configuration'
+
 
 Dispatcher.to_prepare do
+
+  #
+  # NOTE this functionality is good for letting mods add
+  #      arguments to PathFinder
+  #
+  # TODO find a good place for it in the core
+  #
+  # NOTE this is the only way to do this? ignore warnings
+  # TODO think about making PATH_KEYWORDS unfrozen in core
+  new_path_keywords = PathFinder::ParsedPath::PATH_KEYWORDS.dup
+  new_path_keywords['preferred'] = 1
+  PathFinder::ParsedPath::PATH_KEYWORDS = new_path_keywords.freeze
+
   module DigitalGazette
 
     module ControllerExtension::WikiPopupExtension
@@ -53,27 +68,27 @@ Dispatcher.to_prepare do
       def self.included(base)
         base.instance_eval do
           skip_before_filter :login_required, :fetch_user, :login_with_http_auth
-          alias_method_chain :render_search_results, :digitalgazette
+          # alias_method_chain :render_search_results, :digitalgazette
         end
       end
 
-      def render_search_results_with_digitalgazette
-        @path.default_sort('updated_at') if @path.search_text.empty?
-        @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
+      # def render_search_results_with_digitalgazette
+      #   @path.default_sort('updated_at') if @path.search_text.empty?
+      #   @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
 
-        # if there was a text string in the search, generate extracts for the results
-        if @path.search_text and @pages.any?
-          begin
-            add_excerpts_to_pages(@pages)
-          rescue Errno::ECONNREFUSED, Riddle::VersionError, Riddle::ResponseError => err
-            RAILS_DEFAULT_LOGGER.warn "failed to extract keywords from sphinx search: #{err}."
-          end
-        end
+      #   # if there was a text string in the search, generate extracts for the results
+      #   if @path.search_text and @pages.any?
+      #     begin
+      #       add_excerpts_to_pages(@pages)
+      #     rescue Errno::ECONNREFUSED, Riddle::VersionError, Riddle::ResponseError => err
+      #       RAILS_DEFAULT_LOGGER.warn "failed to extract keywords from sphinx search: #{err}."
+      #     end
+      #   end
 
-        full_url = search_url + @path
-        handle_rss(:title => full_url, :link => full_url,
-                   :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
-      end
+      #   full_url = search_url + @path
+      #   handle_rss(:title => full_url, :link => full_url,
+      #              :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
+      # end
     end
 
     SearchController.send(:include, SearchControllerExtension)
@@ -119,59 +134,59 @@ Dispatcher.to_prepare do
       def top_menu(label, url, options={})
         id = options.delete(:id)
         menu_heading = content_tag(:span,
-          link_to_active(label, url, options[:active]),
-          :class => 'topnav'
-        )
+                                   link_to_active(label, url, options[:active]),
+                                   :class => 'topnav'
+                                   )
         content_tag(:span,
-          [menu_heading, options[:menu_items]].combine("\n"),
-          :class => ['menu', (options[:active] && 'current')].combine,
-          :id => id
-        )
+                    [menu_heading, options[:menu_items]].combine("\n"),
+                    :class => ['menu', (options[:active] && 'current')].combine,
+                    :id => id
+                    )
       end
 
       def people_option
         top_menu(
-          I18n.t(:menu_people),
-          '/people/directory',
-          :active => @active_tab == :people,
-          :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
-            :entities => current_user.friends.most_active,
-            :heading  => I18n.t(:my_contacts),
-            :see_all_url => people_directory_url(:friends),
-            :submenu => 'people'
-          }),
-          :id => 'menu_people'
-        )
+                 I18n.t(:menu_people),
+                 '/people/directory',
+                 :active => @active_tab == :people,
+                 :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
+                                                                                            :entities => current_user.friends.most_active,
+                                                                                            :heading  => I18n.t(:my_contacts),
+                                                                                            :see_all_url => people_directory_url(:friends),
+                                                                                            :submenu => 'people'
+                                                                                          }),
+                 :id => 'menu_people'
+                 )
       end
 
       def groups_option
         top_menu(
-          I18n.t(:menu_groups),
-          group_directory_url,
-          :active => @active_tab == :groups,
-          :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
-            :entities => current_user.primary_groups.most_active,
-            :heading => I18n.t(:my_groups),
-            :see_all_url => group_directory_url(:action => 'my'),
-            :submenu => 'groups'
-          }),
-          :id => 'menu_groups'
-        )
+                 I18n.t(:menu_groups),
+                 group_directory_url,
+                 :active => @active_tab == :groups,
+                 :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
+                                                                                            :entities => current_user.primary_groups.most_active,
+                                                                                            :heading => I18n.t(:my_groups),
+                                                                                            :see_all_url => group_directory_url(:action => 'my'),
+                                                                                            :submenu => 'groups'
+                                                                                          }),
+                 :id => 'menu_groups'
+                 )
       end
 
       def networks_option
         top_menu(
-          I18n.t(:menu_networks),
-          network_directory_url,
-          :active => @active_tab == :networks,
-          :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
-            :entities => current_user.primary_networks.most_active(@current_site),
-            :heading => I18n.t(:my_networks),
-            :see_all_url => network_directory_url(:action => 'my'),
-            :submenu => 'networks'
-          }),
-          :id => 'menu_networks'
-        )
+                 I18n.t(:menu_networks),
+                 network_directory_url,
+                 :active => @active_tab == :networks,
+                 :menu_items => current_user.is_a?(UnauthenticatedUser) ? [] : menu_items('boxes', {
+                                                                                            :entities => current_user.primary_networks.most_active(@current_site),
+                                                                                            :heading => I18n.t(:my_networks),
+                                                                                            :see_all_url => network_directory_url(:action => 'my'),
+                                                                                            :submenu => 'networks'
+                                                                                          }),
+                 :id => 'menu_networks'
+                 )
       end
 
     end
@@ -245,17 +260,17 @@ Dispatcher.to_prepare do
       def self.included(base)
         base.instance_eval do
           has_many :friends, :through => :relationships, :conditions => "relationships.type = 'Friendship'", :source => :contact do
-          def most_active
-            max_visit_count = find(:first, :select => 'MAX(relationships.total_visits) as id').id || 1
-            select = "users.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
-            find(:all, :limit => 13, :select => select)
+            def most_active
+              max_visit_count = find(:first, :select => 'MAX(relationships.total_visits) as id').id || 1
+              select = "users.*, " + quote_sql([MOST_ACTIVE_SELECT, 2.week.ago.to_i, 2.week.seconds.to_i, max_visit_count])
+              find(:all, :limit => 13, :select => select)
+            end
           end
-        end
         end
       end
     end
 
     User.send(:include, DigitalGazette::UserUsersExtension)
+
   end
 end
-
