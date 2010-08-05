@@ -21,7 +21,7 @@ enabled_languages:
   - fr
 #  - es_ES
 
-text_editor: 1
+text_editor: 3
 
 ##
 ## GLOBAL
