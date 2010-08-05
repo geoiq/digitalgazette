@@ -4,7 +4,7 @@
 module PageHelper
   def cover_for(page)
     if page.cover    
-      thumbnail_img_tag(page.cover, :medium, :scale => '74x96') 
+      thumbnail_img_tag(page.cover, :medium, :scale => '74x96', :plugin => "digitalgazette") 
     else
       image_tag(page.class.name.downcase + ".png", :plugin => "digitalgazette", :alt => "Thumbnail for #{page.class.name}")
     end
