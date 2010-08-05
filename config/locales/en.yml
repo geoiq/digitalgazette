@@ -39,6 +39,8 @@ en:
   dg_overlay_page: "Overlay"
   dg_external_user: "external (GeoCommons)"
 
+  dg_search_header: "Search"
+
   dg_asset: "Report"
   dg_new_asset: "Upload a new Report"
   dg_wiki: "Article"
@@ -54,6 +56,11 @@ en:
   dg_pages_list: "Pages"
 
 
+  dg_wiki_search_header: "What do you want to learn about??"
+  browse_wiki: "or Browse Articles by Topic"
+  dg_asset_search_header: "What kind of Report would you like to find?"
+  browse_asset: "Browse Reports"
+
   dg_box_title: "{{type}}"
   dg_pages_list: "Pages"
   dg_most_recent_page: "Most Recent"
@@ -61,7 +68,7 @@ en:
   how_to_use: "How do I use this?"
   page_search_title: "{{type}}"
   map_page_display: "Map" #otherwise test fails
-
+  map_page_description: "A Map ..."
 
   methodology: "Methodology"
   publisher: "Author(s)"

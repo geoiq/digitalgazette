@@ -1,9 +1,6 @@
 
 module SearchHelper
 
-
-
-
   # wraps certain widgets into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
@@ -60,12 +57,20 @@ module SearchHelper
     page_type ? {:page_type => page_type }.merge!(options) : options
   end
 
+  # returns the search banner and header for given page type
   def banner_and_header_for page_type
     if HEADERS_FOR_PAGE_TYPES[page_type]
       ret = ""
       ret << render(:partial => "pages/#{page_type.underscore}/header")
       ret << render(:partial => 'search/banner', :locals => { :page_type => page_type })
+      ret << content_tag(:div, :id => 'browse') do
+        content_tag(:h4, I18n.t("browse_#{page_type}".to_sym))
+      end
       ret
+    else
+      content_tag(:div, :class => 'pageTitle') do
+        content_tag(:h2, I18n.t(:dg_search_header))
+      end
     end
   end
 end

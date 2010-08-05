@@ -1,6 +1,6 @@
 %div#wikisearch_box
   %div#what_do_you
-    = "What kind of #{page_type} would you like to find?"
+    = I18n.t("dg_#{page_type}_search_header".to_sym)
   %div#search_me
     - form_tag(reports_search_url, :id => "wikiSearch") do
       = hidden_field_tag("search[type]", page_type.underscore.gsub("_page", ""))

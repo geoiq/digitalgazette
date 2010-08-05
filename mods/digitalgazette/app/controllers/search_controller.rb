@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   helper_method :list_partial
 
   include SearchHelper
-  
+
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
@@ -17,7 +17,7 @@ class SearchController < ApplicationController
       render_search_results
     end
   end
-    
+
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags
@@ -40,7 +40,7 @@ class SearchController < ApplicationController
       # TODO clean up this logic, to make it easier to use different partials
       # list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@dom_id}"))}
+        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@dom_id}")), :no_top_pagination => true}
       end
     end
 
