@@ -43,8 +43,8 @@ en:
   dg_wiki: "Article"
   dg_map: "Map"
   dg_overlay: "Overlay"
-  dg_recent: "Most Recent"
-  dg_most_viewed: "Most Viewed"
+  dg_recent: "MOST RECENT"
+  dg_most_viewed: "MOST VIEWED"
 
   dg_wiki_list: "Wikis"
   dg_overlay_list: "Overlays"
