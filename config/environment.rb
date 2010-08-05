@@ -99,6 +99,10 @@ Rails::Initializer.run do |config|
   # the absolutely required gems
   config.gem 'riseuplabs-greencloth', :lib => 'greencloth'
   config.gem 'riseuplabs-undress', :lib => 'undress/greencloth'
+  
+  config.gem 'nokogiri', :lib => 'nokogiri', :version => '1.4.3.1'
+  config.gem 'azul-undress', :lib => 'undress/greencloth', :version => '0.2.6'
+  
   config.gem 'riseuplabs-uglify_html', :lib => 'uglify_html'
   #config.gem 'rmagick' unless system('dpkg -l librmagick-ruby1.8 2>/dev/null 1>/dev/null')
   #config.gem 'redcloth', :version => '>= 4.0.0'
