@@ -38,6 +38,7 @@ module PageHelper
   #
   # helper to show the information box of a page
   #
+  # TODO clean up this method!
   def page_information_box_for(page, options={})
     locals = {:page => page}
 
@@ -47,6 +48,7 @@ module PageHelper
     status    = is_new ? I18n.t(:page_list_heading_updated) : I18n.t(:page_list_heading_new)
     if external?(page)
       username = I18n.t(:dg_external_user) #page.updated_by #TODO GC gives us strange users
+      locals.merge!(:tags => (page.tags))
     else
       username = link_to_user(page.updated_by_login)
     end   
@@ -60,6 +62,8 @@ module PageHelper
         locals.merge!(:stars_count => content_tag(:span, "%s %s" % [star_icon, page.stars_count]))
       end
       locals.merge!(:contributors =>  content_tag(:span, "%s %s" % [image_tag('ui/person-dark.png'), page.stars_count])) if options[:columns].include?(:contributors)
+      
+
     end
 
     render :partial => 'pages/information_box', :locals => locals
@@ -94,9 +98,20 @@ module PageHelper
     html
   end
 
+  # NOTE there must be a better way t combine tags and preferred
+  def tag_path_with_preferred(tag,preferred)
+    if preferred
+      "/search/preferred/#{preferred}/tag/#{tag.downcase}/"
+    else
+      "/search/tag/#{tag.downcase}/"
+    end
+  end 
+  
   def external?(page)
     EXTERNAL_PAGE_TYPES.include?(clean_name_for(page).downcase)
   end
+  
+
   
   
 end
