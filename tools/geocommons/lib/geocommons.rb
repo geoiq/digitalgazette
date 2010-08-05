@@ -52,6 +52,10 @@ module Geocommons
         end
       end
 
+      def id
+        overlay_id
+      end
+      
       def cover
         if icon
           file = open(icon)
@@ -71,6 +75,14 @@ module Geocommons
         created.to_datetime
       end
 
+      def updated_by
+        contributor ? contributor : author 
+      end
+      
+      def created_by
+        author || ""
+      end
+      
       def icon
         icon_path
       end
@@ -79,6 +91,10 @@ module Geocommons
         name && !name.empty? ? name : description.truncate(30)
       end
 
+      def url
+        detail_link
+      end
+      
       class << self
         def paginate_by_tag(tags, options = {})
           condition = options[:condition] ? options.delete(:condition) : "or"

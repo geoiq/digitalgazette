@@ -37,6 +37,7 @@ en:
   dg_asset_page_header: "Welcome to the Reports Library"
   dg_map_page: "Map"
   dg_overlay_page: "Overlay"
+  dg_external_user: "external (GeoCommons)"
 
   dg_asset: "Report"
   dg_new_asset: "Upload a new Report"
