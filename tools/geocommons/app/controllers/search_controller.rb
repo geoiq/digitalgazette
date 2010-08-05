@@ -1,11 +1,11 @@
 class SearchController < ApplicationController
 
-protected
+  protected
   def render_search_results2
     @path.default_sort('updated_at') if @path.search_text.empty?
     @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params)))
 
-    @maps, @tags = Map.search(params)
+    @maps, @tags = MapPage.search(params)
 
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
@@ -20,6 +20,5 @@ protected
     handle_rss :title => full_url, :link => full_url
       # ,:image => avatar_url(:id => @user.avatar_id||0, :size => 'huge')
   end
-
 
 end
