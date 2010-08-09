@@ -8,7 +8,7 @@
 <%- else -%>
 <h2><%# @map["title"] %></h2>
 <div class="geocommons_map" id="maker_map_<%= @map_id %>" style="height: 100%;"></div><br/>
- <script type="text/javascript" charset="utf-8" src="http://maker.digitalgazette.org/javascripts/embed.js"></script>
+ <script type="text/javascript" charset="utf-8" src="<%=MAP::SHOW%>"></script>
 <script type="text/javascript" charset="utf-8">
   Maker.maker_host='http://maker.digitalgazette.org';Maker.finder_host='http://finder.digitalgazette.org';Maker.core_host='http://core.digitalgazette.org';
   Maker.load_map("maker_map_<%= @map_id %>", "<%= @map_id %>");

@@ -11,3 +11,8 @@ PageClassRegistrar.add(
   :class_group => 'planning',
   :order => 4
 )
+
+
+# TODO move to mod digitalgazette or tools geocommons
+GEOCOMMONS_HOST = "finder.digitalgazette.org"
+GEOCOMMONS_IFRAME = "maker.digitalgazette.org"

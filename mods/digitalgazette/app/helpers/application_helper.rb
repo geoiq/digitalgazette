@@ -1,5 +1,27 @@
 module ApplicationHelper
 
+  
+  
+  # used for api links
+  # TODO this is more or less a dummy used only for digitalgazette
+  def from_api model, action, param=nil
+    raise "nothing else than maps are supported here" unless model == :map
+    case action
+    when :new
+      "#{API::MAP::MAKER::NEW}"
+    when :show
+      render :partial => 'maps/embed', :locals => { 
+        :host => API::MAP::HOST
+      }
+
+    when :edit
+     raise "params[:id] reqiored for action :edit" unless param
+     "#{API::MAP::MAKER::EDIT.first}#{param}#{API::MAP::MAKER::EDIT.last}"
+    else
+      raise "unsupported api call"
+    end
+  end
+  
   def page_line page, &block
     "<li class='small_icon #{page.icon}%>_16'>#{yield}</li>"
   end

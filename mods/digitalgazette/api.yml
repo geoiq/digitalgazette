@@ -1,0 +1,20 @@
+map:
+  host: digitalgazette.org
+  maker: maker
+  finder: finder
+  core: core
+  prefix: http://
+  maker_embed: javascripts/embed.js
+
+maker:
+  new: http://maker.digitalgazette.org/maps/new?embed=true
+  show: 
+    embed: http://maker.digitalgazette.org/javascripts/embed.js 
+    maker_host: http://maker.digitalgazette.org
+    finder_host: http://finder.digitalgazette.org
+    core_host: http://core.digitalgazette.org
+  edit: 
+    - http://maker.digitalgazette.org/maps/
+    - /edit?embed=true
+  index:
+    - 
