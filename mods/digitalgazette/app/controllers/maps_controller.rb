@@ -1,8 +1,10 @@
 class MapsController < ApplicationController
 
+  before_filter :enable_api
+  
   def index
     params[:query] = "*" unless params.include?("query")
-    @maps, @tags = MapPage.search(params)
+    @maps, @tags = MapPage.search(params) # FIXME @tags will be overridden in the next line
     @popular, @tags = MapPage.search(:query => "*", :limit => 50)
   end
 
@@ -24,4 +26,11 @@ class MapsController < ApplicationController
   end
   def edit
   end
+  
+  protected
+  
+  def enable_api
+    @api = api_for(:map)
+  end
+  
 end
