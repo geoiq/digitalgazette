@@ -35,18 +35,14 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
     assert_kind_of Geocommons::RestAPI::Overlay, @overlay.find.first
   end
 
-  # NOTE: tests def find
-  def test_find
-    
-  end
-  
-  def test_paginate
-    
-  end
   
   # FIXME 'not sure if :conditions => 'and' has any effect, but that's not a problem right now, we just won't use it
   def test_paginate_by_tag
-    assert @overlay.paginate_by_tag("police","social").size >= @overlay.paginate_by_tag("police","social", :conditions => "and").size, "there should be not more social policemen than policemen and societies"
+    assert results = @overlay.paginate_by_tag("police","social").size >= @overlay.paginate_by_tag("police","social", :conditions => "and").size, "there should be not more social policemen than policemen and societies"
+    results.each do |result|
+      assert  (result.tags.include?("social") and result.tags.include?("police"))
+    end
+    
   end
   
 end
