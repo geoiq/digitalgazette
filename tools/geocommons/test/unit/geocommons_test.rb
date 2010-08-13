@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'test/unit'
-require '../lib/geocommons'
+require File.dirname(__FILE__) + '/../../lib/geocommons'
 require 'json'
 
 GEOCOMMONS_HOST = "finder.digitalgazette.org"
@@ -11,7 +11,7 @@ class GeocommonsTest < Test::Unit::TestCase
   def setup
     @api = Geocommons::RestAPI
   end
-  
+
   def test_find
     assert_not_nil result = @api.find, ".find should return something"
     assert_kind_of Hash, result, "The result should be a Hash"
@@ -20,6 +20,6 @@ class GeocommonsTest < Test::Unit::TestCase
     assert result.keys[2] == "entries", "the third key should be entries"
     assert result.keys[3] == "next", "the forth key should be next"
   end
-  
-  
+
+
 end
