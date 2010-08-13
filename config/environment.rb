@@ -169,5 +169,3 @@ Conf.available_page_types = PAGES.keys if Conf.available_page_types.empty?
 
 Haml::Template.options[:format] = :html5
 
-# TODO move to mod digitalgazette or tools geocommons
-GEOCOMMONS_HOST = "finder.digitalgazette.org"
