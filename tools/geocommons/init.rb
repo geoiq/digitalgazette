@@ -1,7 +1,7 @@
 # Include hook code here
 
 self.load_once = false if RAILS_ENV =~ /development/
-self.override_views = true
+#self.override_views = true
 
 
 PageClassRegistrar.add(
@@ -11,3 +11,8 @@ PageClassRegistrar.add(
   :class_group => 'planning',
   :order => 4
 )
+
+
+# TODO move to mod digitalgazette or tools geocommons
+GEOCOMMONS_HOST = "finder.digitalgazette.org"
+GEOCOMMONS_IFRAME = "maker.digitalgazette.org"

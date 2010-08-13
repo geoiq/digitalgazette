@@ -1,0 +1,36 @@
+map:
+  maker: http://maker.digitalgazette.org
+  finder: http://finder.digitalgazette.org
+  core: http://maker.digitalgazette.org
+  embed: http://maker.digitalgazette.org/javascripts/embed.js
+
+
+
+
+  # actions:
+  #   index:
+  #     container:
+  #       id: maker_map
+  #       class: "span-24", "geocommons_map"
+  #     script:
+  #       embed: true
+  #   edit:
+  #     container:
+  #       id:
+  #       class:
+  #     script:
+  #       embed: true
+  #       configure:
+
+# maker:
+#   new: http://maker.digitalgazette.org/maps/new?embed=true
+#   show:
+#     embed: http://maker.digitalgazette.org/javascripts/embed.js
+#     maker_host: http://maker.digitalgazette.org
+#     finder_host: http://finder.digitalgazette.org
+#     core_host: http://maker.digitalgazette.org
+#   edit:
+#     - http://maker.digitalgazette.org/maps/
+#     - /edit?embed=true
+#   index:
+#     -

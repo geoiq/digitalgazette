@@ -14,6 +14,7 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
+      #debugger
       render_search_results
     end
   end
@@ -137,8 +138,5 @@ class SearchController < ApplicationController
       Geocommons::RestAPI::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
     end
   end
-
-
-
 
 end

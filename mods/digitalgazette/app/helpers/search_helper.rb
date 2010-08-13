@@ -38,9 +38,12 @@ module SearchHelper
   def widget_for page_type, options={}
     options = options_for_widget(page_type, options)
     widget_id = options[:dom_id] || "#{page_type}_list"
+    @path = @path.remove_keyword("type") if page_type
+    path = @path.to_param
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
-      javascript_tag(remote_function({ :url => search_url, :method => 'get', :with => "'#{options.to_param}'"}))+spinner(widget_id, :show => true)
+      # @path.set_keyword('type', options[:page_type])
+      javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(widget_id, :show => true)
     end
     ret
   end
