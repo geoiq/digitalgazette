@@ -10,7 +10,6 @@ class MapsController < ApplicationController
 
   def show
     @maps, @tags = MapPage.search(:pk => params[:id])
-    debugger
     @map = @maps.first
     @map_id = params[:id]
   end

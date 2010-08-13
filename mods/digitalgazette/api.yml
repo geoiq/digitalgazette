@@ -1,8 +1,8 @@
 map:
-  maker: maker
-  finder: finder
-  core: core
-  embed: javascripts/embed.js
+  maker: http://maker.digitalgazette.org
+  finder: http://finder.digitalgazette.org
+  core: http://maker.digitalgazette.org
+  embed: http://maker.digitalgazette.org/javascripts/embed.js
 
 
 
@@ -13,24 +13,24 @@ map:
   #       id: maker_map
   #       class: "span-24", "geocommons_map"
   #     script:
-  #       embed: true 
+  #       embed: true
   #   edit:
   #     container:
-  #       id: 
-  #       class: 
+  #       id:
+  #       class:
   #     script:
   #       embed: true
-  #       configure: 
+  #       configure:
 
 # maker:
 #   new: http://maker.digitalgazette.org/maps/new?embed=true
-#   show: 
-#     embed: http://maker.digitalgazette.org/javascripts/embed.js 
+#   show:
+#     embed: http://maker.digitalgazette.org/javascripts/embed.js
 #     maker_host: http://maker.digitalgazette.org
 #     finder_host: http://finder.digitalgazette.org
-#     core_host: http://core.digitalgazette.org
-#   edit: 
+#     core_host: http://maker.digitalgazette.org
+#   edit:
 #     - http://maker.digitalgazette.org/maps/
 #     - /edit?embed=true
 #   index:
-#     - 
+#     -

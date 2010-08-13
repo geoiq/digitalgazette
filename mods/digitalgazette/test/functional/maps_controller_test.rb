@@ -34,7 +34,7 @@ class MapsControllerTest < ActionController::TestCase
     end
 
     context "show" do
-      setup { get :show, :id => MapPage.first.id}
+      setup { get :show, :id => 76}
       should "render the right template" do
         assert_template "maps/show"
       end
@@ -68,6 +68,11 @@ class MapsControllerTest < ActionController::TestCase
 
       should "render the right template" do
         assert_template "maps/all"
+      end
+
+      should "get tags and maps" do
+        assert assigns(:maps), "should assign @maps"
+        assert assigns(:tags), "should assign @tags"
       end
 
 

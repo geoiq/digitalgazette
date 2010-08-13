@@ -4,7 +4,8 @@ module DigitalGazette
     attr :name
     def initialize name
       @name = name
-      @@api_conf ||= YAML.load(File.read("#{RAILS_ROOT}/mods/digitalgazette/api.yml"))
+
+      @@api_conf ||= YAML.load(File.read(File.dirname(__FILE__) + "/../../api.yml"))
       @@api_conf[name.to_s].each_pair do |k,v|
         Api.class_eval do
           attr k.to_sym
