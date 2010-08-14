@@ -7,7 +7,7 @@ self.override_views = true
 
 require 'digital_gazette/page_extension'
 require 'digital_gazette/better_configuration'
-
+require 'path_finder/parsed_path'
 
 Dispatcher.to_prepare do
 
@@ -271,6 +271,8 @@ Dispatcher.to_prepare do
     end
 
     User.send(:include, DigitalGazette::UserUsersExtension)
+
+    PathFinder::ParsedPath.send(:include, PathFinder::ParsedPathExtension)
 
   end
 end
