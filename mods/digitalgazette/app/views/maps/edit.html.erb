@@ -3,6 +3,6 @@
 #holder {width: 100%;}
 </style>
 
-<iframe src="http://digitalgazette.vm/maker/maps/<%= params[:id] %>/edit?embed=true" width="100%" height="500px" scrolling="no"></iframe>
+<iframe src="<%=api_link(:map,:edit,params[:id])" width="100%" height="500px" scrolling="no"></iframe>
 
 <%= render :partial => "maps/action_buttons" %>

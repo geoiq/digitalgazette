@@ -1,5 +1,8 @@
+require 'rubygems'
+require 'will_paginate'
 require 'net/http'
 require 'json'
+
 
 # FIXME this sucks in the unit tests!
 # unless defined?(GEOCOMMONS_HOST)
@@ -17,13 +20,26 @@ require 'json'
       #   pager.replace found
       # end
 
-require 'external_page'
+
+
+require File.dirname(__FILE__) + '/external_page'
+require File.dirname(__FILE__) + '/../../../mods/digitalgazette/lib/digital_gazette/api'
 module Geocommons
   class RestAPI
 
+    def self.load_api
+      @api = YAML.load(F)
+    end
+
+
     def self.find(options={})
+      raise "FIXME cannpt run without mods/digitalgazette right now" unless defined?(DigitalGazette)
+      raise "finder must be defined in mods/digitalgazette/api.yml" unless DigitalGazette::Api.new(:map).finder
+
       options[:limit] ||= options[:per_page]
-      Net::HTTP.start(GEOCOMMONS_HOST) do |http|
+      # TODO don't use :map here - invent :general and separate by model
+      uri = URI.parse(DigitalGazette::Api.new(:map).finder.to_s)
+      Net::HTTP.start(uri.host) do |http|
         query = options.each_pair.map { |(k, v)| [k, URI.encode(v.to_s)].join('=') }.join('&')
         path = "/finder/searches.json?#{query}"
         request = Net::HTTP::Get.new(path)
@@ -55,7 +71,7 @@ module Geocommons
       def id
         overlay_id
       end
-      
+
       def cover
         if icon
           file = open(icon)
@@ -76,13 +92,13 @@ module Geocommons
       end
 
       def updated_by
-        contributor ? contributor : author 
+        contributor ? contributor : author
       end
-      
+
       def created_by
         author || ""
       end
-      
+
       def icon
         icon_path
       end
@@ -94,9 +110,10 @@ module Geocommons
       def url
         detail_link
       end
-      
+
       class << self
         def paginate_by_tag(tags, options = {})
+
           condition = options[:condition] ? options.delete(:condition) : "or"
           condition = " "+condition+" "
           separator = "tag:"
