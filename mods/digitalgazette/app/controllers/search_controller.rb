@@ -59,15 +59,6 @@ class SearchController < ApplicationController
   #   debugger
   # end
 
-  # TODO think about doing this with path finder internals
-  def default_page_types_path
-    merge_path = []
-    (SEARCHABLE_PAGE_TYPES - EXTERNAL_PAGE_TYPES).each do |page_type|
-      merge_path << "type/#{page_type}"
-    end
-    merge_path.join('/or/')
-  end
-
   # add to the path
   def prefix_path
     path = []
@@ -125,9 +116,19 @@ class SearchController < ApplicationController
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
     else
-      @path.merge!(default_page_types_path)
+      # TODO we only add default_page_types_path to the path, because ParsedPath.merge currently throws out OR-Conditions
+      @path = PathFinder::ParsedPath.new(@path + default_page_types_path) unless @path.arg_for('type')
       @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
     end
+  end
+
+  # TODO think about doing this with path finder internals
+  def default_page_types_path
+    merge_path = []
+    (SEARCHABLE_PAGE_TYPES - EXTERNAL_PAGE_TYPES).each do |page_type|
+      merge_path << "type/#{page_type}"
+    end
+    PathFinder::ParsedPath.new(merge_path.join('/or/'))
   end
 
   # mix in instance variables from the external api
