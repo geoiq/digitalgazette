@@ -14,5 +14,5 @@ PageClassRegistrar.add(
 
 
 # TODO move to mod digitalgazette or tools geocommons
-GEOCOMMONS_HOST = "finder.digitalgazette.org"
-GEOCOMMONS_IFRAME = "maker.digitalgazette.org"
+GEOCOMMONS_HOST = "digitalgazette.vm"
+GEOCOMMONS_IFRAME = "digitalgazette.vm/maker"

@@ -11,7 +11,7 @@
 <div class="geocommons_map" id="maker_map_<%= @map_id %>" style="height: 100%;"></div><br/>
  <script type="text/javascript" charset="utf-8" src="<%=@api.embed%>"></script>
 <script type="text/javascript" charset="utf-8">
-  Maker.maker_host='<%=@api.maker_host%>';Maker.finder_host='<%=@api.finder_host%>';Maker.core_host='<%=@api.core_host%>';
+  Maker.maker_host='<%=@api.maker%>';Maker.finder_host='<%=@api.finder%>';Maker.core_host='<%=@api.core%>';
   Maker.load_map("maker_map_<%= @map_id %>", "<%= @map_id %>");
 </script>
 

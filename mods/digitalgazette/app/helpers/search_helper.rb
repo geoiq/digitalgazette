@@ -38,7 +38,8 @@ module SearchHelper
   def widget_for page_type, options={}
     options = options_for_widget(page_type, options)
     widget_id = options[:dom_id] || "#{page_type}_list"
-    @path = @path.remove_keyword("type") if page_type
+    logger.info @path.inspect
+    @path = @path.remove_keyword("type") if page_type && @path.respond_to?("remove_keyword")
     path = @path.to_param
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
