@@ -116,8 +116,7 @@ class SearchController < ApplicationController
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
     else
-      # TODO we only add default_page_types_path to the path, because ParsedPath.merge currently throws out OR-Conditions
-      @path = PathFinder::ParsedPath.new(@path + default_page_types_path) unless @path.arg_for('type')
+      @path = PathFinder::ParsedPath.new((@path + default_page_types_path).to_param) unless @path.arg_for('type')
       @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
     end
   end
