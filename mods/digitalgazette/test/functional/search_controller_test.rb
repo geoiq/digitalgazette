@@ -92,7 +92,7 @@ class SearchControllerTest < ActionController::TestCase
     assert assigns(:path).arg_for('text')
     assert assigns(:pages).any?, "should find a page"
     assert assigns(:pages).total_pages
-    # TODO: check what this tag is actually trying to solve?
+    # TODO: check what this test is actually trying to solve?
     #assert_not_nil assigns(:pages)[0].flag[:excerpt], "should generate an excerpt"
   end
 
