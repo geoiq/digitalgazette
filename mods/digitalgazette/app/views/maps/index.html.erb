@@ -4,10 +4,9 @@
 </style>
 <div class="geocommons_map" class="span-24" id="maker_map" >
 </div><br/>
-<% geoiq, map_id = ((RAILS_ENV == "development") ? ["f1.local","8"] : ["digitalgazette.org", "159"]) %>
- <script type="text/javascript" charset="utf-8" src="http://maker.<%= geoiq %>/javascripts/embed.js"></script>
+<% geoiq, map_id = ((RAILS_ENV == "development") ? ["f1.local","8"] : ["digitalgazette.vm", "12"]) %> <script type="text/javascript" charset="utf-8" src="http://<%= geoiq %>/maker/javascripts/embed.js"></script>
 <script type="text/javascript" charset="utf-8">
-Maker.maker_host='http://maker.<%= geoiq %>';Maker.finder_host='http://finder.<%= geoiq %>';Maker.core_host='http://core.<%= geoiq %>';
+Maker.maker_host='http://<%= geoiq %>/maker';Maker.finder_host='http://<%= geoiq %>/finder';Maker.core_host='http://<%= geoiq %>/core';
   Maker.load_map("maker_map", <%= map_id %>);
 </script>
 

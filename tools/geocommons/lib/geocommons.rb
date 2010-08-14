@@ -25,7 +25,7 @@ module Geocommons
       options[:limit] ||= options[:per_page]
       Net::HTTP.start(GEOCOMMONS_HOST) do |http|
         query = options.each_pair.map { |(k, v)| [k, URI.encode(v.to_s)].join('=') }.join('&')
-        path = "/searches.json?#{query}"
+        path = "/finder/searches.json?#{query}"
         request = Net::HTTP::Get.new(path)
         response = http.request(request)
         if response.kind_of?(Net::HTTPOK)

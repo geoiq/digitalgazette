@@ -199,7 +199,7 @@ ul.action-buttons {
     margin: 0;
 }
 #intro-map {
-    background-image: url("/plugin_assets/digitalgazette/images/pakistan_satellite.jpg");
+    background-image: url("/plugin_assets/digitalgazette/images/satellite.jpg");
     width: 520px;
     height: 400px;
 }

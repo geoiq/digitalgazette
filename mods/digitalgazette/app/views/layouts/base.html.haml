@@ -2,7 +2,7 @@
 %html{:dir=>language_direction}
   = render :partial => '/layouts/base/head'
   %body{:class=>language_direction}
-    =render :partial => 'layouts/base/feedback' unless RAILS_ENV == "development"
+    =#render :partial => 'layouts/base/feedback' unless RAILS_ENV == "development"
  
     #wrapper
       #content_wrapper

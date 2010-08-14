@@ -100,7 +100,7 @@ Rails::Initializer.run do |config|
   config.gem 'riseuplabs-greencloth', :lib => 'greencloth'
   config.gem 'riseuplabs-undress', :lib => 'undress/greencloth'
   
-  config.gem 'nokogiri', :lib => 'nokogiri', :version => '1.4.3.1'
+#  config.gem 'nokogiri', :lib => 'nokogiri', :version => '1.4.3.1'
 #  config.gem 'azul-undress', :lib => 'undress/greencloth', :version => '0.2.6'
   config.gem 'suung-undress', :lib => 'undress/greencloth', :version => '0.2.4'
  
@@ -175,4 +175,4 @@ Conf.available_page_types = PAGES.keys if Conf.available_page_types.empty?
 Haml::Template.options[:format] = :html5
 
 # TODO move to mod digitalgazette or tools geocommons
-GEOCOMMONS_HOST = "finder.digitalgazette.org"
+GEOCOMMONS_HOST = "digitalgazette.vm"

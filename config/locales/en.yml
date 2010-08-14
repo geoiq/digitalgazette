@@ -3,7 +3,7 @@ en:
   ## Digital Gazette
   ##
   developers_invited: "Developers Invited"
-  venture_of: "A Venture of"
+  venture_of: "A Venture of FortiusOne GeoCommons and MindTel"
   who_we_are: "Who is involved"
   how_to_use: "How to use this"
   what_is_this: "What is this"
@@ -11,7 +11,7 @@ en:
   reports: "Reports"
   about_reports: "Learn more and be informed on the region by reading our in-house reports on subjects such as land use and education."
   browse_reports: "Browse through the collection by:"
-  about_wiki: "Add to the growing base of user-uploaded content on a range of topics relating to the North West Frontier Province of Pakistan."
+  about_wiki: "Add to the growing base of user-uploaded content on a range of topics relating to Afghanistan."
   browse_wiki: "Read and contribute to subjects like:"
   social_influence: "Social Influence"
   religious_influence: "Religious Influence"
@@ -57,7 +57,7 @@ en:
   dg_search: "Search"
 
 
-  dg_wiki_search_header: "What do you want to learn about??"
+  dg_wiki_search_header: "What do you want to learn about?"
   browse_wiki: "or Browse Articles by Topic"
   dg_asset_search_header: "What kind of Report would you like to find?"
   browse_asset: "Browse Reports"

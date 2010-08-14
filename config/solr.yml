@@ -10,8 +10,8 @@ test:
   url: http://localhost:8982/solr
   
 production:
-  url: http://localhost:8983/solr
+  url: http://localhost:8982/solr
   
 appliance:
-  url: http://localhost:8983/solr
+  url: http://localhost:8982/solr
   
