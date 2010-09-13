@@ -1,0 +1,137 @@
+#
+# What we did so far
+# 
+
+#
+# CONSTANTS
+
+PATHS_FOR_BOXES
+SEARCHABLE_PAGE_TYPES
+
+
+
+
+# Helpers
+#
+
+# ApplicationHelper
+
+* a simple page line
+* a deprecated better_hidden_field
+
+# PageHelper
+
+* page_url_for
+** returns the internal api - url if an external page or the normal url
+* clean_name_for
+** used to clean API - namespaces
+* PATCHED page_information_box_for
+** TODO add better user handling
+* PATCHED notices_for
+** same as page_information_box_for
+* PATCHED page_notice_message
+** same as above
+* tag_path_with_preffered
+** search for one tag with a prefered page type
+
+* external?
+** general helper to find out if a page is external
+
+# SearchHelper
+#
+# NOTE: here is the basic ui magic
+
+* box_for
+** creates a DG labeled box
+** TODO refactor out css
+
+* dynamic_widgets
+** orders the widgets with the preferred widget on top
+
+* widget_for
+** returns a widget for a certain page_type with or without pagination
+** takes a dom_id to identifiy the widget
+** adds the spinner to the boxes
+** passes the options with the page type through
+** TODO create non-js default behaviour
+
+* widgets_for
+** returns various widgets
+
+#
+# CONTROLLERS
+
+# SearchController
+
+* index
+** CAUGHT 'preferred' from the path
+** TODO move this into a before-filter
+
+* render_search_results
+** loads all the options, our system takes:
+*** > get_options, get_pages
+** NOTE here is the xhr - response to queries
+*** the @dom_id from the widget
+* split_by_page_type
+** NOTE: not used
+** attempt to bring several pagetypes into one array
+
+* prefix_path
+** Add something to the path withour doubles
+** TODO somewhere else
+
+* list_partial
+** allows intelligent wrapping of search-list-UI
+** uses constants: 
+*** BOX_PARTIALS[@widget]
+*** PAGE_TYPE_PARTIALS[@page_type]
+*** LEGAL_PARTIALS[@wrapper]
+
+* get_options
+** get page_types, dom_id, @diget, @wrapper and @tags
+
+* get_dom_id
+** returns a default dom id if none given
+
+* get_page_types
+** NOTE this handles the main search logic
+** if no type in the path, returns all
+** else only the selected ones
+** sets also the default page_type
+
+* get_pages
+** NOTE: here are external resources recognized
+
+* get_external_results
+** Calls the GeoCommons - Overlay API
+** TODO generalize this and use it also for maps
+
+# BETTER CONFIGURATION
+
+contains some constans
+
+PATHS_FOR_BOXES
+HEADERS_FOR_PAGE_TYPES
+SEARCHABLE_PAGE_TYPES
+EXTERNAL_PAGE_TYPES
+LEGAL_PARTIALS
+PAGETYPE_PARTIALS
+BOX_PARTIALS
+
+# API - Wrapping
+
+/tools/gc/lib/external_page.rb
+* empty mother class for the future external page
+
+/tools/gc/lib/geocommons.rb
+* GeoCommons::RestAPI
+** adds the finder to the model
+** searches at geocommons_host via json
+
+* Overlay
+** subclass of ExternalPage
+** has a whitelist vor VALIDATTRIBTES
+** maps to the internal interface of the GeoCommons::Overlay
+** NOTE here lies the magic, that Overlay acts as a page
+** allowes pagination, count etc
+** TODO allow a generalized api-specification
