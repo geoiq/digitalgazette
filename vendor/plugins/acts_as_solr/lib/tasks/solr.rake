@@ -9,8 +9,10 @@ namespace :solr do
   desc 'Starts Solr. Options accepted: RAILS_ENV=your_env, PORT=XX. Defaults to development if none.'
   task :start do
     begin
-      n = Net::HTTP.new('localhost', SOLR_PORT)
-      n.request_head('/').value 
+      Net::HTTP.start('localhost', SOLR_PORT) do |n|
+        n.request_head('/').value
+      end
+
 
     rescue Net::HTTPServerException #responding
       puts "Port #{SOLR_PORT} in use" and return
@@ -30,13 +32,13 @@ namespace :solr do
       end
     end
   end
-  
+
   desc 'Stops Solr. Specify the environment by using: RAILS_ENV=your_env. Defaults to development if none.'
   task :stop do
     fork do
       file_path = "#{SOLR_PATH}/tmp/#{ENV['RAILS_ENV']}_pid"
       if File.exists?(file_path)
-        File.open(file_path, "r") do |f| 
+        File.open(file_path, "r") do |f|
           pid = f.readline
           Process.kill('TERM', pid.to_i)
         end
@@ -48,7 +50,7 @@ namespace :solr do
       end
     end
   end
-  
+
   desc 'Remove Solr index'
   task :destroy_index do
     raise "In production mode.  I'm not going to delete the index, sorry." if ENV['RAILS_ENV'] == "production"

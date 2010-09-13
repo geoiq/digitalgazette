@@ -1,6 +1,5 @@
 class MapsController < ApplicationController
-
-  before_filter :enable_api
+  helper GeocommonsHelper
 
   def index
     params[:query] = "*" unless params.include?("query")
@@ -26,11 +25,4 @@ class MapsController < ApplicationController
   end
   def edit
   end
-
-  protected
-
-  def enable_api
-    @api = api_for(:map)
-  end
-
 end

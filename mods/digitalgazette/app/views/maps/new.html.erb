@@ -1,5 +1,5 @@
 <style>#maker_map_<%= @map_id %> {width: 100%; height: 400px;}</style>
 
-<iframe src="<%=@api.maker%>/maps/new?embed=true" width="100%" height="800px" scrolling="no"></iframe>
+<%= geocommons_make_iframe '/maps/new', :width => "100%", :height => "800px", :scrolling => "no" %>
 
 <%= render :partial => "maps/action_buttons" %>

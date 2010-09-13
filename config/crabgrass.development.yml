@@ -40,10 +40,10 @@ enabled_tools:
 #  - task_list_tool
 #  - survey_tool
   - gallery_tool
-#  - external_video_tool
+  - external_video_tool
 #  - announcement_tool
 #  - feed_tool
-  
+
 #email:
 #  delivery_method: :sendmail
 #  smtp_settings:
