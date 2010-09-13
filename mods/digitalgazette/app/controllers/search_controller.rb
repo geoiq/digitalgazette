@@ -19,6 +19,7 @@ class SearchController < ApplicationController
     end
   end
 
+  
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags

@@ -1,7 +1,16 @@
 
 module SearchHelper
 
-  # wraps certain widgets into a box
+  
+  # provides a panel for more than one widget
+  # for more than one pagetypes
+  #
+  # adds pagination for the whole panel
+  def panel_for
+  end
+  
+  
+  # wraps one into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
