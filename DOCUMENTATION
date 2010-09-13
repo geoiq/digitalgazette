@@ -135,3 +135,21 @@ BOX_PARTIALS
 ** NOTE here lies the magic, that Overlay acts as a page
 ** allowes pagination, count etc
 ** TODO allow a generalized api-specification
+
+# PATHFinder
+lib/digitalgazette/path_finder
+
+#ParsedPath
+* next
+* previous
+* remove_keyword
+* NOTE this is used to have stricter control over the path
+
+#ParsedPathExtension
+* the same
+* TODO clean!
+
+# DigitalGazette::API
+* used to have a simpler interface on the implementation details of the interface
+* TODO combine with the REST API ?
+* TODO generalize
