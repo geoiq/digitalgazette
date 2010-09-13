@@ -17,7 +17,7 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
                             can_download published icon_path id contributor
                             tags layer_size link description source bbox
                             created overlay_id detail_link)
-      @overlay = Geocommons::RestAPI::Overlay
+      @overlay = Geocommons::Overlay
   end
 
   def test_valid_attributes
@@ -32,7 +32,7 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
   # NOTE tests: def _find
   def test__find
     assert ! @overlay.find.empty?, "there should be some overlays, if the server is well configured"
-    assert_kind_of Geocommons::RestAPI::Overlay, @overlay.find.first
+    assert_kind_of Geocommons::Overlay, @overlay.find.first
   end
 
   def test_paginate

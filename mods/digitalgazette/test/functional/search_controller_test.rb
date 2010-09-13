@@ -80,7 +80,7 @@ class SearchControllerTest < ActionController::TestCase
     # check if any overlays are present
     overlays = true
     assigns(:pages).each do |page|
-      assert page.kind_of?(Geocommons::RestAPI::Overlay)
+      assert page.kind_of?(Geocommons::Overlay)
     end
   end
 

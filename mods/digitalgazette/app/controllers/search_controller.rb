@@ -133,9 +133,9 @@ class SearchController < ApplicationController
   # mix in instance variables from the external api
   def get_external_results
     if @tags
-      Geocommons::RestAPI::Overlay.paginate_by_tag(@tags, pagination_params)
+      Geocommons::Overlay.paginate_by_tag(@tags, pagination_params)
     else
-      Geocommons::RestAPI::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
+      Geocommons::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
     end
   end
 
