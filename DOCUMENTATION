@@ -1,6 +1,7 @@
+
 #
 # What we did so far
-# 
+#
 
 #
 # CONSTANTS
@@ -9,7 +10,38 @@ PATHS_FOR_BOXES
 SEARCHABLE_PAGE_TYPES
 
 
+Geocommons Tool
+---------------
 
+* Crabgrass::ExternalPage
+  empty mother class for the future external page
+
+* Geocommons
+** self.config / self.config=
+   configuration accessor (loaded from config/geocommons.yml).
+   Added some validating sugar, so you can use:
+     Geocommons.config(:api, :maker)
+   instead of
+     Geocommons.config[:api][:maker]
+
+** RestAPI
+*** self.find(options)
+    Emits a search query to the GeoCommons Finder API (to /searches.json).
+    The given options Hash is serialized to the URL query string.
+
+** Overlay
+   A page-like model, based on Crabgrass::ExternalPage, utilizing the
+   RestAPI as data backend.
+
+* GeocommonsHelper
+  Common functions to embed GeoCommons view elements.
+** geocommons_maker_iframe(path, html_options={})
+   returns an <iframe/> to embed the geocommons Maker, with the given path (e.g. /maps/new).
+** geocommons_load_map(target, map_id)
+   returns all required <script/> tags to load a Geocommons map into the given target (a DOM id)
+
+* MapPage
+  A Page Type representing a GeoCommons Map
 
 # Helpers
 #
@@ -82,7 +114,7 @@ SEARCHABLE_PAGE_TYPES
 
 * list_partial
 ** allows intelligent wrapping of search-list-UI
-** uses constants: 
+** uses constants:
 *** BOX_PARTIALS[@widget]
 *** PAGE_TYPE_PARTIALS[@page_type]
 *** LEGAL_PARTIALS[@wrapper]
@@ -120,13 +152,6 @@ BOX_PARTIALS
 
 # API - Wrapping
 
-/tools/gc/lib/external_page.rb
-* empty mother class for the future external page
-
-/tools/gc/lib/geocommons.rb
-* GeoCommons::RestAPI
-** adds the finder to the model
-** searches at geocommons_host via json
 
 * Overlay
 ** subclass of ExternalPage
