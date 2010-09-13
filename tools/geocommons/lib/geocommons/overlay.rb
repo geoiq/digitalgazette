@@ -72,7 +72,7 @@ module Geocommons
       end
 
       def _find(options={})
-        RestAPI.find(options.merge(:model => 'Overlay'))
+        Geocommons::RestAPI.find(options.merge(:model => 'Overlay'))
       end
 
       # get a list of overlays. useful options:
