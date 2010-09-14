@@ -6,7 +6,7 @@
   = render :partial => 'pages/list', :locals => {:pages => @pages}
 - else
   = panel_for @preffered, {:wrapper => "sidebar"}
-  = dynamic_widgets @preferred, {:wrapper => "sidebar"}
+    = dynamic_widgets @preferred, {:wrapper => "sidebar", :namespace => "sidebar"}
   = dynamic_widgets @preferred
   = pagination_links_for_widgets(@page_types) if @page_types
 

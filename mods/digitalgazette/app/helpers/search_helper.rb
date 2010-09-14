@@ -1,6 +1,23 @@
-
+require 'will_paginate/collection'
 module SearchHelper
 
+  
+  # EXAMPLE Widget configuration
+  # TODO make widgets globally configured,
+  # that takes the pressure from the methods
+  #
+  #
+  #
+  # define_widget :title do |widget|
+  #   widget.set_title :other_title
+  #   widget.wrapper "funky_title"
+  #   widget.box true
+  #   widget.pagination :all
+  #
+  # TODO create a full litle system, that includes the constants now stored in lib/../better_configuration
+  #
+  #
+  
 
   # NOTE we could use it for every page list
   # but we only need it if we want to loa
@@ -16,25 +33,33 @@ module SearchHelper
   # - page_types # optional, what page_type should be used here
   # - pagination :all, :top, :bottom or nil
   # -
-  def panel_for args
+  def panel_for *args
     options = args.pop if args.last.kind_of?(Hash)
+    page_types = args.first
     options ||={ }
     options.merge!({ :box => false, :pagination => true})
     ret = ""
-    ret << content_tag(:div, :id => options[:id], :class => options[:class]) do
-    pagination_at :top, options
-    if options[:box]
-      args.each do |arg|
-        box_for(arg, options)
-      end
+    
+    if options[:wrapper]
+      container = lambda { render(:partial => LEGAL_PARTIALS[options[:wrapper]]) }
+    else
+      container = lambda { content_tag(:div, :id => options[:id], :class => options[:class]) }
     end
-    panel_pagination_at :bottom, options
+    
+    ret << container.call do
+      pagination_at :top, options
+      if options[:box]
+        args.each do |arg|
+          box_for(arg, options)
+        end
+      end
+      panel_pagination_at :bottom, options
     end
   end
 
   def panel_pagination_at position, options, *args
     if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
-      pagination *args # return to normal pagination
+      pagination_links_for_widgets(args)
     end
   end
 
@@ -43,7 +68,10 @@ module SearchHelper
   # action providing a screen with widgets for
   # all pagetypes
   def pagination_links_for_widgets(widgets)
-#    pagination_links(:path => @path)
+    collection = WillPaginate::Collection.create((params[:page]||1),10,200) do |pager|
+      "#TODO"
+    end
+    pagination_links(collection)
   end
 
 
@@ -83,8 +111,9 @@ module SearchHelper
   # TODO create default behaviour (list partial) for non js
   # :dom_id           - save explicit dom-id
   def widget_for page_type, options={}
+    debugger
     options = options_for_widget(page_type, options)
-    widget_id = options[:dom_id] || "#{page_type}_list"
+    widget_id = id_for_widget
     @path = @path.remove_keyword("type") if page_type
     path = @path.to_param
     ret = ""
@@ -101,6 +130,12 @@ module SearchHelper
     ret
   end
 
+  
+  def id_for_widget(page_type,options)
+    str = options[:dom_id] || "#{page_type}_list"
+    options[:namespace] ? "#{options[:namespace]}_str" : str
+  end
+  
   def widgets_for args, options={ }
     ret = ""
     args.each do |arg|
