@@ -38,9 +38,6 @@ class SearchController < ApplicationController
     end
   end
   
-  # returns the right widget_options to build the query
-  def widget_options(page_type)
-  end
   
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?

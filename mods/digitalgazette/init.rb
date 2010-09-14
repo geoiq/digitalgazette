@@ -35,10 +35,12 @@ Dispatcher.to_prepare do
   WikiController.send(:include, ::DigitalGazette::WikiControllerExtension)
 
   # helpers
+  ApplicationHelper.send(:include, ::DigitalGazette::ApplicationHelperExtension)
   LayoutHelper.send(:include, ::DigitalGazette::LayoutHelperExtension)
   MenuHelper.send(:include, ::DigitalGazette::MenuHelperExtension)
   SearchHelper.send(:include, ::DigitalGazette::SearchHelperExtension)
 
+  
   # models
   Page.send(:include, ::DigitalGazette::PageExtension)
   UnauthenticatedUser.send(:include, ::DigitalGazette::UnauthenticatedUserExtension)
