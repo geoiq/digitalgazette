@@ -11,29 +11,30 @@ Field.focus('login')}}); return false;
     <%= link_to(I18n.t(:profile), '/'+current_user.login) %> |
     <%= link_to_active(I18n.t(:menu_link_account), {:controller => '/me', :action => 'edit'}, @active_tab == :account) %> |
   <%= link_to(I18n.t(:menu_link_logout), :controller => '/account', :action => 'logout') %>
-  <%= "| #{admin_option}" if may_admin_site? -%>
+  <% if may_admin_site? -%>
+    | <%= link_to("Admin", '/admin') %>
+  <% end -%>
   <%- call_hook :top_right_links -%>
-</ul>
-<%- elsif !@login_form_already_rendered -%>
-<% form_tag :controller => 'account', :action => 'login', :id => "frmLogin" do -%>
-<%= hidden_field_tag 'redirect', params[:redirect] || request.request_uri %>
-<%= text_field_tag 'login', '', :size => 10  %>
-<%= password_field_tag 'password', '', :size => 10 %>
-<%= submit_tag I18n.t(:log_in), :id => "btnLogin" %>
-<% end -%>
-<a href="#" class="txtWhite"><%= I18n.t(:forgot_password_link) %></a> | <a href="/account" class="txtWhite"><%= I18n.t(:signup_link) %></a>
+  <%- elsif !@login_form_already_rendered -%>
+  <% form_tag :controller => 'account', :action => 'login', :id => "frmLogin" do -%>
+    <%= hidden_field_tag 'redirect', params[:redirect] || request.request_uri %>
+    <%= text_field_tag 'login', '', :size => 10  %>
+    <%= password_field_tag 'password', '', :size => 10 %>
+    <%= submit_tag I18n.t(:log_in), :id => "btnLogin" %>
+  <% end -%>
+  <a href="#" class="txtWhite"><%= I18n.t(:forgot_password_link) %></a> | <a href="/account" class="txtWhite"><%= I18n.t(:signup_link) %></a>
 <%- end -%>
 </div><!--#hdrLogin//-->
   <div id="search">
     <% form_tag(search_url()) do %>
       <%= better_hidden_field :search, :preferred, @page_type %>
-    <%= mini_search_text_field_tag %>            	  
+    <%= mini_search_text_field_tag %>
     <!-- <input type="text" value="Search" id="txtSearch" name="txtSearch" size="26" /> -->
     <input type="submit" id="btnSearch" value="" />
     <br class="clear" />
     <%- end -%>
   </div><!--#search//-->
-         
+
 </div><!-- top_heading//-->
 
 <div id="hdrLogo" class="">
@@ -41,9 +42,9 @@ Field.focus('login')}}); return false;
 </div>
   <div id="headerMenu">
     <a href="/about/what"><%= image_tag("what.png", :alt => I18n.t(:what_is_this), :plugin => "digitalgazette") %></a> |
-    <a href="/about/how"><%= image_tag("how.png", :alt => I18n.t(:how_to_use), :plugin => "digitalgazette") %></a> | 
+    <a href="/about/how"><%= image_tag("how.png", :alt => I18n.t(:how_to_use), :plugin => "digitalgazette") %></a> |
     <a href="/about/who"><%= image_tag("who.png", :alt => I18n.t(:who_we_are), :plugin => "digitalgazette") %></a>
-  </div><!--#headerMenu//-->  
+  </div><!--#headerMenu//-->
 
 
 

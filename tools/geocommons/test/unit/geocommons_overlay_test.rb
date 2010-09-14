@@ -10,8 +10,6 @@ require 'ruby-debug'
 # maybe this is the only reason, when your tests fail!
 #
 
-GEOCOMMONS_HOST = "finder.digitalgazette.org"
-
 class GeocommonsOverlayTest < Test::Unit::TestCase
 
   def setup
@@ -19,7 +17,7 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
                             can_download published icon_path id contributor
                             tags layer_size link description source bbox
                             created overlay_id detail_link)
-      @overlay = Geocommons::RestAPI::Overlay
+      @overlay = Geocommons::Overlay
   end
 
   def test_valid_attributes
@@ -31,15 +29,10 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
     assert_nil invalid_overlay.instance_variable_get(:"@foo")
   end
 
-  def test_gecommons_host_vailable
-    assert (GEOCOMMONS_HOST), "geocommons host should be available"
-    assert !(GEOCOMMONS_HOST).empty?, "geocommons host should not be empty"
-  end
-
   # NOTE tests: def _find
   def test__find
     assert ! @overlay.find.empty?, "there should be some overlays, if the server is well configured"
-    assert_kind_of Geocommons::RestAPI::Overlay, @overlay.find.first
+    assert_kind_of Geocommons::Overlay, @overlay.find.first
   end
 
   def test_paginate
