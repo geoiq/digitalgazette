@@ -57,6 +57,15 @@ en:
   dg_search: "Search"
 
 
+  dg_sidebar_wiki_list: "Wikis"
+  dg_sidebar_overlay_list: "Overlays"
+  dg_sidebar_map_list: "Maps"
+  dg_sidebar_asset_list: "Reports"
+  dg_sidebar_pages_list: "Pages"
+  dg_sidebar_search: "Search"
+
+
+
   dg_wiki_search_header: "What do you want to learn about??"
   browse_wiki: "or Browse Articles by Topic"
   dg_asset_search_header: "What kind of Report would you like to find?"
@@ -66,6 +75,7 @@ en:
   dg_pages_list: "Pages"
   dg_most_recent_page: "Most Recent"
   dg_most_viewed_page: "Most Viewed"
+
   how_to_use: "How do I use this?"
   page_search_title: "{{type}}"
   map_page_display: "Map" #otherwise test fails
