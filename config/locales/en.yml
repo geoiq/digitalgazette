@@ -57,14 +57,14 @@ en:
   dg_search: "Search"
 
 
-  dg_sidebar_wiki_list: "Wikis"
-  dg_sidebar_overlay_list: "Overlays"
-  dg_sidebar_map_list: "Maps"
-  dg_sidebar_asset_list: "Reports"
-  dg_sidebar_pages_list: "Pages"
-  dg_sidebar_search: "Search"
-
-
+  # FIXME mistakenly we lookup dg_dg_sidebar_wiki_list
+  # clean the name and add the dg_ here again
+  dg_dg_sidebar_wiki_list: "Wikis"
+  dg_dg_sidebar_map_list: "Maps"
+  dg_dg_sidebar_asset_list: "Reports"
+  dg_dg_sidebar_pages_list: "Pages"
+  dg_dg_sidebar_search: "Search"
+  dg_dg_sidebar_overlay_list: "Overlays"
 
   dg_wiki_search_header: "What do you want to learn about??"
   browse_wiki: "or Browse Articles by Topic"
