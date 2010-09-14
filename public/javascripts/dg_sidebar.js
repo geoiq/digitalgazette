@@ -16,8 +16,10 @@ var Sidebar = {
         this.div.style['height'] = (window.innerHeight - Element.positionedOffset(this.div)[1]) + 'px';
         this.div.style['width'] = ((window.innerWidth / 100) * 25) + 'px';
     },
-    insert: function(content) {
-      this.div.inner_html += content
+    insert: function() {
+	for(i in arguments) {
+	    this.div.innerHTML += arguments[i] + "\n";
+	}
     }
 };
 

@@ -33,28 +33,28 @@ module SearchHelper
   # - page_types # optional, what page_type should be used here
   # - pagination :all, :top, :bottom or nil
   # -
-  def panel_for *args
+  def panel_for *args, &block
     options = args.pop if args.last.kind_of?(Hash)
     page_types = args.first
     options ||={ }
-    options.merge!({ :box => false, :pagination => true})
+    options.merge!({ :box => false, :pagination => :bottom})
     ret = ""
     
-    if options[:wrapper]
-      container = lambda { render(:partial => LEGAL_PARTIALS[options[:wrapper]]) }
-    else
-      container = lambda { content_tag(:div, :id => options[:id], :class => options[:class]) }
-    end
+    content = capture(&block)
+   
+  # version with blocks
+   # if options[:wrapper]
+   #   concat(render(:partial => LEGAL_PARTIALS[options[:wrapper]]), block.binding)
+   # else
+   #   concat(content_tag(:div, :id => options[:id], :class => options[:class]), block.binding)
+   # end
     
-    ret << container.call do
-      pagination_at :top, options
-      if options[:box]
-        args.each do |arg|
-          box_for(arg, options)
-        end
-      end
-      panel_pagination_at :bottom, options
-    end
+  # version with locals  
+   if options[:wrapper]
+     concat(render(:partial => LEGAL_PARTIALS[options[:wrapper]],  :locals => { :content => content }), block.binding)
+   else
+     concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
+   end
   end
 
   def panel_pagination_at position, options, *args
@@ -111,9 +111,8 @@ module SearchHelper
   # TODO create default behaviour (list partial) for non js
   # :dom_id           - save explicit dom-id
   def widget_for page_type, options={}
-    debugger
     options = options_for_widget(page_type, options)
-    widget_id = id_for_widget
+    widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     path = @path.to_param
     ret = ""
@@ -133,7 +132,7 @@ module SearchHelper
   
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
-    options[:namespace] ? "#{options[:namespace]}_str" : str
+    options[:namespace] ? "#{options[:namespace]}_#{str}" : str
   end
   
   def widgets_for args, options={ }

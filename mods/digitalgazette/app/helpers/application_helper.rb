@@ -23,6 +23,11 @@ module ApplicationHelper
    "<input type='hidden' id='#{group}_#{name}' name='#{group}[#{name}]' value='#{value}' />"
 
   end
-  
+
+  def clean_javascript_string(string, quote)
+    [quote, "\n"].inject(string) do |s, char|
+      s.gsub(char, "\\#{char}")
+    end
+  end
   
 end

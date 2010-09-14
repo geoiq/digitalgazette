@@ -5,8 +5,8 @@
 - if @page_type
   = render :partial => 'pages/list', :locals => {:pages => @pages}
 - else
-  = panel_for @preffered, {:wrapper => "sidebar"}
-    = dynamic_widgets @preferred, {:wrapper => "dg_sidebar", :namespace => "dg_sidebar"}
+  - panel_for @page_types, {:wrapper => "dg_sidebar"} do
+    = dynamic_widgets @preferred, {:namespace => "dg_sidebar"}
   = dynamic_widgets @preferred
   = pagination_links_for_widgets(@page_types) if @page_types
 
@@ -14,20 +14,3 @@
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
   = box_for :most_viewed
   = box_for :recent
-/  %div.roundTop.txtDrkGray
-/    %strong= "MOST VIEWED"
-/  %div.subPageRightLinks
-/    %ul.dynamicLinkList
-/      - @recent = Page.popular("AssetPage", 5)
-/      - @recent.each do |page|
-/        %li= link_to(h(page.title), page_url(page))
-/  %div.roundBtm
-
-/  %div.roundTop.txtDrkGray
-/    %strong= "MOST RECENT"
-/  %div.subPageRightLinks
-/    %ul.dynamicLinkList
-/      - @recent = Page.recent("AssetPage", 5)
-/      - @recent.each do |page|
-/        %li= link_to(h(page.title), page_url(page))
-/  %div.roundBtm

@@ -1,3 +1,7 @@
-%script
-  $('overlay-sidebar').innerHTML+="blabla"blablablablablablb;
-//  Sidebar.insert("#{yield.gsub('"', '\"')}");
+%script{ :type => 'text/javascript' }
+  Sidebar.setup();
+  Sidebar.insert("#{escape_javascript(content)}");
+
+//  alert("'#{content}'");
+//  Sidebar.insert("#{content[0..12]}");
+

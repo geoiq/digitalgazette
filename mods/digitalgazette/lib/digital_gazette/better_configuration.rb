@@ -21,7 +21,7 @@
     "page_list" => "pages/list",
     "overlay_list" => "overlays/list",
     "pages_box" => "pages/box", 
-    "sidebar" => "search/sidebar"
+    "dg_sidebar" => "search/dg_sidebar"
   }.freeze
 
   PAGE_TYPE_PARTIALS = {
