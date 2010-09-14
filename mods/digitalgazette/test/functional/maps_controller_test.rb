@@ -29,7 +29,7 @@ class MapsControllerTest < ActionController::TestCase
     end
 
     context "show" do
-      setup { get :show, :id => 76}
+      setup { get :show, :id => 8 }
       should "render the right template" do
         assert_template "maps/show"
       end

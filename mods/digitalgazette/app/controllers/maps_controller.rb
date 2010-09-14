@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  helper GeocommonsHelper
+  helper :geocommons
 
   def index
     params[:query] = "*" unless params.include?("query")
