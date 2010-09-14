@@ -20,6 +20,28 @@ class SearchController < ApplicationController
   end
 
   
+  def paginate_panel
+    # what do we do, if we have no items in one box, but many on others
+
+    # get params[:panel_page]
+    panel_page = params[:panel_page]
+    # create a storage for the multi-widget-pagination
+    @widget_pages = params[:widget_pages]
+    # get the widgets that are currently active
+    get_page_types    
+    # now collect the pages per page - type
+    #
+    # we get the request via xhr
+    # and so we select the current - widget - page and path for the pagination from the dom
+    with_options_for_widget do |options|
+      render_search_results
+    end
+  end
+  
+  # returns the right widget_options to build the query
+  def widget_options(page_type)
+  end
+  
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags

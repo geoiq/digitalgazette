@@ -2,14 +2,51 @@
 module SearchHelper
 
   
+  # NOTE we could use it for every page list
+  # but we only need it if we want to loa
+  #
   # provides a panel for more than one widget
   # for more than one pagetypes
   #
   # adds pagination for the whole panel
-  def panel_for
+  #
+  # last argument can be an options hash:
+  #
+  # - box (default: false) # renders a box or not
+  # - page_types # optional, what page_type should be used here
+  # - pagination :all, :top, :bottom or nil
+  # - 
+  def panel_for args
+    options = args.pop if args.last.kind_of?(Hash)
+    options ||={ }
+    options.merge!({ :box => false, :pagination => true})
+    ret = ""
+    ret << content_tag(:div, :id => options[:id], :class => options[:class]) do
+    pagination_at :top, options
+    if options[:box]
+      args.each do |arg|
+        box_for(arg, options)
+      end
+    end
+    panel_pagination_at :bottom, options
+    end
   end
   
+  def panel_pagination_at position, options, *args
+    if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
+      pagination *args # return to normal pagination      
+    end
+  end
   
+  # takes more than one widget and provides
+  # pagination links that reload the index
+  # action providing a screen with widgets for
+  # all pagetypes
+  def pagination_links_for_widgets(widgets)
+    pagination_links( { { :path => @path}})
+  end
+    
+    
   # wraps one into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
@@ -44,6 +81,7 @@ module SearchHelper
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
+  # :dom_id           - save explicit dom-id
   def widget_for page_type, options={}
     options = options_for_widget(page_type, options)
     widget_id = options[:dom_id] || "#{page_type}_list"
@@ -53,6 +91,12 @@ module SearchHelper
     ret << content_tag(:div, :id => widget_id) do
       # @path.set_keyword('type', options[:page_type])
       javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(widget_id, :show => true)
+# NOTE this way we could store the widget page in the ui
+#      + javascript_tag("
+#
+#       Widgets.register_page('#{page_type}',#{params[:page]})
+#
+#")
     end
     ret
   end
