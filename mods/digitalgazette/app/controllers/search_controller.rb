@@ -14,7 +14,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-      #debugger
       render_search_results
     end
   end
@@ -93,12 +92,18 @@ class SearchController < ApplicationController
 
   # TODO somewhere else, more general
   def list_partial
-    if @widget
+    if @wrapper
+      if LEGAL_PARTIALS.keys.include?(@wrapper)
+        LEGAL_PARTIALS[@wrapper]
+      elsif LEGAL_PARTIALS.values.include?(@wrapper)
+        LEGAL_PARTIALS.values[LEGAL_PARTIALS.values.index(@wrapper)]
+      else
+        raise("you called an illegal partial #{@wrapper.to_s}")
+      end
+    elsif @widget
       BOX_PARTIALS[@widget.to_s] || raise("you called an illegal widget #{@widget.to_s}")
     elsif @page_type
       PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
-    elsif @wrapper
-      LEGAL_PARTIALS.include?(@wrapper) ? @wrapper : raise("you called an illegal partial #{@wrapper.to_s}")
     end
 
   end

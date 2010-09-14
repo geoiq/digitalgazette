@@ -17,7 +17,12 @@
 
   EXTERNAL_PAGE_TYPES = ["overlay"].freeze
 
-  LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
+  LEGAL_PARTIALS = {
+    "page_list" => "pages/list",
+    "overlay_list" => "overlays/list",
+    "pages_box" => "pages/box", 
+    "sidebar" => "search/sidebar"
+  }.freeze
 
   PAGE_TYPE_PARTIALS = {
     "wiki" => "pages/list",
