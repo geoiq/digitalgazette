@@ -70,11 +70,11 @@ module SearchHelper
   end
 
   # returns widgets in the order implied by the current preffered page type
-  def dynamic_widgets preferred
+  def dynamic_widgets preferred, options={ }
     page_types = SEARCHABLE_PAGE_TYPES.include?(preferred) ? [preferred] : []
     page_types << SEARCHABLE_PAGE_TYPES
     page_types = page_types.flatten.compact.uniq
-    widgets_for page_types
+    widgets_for page_types, options
   end
 
 
