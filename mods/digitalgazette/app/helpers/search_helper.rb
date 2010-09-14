@@ -1,7 +1,7 @@
 
 module SearchHelper
 
-  
+
   # NOTE we could use it for every page list
   # but we only need it if we want to loa
   #
@@ -15,7 +15,7 @@ module SearchHelper
   # - box (default: false) # renders a box or not
   # - page_types # optional, what page_type should be used here
   # - pagination :all, :top, :bottom or nil
-  # - 
+  # -
   def panel_for args
     options = args.pop if args.last.kind_of?(Hash)
     options ||={ }
@@ -31,22 +31,22 @@ module SearchHelper
     panel_pagination_at :bottom, options
     end
   end
-  
+
   def panel_pagination_at position, options, *args
     if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
-      pagination *args # return to normal pagination      
+      pagination *args # return to normal pagination
     end
   end
-  
+
   # takes more than one widget and provides
   # pagination links that reload the index
   # action providing a screen with widgets for
   # all pagetypes
   def pagination_links_for_widgets(widgets)
-    pagination_links( { { :path => @path}})
+    pagination_links(:path => @path)
   end
-    
-    
+
+
   # wraps one into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
