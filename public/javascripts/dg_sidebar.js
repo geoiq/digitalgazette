@@ -2,7 +2,7 @@
 var Sidebar = {
     div: document.createElement('div'),
     setup: function() {
-        this.div.setAttribute('id', 'overlay-sidebar');
+        this.div.setAttribute('id', 'dg_sidebar');
         this.div.style['position'] = 'absolute';
         this.div.style['top'] = '160px';
         this.div.style['right'] = '0';
