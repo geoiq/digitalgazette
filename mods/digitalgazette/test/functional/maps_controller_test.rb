@@ -11,11 +11,6 @@ class MapsControllerTest < ActionController::TestCase
         assert_response :success
       end
 
-      should "have the api available" do
-        assert assigns(:api), "the @api should be there"
-        assert assigns(:api).name.to_s == "map", "the @api should be the map api"
-      end
-
       should "render the right template" do
         assert_template "maps/index"
         assert_select "#maker_map"
@@ -34,7 +29,7 @@ class MapsControllerTest < ActionController::TestCase
     end
 
     context "show" do
-      setup { get :show, :id => 76}
+      setup { get :show, :id => 8 }
       should "render the right template" do
         assert_template "maps/show"
       end
@@ -51,21 +46,12 @@ class MapsControllerTest < ActionController::TestCase
 
       end
 
-      should "have the api available" do
-        assert assigns(:api), "the @api should be there"
-        assert assigns(:api).name.to_s == "map", "the @api should be the map api"
-      end
 
 
     end
 
     context "all" do
       setup { get :all}
-      should "have the api available" do
-        assert assigns(:api), "the @api should be there"
-        assert assigns(:api).name.to_s == "map", "the @api should be the map api"
-      end
-
       should "render the right template" do
         assert_template "maps/all"
       end
@@ -80,10 +66,6 @@ class MapsControllerTest < ActionController::TestCase
 
     context "new" do
       setup { get :new }
-      should "have the api available" do
-        assert assigns(:api), "the @api should be there"
-        assert assigns(:api).name.to_s == "map", "the @api should be the map api"
-      end
       should "render the right template" do
         assert_template "maps/new"
       end

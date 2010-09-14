@@ -12,7 +12,11 @@ PageClassRegistrar.add(
   :order => 4
 )
 
+if File.exist?(config_path = File.join(Rails.root, 'config', 'geocommons.yml'))
+  Dispatcher.to_prepare do
+    Geocommons.config = YAML.load_file(config_path)
+  end
+end
 
-# TODO move to mod digitalgazette or tools geocommons
-GEOCOMMONS_HOST = "finder.digitalgazette.org"
-GEOCOMMONS_IFRAME = "maker.digitalgazette.org"
+# tools don't load helpers automatically
+Kernel.load File.join(File.dirname(__FILE__), 'app', 'helpers', 'geocommons_helper.rb')
