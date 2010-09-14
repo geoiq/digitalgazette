@@ -7,6 +7,7 @@ self.override_views = true
 
 require 'digital_gazette/page_extension'
 require 'digital_gazette/better_configuration'
+require 'digital_gazette/stated_ui'
 
 Dispatcher.to_prepare do
   # Add "preferred" keyword to PathFinder.
@@ -26,6 +27,8 @@ Dispatcher.to_prepare do
   ControllerExtension::WikiPopup.send(:include, ::DigitalGazette::ControllerExtensionWikiPopupExtension)
 
   # controllers
+  Kernel.load(File.join(Rails.root, 'app', 'controllers', 'application.rb'))
+  ApplicationController.send(:include, ::DigitalGazette::StatedUI)
   GroupsController.send(:include, ::DigitalGazette::GroupsControllerExtension)
   PagesController.send(:include, ::DigitalGazette::PagesControllerExtension)
   SearchController.send(:include, ::DigitalGazette::SearchControllerExtension)

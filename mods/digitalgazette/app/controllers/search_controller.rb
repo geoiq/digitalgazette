@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   helper_method :list_partial
 
   include SearchHelper
-
+  
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
@@ -109,16 +109,20 @@ class SearchController < ApplicationController
   # retrieve all options, we need to build a proper UI
   def get_options
     get_page_types
-    @dom_id = get_dom_id
     @widget = params[:widget]
     @wrapper = params[:wrapper]
+    @dom_id = get_dom_id    
     @tags = @path.args_for("tag")
   end
 
   # create an id for the container we want to update in
+  # if @wrapper is set, then the id's are built like this:
+  #
+  # sidebar_wiki_page_list
   def get_dom_id
     return params[:dom_id] if params[:dom_id]
-    @page_type ? @page_type.underscore+"_list" : "pages_list"
+    base_name =  @page_type ? @page_type.underscore+"_list" : "pages_list"
+    ret = "#{@wrapper+'_' if @wrapper}#{base_name}" 
   end
 
   # retrieve all page types in the current focus

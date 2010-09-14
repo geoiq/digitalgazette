@@ -43,7 +43,7 @@ module SearchHelper
   # action providing a screen with widgets for
   # all pagetypes
   def pagination_links_for_widgets(widgets)
-    pagination_links(:path => @path)
+#    pagination_links(:path => @path)
   end
 
 
