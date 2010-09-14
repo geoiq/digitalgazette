@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   helper_method :list_partial
 
   include SearchHelper
-
+  
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
