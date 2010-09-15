@@ -7,6 +7,25 @@ module Geocommons
     VALID_ATTRIBUTES.each do |attribute|
       attr attribute.to_sym, true
     end
+    
+    # TODO move this to geocommons.yml
+    Crabgrass::ExternalAPI.register(
+                                    { :overlay => { 
+                                      :model => self.class.name,
+                                       :methods =>
+                                        { :find => "paginate"},
+                                        :query_builder => { 
+                                          :keywords => { 
+                                            "text" => "",
+                                            "tag" => "tag"
+                                          },
+                                          :argument_separator => " ",
+                                          :key_value_separator => ":"
+                                        }
+                                      }
+                                    
+                                    }
+                                    )
 
     def initialize(params={})
       params.each_pair do |k, v|
