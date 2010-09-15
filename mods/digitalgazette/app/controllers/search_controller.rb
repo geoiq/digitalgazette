@@ -100,7 +100,7 @@ class SearchController < ApplicationController
 
   # retrieve all page types in the current focus
   def get_page_types
-    @page_types =  [@path.args_for("type")].flatten.compact.select{ |t|
+    @page_types =  [@path.all_args_for("type")].flatten.compact.select{ |t|
       t != "type" && SEARCHABLE_PAGE_TYPES.include?(t)}
     @page_types = SEARCHABLE_PAGE_TYPES if @page_types.empty?
     @page_type = @page_types.first if @page_types.size == 1
@@ -130,6 +130,16 @@ class SearchController < ApplicationController
     PathFinder::ParsedPath.new(merge_path.join('/or/'))
   end
 
+  
+  
+  
+  def get_external_results(page_type=nil)
+    page_type ||= @page_type
+    raise "no page type specified to retrieve external results" unless(page_type)
+    ExternalPathFinder.find(page_type,@path)
+  end
+  
+=begin  
   # mix in instance variables from the external api
   def get_external_results
     if @tags
@@ -138,5 +148,6 @@ class SearchController < ApplicationController
       Geocommons::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
     end
   end
-
+=end
 end
+
