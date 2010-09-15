@@ -11,9 +11,8 @@ module Geocommons
     end
 
     # TODO move this to geocommons.yml
-    Crabgrass::ExternalAPI.register(
-                                    { :overlay => {
-                                      :model => self.class.name,
+    Crabgrass::ExternalAPI.register('overlay',
+                                    {                                                                         :model => self.class.name,
                                        :methods =>
                                         { :find => "paginate"},
                                         :query_builder => {
@@ -26,7 +25,6 @@ module Geocommons
                                         }
                                       }
 
-                                    }
                                     )
 
     def initialize(params={})
