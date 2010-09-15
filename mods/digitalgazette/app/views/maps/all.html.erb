@@ -5,12 +5,20 @@
 <div class="group_entry">
   <div class="listing_icon"><%= image_tag("map.jpg", :plugin => "digitalgazette", :width => "70px") %></div>
   <div class="listing_info">
-    <%= link_to(map["title"], map_path(map["pk"])) %>
-    <p><%= map["description"] %></p>
+    <%= link_to(h(map.title), map_url(map)) %>
+    <p><%=h map.description %></p>
   </div>
   <div class="listing_data">
+    <% author_name = map.author['name'] || '<unknown>' -%>
     <p>
-      Built by <%= map["user_login"] %> on <%= map["created_at"] %>
+      Built by
+      <% if author_link = map.author['uri'] -%>
+        <%= link_to h(author_name), author_link %>
+      <% else -%>
+        <%= h(author_name) %>
+      <% end -%>
+      on
+      <%= map.created_at.inspect %>
     </p>
   </div>
 </div>
