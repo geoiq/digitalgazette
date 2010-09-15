@@ -60,7 +60,7 @@ class SearchController < ApplicationController
       # TODO clean up this logic, to make it easier to use different partials
       # list_partial = @page_type == 'OverlayPage' ? 'overlays/list' : 'pages/list'
       render :update do |page|
-        page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@dom_id}")), :no_top_pagination => true}
+        page[get_dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"#{get_dom_id}")), :no_top_pagination => true}
       end
     end
 
@@ -115,6 +115,7 @@ class SearchController < ApplicationController
     @wrapper = params[:wrapper]
     @dom_id = get_dom_id    
     @tags = @path.args_for("tag")
+    @namespace = params[:namespace]
   end
 
   # create an id for the container we want to update in
@@ -123,8 +124,11 @@ class SearchController < ApplicationController
   # sidebar_wiki_page_list
   def get_dom_id
     return params[:dom_id] if params[:dom_id]
-    base_name =  @page_type ? @page_type.underscore+"_list" : "pages_list"
-    ret = "#{@wrapper+'_' if @wrapper}#{base_name}" 
+    base_name =  @dom_id || (@page_type ? @page_type.underscore+"_list" : "pages_list")
+    
+    prefix = @namespace ? @namespace : @wrapper || ""
+    debugger
+    "#{prefix}#{base_name}" 
   end
 
   # retrieve all page types in the current focus
