@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../crabgrass/external_page'
+
 module Geocommons
   class Overlay < Crabgrass::ExternalPage
     VALID_ATTRIBUTES = %w(short_classification name can_view can_edit author
