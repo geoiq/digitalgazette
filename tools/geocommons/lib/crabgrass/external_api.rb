@@ -47,11 +47,15 @@ module Crabgrass
     end
     
     def key_value_separator
-      map_table[:key_value_separator] || "="
+      query_builder || "="
     end
     
     def argument_separator
-      map_table[:argument_separator] || "&"
+      query_builder || "&"
+    end
+    
+    def query_builder
+      map_table[:query_builder]
     end
     
     # calls the mapped method
@@ -67,6 +71,26 @@ module Crabgrass
     #
     def self.register(page_type, hash)
       @@registered_apis[page_type] = hash
+    end
+    
+    # loads the api spec from yml
+    #
+    # OPTIONS:
+    #
+    # :remote => true   # loads the .yml from a external source
+    # :auth => "authkey" # pass an auth key to load the apispec
+    # TODO enable authentication
+    def self.load(name, file_locator, options={:remote => false})
+      
+       
+      if options[:remote]
+        require 'rubygems'
+        require 'open-uri'
+        file = open(file_locator)
+      else
+        file = File.read(file_locator)
+      end
+      self.register(YAML.load(file).to_hash[name])
     end
     
   end

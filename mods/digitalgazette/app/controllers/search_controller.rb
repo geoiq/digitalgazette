@@ -136,7 +136,7 @@ class SearchController < ApplicationController
   def get_external_results(page_type=nil)
     page_type ||= @page_type
     raise "no page type specified to retrieve external results" unless(page_type)
-    ExternalPathFinder.find(page_type,@path)
+    Crabgrass::ExternalPathFinder.find(page_type,@path)
   end
   
 =begin  
