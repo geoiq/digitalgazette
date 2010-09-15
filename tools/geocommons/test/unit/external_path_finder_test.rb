@@ -1,8 +1,6 @@
 require 'rubygems'
-require File.dirname(__FILE__) + '/../../lib/crabgrass/external_path_finder'
-require File.dirname(__FILE__) + '/../../lib/geocommons/overlay'
+require File.dirname(__FILE__) + '/../../../../test/test_helper'
 require 'path_finder'
-require 'test/unit'
 require 'ruby-debug'
 #require 'test-helper'
 

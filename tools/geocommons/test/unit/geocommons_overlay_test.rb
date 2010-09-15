@@ -1,17 +1,14 @@
 require 'rubygems'
+require File.dirname(__FILE__) + '/../../../../test/test_helper'
 require File.dirname(__FILE__) + '/../../lib/geocommons'
 require File.dirname(__FILE__) + '/../../lib/geocommons/overlay'
 require 'logger'
-require 'test/unit'
 require 'json'
 require 'ruby-debug'
 
 # NOTE: this test relies on the data we got from the Geocommons - Service while we wrote it
 # maybe this is the only reason, when your tests fail!
 #
-
-defined?(Rails) || (Rails = Object.new ; def Rails.logger() Logger.new end)
-
 class GeocommonsOverlayTest < Test::Unit::TestCase
 
   def setup
