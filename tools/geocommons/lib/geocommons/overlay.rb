@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../crabgrass/external_page'
-
+require File.dirname(__FILE__) + '/../crabgrass/external_api'
 module Geocommons
   class Overlay < Crabgrass::ExternalPage
     VALID_ATTRIBUTES = %w(short_classification name can_view can_edit author
@@ -9,15 +9,15 @@ module Geocommons
     VALID_ATTRIBUTES.each do |attribute|
       attr attribute.to_sym, true
     end
-    
+
     # TODO move this to geocommons.yml
     Crabgrass::ExternalAPI.register(
-                                    { :overlay => { 
+                                    { :overlay => {
                                       :model => self.class.name,
                                        :methods =>
                                         { :find => "paginate"},
-                                        :query_builder => { 
-                                          :keywords => { 
+                                        :query_builder => {
+                                          :keywords => {
                                             "text" => "",
                                             "tag" => "tag"
                                           },
@@ -25,7 +25,7 @@ module Geocommons
                                           :key_value_separator => ":"
                                         }
                                       }
-                                    
+
                                     }
                                     )
 

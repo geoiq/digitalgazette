@@ -53,7 +53,7 @@ module Crabgrass
     def argument_separator
       query_builder || "&"
     end
-    
+
     def query_builder
       map_table[:query_builder]
     end
@@ -72,8 +72,7 @@ module Crabgrass
     def self.register(page_type, hash)
       @@registered_apis[page_type] = hash
     end
-<<<<<<< HEAD
-    
+
     # loads the api spec from yml
     #
     # OPTIONS:
@@ -82,8 +81,8 @@ module Crabgrass
     # :auth => "authkey" # pass an auth key to load the apispec
     # TODO enable authentication
     def self.load(name, file_locator, options={:remote => false})
-      
-       
+
+
       if options[:remote]
         require 'rubygems'
         require 'open-uri'
@@ -93,9 +92,5 @@ module Crabgrass
       end
       self.register(YAML.load(file).to_hash[name])
     end
-    
-=======
-
->>>>>>> 6ce4b0a39114be388623b6c83372b4c4aa2e4688
   end
 end
