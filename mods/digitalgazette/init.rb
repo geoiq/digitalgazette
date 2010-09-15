@@ -9,20 +9,9 @@ require 'digital_gazette/page_extension'
 require 'digital_gazette/better_configuration'
 
 Dispatcher.to_prepare do
-  # Add "preferred" keyword to PathFinder.
-  #
-  # FIXME: PathFinder::ParsedPath::PATH_KEYWORDS is frozen at definition
-  #        time. This is a quick hack to add a keyword. This should be
-  #        made more easy through the PathFinder API.
-  new_path_keywords = PathFinder::ParsedPath::PATH_KEYWORDS.dup
-  new_path_keywords['preferred'] = 1
-  PathFinder::ParsedPath::PATH_KEYWORDS = new_path_keywords.freeze
-
-
   # Extend various classes.
   # (extensions reside in lib/digital_gazette/*_extension.rb)
 
-  PathFinder::ParsedPath.send(:include, ::DigitalGazette::PathFinderParsedPathExtension)
   ControllerExtension::WikiPopup.send(:include, ::DigitalGazette::ControllerExtensionWikiPopupExtension)
 
   # controllers
