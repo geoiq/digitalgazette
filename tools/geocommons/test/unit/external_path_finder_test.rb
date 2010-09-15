@@ -1,10 +1,13 @@
 require 'rubygems'
-require '../lib/crabgrass/path_finder/external_path_finder.rb'
+require File.dirname(__FILE__) + '/../../lib/crabgrass/path_finder/external_path_finder'
 require 'test/unit'
 require 'ruby-debug'
 #require 'test-helper'
 
-class ExternalPathFinderTest < ActiveSupport::TestCase
+class ExternalPathFinderTest < Test::Unit::TestCase
+
+  def setup
+  end
 
   def test_convert
      some_crabgrass_paths = [["tag/pakistan","tag:pakistan"], ["tag/pakistan/tag/maharatschi", "tag:pakistan tag:maharatschi"]]

@@ -1,7 +1,6 @@
 require 'rubygems'
-
 require File.dirname(__FILE__) + '/../../lib/geocommons'
-
+require File.dirname(__FILE__) + '/../../lib/geocommons/overlay'
 require 'test/unit'
 require 'json'
 require 'ruby-debug'

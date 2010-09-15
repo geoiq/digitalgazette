@@ -1,8 +1,10 @@
+
+require File.dirname(__FILE__) + '/../external_api'
 module Crabgrass
   class ExternalPathFinder
     
     def self.find(page_type,path)
-      ExternalApi.for(page_type).call(:find, convert(page_type,path))
+      Crabgrass::ExternalApi.for(page_type).call(:find, convert(page_type,path))
     end
     
     # takes a crabgrass ParsedPath Object, and maps it on a external api

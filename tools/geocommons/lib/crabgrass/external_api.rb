@@ -1,17 +1,17 @@
 module Crabgrass
   class ExternalAPI
-    
-=begin    
+
+=begin
      {
       :overlay_page => {
         :model => Geocommons::Overlay,
-        :methods => { 
+        :methods => {
           :find => "",
           :create => "",
           :authenticate => ""
         },
-        :query_builder => { 
-          :keywords => { 
+        :query_builder => {
+          :keywords => {
             :
           },
           :
@@ -20,36 +20,36 @@ module Crabgrass
       }
   }
 =end
-    
+
     #
     #
-    @@registered_apis = { }
+    @@registered_apis = {}
     attr :name
-    
+
     def initialize(name)
       @name = name
     end
-    
+
     def self.for(page_type)
       return new(page_type)
     end
-    
+
     def map_table
       @@registered_apis[name]
     end
-    
+
     def model
       map_table[:model]
     end
-    
+
     def get_method(method)
       map_table[:methods][method]
     end
-    
+
     def key_value_separator
       query_builder || "="
     end
-    
+
     def argument_separator
       query_builder || "&"
     end
@@ -57,13 +57,13 @@ module Crabgrass
     def query_builder
       map_table[:query_builder]
     end
-    
+
     # calls the mapped method
     def call(method_name, *args)
       model.methods(get_method.to_sym).call(args)
     end
-    
-    
+
+
     #
     #
     # Call this method in your api specification
@@ -72,6 +72,7 @@ module Crabgrass
     def self.register(page_type, hash)
       @@registered_apis[page_type] = hash
     end
+<<<<<<< HEAD
     
     # loads the api spec from yml
     #
@@ -93,5 +94,8 @@ module Crabgrass
       self.register(YAML.load(file).to_hash[name])
     end
     
+=======
+
+>>>>>>> 6ce4b0a39114be388623b6c83372b4c4aa2e4688
   end
 end
