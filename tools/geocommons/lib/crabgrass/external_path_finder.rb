@@ -1,5 +1,3 @@
-
-require File.dirname(__FILE__) + '/../external_api'
 module Crabgrass
   class ExternalPathFinder
 

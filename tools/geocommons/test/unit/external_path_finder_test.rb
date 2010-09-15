@@ -1,5 +1,7 @@
 require 'rubygems'
-require File.dirname(__FILE__) + '/../../lib/crabgrass/path_finder/external_path_finder'
+require File.dirname(__FILE__) + '/../../lib/crabgrass/external_path_finder'
+require File.dirname(__FILE__) + '/../../lib/geocommons/overlay'
+require 'path_finder'
 require 'test/unit'
 require 'ruby-debug'
 #require 'test-helper'
@@ -7,10 +9,11 @@ require 'ruby-debug'
 class ExternalPathFinderTest < Test::Unit::TestCase
 
   def setup
+
   end
 
   def test_convert
-     some_crabgrass_paths = [["tag/pakistan","tag:pakistan"], ["tag/pakistan/tag/maharatschi", "tag:pakistan tag:maharatschi"]]
+     some_crabgrass_paths = [[PathFinder::ParsedPath.new("tag/pakistan"),"tag:pakistan"], [PathFinder::ParsedPath.new("tag/pakistan/tag/maharatschi"), "tag:pakistan tag:maharatschi"]]
      some_crabgrass_paths.each do |p|
        parsed_path = Crabgrass::ExternalPathFinder.convert('overlay', p[0])
        assert_equal parsed_path, p[1]
