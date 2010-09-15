@@ -5,7 +5,7 @@ module Crabgrass::UserCredentials
   end
 
   def external_credentials
-    external_credentials || { }
+    super || (external_credentials = { })
   end
 
   def credentials_for(service)

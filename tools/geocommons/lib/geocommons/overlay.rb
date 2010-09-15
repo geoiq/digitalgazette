@@ -1,18 +1,12 @@
 module Geocommons
   class Overlay < BasePage
-    VALID_ATTRIBUTES = %w(short_classification name can_view can_edit
-                          author can_download published icon_path id
-                          contributor tags layer_size link description
-                          source bbox created overlay_id detail_link)
-    VALID_ATTRIBUTES.each do |attribute|
-      attr attribute.to_sym, true
-    end
+    geocommons_service :finder
+    geocommons_model 'Overlay'
 
-    def initialize(params={})
-      params.each_pair do |k, v|
-        instance_variable_set("@#{k}", v) if VALID_ATTRIBUTES.include?(k)
-      end
-    end
+    attributes %w(short_classification name can_view can_edit
+                  author can_download published icon_path id
+                  contributor tags layer_size link description
+                  source bbox created overlay_id detail_link)
 
     def id
       overlay_id
