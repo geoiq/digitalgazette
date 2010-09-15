@@ -18,5 +18,9 @@ if File.exist?(config_path = File.join(Rails.root, 'config', 'geocommons.yml'))
   end
 end
 
+Dispatcher.to_prepare do
+  User.send(:include, Crabgrass::UserCredentials)
+end
+
 # tools don't load helpers automatically
 Kernel.load File.join(File.dirname(__FILE__), 'app', 'helpers', 'geocommons_helper.rb')
