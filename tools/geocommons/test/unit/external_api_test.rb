@@ -2,7 +2,7 @@ require 'rubygems'
 #require File.dirname(__FILE__) + '/../../lib/crabgrass/path_finder/external_path_finder'
 require 'test/unit'
 require 'ruby-debug'
-#require 'test-helper'
+require 'shoulda'
 
 class TestModel
   def paginate(args)

@@ -20,6 +20,85 @@ class SearchController < ApplicationController
   end
 
   def render_search_results
+
+    
+#     def get_pages
+
+# # return more than one instance variable if panel => true or panel => :string
+
+# @panel = params[:panel]
+# @page_store = {}
+
+# unless @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
+
+#   @page_type_groups = @page_types.group_by! {|page_type| page_type.constantize.respond_to?(:external?) ? :external : :internal} # group the external and internal pages
+#   @page_type_groups = @page_type_groups.values.map(&:uniq) # just for the case
+#   # Process internal Pages
+#   @naked_path = @path.dup.remove_keyword(:type)
+#   # Create the path for the internal resources
+#   @page_type_groups[:internal].each do |page_type|
+#     @internal_path.add_keyword!(:type, page_type)
+#   end
+#   @ex
+#   @internal_pages = Page.paginate_by_path(@internal_path, params[:page]).group_by(:type) # Optimize group in SQL
+#   # Create the path for the external resources
+#   # TODO implement some logic, that groups the external resources
+#   # by their source
+#   # this requires, that every source returns a collection, that
+#   # lets us determine the Resource -Type (PageType) for every entry in the collection
+#   @external_pages = {}
+#   @page_type_groups[:external[.each do |page_type|
+#     @external_pages[page_type] = page_type.to_s.camelize.constantize.paginate(@external_path, params[:page])
+#   end
+#   # Update every widget as one, if existing
+#   render :update do |page||
+#                                 @internal_pages.each_pair do |page_type,pages|
+#                                   page[get_dom_id_for(page_type)].inner_html = render(:partial => list_partial_for(page_type), { :pages => pages} )
+#                                 end
+#                                 @internal_pages.each_pair do |page_type,pages|
+#                                   page[get_dom_id_for(page_type)].inner_html = render(:partial => list_partial_for(page_type), { :pages => pages} )
+#                                 end
+                                
+                                
+#   end
+
+
+# else
+
+# # do, what now is done
+
+  
+# end
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags
     get_pages # @pages
