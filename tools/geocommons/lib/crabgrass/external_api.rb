@@ -77,7 +77,6 @@ module Crabgrass
       @@registered_apis[page_type] = hash
     end
 
-
     # loads the api spec from yml
     #
     # OPTIONS:
