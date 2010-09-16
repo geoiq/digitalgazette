@@ -15,7 +15,8 @@ class MapsController < ApplicationController
 
   def all
     params[:query] = "*" unless params.include?("query")
-    @maps, @tags = MapPage.search(params.merge(:limit => 50))
+    @maps = Geocommons::Map.find(params.merge(:limit => 50))
+    # TODO: bring back @tags
   end
 
   def upload

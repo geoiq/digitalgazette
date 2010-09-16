@@ -27,11 +27,6 @@ module Geocommons
 
                                     )
 
-    def initialize(params={})
-      params.each_pair do |k, v|
-        instance_variable_set("@#{k}", v) if VALID_ATTRIBUTES.include?(k)
-      end
-    end
     attributes %w(short_classification name can_view can_edit
                   author can_download published icon_path id
                   contributor tags layer_size link description
@@ -49,22 +44,6 @@ module Geocommons
         end
         Asset.build(:uploaded_data => file)
       end
-    end
-
-    def updated_at
-      created.to_datetime
-    end
-
-    def created_at
-      created.to_datetime
-    end
-
-    def updated_by
-      contributor ? contributor : author
-    end
-
-    def created_by
-      author || ""
     end
 
     def icon
