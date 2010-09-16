@@ -23,7 +23,7 @@ Dispatcher.to_prepare do
 
   # TODO move this to geocommons.yml
   Crabgrass::ExternalAPI.register('overlay',
-                                  { :model => 'Geocommons::Overlay',
+                                  { :model => Geocommons::Overlay,
                                     :methods => {
                                       :find => "paginate"
                                     },
@@ -39,7 +39,7 @@ Dispatcher.to_prepare do
 
   # TODO move this to geocommons.yml
   Crabgrass::ExternalAPI.register('map',
-                                  { :model => 'Geocommons::Map',
+                                  { :model => Geocommons::Map,
                                     :methods =>
                                     { :find => "paginate"},
                                     :query_builder => {
