@@ -3,21 +3,6 @@
 self.load_once = false if RAILS_ENV =~ /development/
 #self.override_views = true
 
-
-PageClassRegistrar.add(
-  'MapPage',
-  :controller => 'maps',
-  :icon => 'page_maps',
-  :class_group => 'planning',
-  :order => 4
-)
-
-if File.exist?(config_path = File.join(Rails.root, 'config', 'geocommons.yml'))
-  Dispatcher.to_prepare do
-    Geocommons.config = YAML.load_file(config_path)
-  end
-end
-
 Dispatcher.to_prepare do
   User.send(:include, Crabgrass::UserCredentials)
 end
