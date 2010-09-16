@@ -1,6 +1,48 @@
 module Crabgrass
-  class ExternalAPI
-
+  #
+  #
+  # ExternalAPI works just as a proxy to access
+  # the right API for a certain ExternalPage - data model
+  #
+  # In your plugin or app define the API provided for
+  # with
+  #
+  # ExternalAPI.register(hash)
+  #
+  # TODO create ExternalAPI.register do |map| end
+  #
+  # The API is specified loosely in a hash
+  # where an internal key can be mapped to either:
+  #
+  # a) another string ('translation' of api)
+  # b) a proc
+  # c) a method being called on the related internal model
+  #
+  # There is a basic dsl, that could be extended
+  #
+  # The :query_builder keyword
+  # allowes to specify keywords and their mapping
+  #
+  # The :methods keyword
+  # allowes sepecifying available keywords
+  #
+  # NOTE: it perfectly makes sense, to see
+  # the keys for the methods as something,
+  # that is to be specified by crabgrass
+  #
+  #
+  # Once an api is registered, you reference it like this:
+  #
+  # @api = Crabgrass::ExternalApi.for(page_type)
+  #
+  # TODO write CrabgrassPages - module
+  # that allowes returning the api
+  # for every page - model .. and so forth
+  #
+  # Then you have the following accessors:
+  #
+  # 
+  #
 =begin
      {
       :overlay_page => {
@@ -20,6 +62,9 @@ module Crabgrass
       }
   }
 =end
+  #
+  class ExternalAPI
+
 
     #
     #
@@ -35,7 +80,7 @@ module Crabgrass
     end
 
     def self.for(name)
-      registered?(name)? new(name) : nil
+      registered?(name)? new(name) : raise(APINotDefined, "the api #{name.inspect} is not specified")
     end
 
     def self.registered?(name)
@@ -107,5 +152,8 @@ module Crabgrass
     end
 
 
+    class APINotDefined < Exception
+    end
+    
   end
 end
