@@ -1,4 +1,5 @@
 require 'rubygems'
+require File.dirname(__FILE__) + '/../../../../test/test_helper'
 #require File.dirname(__FILE__) + '/../../lib/crabgrass/path_finder/external_path_finder'
 require 'test/unit'
 require 'ruby-debug'
