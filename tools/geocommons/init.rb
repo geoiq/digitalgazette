@@ -20,6 +20,38 @@ end
 
 Dispatcher.to_prepare do
   User.send(:include, Crabgrass::UserCredentials)
+
+  # TODO move this to geocommons.yml
+  Crabgrass::ExternalAPI.register('overlay',
+                                  { :model => Geocommons::Overlay,
+                                    :methods => {
+                                      :find => "paginate"
+                                    },
+                                    :query_builder => {
+                                      :keywords => {
+                                        "text" => "",
+                                        "tag" => "tag"
+                                      },
+                                      :argument_separator => " ",
+                                      :key_value_separator => ":"
+                                    }
+                                  })
+
+  # TODO move this to geocommons.yml
+  Crabgrass::ExternalAPI.register('map',
+                                  { :model => Geocommons::Map,
+                                    :methods =>
+                                    { :find => "paginate"},
+                                    :query_builder => {
+                                      :keywords => {
+                                        "text" => "",
+                                        "tag" => "tag"
+                                      },
+                                      :argument_separator => " ",
+                                      :key_value_separator => ":"
+                                    }
+                                  }
+                                )
 end
 
   # Add "preferred" keyword to PathFinder.

@@ -15,7 +15,7 @@
   # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
 
-  EXTERNAL_PAGE_TYPES = ["overlay"].freeze
+  EXTERNAL_PAGE_TYPES = ["overlay", "map"].freeze
 
   LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
 
