@@ -1,5 +1,7 @@
 class Geocommons::RestAPI
   class << self
+    attr :last_find_options
+
     def get(service, path)
       validate_service(service)
       raise "You need to call 'set_fake_get_data' before calling find" unless @fake_get_data
@@ -7,6 +9,7 @@ class Geocommons::RestAPI
     end
 
     def find(service, options={})
+      @last_find_options = options
       validate_service(service)
       raise "You need to call 'set_fake_find_data' before calling find" unless @fake_find_data
       return @fake_find_data
