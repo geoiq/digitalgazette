@@ -5,6 +5,10 @@ module Crabgrass
       Crabgrass::ExternalAPI.for(page_type).call(:find, convert(page_type,path))
     end
 
+    def self.paginate(page_type,path)
+      Crabgrass::ExternalAPI.for(page_type).call(:paginate, convert(page_type,path))
+    end
+    
     # takes a crabgrass ParsedPath Object, and maps it on a external api
     def self.convert(page_type,path)
       api = Crabgrass::ExternalAPI.for(page_type)

@@ -4,12 +4,16 @@ module Geocommons
   class RestAPI
     class << self
       def get(service, path)
+        begin
         start_connection(uri = service_uri(service)) do |http|
           if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
             return JSON.load(response.body)
           else
             raise "Error getting geocommons: #{response.inspect}"
           end
+        end
+        rescue
+          raise "Error getting geocommons: connection not established"
         end
       end
 

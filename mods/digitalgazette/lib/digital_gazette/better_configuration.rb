@@ -15,6 +15,19 @@
   # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
 
+  
+  # TODO handle this via api
+  MODEL_NAMES = { 
+    "wiki" => "WikiPage",
+    "asset" => "AssetPage",
+    "map" => "Geocommons::Map",
+    "overlay" => "Geocommons::Overlay"
+  }.freeze
+  
+  PAGE_NAMES = MODEL_NAMES.invert.merge({ "MapPage", "map"}) #.freeze 
+  #FIXME I needed this, to resolve MapPage in SearchController 162
+  
+  
   EXTERNAL_PAGE_TYPES = ["overlay", "map"].freeze
 
   LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
