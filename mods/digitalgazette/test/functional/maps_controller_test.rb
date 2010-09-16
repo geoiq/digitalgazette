@@ -1,53 +1,63 @@
 require File.dirname(__FILE__) + '/../../../../test/test_helper'
 require File.dirname(__FILE__) + '/../../app/helpers/application_helper.rb'
-require File.dirname(__FILE__) + '/../../../../tools/geocommons/init.rb'
-class MapsControllerTest < ActionController::TestCase
+require File.join(Rails.root, 'vendor', 'plugins', 'geocommons_rest_api', 'test', 'geocommons_test_helper')
 
+class MapsControllerTest < ActionController::TestCase
+  include GeocommonsTestHelper
+
+  def setup
+    fake_rest_api!
+
+    Geocommons::RestAPI.set_fake_find_data('totalResults' => 2,
+                                           'entries' => [{
+                                                           'id' => '1',
+                                                           'author' => {
+                                                             'name' => 'author1',
+                                                             'url' => 'http://example.com/users/author1'
+                                                           },
+                                                           'title' => 'First map',
+                                                           'description' => 'First description'
+                                                         }, {
+                                                           'id' => '2',
+                                                           'author' => {
+                                                             'name' => 'author2',
+                                                             'url' => 'http://example.com/users/author2'
+                                                           },
+                                                           'title' => 'Second map',
+                                                           'description' => 'Second description'
+                                                         }])
+    Geocommons::RestAPI.set_fake_get_data({
+                                            'id' => '1',
+                                            'author' => {
+                                              'name' => 'author1',
+                                              'url' => 'http://example.com/users/author1'
+                                            },
+                                            'title' => 'First map',
+                                            'description' => 'First description'
+                                          })
+  end
 
   context "MapsController" do
     context "the index" do
       setup { get :index }
-      should "be successful" do
-        assert_response :success
-      end
-
-      should "render the right template" do
-        assert_template "maps/index"
-        assert_select "#maker_map"
-      end
-
-
-      should "get tags and maps" do
-        assert assigns(:maps), "should assign @maps"
-        assert assigns(:tags), "should assign @tags"
-      end
-
-      should "assert popular and tags" do
-        assert assigns(:popular), "should assign @popular"
-        assert assigns(:tags), "should assign @tags"
+      should "be redirect to :all action" do
+        assert_response :redirect
+        assert_redirected_to :action => 'all'
       end
     end
 
     context "show" do
-      setup { get :show, :id => 8 }
+      setup { get :show, :id => 1 }
+
       should "render the right template" do
         assert_template "maps/show"
       end
 
-      should "get tags and maps" do
-        assert assigns(:maps), "should assign @maps"
-        assert assigns(:tags), "should assign @tags"
+      should "assign @map" do
+        assert (map = assigns(:map)), "@map not set"
+        assert_equal map.id, 1
+        assert_equal 'author1', map.author_name
       end
-
-      should "assign @map and @map_id" do
-        assert assigns(:map)
-        assert_equal assigns(:maps).last, assigns(:map)
-        assert assigns(:map_id)
-
-      end
-
-
-
     end
 
     context "all" do
@@ -56,12 +66,10 @@ class MapsControllerTest < ActionController::TestCase
         assert_template "maps/all"
       end
 
-      should "get tags and maps" do
-        assert assigns(:maps), "should assign @maps"
-        assert assigns(:tags), "should assign @tags"
+      should "get maps" do
+        assert (maps = assigns(:maps)), "should assign @maps"
+        assert_equal 2, maps.size
       end
-
-
     end
 
     context "new" do

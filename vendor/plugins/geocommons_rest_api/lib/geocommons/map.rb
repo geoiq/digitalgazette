@@ -9,6 +9,14 @@ class Geocommons::Map < Geocommons::BasePage
     @id.kind_of?(String) ? @id.split(':').last.to_i : @id
   end
 
+  def author_name
+    author['name']
+  end
+
+  def author_url
+    author['url']
+  end
+
   def author
     @author || { }
   end

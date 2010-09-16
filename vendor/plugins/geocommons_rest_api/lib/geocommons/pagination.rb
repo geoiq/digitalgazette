@@ -12,18 +12,16 @@ module Geocommons::Pagination
       # @options_from_last_find = nil
       count_options = options.except :page, :per_page, :total_entries, :finder
       find_options = count_options.except(:count).update(:offset => pager.offset, :limit => pager.per_page)
-      find_results = pack_entries((_find(options)))
-      pager.replace find_results # remove?
-      # magic counting for user convenience:
-      pager.total_entries = count(options) # remove ?
+      results = pack_entries((_find(find_options)))
+      pager.replace(results)
+
+      pager.total_entries = results.size
     end
   end
 
   def paginate_by_tag(tags, options = {})
     condition = options[:condition] ? options.delete(:condition) : "or"
-    condition = " "+condition+" "
-    separator = "tag:"
-    query = "tag:" << tags.to_a.join(condition+separator)
+    query = tags.map { |tag| "tag:#{tag}"}.join(" #{condition} ")
     paginate(options.merge(:query => query))
   end
 end
