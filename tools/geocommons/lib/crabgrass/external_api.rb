@@ -65,7 +65,7 @@ module Crabgrass
     # calls the mapped method
     def call(method_name, *args)
       #debugger
-      methods[get_method(method_name.to_sym).to_sym].call(args)
+      model.method(get_method(method_name.to_sym).to_sym).call(args)
     end
 
     #

@@ -4,8 +4,8 @@ require 'test/unit'
 require 'ruby-debug'
 require 'shoulda'
 
-class TestModel
-  def paginate(args)
+class TestModel < Object
+  def self.paginate(args)
     return args
   end
 end
