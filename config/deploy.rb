@@ -85,7 +85,7 @@ login: &login
   password: #{eval(db_role+"_db_pass")}
 
 production:
-  database: digitalgazette-staging
+  database: digitalgazette_staging
   <<: *login
 ]
 end
