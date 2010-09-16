@@ -23,7 +23,7 @@ module Crabgrass
 
     #
     #
-    @@registered_apis = {}
+    @@registered_apis = HashWithIndifferentAccess.new
     attr :name
 
     def initialize(name)
@@ -34,10 +34,14 @@ module Crabgrass
       @@registered_apis
     end
 
-    def self.for(page_type)
-      return new(page_type)
+    def self.for(name)
+      registered?(name)? new(name) : nil
     end
 
+    def self.registered?(name)
+      registered_apis.keys.include?(name)
+    end
+    
     def map_table
       @@registered_apis[name]
     end
@@ -51,7 +55,7 @@ module Crabgrass
     end
 
     def key_value_separator
-      query_builder || "="
+      query_builder[:key_value_separator] || "="
     end
 
     def argument_separator

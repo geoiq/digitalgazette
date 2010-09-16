@@ -1,4 +1,6 @@
+
 require 'rubygems'
+require File.dirname(__FILE__) + '/../../../../test/test_helper'
 #require File.dirname(__FILE__) + '/../../lib/crabgrass/path_finder/external_path_finder'
 require 'test/unit'
 require 'ruby-debug'
@@ -53,7 +55,7 @@ class ExternalAPITest < Test::Unit::TestCase
           assert_equal Crabgrass::ExternalAPI.registered_apis[:overlay], @api.map_table
         }
         should("assign a model") {
-          assert @api.model == "overlay"
+          assert_equal TestModel, @api.model
         }
         should("map the registered finder method") {
           assert @api.get_method(:find)
@@ -67,7 +69,7 @@ class ExternalAPITest < Test::Unit::TestCase
 
         should("call the corresponding method on the Test-Model") {
           args = "bla"
-          assert_equal args, @api.call(:find,args)
+          assert_equal [args], @api.call(:find,args)
         }
 
         # TODO test the load method!!
