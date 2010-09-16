@@ -1,21 +1,18 @@
 class MapsController < ApplicationController
   helper :geocommons
 
+  # FIXME: do we really need that "all" action?
   def index
-    params[:query] = "*" unless params.include?("query")
-    @maps, @tags = MapPage.search(params) # FIXME @tags will be overridden in the next line
-    @popular, @tags = MapPage.search(:query => "*", :limit => 50)
+    redirect_to :action => 'all'
   end
 
   def show
-    @maps, @tags = MapPage.search(:pk => params[:id])
-    @map = @maps.first
-    @map_id = params[:id]
+    @map = Geocommons::Map.find(params[:id])
   end
 
   def all
-    params[:query] = "*" unless params.include?("query")
-    @maps, @tags = MapPage.search(params.merge(:limit => 50))
+    @maps = Geocommons::Map.find(params.merge(:limit => 50))
+    # TODO: bring back @tags
   end
 
   def upload

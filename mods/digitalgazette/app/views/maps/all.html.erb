@@ -5,12 +5,20 @@
 <div class="group_entry">
   <div class="listing_icon"><%= image_tag("map.jpg", :plugin => "digitalgazette", :width => "70px") %></div>
   <div class="listing_info">
-    <%= link_to(map["title"], map_path(map["pk"])) %>
-    <p><%= map["description"] %></p>
+    <%= link_to(h(map.title), map_url(map.id)) %>
+    <p><%=h map.description %></p>
   </div>
   <div class="listing_data">
+    <% author_name = map.author['name'] || '<unknown>' -%>
     <p>
-      Built by <%= map["user_login"] %> on <%= map["created_at"] %>
+      Built by
+      <% if author_link = map.author['uri'] -%>
+        <%= link_to h(author_name), author_link %>
+      <% else -%>
+        <%= h(author_name) %>
+      <% end -%>
+      on
+      <%= map.created_at.inspect %>
     </p>
   </div>
 </div>
@@ -24,16 +32,13 @@
         </a>
         <ul id="whatLinkList">
         <li id="topLi">
-          <a href="/maps">MAPS OVERVIEW</a>
+          <a href="/maps/all">VIEW EXISTING MAPS</a>
         </li>
         <li>
-          <a href="/maps/new">VIEW EXISTING MAPS</a>
-        </li>
-        <li>
-          <a href="/maps/new">BUILD A MAP BY LOCATION</a>
+          <a href="/maps/new">BUILD A MAP BY LOCATION (TODO!)</a>
         </li>
         <li id="btmLi">
-          <a href="/maps/new">BUILD A MAP BY TOPIC</a>
+          <a href="/maps/new">BUILD A MAP BY TOPIC (TODO!)</a>
         </li>
         </ul>
     </div><!--#whatMenu//-->

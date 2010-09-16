@@ -1,8 +1,8 @@
 map:
-  maker: http://maker.digitalgazette.org
-  finder: http://finder.digitalgazette.org
-  core: http://maker.digitalgazette.org
-  embed: http://maker.digitalgazette.org/javascripts/embed.js
+  maker: http://api-sandbox.geoiq.com/
+  finder: http://api-sandbox.geoiq.com/
+  core: http://api-sandbox.geoiq.com/
+  embed: http://api-sandbox.geoiq.com/javascripts/f1.api.js
 
 
 
