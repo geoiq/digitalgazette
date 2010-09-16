@@ -4,9 +4,10 @@ module Geocommons::Pagination
   # * +page+ - number (>= 1), page to use. default: 1
   # * +per_page+ - number (>= 1), results to return per page. default: 10
   # * +query+ - query to send, such as tag:foobar
-  def paginate(options={})
+  def paginate(query, options={})
     page = options[:page] || 1
     per_page = options[:per_page] || 2
+    options[:query] = query
     WillPaginate::Collection.create(page, per_page, count(options)) do |pager|
       # @options_from_last_find = nil
       count_options = options.except :page, :per_page, :total_entries, :finder

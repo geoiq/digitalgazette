@@ -41,7 +41,7 @@ module Crabgrass
   #
   # Then you have the following accessors:
   #
-  # 
+  #
   #
 =begin
      {
@@ -113,8 +113,8 @@ module Crabgrass
 
     # calls the mapped method
     def call(method_name, *args)
-      debugger
-      model.method(get_method(method_name.to_sym).to_sym).call(PathFinder::ParsedPath.new(args))
+      # model.method(get_method(method_name.to_sym).to_sym).call(args)
+      model.method(get_method(method_name.to_sym).to_sym).call(*args)
     end
 
     #
@@ -154,6 +154,6 @@ module Crabgrass
 
     class APINotDefined < Exception
     end
-    
+
   end
 end
