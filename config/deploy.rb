@@ -6,20 +6,17 @@
 ## Items to configure
 ##
 
-set :application, "crabgrass"
+set :application, "dg-staging"
 set :user, "crabgrass"
 
-set :repository, "git://labs.riseup.net/crabgrass.git"
-set :branch, "master"
+set :repository, "/var/git/repositories/digitalgazette.git"
+set :branch, "staging"
 
-deploy_host = "xxxxxx"
-staging_host = "munia.riseup.net"
-
-staging = ENV['TARGET'] != 'production'
+deploy_host = "0xb5.org"
 
 set :app_db_host, 'localhost'
-set :app_db_user, 'crabgrass'
-set :app_db_pass, 'oahoh0Ae'
+set :app_db_user, 'dg_staging'
+set :app_db_pass, 'dG-5t4gInG-'
 set :secret,  "0704c166845573a8a5b5ab4cec0766a81f16a5c2a6dd6a32d479ff3d9db267a0561b9d494fa9a37d95a68e17b754680b0a74b995b35ad4663548206e87a91bf9"
 
 ##
@@ -45,11 +42,11 @@ set :keep_releases, 3
 ssh_options[:paranoid] = false
 set :use_sudo, false
 
-role :web, (staging ? staging_host : deploy_host)
-role :app, (staging ? staging_host : deploy_host)
-role :db, (staging ? staging_host : deploy_host), :primary=>true
+role :web, deploy_host
+role :app, deploy_host
+role :db, deploy_host, :primary=>true
 
-set :deploy_to, "/usr/apps/#{application}"
+set :deploy_to, "/var/rails/crabgrass/xb5-instances/#{application}"
 
 
 ##
@@ -87,16 +84,8 @@ login: &login
   username: #{eval(db_role+"_db_user")}
   password: #{eval(db_role+"_db_pass")}
 
-development:
-  database: #{application}_development
-  <<: *login
-
-test:
-  database: #{application}_test
-  <<: *login
-
 production:
-  database: #{application}
+  database: digitalgazette-staging
   <<: *login
 ]
 end
