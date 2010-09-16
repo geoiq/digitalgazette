@@ -16,7 +16,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-      #debugger
       render_search_results
     end
   end
@@ -64,7 +63,6 @@ class SearchController < ApplicationController
   #   SEARCHABLE_PAGE_TYPES.each do |t|
   #     instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
   #   end
-  #   debugger
   # end
 
   # add to the path
@@ -181,19 +179,35 @@ class SearchController < ApplicationController
 
 
       # Process internal Pages
-      @naked_path = @path.dup.remove_keyword(:type)
+      @naked_path = @path.dup.remove_keyword("type")
       # Create the path for the internal resources
-      @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal])
+      # @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal]).sort!
+      # TODO this does not work as we want
+      #
+      # Benchmarks: OPTIMIZE use Union, i am running out of time.
+      #
+      # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
+#=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
+#>> 
+  #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
+# => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
+      #
+      #
+      # We want e.g. WHERE pages.type = wiki OR pages.type = asset
+      # but we want the same limit per page for every model - figure out, how to do this best      
       # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
-      @internal_pages =  Page.paginate_by_path(@internal_path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => (get_per_page)}))))
+      #
+      #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => (get_per_page)}))))
+      @internal_pages = { }
+      
       # OPTIMIZE this is ugly
-      @stored_internal_pages = @internal_pages.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
+      @stored_internal_pages = @internal_pages.dup.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
       # creates the hash of @internal_pages
       # and decorates it with the corresponding results from the query
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = @stored_internal_pages[page_type]
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(PathFinder::ParsedPath.new(@naked_path.add_types!(page_type))) # sorting in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
       

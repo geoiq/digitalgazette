@@ -9,6 +9,7 @@ module Geocommons
       types.each do |type|
         self << ["type",type.to_s]
       end
+      self.sort
     end
  
     
@@ -87,5 +88,9 @@ module Geocommons
       }
     end
 
+    def sort!
+      self.sort{|a,b| (PathFinder::ParsedPath::PATH_ORDER[a[0]]||PathFinder::ParsedPath::PATH_ORDER['default']) <=> (PathFinder::ParsedPath::PATH_ORDER[b[0]]||PathFinder::ParsedPath::PATH_ORDER['default']) }
+    end
+    
   end
 end

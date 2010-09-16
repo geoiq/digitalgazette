@@ -170,17 +170,18 @@ class SearchControllerTest < ActionController::TestCase
        assert assigns(:naked_path)
        assert ! assigns(:naked_path).keyword?('type'), "a naked path should have no types"
      }
-     
-     should("build an internal path") {
-       assert assigns(:internal_path), "no @internal_path"
-       assert_kind_of Array, assigns(:internal_path)
-     }
+
+# NOTe currently not used, untill we use SQL UNION in get_pages       
+#     should("build an internal path") {
+#       assert assigns(:internal_path), "no @internal_path"
+#       assert_kind_of Array, assigns(:internal_path)
+#     }
      
      should("get internal pages") { 
        assert assigns(:internal_pages), "no @internal_pages"
      }
      should("assign pages and dom_id for every internal pagetype") {
-       debugger
+         
        assigns(:page_type_groups)[:internal].each do |page_type|
          assert assigns(:internal_pages)[page_type], "no storage for #{page_type}"
          assert assigns(:internal_pages)[page_type][:pages], "no pages for #{page_type}"
