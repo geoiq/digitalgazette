@@ -1,7 +1,11 @@
 # extensions for geocommons based page classes to provide convenient +find+ methods.
 module Geocommons::FindMethods
-  def find(options={})
-    pack_entries(_find(options))
+  def find(options_or_id)
+    if options_or_id.kind_of?(Hash)
+      pack_entries(_find(options_or_id))
+    else
+      pack_entry(_get(options_or_id))
+    end
   end
 
   def geocommons_service(service)
@@ -19,6 +23,11 @@ module Geocommons::FindMethods
     Geocommons::RestAPI.find(@service, options.merge(default_find_options))
   end
 
+  def _get(id)
+    raise "You need to set the geocommons_service in #{self.name}" unless @service
+    Geocommons::RestAPI.get(@service, "/#{@model.underscore.pluralize}/#{id}.json")
+  end
+
   def default_find_options
     { :model => @model }
   end
@@ -32,7 +41,7 @@ module Geocommons::FindMethods
   def pack_entries(result)
     log_debug { "Unpacking Result: #{result.inspect}" }
     result['entries'].map do |entry|
-      new(entry)
+      pack_entry(entry)
     end
   rescue => exc
     Rails.logger.fatal(result.inspect)
@@ -41,6 +50,10 @@ module Geocommons::FindMethods
       Rails.logger.fatal(line)
     end
     raise "Failed to unpack the result I just dumped to Rails.logger (along with trace)!"
+  end
+
+  def pack_entry(entry)
+    new(entry)
   end
 
   def log_debug(msg=nil, &block)

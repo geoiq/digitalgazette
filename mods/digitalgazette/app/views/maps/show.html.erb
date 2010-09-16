@@ -1,19 +1,24 @@
+<% target_dom_id = "maker_map_#{@map.id}" -%>
 
 <style type="text/css">
-#maker_map_<%= @map_id %> {width: 100%; height: 500px; margin-top: -15px;}
+#<%= target_dom_id %> {width: 100%; height: 500px; margin-top: 0px;}
 #holder {width: 100%;}
+h1.geocommons_map_title { font-size: 1.5em; }
 </style>
+
+<%= render :partial => 'maps/action_buttons' %>
 
 <% if @map.nil? %>
   <strong>No map found - please search to find what you are looking for.</strong>
 <%- else -%>
-  <h2><%# @map["title"] %></h2>
-  <div class="geocommons_map" id="maker_map_<%= @map_id %>" style="height: 100%;"></div>
+  <h1 class="geocommons_map_title"><%=h @map.title %></h1>
+  <div class="geocommons_map" id="<%= target_dom_id %>"></div>
 
-  <%= geocommons_load_map("maker_map_#{@map_id}", @map_id) %>
+  <%= geocommons_load_map(target_dom_id, @map.id) %>
 
   <br />
 
-  <p><%= @map["description"] %></p>
+  <p><%=h @map.description %></p>
 
 <%- end -%>
+
