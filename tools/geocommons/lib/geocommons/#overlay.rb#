@@ -32,7 +32,7 @@ module Geocommons
                   contributor tags layer_size link description
                   source bbox created overlay_id detail_link)
 
-    def id
+    def idx
       overlay_id
     end
 

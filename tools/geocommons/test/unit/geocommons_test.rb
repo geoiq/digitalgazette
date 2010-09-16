@@ -1,6 +1,7 @@
 require 'rubygems'
-require 'test/unit'
+require File.dirname(__FILE__) + '/../../../../test/test_helper'
 require File.dirname(__FILE__) + '/../../lib/geocommons'
+require File.dirname(__FILE__) + '/../../lib/geocommons/rest_api'
 require 'json'
 
 GEOCOMMONS_HOST = "finder.digitalgazette.org"

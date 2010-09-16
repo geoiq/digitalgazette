@@ -130,4 +130,25 @@ class SearchControllerTest < ActionController::TestCase
     end
   end
 
+  
+  
+# context("with a path containing external and internal pages")
+#    should("group the page_types into internal and external") {
+#      assert assigns(:page_type_groups)
+#      assert_kind_of Hash, assigns(:page_type_groups)
+#      assert assigns(:page_type_groups).keys.include(:external) && assigns(:page_type_groups).keys.include?(:internal)
+#    }
+#    should("create a clean path without types") {
+#      assert assigns(:naked_path)
+#      assert ! assigns(:naked_path).has_keyword?(:type), "a naked path should have no types"
+#    }
+   
+#    should("build an internal path and an external path") {
+#      assert_assigns(:internal_path
+#    }
+
+  
+  
+  
+  
 end
