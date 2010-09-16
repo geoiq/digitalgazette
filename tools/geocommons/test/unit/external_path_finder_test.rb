@@ -7,13 +7,27 @@ require 'ruby-debug'
 class ExternalPathFinderTest < Test::Unit::TestCase
 
   def setup
-
+    Crabgrass::ExternalAPI.clear!
+    Crabgrass::ExternalAPI.register(
+                                     :overlay, {
+                                        :model => TestModel,
+                                        :methods =>
+                                        { :find => "paginate"},
+                                        :query_builder => {
+                                          :keywords => {
+                                            "text" => "",
+                                            "tag" => "tag"
+                                          },
+                                          :argument_separator => " ",
+                                        }
+                                      }
+                                    )
   end
 
   def test_convert
      some_crabgrass_paths = [[PathFinder::ParsedPath.new("tag/pakistan"),"tag:pakistan"], [PathFinder::ParsedPath.new("tag/pakistan/tag/maharatschi"), "tag:pakistan tag:maharatschi"]]
      some_crabgrass_paths.each do |p|
-       parsed_path = Crabgrass::ExternalPathFinder.convert('overlay', p[0])
+       parsed_path = Crabgrass::ExternalPathFinder.convert(:overlay, p[0])
        assert_equal parsed_path, p[1]
      end
   end

@@ -15,12 +15,12 @@ class GeocommonsOverlayTest < Test::Unit::TestCase
       @valid_attributes = %w(short_classification name can_view can_edit author
                             can_download published icon_path id contributor
                             tags layer_size link description source bbox
-                            created overlay_id detail_link)
+                            created overlay_id detail_link).map{ |a|  a.to_sym }
       @overlay = Geocommons::Overlay
   end
 
   def test_valid_attributes
-    assert_equal @overlay::VALID_ATTRIBUTES, @valid_attributes, "valid attributes should be the same in the api and the test"
+    assert_equal @overlay.attributes, @valid_attributes, "valid attributes should be the same in the api and the test"
     @valid_attributes.each do |attribute|
       assert @overlay.new.respond_to?(attribute.to_sym), "overlay should respond to #{attribute.to_sym}"
     end
