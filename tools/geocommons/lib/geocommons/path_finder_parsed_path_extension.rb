@@ -81,8 +81,9 @@ module Geocommons
     def keywords_with_args options={ :ignore_atoms => true}
       inject({}) { |result,element|
         result[element.first] ||= []
-        result[element.first] << all_args_for(element.first)
+        result[element.first] = all_args_for(element.first)
         result[element.first].uniq
+        result
       }
     end
 

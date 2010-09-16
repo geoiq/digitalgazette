@@ -179,7 +179,8 @@ class SearchControllerTest < ActionController::TestCase
      should("get internal pages") { 
        assert assigns(:internal_pages), "no @internal_pages"
      }
-     should("assign pages and dom_id for every internal pagetype") { 
+     should("assign pages and dom_id for every internal pagetype") {
+       debugger
        assigns(:page_type_groups)[:internal].each do |page_type|
          assert assigns(:internal_pages)[page_type], "no storage for #{page_type}"
          assert assigns(:internal_pages)[page_type][:pages], "no pages for #{page_type}"
