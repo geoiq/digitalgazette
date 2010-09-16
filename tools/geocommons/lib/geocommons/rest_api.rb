@@ -3,6 +3,16 @@ require 'net/https'
 module Geocommons
   class RestAPI
     class << self
+      def get(service, path)
+        start_connection(uri = service_uri(service)) do |http|
+          if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
+            return JSON.load(response.body)
+          else
+            raise "Error getting geocommons: #{response.inspect}"
+          end
+        end
+      end
+
       # Query the Geocommons search API via GET requests on /searches.json.
       #
       # The given +service+ will be looked up via Geocommons.config to find
@@ -14,7 +24,7 @@ module Geocommons
         log_debug("Querying sevice '#{service}' for #{options.inspect}")
         options[:limit] ||= options[:per_page]
 
-        uri = URI.parse(Geocommons.config(:map, service))
+        uri = service_uri(service)
 
         start_connection(uri) do |http|
           response = http.request(build_request(File.join(uri.path || '/', 'searches.json'), options))
@@ -34,7 +44,7 @@ module Geocommons
       # build a Net::HTTP::Get request for the given path, with the given options
       # (to be serialized as query string). If options[:user] is given, the request
       # will be authenticated via HTTP Basic Auth.
-      def build_request(path, options)
+      def build_request(path, options={})
         user = options.delete(:user)
         request = Net::HTTP::Get.new([path, serialize_options(options)].join('?'))
         add_credentials(user, request) if user
@@ -70,6 +80,10 @@ module Geocommons
         Rails.logger.debug do
           "[Geocommons::RestAPI] #{msg || block.call}"
         end
+      end
+
+      def service_uri(service)
+        URI.parse(Geocommons.config(:map, service))
       end
     end
   end
