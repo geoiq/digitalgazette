@@ -23,9 +23,10 @@ Dispatcher.to_prepare do
 
   # TODO move this to geocommons.yml
   Crabgrass::ExternalAPI.register('overlay',
-                                  {                                                                         :model => self.class.name,
-                                    :methods =>
-                                    { :find => "paginate"},
+                                  { :model => 'Geocommons::Overlay',
+                                    :methods => {
+                                      :find => "paginate"
+                                    },
                                     :query_builder => {
                                       :keywords => {
                                         "text" => "",
@@ -34,13 +35,11 @@ Dispatcher.to_prepare do
                                       :argument_separator => " ",
                                       :key_value_separator => ":"
                                     }
-                                  }
-
-                                  )
+                                  })
 
   # TODO move this to geocommons.yml
   Crabgrass::ExternalAPI.register('map',
-                                  { :model => self.class.name,
+                                  { :model => 'Geocommons::Map',
                                     :methods =>
                                     { :find => "paginate"},
                                     :query_builder => {
