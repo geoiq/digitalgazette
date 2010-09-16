@@ -16,11 +16,11 @@ class ExternalPathFinderTest < Test::Unit::TestCase
                                         :query_builder => {
                                           :keywords => {
                                             "text" => "",
-                                            "tag" => "tag"
-                                          },
-                                          :argument_separator => " ",
+                                          "tag" => "tag" },
+                                          :key_value_separator => ":",
+                                          :argument_separator => " "
+                                          }
                                         }
-                                      }
                                     )
   end
 

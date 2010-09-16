@@ -41,7 +41,7 @@ module Crabgrass
     def self.registered?(name)
       registered_apis.keys.include?(name)
     end
-    
+
     def map_table
       @@registered_apis[name]
     end
@@ -59,7 +59,7 @@ module Crabgrass
     end
 
     def argument_separator
-      query_builder || "&"
+      query_builder[:argument_separator] || "&"
     end
 
     def query_builder
