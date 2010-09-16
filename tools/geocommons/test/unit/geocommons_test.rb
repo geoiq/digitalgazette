@@ -10,7 +10,7 @@ GEOCOMMONS_HOST = "finder.digitalgazette.org"
 class GeocommonsTest < Test::Unit::TestCase
 
   def setup
-    @api = Geocommons::RestApi
+    @api = Geocommons::RestAPI
   end
 
   def test_find

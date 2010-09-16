@@ -29,8 +29,6 @@ class ExternalAPITest < Test::Unit::TestCase
                                           :argument_separator => " ",
                                         }
                                       }
-
-
                                     )
   end
 

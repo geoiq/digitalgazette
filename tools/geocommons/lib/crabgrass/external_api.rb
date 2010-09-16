@@ -63,7 +63,7 @@ module Crabgrass
     end
 
     def query_builder
-      map_table[:query_builder]
+       map_table[:query_builder]
     end
 
     # calls the mapped method
