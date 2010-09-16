@@ -24,8 +24,8 @@ module Geocommons
 
     # pass :ignore_atoms => false if you want 'or' keywords
     def keywords options={ :ignore_atoms => true}
-      select { |element|
-        element[0] unless (options[:ignore_atoms] || PATH_KEYWORS[element[0]] == 0)
+      map { |element|
+        element[0] unless (options[:ignore_atoms] && PathFinder::ParsedPath::PATH_KEYWORDS[element[0]] == 0)
       }
     end
 
