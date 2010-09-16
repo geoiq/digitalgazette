@@ -23,6 +23,16 @@ module Geocommons
     end
 
     # pass :ignore_atoms => false if you want 'or' keywords
+    #
+    # atomare keywords are 'or' or things like 'imortant'
+    # currently crabgrass is skipping most of these keywords
+    # anyway using sphinx (see sphinx backend)
+    #
+    # if you want to implement such shourtcuts in a api
+    #
+    # you need to set ignore_atoms => false
+    # and provide a proper mapping
+    # for all of them
     def keywords options={ :ignore_atoms => true}
       map { |element|
         element[0] unless (options[:ignore_atoms] && PathFinder::ParsedPath::PATH_KEYWORDS[element[0]] == 0)

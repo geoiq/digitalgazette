@@ -10,23 +10,6 @@ module Geocommons
     geocommons_service :finder
     geocommons_model 'Overlay'
 
-    # TODO move this to geocommons.yml
-    Crabgrass::ExternalAPI.register('overlay',
-                                    {                                                                         :model => self.class.name,
-                                       :methods =>
-                                        { :find => "paginate"},
-                                        :query_builder => {
-                                          :keywords => {
-                                            "text" => "",
-                                            "tag" => "tag"
-                                          },
-                                          :argument_separator => " ",
-                                          :key_value_separator => ":"
-                                        }
-                                      }
-
-                                    )
-
     attributes %w(short_classification name can_view can_edit
                   author can_download published icon_path id
                   contributor tags layer_size link description
