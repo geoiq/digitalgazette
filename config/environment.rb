@@ -54,6 +54,8 @@ end
 #  attr_accessor :action_web_service
 #end
 
+require 'sass'
+
 Rails::Initializer.run do |config|
   ###
   ### (2) CONFIG BLOCK
