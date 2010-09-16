@@ -37,6 +37,7 @@ Dispatcher.to_prepare do
                                     }
                                   }
                                 )
+  PathFinder::ParsedPath.send(:include, Crabgrass::PathFinderParsedPathExtension) unless PathFinder::ParsedPath.included_modules.include?(Crabgrass::PathFinderParsedPathExtension)
 end
 
   # Add "preferred" keyword to PathFinder.
@@ -48,7 +49,7 @@ new_path_keywords = PathFinder::ParsedPath::PATH_KEYWORDS.dup
 new_path_keywords['preferred'] = 1
 PathFinder::ParsedPath::PATH_KEYWORDS = new_path_keywords.freeze
 
-PathFinder::ParsedPath.send(:include, ::Geocommons::PathFinderParsedPathExtension)
+PathFinder::ParsedPath.send(:include, Crabgrass::PathFinderParsedPathExtension)
 
 
 
