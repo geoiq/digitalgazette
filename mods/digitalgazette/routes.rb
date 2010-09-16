@@ -1,4 +1,6 @@
-map.maps '/maps', :controller => 'pages', :action => 'index', :page_type => "map"
+
+
+#map.maps '/maps', :controller => 'pages', :action => 'index', :page_type => "map"
 map.map_search '/maps/search/*path', :controller => 'search', :action => 'index', :page_type => 'map'
 
 map.connect '/about/:id', :controller => 'about', :action => 'show'
