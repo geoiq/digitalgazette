@@ -47,10 +47,10 @@ class ExternalAPITest < Test::Unit::TestCase
       }
       context("the api") do
         should("have a name") {
-            assert_equals @api.name, :overlay
+            assert_equal @api.name, :overlay
           }
          should("have a valid map table") {
-          assert_equals Crabgrass::ExternalAPI.registered_apis[:overlay], @api.map_table
+          assert_equal Crabgrass::ExternalAPI.registered_apis[:overlay], @api.map_table
         }
         should("assign a model") {
           assert @api.model == "overlay"
@@ -62,12 +62,12 @@ class ExternalAPITest < Test::Unit::TestCase
           assert @api.argument_separator
         }
         should("return the default key-value-separator, because we didn't set one") {
-          assert_equals @api.key_value_separator, "="
+          assert_equal @api.key_value_separator, "="
         }
 
         should("call the corresponding method on the Test-Model") {
           args = "bla"
-          assert_equals args, @api.call(:find,args)
+          assert_equal args, @api.call(:find,args)
         }
 
         # TODO test the load method!!

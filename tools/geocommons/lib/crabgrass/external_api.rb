@@ -33,7 +33,7 @@ module Crabgrass
     def self.registered_apis
       @@registered_apis
     end
-    
+
     def self.for(page_type)
       return new(page_type)
     end
@@ -64,9 +64,9 @@ module Crabgrass
 
     # calls the mapped method
     def call(method_name, *args)
-      model.methods(get_method(method_name.to_sym)).call(args)
+      #debugger
+      methods[get_method(method_name.to_sym).to_sym].call(args)
     end
-
 
     #
     #
@@ -96,12 +96,12 @@ module Crabgrass
       end
       self.register(YAML.load(file).to_hash[name])
     end
-    
+
 
     def self.clear!
       @@registered_apis = { }
     end
-    
+
 
   end
 end
