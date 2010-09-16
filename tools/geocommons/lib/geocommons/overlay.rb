@@ -51,22 +51,6 @@ module Geocommons
       end
     end
 
-    def updated_at
-      created.to_datetime
-    end
-
-    def created_at
-      created.to_datetime
-    end
-
-    def updated_by
-      contributor ? contributor : author
-    end
-
-    def created_by
-      author || ""
-    end
-
     def icon
       icon_path
     end
