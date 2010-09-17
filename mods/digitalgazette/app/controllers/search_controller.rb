@@ -87,7 +87,7 @@ class SearchController < ApplicationController
   # end
 
   # add to the path
-  # TODO refactor this to PathFinderParsedPathExtensions
+  # NOTE deprecated
   def prefix_path
     path = []
     if params[:page_type]
@@ -104,14 +104,14 @@ class SearchController < ApplicationController
   def list_partial_for(page_type)
     ret =
     if @widget
-      BOX_PARTIALS[@widget.to_s] || raise("you called an illegal widget #{@widget.to_s}")
+      BOX_PARTIALS[@widget.to_s] || ""
     elsif @page_type
-      PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
+      PAGE_TYPE_PARTIALS[@page_type.to_s] || ""
     elsif @wrapper
-      LEGAL_PARTIALS.include?(@wrapper) ? @wrapper : raise("you called an illegal partial #{@wrapper.to_s}")      
+      LEGAL_PARTIALS.include?(@wrapper) ? @wrapper : ""      
     end
     logger.debug("fallback to 'pages/list'") unless ret
-    ret ||= "pages/list"
+    ret = "pages/list" if (ret.nil? || ret.empty?)  
   end
   
   # TODO somewhere else, more general
@@ -191,8 +191,8 @@ class SearchController < ApplicationController
   def get_dom_id(page_type = nil, options = { })
     return params[:dom_id] if params[:dom_id]
     page_type ||= @page_type
-    prefix = @panel ? "#{@panel}_" : ""
-    prefix << "#{@widget}_" if @widget
+    prefix = (@panel && !@panel.empty?) ? "#{@panel}_" : ""
+    prefix << "#{@widget}_" if @widget && !@widget.empty?
     prefix << (page_type ? page_type.underscore+"_list" : "pages_list")
     # FIXME in case of 'pages_list', and we have more than one page type,
     # we will get chaos or should use an appending technique

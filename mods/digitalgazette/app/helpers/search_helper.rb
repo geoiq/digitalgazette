@@ -33,14 +33,11 @@ module SearchHelper
   # - page_types # optional, what page_type should be used here
   # - pagination :all, :top, :bottom or nil
   # -
-  def panel_for *args, &block
-    options = args.pop if args.last.kind_of?(Hash)
-    page_types = args.first
-    options ||={ }
-    options.merge!({ :box => false, :pagination => :bottom})
+  def panel name, options={}, &block
+    options.merge!({ :for => :all, :box => false, :pagination => :bottom})
     ret = ""
     
-    content = capture(&block)
+    content = capture(&block) || nil
    
   # version with blocks
    # if options[:wrapper]
@@ -50,8 +47,9 @@ module SearchHelper
    # end
     
   # version with locals  
-   if options[:wrapper]
-     concat(render(:partial => LEGAL_PARTIALS[options[:wrapper]],  :locals => { :content => content }), block.binding)
+   options[:id] ||= name.to_s
+   if options[:wrapper]     
+     concat(render(:partial => list_partial_for(options[:wrapper]),  :locals => { :content => content }), block.binding)
    else
      concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
    end
@@ -81,6 +79,7 @@ module SearchHelper
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
+    options[:autoloa] ||= true #boxes are autoloaded see widget_for
     ret = ""
     # box title
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
@@ -106,19 +105,26 @@ module SearchHelper
   end
 
 
+
+    
+
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
   # :dom_id           - save explicit dom-id
+  # :autoload => 'when true, then adds a remote call to get the items'
   def widget_for page_type, options={}
     options = options_for_widget(page_type, options)
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
+    autoload = options[:autoload]
     path = @path.to_param
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
       # @path.set_keyword('type', options[:page_type])
+    if autoload  
       javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(widget_id, :show => true)
+    end
 # NOTE this way we could store the widget page in the ui
 #      + javascript_tag("
 #
@@ -132,14 +138,22 @@ module SearchHelper
   
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
-    options[:namespace] ? "#{options[:namespace]}_#{str}" : str
+    options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
   
   def widgets_for args, options={ }
     ret = ""
-    args.each do |arg|
-      ret << widget_for(arg,options)
+    if args == :all
+      args = SEARCHABLE_PAGE_TYPES
     end
+    options = options.merge({ :panel => @panel, :widget => @widget, :wrapper => @wrapper})
+    args.each do |arg|
+      ret << widget_for(arg,options.merge(:autoload => false))
+    end
+    path = @path.dup.remove_keyword("type")
+    path.add_types! args
+    ret <<    javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(@panel, :show => true)
+   
     ret
   end
 
