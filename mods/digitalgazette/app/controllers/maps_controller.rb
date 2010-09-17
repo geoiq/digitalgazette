@@ -7,6 +7,9 @@ class MapsController < PagesController
   helper 'action_bar', 'tab_bar', 'groups'
 #  layout 'header'
 
+  before_filter :get_page_type
+  
+  require 'ruby-debug'
   include PagesHelper
   # FIXME: do we really need that "all" action?
   def index
@@ -14,15 +17,17 @@ class MapsController < PagesController
   end
 
   def show
-#    @map = Geocommons::Map.find(params[:id])
-    @map = get_page_for(params[:id])
+    get_page_type
+   # @map = Geocommons::Map.find(params[:id])
+    @map = fetch_page_for(params[:id])
+    @page = @map
   end
 
   def all
     get_page_type
     @maps = fetch_pages_for(@path) # TODO pass options for pagination and other things
-#    @maps = Geocommons::Map.paginate(params.merge(:limit => 50))
-#    @maps = Geocommons::Map.paginate(@path)
+   # @maps = Geocommons::Map.paginate(params.merge(:limit => 50))
+   # @maps = Geocommons::Map.paginate(@path)
     @pages = @maps
     render :partial => 'pages/list', :layout => "base", :locals => { :pages => @maps, :title => @page_type}
     #    all_pages_list
@@ -51,12 +56,18 @@ class MapsController < PagesController
   end
   
   def fetch_page_for(id)
-    Crabgrass::ExternalAPI.for(@page_type).call(:find, id)
+
+    Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id)
   end
   
   
   def fetch_pages_for(path)
-    Crabgrass::ExternalAPI.for(@page_type).call(:find, path)
+
+    Crabgrass::ExternalAPI.for(@page_type).call(:paginate, transform_path(path))
+  end
+  
+  def transform_path(path)
+    Crabgrass::ExternalPathFinder.convert(@page_type, path)
   end
   
 end
