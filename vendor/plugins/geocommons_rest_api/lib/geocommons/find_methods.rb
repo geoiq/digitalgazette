@@ -20,7 +20,8 @@ module Geocommons::FindMethods
   # be determined by +geocommons_model_name+
   def _find(options={})
     raise "You need to set the geocommons_service in #{self.name}" unless @service
-    Geocommons::RestAPI.find(@service, options.merge(default_find_options))
+    options = options.merge(default_find_options)
+    Geocommons::RestAPI.find(@service, options)
   end
 
   def _get(id)

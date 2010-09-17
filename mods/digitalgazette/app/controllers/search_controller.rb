@@ -26,6 +26,7 @@ class SearchController < ApplicationController
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags @panel
     get_pages # @pages
 
+    #FIXME this won't happen, we have no @pages anymore
     # if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
       begin
@@ -167,7 +168,7 @@ class SearchController < ApplicationController
     setup_page_store #setup the page store to store the pages -> ui - configuration
     # if no explicit pagetype is set, we want to search in all searchable page types
 
-    if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
+   # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
       
       # separate the page_types by the condition wether
@@ -226,7 +227,7 @@ class SearchController < ApplicationController
           #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
       end
       @page_store = @page_store.merge(@external_pages).merge(@internal_pages)
-      # TODO create WillPaginate::Collection
+    # TODO create WillPaginate::Collection
       # NOTE this is the place, where the full WidgetTree
       # would be available
       #
@@ -234,10 +235,13 @@ class SearchController < ApplicationController
       
     # NOTE this is fallback from the past 
     #      and can probably be removed
-    else
+
+=begin
+  else
 
       if EXTERNAL_PAGE_TYPES.include?(@page_type)
         @pages = get_external_results
+        
       else
         @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
       end
@@ -245,6 +249,7 @@ class SearchController < ApplicationController
 #      @path = PathFinder::ParsedPath.new((@path + default_page_types_path).to_param) unless @path.arg_for('type')
       #      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
     end
+=end
   end
   
   

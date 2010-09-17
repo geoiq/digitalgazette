@@ -6,13 +6,18 @@ module Geocommons
       base.send(:include, Geocommons::Attributes)
     end
 
+    def user
+      
+    end
+    
+    
     # FIXME: do we get a "updated" attribute from geocommons?
     def updated_at
-      DateTime.parse(created) if created
+      (DateTime.parse(created) if created) || Time.now
     end
 
     def created_at
-      DateTime.parse(created) if created
+      (DateTime.parse(created) if created) || Time.now
     end
 
     def updated_by

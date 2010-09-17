@@ -7,6 +7,10 @@ module Geocommons::Pagination
   def paginate(query, options={})
     page = options[:page] || 1
     per_page = options[:per_page] || 2
+    
+    if query.empty? || query.nil?
+      query = "*"
+    end
     options[:query] = query
     WillPaginate::Collection.create(page, per_page, count(options)) do |pager|
       # @options_from_last_find = nil

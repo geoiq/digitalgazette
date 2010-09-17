@@ -33,5 +33,6 @@ module Geocommons
     def url
       detail_link
     end
+      
   end
 end

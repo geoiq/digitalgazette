@@ -2,7 +2,7 @@ class Geocommons::Map < Geocommons::BasePage
   geocommons_service :maker
   geocommons_model 'Map'
 
-  attributes :short_classification, :author, :title, :id, :tags, :pk, :type, :description, :permissions, :link, :bbox, :created
+  attributes :short_classification, :author, :title, :id, :tags, :pk, :type, :description, :permissions, :link, :bbox, :created, :link
 
   def id
     # GeoCommons formats id as Map:123
@@ -20,4 +20,9 @@ class Geocommons::Map < Geocommons::BasePage
   def author
     @author || { }
   end
+  
+  def url
+    "/maps/#{id}"
+  end
+ 
 end

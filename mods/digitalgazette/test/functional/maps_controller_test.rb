@@ -63,7 +63,7 @@ class MapsControllerTest < ActionController::TestCase
     context "all" do
       setup { get :all}
       should "render the right template" do
-        assert_template "maps/all"
+        assert_template "pages/_list"
       end
 
       should "get maps" do

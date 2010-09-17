@@ -1,6 +1,7 @@
 - pages ||= @pages
 - maps ||= @maps
 = render(:partial => heading_partial) if local_assigns[:heading_partial]
+- raise 'bla'
 %section#pages{:class=> local_assigns[:full_width] ? 'full' : ''}
   %header
     - if local_assigns[:title] && !title.blank?
