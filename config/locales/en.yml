@@ -67,6 +67,9 @@ en:
   dg_dg_sidebar_overlay_list: "Overlays"
 
   dg_wiki_search_header: "What do you want to learn about??"
+  dg_map_page_header: "Map!"
+  dg_new_map_page: "upload a map"
+  dg_map_search_header: "search maps"
   browse_wiki: "or Browse Articles by Topic"
   dg_asset_search_header: "What kind of Report would you like to find?"
   browse_asset: "Browse Reports"

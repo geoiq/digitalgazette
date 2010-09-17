@@ -18,7 +18,7 @@ enabled_languages:
   - fr
 #  - es_ES
 
-text_editor: html_preferred
+text_editor: greencloth_only
 ##
 ## GLOBAL
 ##
