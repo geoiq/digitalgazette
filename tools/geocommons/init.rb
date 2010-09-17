@@ -10,7 +10,8 @@ Dispatcher.to_prepare do
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,
                                     :methods => {
-                                      :find => "paginate"
+                                      :find => "find",
+                                      :paginate => "paginate"
                                     },
                                     :query_builder => {
                                       :keywords => {
@@ -26,7 +27,8 @@ Dispatcher.to_prepare do
   Crabgrass::ExternalAPI.register('map',
                                   { :model => Geocommons::Map,
                                     :methods =>
-                                    { :find => "paginate"},
+                                    { :find => "find",
+                                      :paginate => "paginate"},
                                     :query_builder => {
                                       :keywords => {
                                         "text" => "",
