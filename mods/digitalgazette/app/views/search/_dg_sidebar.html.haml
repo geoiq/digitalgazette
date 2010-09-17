@@ -1,5 +1,6 @@
 %script{ :type => 'text/javascript' }
   DigitalGazette.Sidebar.setup();
+  - content ||= ""
   DigitalGazette.Sidebar.insert("#{escape_javascript(content)}");
 
 //  alert("'#{content}'");

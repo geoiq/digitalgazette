@@ -5,23 +5,23 @@ var DigitalGazette = {
             width: 16, // px
             setup: function() {
                 this.div.setAttribute('id', 'dg_sidebar_toggle');
-                this.div.style['position'] = 'absolute';
-                this.div.style['top'] = '0';
-                this.div.style['left'] = '0';
-                this.div.style['height'] = '100%';
-                this.div.style['width'] = this.width + 'px';
-                this.div.style['background'] = 'red';
-                this.div.onclick = function() { DigitalGazette.Sidebar.toggle(); };
+                 this.div.style['position'] = 'absolute';
+                 this.div.style['top'] = '0';
+                 this.div.style['left'] = '0';
+                 this.div.style['height'] = '100%';
+                 this.div.style['width'] = this.width + 'px';
+                 this.div.style['background'] = 'red';
+                 this.div.onclick = function() { DigitalGazette.Sidebar.toggle(); };
             },
         },
         div: document.createElement('div'),
         setup: function() {
             Element.extend(this.div);
             this.div.setAttribute('id', 'dg_sidebar');
-            this.div.style['position'] = 'absolute';
-            this.div.style['top'] = '160px';
-            this.div.style['right'] = '0';
-            this.div.style['background'] = 'blue';
+             this.div.style['position'] = 'absolute';
+             this.div.style['top'] = '160px';
+             this.div.style['right'] = '0';
+             this.div.style['background'] = 'blue';
             this.ToggleButton.setup();
             this.div.appendChild(this.ToggleButton.div);
             document.body.appendChild(this.div);

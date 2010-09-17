@@ -272,3 +272,22 @@ fieldset {
     margin:0;
     padding: 0;
 }
+
+div#dg_sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 16px;
+    background:#ccc;
+
+}
+
+div#dg_sidebar_toggle {
+  position: absolute;
+  top: 160px;
+  right: 0px;
+  background: #green;
+}
+
+  
