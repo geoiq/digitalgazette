@@ -101,14 +101,15 @@ class SearchController < ApplicationController
 
   # same as list_partial
   # but used for iterative partial resolving of a group of page types
-  def list_partial_for(page_type)
+  def list_partial_for(page_type,options={ })
     ret =
-    if @widget
-      BOX_PARTIALS[@widget.to_s] || ""
-    elsif @page_type
-      PAGE_TYPE_PARTIALS[@page_type.to_s] || ""
-    elsif @wrapper
-      LEGAL_PARTIALS.include?(@wrapper) ? @wrapper : ""      
+    if options[:widget] ||= @widget
+      BOX_PARTIALS[options[:widget].to_s] || ""
+    elsif options[:page_type] ||= @page_type
+      PAGE_TYPE_PARTIALS[options[:page_type].to_s] || ""
+    elsif  options[:wrapper] ||= @wrapper
+#      LEGAL_PARTIALS.keys.include?(@wrapper) ? er : ""
+       LEGAL_PARTIALS[options[:wrapper].to_s]
     end
     logger.debug("fallback to 'pages/list'") unless ret
     ret = "pages/list" if (ret.nil? || ret.empty?)  
@@ -185,7 +186,6 @@ class SearchController < ApplicationController
 #     base_name =  @dom_id || (@page_type ? @page_type.underscore+"_list" : "pages_list")
     
 #     prefix = @namespace ? @namespace : @wrapper || ""
-#     debugger
 #     "#{prefix}#{base_name}" 
 
   def get_dom_id(page_type = nil, options = { })
@@ -244,16 +244,16 @@ class SearchController < ApplicationController
       # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
       #
       #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => (get_per_page)}))))
-      @internal_pages = { }
+   #   @internal_pages = { }
       
       # OPTIMIZE this is ugly
-      @stored_internal_pages = @internal_pages.dup.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
+   #   @stored_internal_pages = @internal_pages.dup.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
       # creates the hash of @internal_pages
       # and decorates it with the corresponding results from the query
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(PathFinder::ParsedPath.new(@naked_path.add_types!(page_type))) # sorting in the path is important
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a)) # sorting in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
       
