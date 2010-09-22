@@ -19,7 +19,7 @@ var DigitalGazette = {
         setup: function() {
             Element.extend(this.wrapper);
             Element.extend(this.div);
-            this.wrapper.setAttribute('id', 'dg_sidebar');
+            this.div.setAttribute('id', 'dg_sidebar');
             this.wrapper.style['position'] = 'absolute';
             this.wrapper.style['top'] = '160px';
             this.wrapper.style['right'] = '0';
@@ -36,7 +36,7 @@ var DigitalGazette = {
             window.onresize = function() { self.adjust(); };
         },
         adjust: function() {
-            this.wrapper.style['height'] = (window.innerHeight - Element.positionedOffset(this.wrapper)[1]) + 'px';
+            this.wrapper.style['height'] = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
             if(this.visible())
                 this.wrapper.style['width'] = ((window.innerWidth / 100) * 25) + 'px';
             else

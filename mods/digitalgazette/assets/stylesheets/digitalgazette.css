@@ -287,7 +287,7 @@ div#dg_sidebar_toggle {
   position: absolute;
   top: 160px;
   right: 0px;
-  background: #green;
+  background: green; !important
 }
 
   

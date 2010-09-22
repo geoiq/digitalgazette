@@ -20,7 +20,7 @@ class SearchController < ApplicationController
     end
   end
 
-  
+=begin DRAFT  
   def paginate_panel
     # what do we do, if we have no items in one box, but many on others
 
@@ -38,7 +38,7 @@ class SearchController < ApplicationController
       render_search_results
     end
   end
-  
+=end  
   
   def render_search_results
 
@@ -174,19 +174,7 @@ class SearchController < ApplicationController
   
   # create an id for the container we want to update in
 
-  #LEFT FROM MERGE
-  #
-  #
-  # if @wrapper is set, then the id's are built like this:
-  #
-  # sidebar_wiki_page_list
-#   def get_dom_id
-#     return params[:dom_id] if params[:dom_id]
-#     base_name =  @dom_id || (@page_type ? @page_type.underscore+"_list" : "pages_list")
-    
-#     prefix = @namespace ? @namespace : @wrapper || ""
-#     debugger
-#     "#{prefix}#{base_name}" 
+
 
   def get_dom_id(page_type = nil, options = { })
     return params[:dom_id] if params[:dom_id]
@@ -278,23 +266,7 @@ class SearchController < ApplicationController
       #
       # try something like @pages.to_json
       
-    # NOTE this is fallback from the past 
-    #      and can probably be removed
 
-=begin
-  else
-
-      if EXTERNAL_PAGE_TYPES.include?(@page_type)
-        @pages = get_external_results
-        
-      else
-        @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
-      end
-#    else
-#      @path = PathFinder::ParsedPath.new((@path + default_page_types_path).to_param) unless @path.arg_for('type')
-      #      @pages = Page.paginate_by_path(@path, options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => 2}))))
-    end
-=end
   end
   
   
@@ -308,6 +280,7 @@ class SearchController < ApplicationController
   #      down to clever partials/helpers
   #
   def send_pages!
+    debugger
     if request.xhr?
      # Update every widget as one, if existing
       render :update do |page|
@@ -322,17 +295,7 @@ class SearchController < ApplicationController
   end
   
   
-#
-=begin DEPRECATED?  
-  # TODO think about doing this with path finder internals
-  def default_page_types_path
-    merge_path = []
-    (SEARCHABLE_PAGE_TYPES - EXTERNAL_PAGE_TYPES).each do |page_type|
-      merge_path << "type/#{page_type}"
-    end
-    PathFinder::ParsedPath.new(merge_path.join('/or/'))
-  end
-=end
+
   
   # the @page_store is our widget tree
   def setup_page_store
@@ -356,15 +319,6 @@ class SearchController < ApplicationController
     Crabgrass::ExternalPathFinder.find(page_type,@path)
   end
   
-=begin  
-  # mix in instance variables from the external api
-  def get_external_results
-    if @tags
-      Geocommons::Overlay.paginate_by_tag(@tags, pagination_params)
-    else
-      Geocommons::Overlay.paginate({:query => @path.arg_for("text")}.merge!(pagination_params.merge!(:per_page => 2)))
-    end
-  end
-=end
+
 end
 
