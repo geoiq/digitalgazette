@@ -35,6 +35,7 @@ module SearchHelper
   # -
   def panel name, options={}, &block
     options.merge!({ :for => :all, :box => false, :pagination => :bottom})
+    debugger
     ret = ""
     
     content = capture(&block) || nil
