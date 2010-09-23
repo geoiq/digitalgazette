@@ -11,7 +11,11 @@ var DigitalGazette = {
                 this.div.style['height'] = '100%';
                 this.div.style['width'] = this.width + 'px';
                 this.div.style['background'] = 'red'; // TODO: remove this.
+                this.div.style['filter'] = 'progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#000000'); /* for IE */'
+		this.div.style['background'] = 'background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000)); /* for webkit browsers */'
+		this.div.style['background'] = 'background: -moz-linear-gradient(top,  #ccc,  #000); /* for firefox 3.6+ */'
                 this.div.onclick = function() { DigitalGazette.Sidebar.toggle(); };
+
             },
         },
         div: document.createElement('div'),
@@ -30,6 +34,10 @@ var DigitalGazette = {
             this.div.style['width'] = '100%';
             this.div.style['padding-left'] = this.ToggleButton.width * 1.5;
             this.div.style['background'] = 'blue'; // TODO: remove this.
+            this.div.style['filter'] = 'progid:DXImageTransform.Microsoft.gradient(startColorstr='blue', endColorstr='#000000'); /* for IE */'
+	    this.div.style['background'] = 'background: -webkit-gradient(linear, left top, left bottom, from(blue), to(#000)); /* for webkit browsers */'
+	    this.div.style['background'] = 'background: -moz-linear-gradient(top,  blue,  #000); /* for firefox 3.6+ */'
+
             this.ToggleButton.setup();
             this.wrapper.appendChild(this.ToggleButton.div);
             this.wrapper.appendChild(this.div);

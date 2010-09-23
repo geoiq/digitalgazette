@@ -291,6 +291,7 @@ class SearchController < ApplicationController
   #      down to clever partials/helpers
   #
   def send_pages!
+
     if request.xhr?
      # Update every widget as one, if existing
       render :update do |page|

@@ -4,13 +4,14 @@
 
 
 
+
 = dynamic_widgets @preferred
 
 = pagination_links_for_widgets(@page_types) if @page_types
 
 - panel(:dg_sidebar, {:for => :all, :limit => 2, :pagination => true, :wrapper => "dg_sidebar"}) do
   = widgets_for :all, {:wrapper => "dg_sidebar", :panel => "dg_sidebar", :dom_id => "dg_sidebar"}
-//  = pagination_links_for_widgets(@page_types) if @page_types
+
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
