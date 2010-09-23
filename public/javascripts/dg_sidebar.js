@@ -42,6 +42,7 @@ var DigitalGazette = {
             this.adjust();
             var self = this;
             window.onresize = function() { self.adjust(); };
+            document.onresize = function() { self.adjust(); };
         },
         adjust: function() {
             this.wrapper.style['height'] = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
