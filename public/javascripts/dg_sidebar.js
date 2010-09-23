@@ -17,6 +17,9 @@ var DigitalGazette = {
         div: document.createElement('div'),
         wrapper: document.createElement('div'),
         setup: function() {
+	    if(this._is_setup)
+		return;
+	    this._is_setup = true;
             Element.extend(this.wrapper);
             Element.extend(this.div);
             this.div.setAttribute('id', 'dg_sidebar');
@@ -31,8 +34,8 @@ var DigitalGazette = {
             this.wrapper.appendChild(this.ToggleButton.div);
             this.wrapper.appendChild(this.div);
             document.body.appendChild(this.wrapper);
-            this.adjust();
             var self = this;
+            window.onload = function() { self.adjust(); };
             window.onresize = function() { self.adjust(); };
             document.onresize = function() { self.adjust(); };
         },

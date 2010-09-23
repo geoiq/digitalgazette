@@ -101,18 +101,18 @@ class SearchController < ApplicationController
 
   # same as list_partial
   # but used for iterative partial resolving of a group of page types
-  def list_partial_for(page_type,options={ })
+  def list_partial_for(options={ })
     ret =
-    if options[:widget] ||= @widget
+    if  options[:wrapper] ||= @wrapper
+       LEGAL_PARTIALS[options[:wrapper].to_s]
+    elsif options[:widget] ||= @widget
       BOX_PARTIALS[options[:widget].to_s] || ""
     elsif options[:page_type] ||= @page_type
       PAGE_TYPE_PARTIALS[options[:page_type].to_s] || ""
-    elsif  options[:wrapper] ||= @wrapper
-#      LEGAL_PARTIALS.keys.include?(@wrapper) ? er : ""
-       LEGAL_PARTIALS[options[:wrapper].to_s]
     end
     logger.debug("fallback to 'pages/list'") unless ret
     ret = "pages/list" if (ret.nil? || ret.empty?)  
+    ret
   end
   
   # TODO somewhere else, more general
@@ -297,7 +297,7 @@ class SearchController < ApplicationController
           @page_store.to_hash.each_pair do |page_type,options|
             dom_id = options[:dom_id]
             pages = options[:pages]
-            page[dom_id].replace_html(:partial => list_partial_for(page_type), :locals => { :pages => pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{page_type}")), :no_top_pagination => true} )
+          page[dom_id].replace_html(:partial => list_partial_for({ :page_type => page_type}), :locals => { :pages => pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{page_type}")), :no_top_pagination => true} )
           end
       
       end

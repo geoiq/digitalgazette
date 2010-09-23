@@ -49,7 +49,7 @@ module SearchHelper
   # version with locals  
    options[:id] ||= name.to_s
    if options[:wrapper]     
-     concat(render(:partial => list_partial_for(options[:wrapper]),  :locals => { :content => content }), block.binding)
+     concat(render(:partial => list_partial_for(options),  :locals => { :content => content }), block.binding)
    else
      concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
    end
@@ -76,10 +76,13 @@ module SearchHelper
   # wraps one into a box
   def box_for box_type, options={}
     page_type = options[:page_type]
+    page_types = options[:page_types]
+    #
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
-    options[:autoloa] ||= true #boxes are autoloaded see widget_for
+
+    options[:autoload] ||= true #boxes are autoloaded see widget_for
     ret = ""
     # box title
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
@@ -88,7 +91,11 @@ module SearchHelper
     # box content
     ret << content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
       content_tag(:ul, :class => "dynamicLinkList") do
-        widget_for(page_type, options)
+        if page_type
+          widget_for(page_type, options)
+        elsif page_types
+          widgets_for(page_types,options)
+        end
       end
     end
     # box footer
@@ -138,7 +145,7 @@ module SearchHelper
   
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
-    options[:panel] ? "#{options[:panel]}_#{str}" : str
+   # options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
   
   def widgets_for args, options={ }
@@ -146,9 +153,10 @@ module SearchHelper
     if args == :all
       args = SEARCHABLE_PAGE_TYPES
     end
-    options = ({ :panel => @panel, :widget => @widget, :wrapper => @wrapper}.merge(options))
+    options = { :panel => @panel, :widget => @widget, :wrapper => @wrapper}.merge(options)
+    debugger
     args.each do |arg|
-      ret << widget_for(arg,options.merge(:autoload => false))
+      ret << widget_for(arg,{ :autoload => false}.merge(options))
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
