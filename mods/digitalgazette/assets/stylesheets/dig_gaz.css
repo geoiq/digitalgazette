@@ -890,3 +890,39 @@ ul.bullet_indent {
 td.label {
     width: 120px;
 }
+
+
+div#dg_sidebar_wrapper {
+    position: absolute;
+    top: 160px;
+    right: 0;
+}
+
+div#dg_sidebar_content {
+    height: 100%;
+    width: 100%;
+    background: #27874C;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27874C', endColorstr='#27874D'); 
+    background: -webkit-gradient(linear, left top, right top, from(#27874C), to(#38985D));
+    background: -moz-linear-gradient(left,  #ccc,  #000);
+}
+
+div#dg_sidebar_toggle {
+  position: absolute;
+  right: 0px;
+  background: #999;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#ccc'); 
+  background: -webkit-gradient(linear, left top, right top, from(#999), to(#ccc));
+  background: -moz-linear-gradient(left,  #999,  #ccc);
+}
+
+
+div#dg_sidebar_toggle:hover {
+  background: #333;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999'); 
+  background: -webkit-gradient(linear, left top, right top, from(#333), to(#999));
+  background: -moz-linear-gradient(left,  #333,  #999);
+  cursor: pointer;
+}
+
+  

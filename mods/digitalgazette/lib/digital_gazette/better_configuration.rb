@@ -4,7 +4,7 @@
   # and configured in mods / sites TODO put it into Conf.
 
   PATHS_FOR_BOXES =
-    { :most_viewed => [["most_viewed"],["limit",5]],
+    { :most_viewed => [["most_viewed"],["limit",2]],
     :recent => [["limit",5],["ascending","created_at"]]}.freeze
 
   HEADERS_FOR_PAGE_TYPES = {
@@ -35,6 +35,7 @@
     "overlay_list" => "overlays/list",
     "pages_box" => "pages/box", 
     "dg_sidebar" => "search/dg_sidebar"
+
   }.freeze
 
   PAGE_TYPE_PARTIALS = {

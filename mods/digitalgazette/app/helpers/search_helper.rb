@@ -81,8 +81,9 @@ module SearchHelper
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
+    options[:wrapper] = "pages_box" # FIXME this should not be hardcoded?
 
-    options[:autoload] ||= true #boxes are autoloaded see widget_for
+    options[:autoload] ||= true #NOTE boxes are autoloaded see widget_for
     ret = ""
     # box title
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
@@ -145,7 +146,7 @@ module SearchHelper
   
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
-   # options[:panel] ? "#{options[:panel]}_#{str}" : str
+   options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
   
   def widgets_for args, options={ }
@@ -160,6 +161,7 @@ module SearchHelper
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
+    debugger
     ret <<    javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(@panel, :show => true)
    
     ret

@@ -1,4 +1,4 @@
-class MapsController < PagesController
+class MapsController < PagesController # TODO < ExternalPagesController
   helper :geocommons
   skip_before_filter :login_required
   stylesheet 'page_creation', :action => :new
@@ -8,12 +8,11 @@ class MapsController < PagesController
 #  layout 'header'
 
   before_filter :get_page_type
-  
   require 'ruby-debug'
   include PagesHelper
   # FIXME: do we really need that "all" action?
   def index
-    redirect_to :action => 'all'
+    render :template => 'pages/index'
   end
 
   def show
@@ -62,7 +61,6 @@ class MapsController < PagesController
   
   
   def fetch_pages_for(path)
-
     Crabgrass::ExternalAPI.for(@page_type).call(:paginate, transform_path(path))
   end
   

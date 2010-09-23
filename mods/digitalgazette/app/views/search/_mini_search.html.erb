@@ -1,0 +1,12 @@
+  <% options ||= {} %>
+  <div id="search">
+    <% form_remote_tag({:url => search_url(options), :method => :get}) do %>
+      <%= better_hidden_field :search, :preferred, @page_type %>
+    <%= mini_search_text_field_tag %>
+    <!-- <input type="text" value="Search" id="txtSearch" name="txtSearch" size="26" /> -->
+    <input type="submit" id="btnSearch" value="" />
+    <br class="clear" />
+    <%- end -%>
+  </div><!--#search//-->
+  <div id="sidebar_results">
+  </div>
