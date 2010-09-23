@@ -35,7 +35,6 @@ module SearchHelper
   # -
   def panel name, options={}, &block
     options.merge!({ :for => :all, :box => false, :pagination => :bottom})
-    debugger
     ret = ""
     
     content = capture(&block) || nil
@@ -118,7 +117,7 @@ module SearchHelper
     options = options_for_widget(page_type, options)
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
-    autoload = options[:autoload]
+    autoload = options[:autoload] # TODO add remote call then
     path = @path.to_param
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
@@ -147,7 +146,7 @@ module SearchHelper
     if args == :all
       args = SEARCHABLE_PAGE_TYPES
     end
-    options = options.merge({ :panel => @panel, :widget => @widget, :wrapper => @wrapper})
+    options = ({ :panel => @panel, :widget => @widget, :wrapper => @wrapper}.merge(options))
     args.each do |arg|
       ret << widget_for(arg,options.merge(:autoload => false))
     end
