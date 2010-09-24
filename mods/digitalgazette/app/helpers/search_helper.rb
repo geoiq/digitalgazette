@@ -126,7 +126,7 @@ module SearchHelper
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
-    path = @path.to_param
+    path = @path 
     ret = ""
     ret << content_tag(:div, :id => widget_id) do
       # @path.set_keyword('type', options[:page_type])
