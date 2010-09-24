@@ -40,7 +40,7 @@ module Geocommons::FindMethods
   # takes a result hash, as returned by Geocommons::RestAPI and
   # turns it into an array of pages.
   def pack_entries(result)
-    log_debug { "Unpacking Result: #{result.inspect}" }
+    # log_debug { "Unpacking Result: #{result.inspect}" }
     result['entries'].map do |entry|
       pack_entry(entry)
     end

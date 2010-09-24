@@ -1,7 +1,7 @@
 require 'will_paginate/collection'
 module SearchHelper
 
-  
+
   # EXAMPLE Widget configuration
   # TODO make widgets globally configured,
   # that takes the pressure from the methods
@@ -17,7 +17,7 @@ module SearchHelper
   # TODO create a full litle system, that includes the constants now stored in lib/../better_configuration
   #
   #
-  
+
 
   # NOTE we could use it for every page list
   # but we only need it if we want to loa
@@ -36,23 +36,23 @@ module SearchHelper
   def panel name, options={}, &block
     options.merge!({ :for => :all, :box => false, :pagination => :bottom})
     ret = ""
-    
-    content = capture(&block) || nil
-   
-  # version with blocks
-   # if options[:wrapper]
-   #   concat(render(:partial => LEGAL_PARTIALS[options[:wrapper]]), block.binding)
-   # else
-   #   concat(content_tag(:div, :id => options[:id], :class => options[:class]), block.binding)
-   # end
-    
-  # version with locals  
-   options[:id] ||= name.to_s
-   if options[:wrapper]     
-     concat(render(:partial => list_partial_for(options),  :locals => { :content => content }), block.binding)
-   else
-     concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
-   end
+
+    content = capture(&block)
+
+    # version with blocks
+    # if options[:wrapper]
+    #   concat(render(:partial => LEGAL_PARTIALS[options[:wrapper]]), block.binding)
+    # else
+    #   concat(content_tag(:div, :id => options[:id], :class => options[:class]), block.binding)
+    # end
+
+    # version with locals
+    options[:id] ||= name.to_s
+    if options[:wrapper]
+      concat(render(:partial => list_partial_for(options),  :locals => { :content => content }), block.binding)
+    else
+      concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
+    end
   end
 
   def panel_pagination_at position, options, *args
@@ -114,7 +114,7 @@ module SearchHelper
 
 
 
-    
+
 
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
@@ -126,44 +126,31 @@ module SearchHelper
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
-    path = @path 
-    ret = ""
-    ret << content_tag(:div, :id => widget_id) do
-      # @path.set_keyword('type', options[:page_type])
-    if autoload  
-      javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(widget_id, :show => true)
-    end
-# NOTE this way we could store the widget page in the ui
-#      + javascript_tag("
-#
-#       Widgets.register_page('#{page_type}',#{params[:page]})
-#
-#")
-    end
-    ret
+    path = @path
+    raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any?
+    content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
+      (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
   end
 
-  
+
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
    options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
-  
+
   def widgets_for args, options={ }
     ret = ""
     if args == :all
       args = SEARCHABLE_PAGE_TYPES
     end
     options = { :panel => @panel, :widget => @widget, :wrapper => @wrapper}.merge(options)
-    debugger
     args.each do |arg|
       ret << widget_for(arg,{ :autoload => false}.merge(options))
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
-    debugger
-    ret <<    javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))+spinner(@panel, :show => true)
-   
+    ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))#+spinner(@panel, :show => true)
+
     ret
   end
 

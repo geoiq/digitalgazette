@@ -9,9 +9,15 @@ document.write('@');
 document.write('&#99;&#114;&#105;&#115;&#105;&#115;&#112;&#114;&#111;&#106;&#101;&#99;&#116;&#46;&#111;&#114;&#103;">');
 document.write('Contact Us<\/a>');
 // -->
-</script>  
+</script>
  &bull;
 <a href="/about/developers"><%= I18n.t(:developers_invited) %></a> &bull;
-<a href="/about/legal"><%= I18n.t(:legal) %></a>              
+<a href="/about/legal"><%= I18n.t(:legal) %></a>
 
 </div><%# render :partial => 'layouts/language' %>
+
+<script type="text/javascript">
+  DigitalGazette.Sidebar.onsetup(function() {
+    <%= remote_function(:url => { :controller => 'sidebar', :action => 'index' }) %>
+  });
+</script>
