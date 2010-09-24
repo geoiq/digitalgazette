@@ -1,3 +1,4 @@
+<% if @map %>
 <% target_dom_id = "maker_map_#{@map.id}" -%>
 
 <style type="text/css">
@@ -21,4 +22,6 @@ h1.geocommons_map_title { font-size: 1.5em; }
   <p><%=h @map.description %></p>
 
 <%- end -%>
-
+<% else %>
+  No Map with ID <%= params[:id] %>
+<% end %>

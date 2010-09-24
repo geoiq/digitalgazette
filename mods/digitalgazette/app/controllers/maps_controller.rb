@@ -1,7 +1,6 @@
 class MapsController < PagesController # TODO < ExternalPagesController
   helper :geocommons
   skip_before_filter :login_required
-  skip_before_filter :
   stylesheet 'page_creation', :action => :new
   stylesheet 'messages'
   permissions 'pages', 'groups/base', 'groups/memberships', 'groups/requests'
@@ -18,7 +17,7 @@ class MapsController < PagesController # TODO < ExternalPagesController
 
   def show
     get_page_type
-   # @map = Geocommons::Map.find(params[:id])
+    # @map = Geocommons::Map.find(params[:id])
     @map = fetch_page_for(params[:id])
     @page = @map
   end
