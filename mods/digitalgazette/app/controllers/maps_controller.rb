@@ -1,6 +1,7 @@
 class MapsController < PagesController # TODO < ExternalPagesController
   helper :geocommons
   skip_before_filter :login_required
+  skip_before_filter :
   stylesheet 'page_creation', :action => :new
   stylesheet 'messages'
   permissions 'pages', 'groups/base', 'groups/memberships', 'groups/requests'
@@ -55,8 +56,7 @@ class MapsController < PagesController # TODO < ExternalPagesController
   end
   
   def fetch_page_for(id)
-
-    Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id)
+    Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id).first
   end
   
   
