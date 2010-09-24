@@ -1,3 +1,6 @@
+if(! console) { var console = null; }
+if(! console.log) { console.log = function() {}; }
+
 var DigitalGazette = {
     Sidebar: {
         ToggleButton: {
@@ -26,6 +29,7 @@ var DigitalGazette = {
         setup: function() {
             if(this._is_setup)
                 return;
+            console.log("[Sidebar] Preparing...");
             this._is_setup = true;
             Element.extend(this.wrapper);
             Element.extend(this.div);
@@ -41,9 +45,11 @@ var DigitalGazette = {
             this.div.hide();
             window.onload = window.onresize = document.onresize = function() {
                 DigitalGazette.Sidebar.adjust(); };
+            console.log("[Sidebar] Calling setup callbacks...");
             this.setupCbs.each(function(cb) { cb(); });
         },
         adjust: function() {
+            console.log("[Sidebar] Adjusting...");
             this.wrapper.style['height'] = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
             if(this.visible())
                 this.wrapper.style['width'] = ((window.innerWidth / 100) * 25) + 'px';
