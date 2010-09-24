@@ -1,4 +1,4 @@
-if(! console) { var console = null; }
+if(! console) { var console = {}; }
 if(! console.log) { console.log = function() {}; }
 
 var DigitalGazette = {
@@ -50,11 +50,15 @@ var DigitalGazette = {
         },
         adjust: function() {
             console.log("[Sidebar] Adjusting...");
-            this.wrapper.style['height'] = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
+            var width, height;
+            height = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
             if(this.visible())
-                this.wrapper.style['width'] = ((window.innerWidth / 100) * 25) + 'px';
+                width = ((window.innerWidth / 100) * 25) + 'px';
             else
-                this.wrapper.style['width'] = this.ToggleButton.width + 'px';
+                width = this.ToggleButton.width + 'px';
+            console.log("[Sidebar] "+width+"x"+height);
+            this.wrapper.style['height'] = height;
+            this.wrapper.style['width'] = width;
         },
         insert: function() {
             for(i in arguments) {
