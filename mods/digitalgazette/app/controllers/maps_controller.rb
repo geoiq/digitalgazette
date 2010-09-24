@@ -51,7 +51,7 @@ class MapsController < PagesController # TODO < ExternalPagesController
   
   
   def get_page_type
-    @page_type = "map" || params[:page_type]
+    @page_type = "map" || params[:page_type] # hardcoded by now
   end
   
   def fetch_page_for(id)
