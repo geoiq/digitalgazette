@@ -4,12 +4,13 @@ class SearchController < ApplicationController
   helper_method :list_partial
   helper_method :get_dom_id_for
   helper_method :list_partial_for
-  
+
   include SearchHelper
-  
+
   # GET /search
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
+    @path = parse_filter_path(params[:search]) if @path.empty?
     @preferred = @path.arg_for("preferred")
     if request.post?
       # form was POSTed with search query
@@ -20,7 +21,7 @@ class SearchController < ApplicationController
     end
   end
 
-=begin DRAFT  
+=begin DRAFT
   def paginate_panel
     # what do we do, if we have no items in one box, but many on others
 
@@ -29,7 +30,7 @@ class SearchController < ApplicationController
     # create a storage for the multi-widget-pagination
     @widget_pages = params[:widget_pages]
     # get the widgets that are currently active
-    get_page_types    
+    get_page_types
     # now collect the pages per page - type
     #
     # we get the request via xhr
@@ -38,8 +39,8 @@ class SearchController < ApplicationController
       render_search_results
     end
   end
-=end  
-  
+=end
+
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags @panel
@@ -59,13 +60,13 @@ class SearchController < ApplicationController
     handle_rss(:title => full_url, :link => full_url,
                :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
 
-    
+
     unless send_pages! # send the pages to the browser
       # museum during refactoring
      # if request.xhr?
-     #   
-     # 
-     # NOTE this would be the place for a fallback 
+     #
+     #
+     # NOTE this would be the place for a fallback
      #   render :update do |page|
      #     page[@dom_id].replace_html :partial => list_partial, :locals => { :pages => @pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{@dom_id}")), :no_top_pagination => true}
      #   end
@@ -110,17 +111,17 @@ class SearchController < ApplicationController
       PAGE_TYPE_PARTIALS[options[:page_type].to_s] || ""
     end
     logger.debug("fallback to 'pages/list'") unless ret
-    ret = "pages/list" if (ret.nil? || ret.empty?)  
+    ret = "pages/list" if (ret.nil? || ret.empty?)
     ret
   end
-  
+
   # TODO somewhere else, more general
   # determines the right list partial
   #
   # when there is a @widget recognized
   # it takes the configured BOX_PARTIAL for that widget
   #
-  # when there is ONE SINGLE @page_type 
+  # when there is ONE SINGLE @page_type
   # (NOTE that means somehow 'pages/list')
   # it renders the corresponding partial
   #
@@ -171,7 +172,7 @@ class SearchController < ApplicationController
   def get_dom_id_for(page_type, options={ })
     get_dom_id(page_type,options={ })
   end
-  
+
   # create an id for the container we want to update in
 
   #
@@ -181,9 +182,9 @@ class SearchController < ApplicationController
 #   def get_dom_id
 #     return params[:dom_id] if params[:dom_id]
 #     base_name =  @dom_id || (@page_type ? @page_type.underscore+"_list" : "pages_list")
-    
+
 #     prefix = @namespace ? @namespace : @wrapper || ""
-#     "#{prefix}#{base_name}" 
+#     "#{prefix}#{base_name}"
 
 
   def get_dom_id(page_type = nil, options = { })
@@ -196,7 +197,7 @@ class SearchController < ApplicationController
     # we will get chaos or should use an appending technique
 
   end
-  
+
 
   # retrieve all page types in the current focus
   def get_page_types
@@ -213,13 +214,13 @@ class SearchController < ApplicationController
 
    # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
-      
+
       # separate the page_types by the condition wether
       # a) they are internal, means Crabgrass::Page or
       # b) external, means Crabgrass::ExternalPage
-      @page_type_groups = @page_types.group_by {|page_type| 
+      @page_type_groups = @page_types.group_by {|page_type|
         EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
-     
+
 
 
       # Process internal Pages
@@ -232,18 +233,18 @@ class SearchController < ApplicationController
       #
       # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
 #=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
-#>> 
+#>>
   #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
 # => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
       #
       #
       # We want e.g. WHERE pages.type = wiki OR pages.type = asset
-      # but we want the same limit per page for every model - figure out, how to do this best      
+      # but we want the same limit per page for every model - figure out, how to do this best
       # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
       #
       #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => (get_per_page)}))))
    #   @internal_pages = { }
-      
+
       # OPTIMIZE this is ugly
    #   @stored_internal_pages = @internal_pages.dup.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
       # creates the hash of @internal_pages
@@ -254,7 +255,7 @@ class SearchController < ApplicationController
         @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a)) # sorting in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
-      
+
       # Create the path for the external resources
       # TODO implement some logic, that groups the external resources
       # by their source
@@ -262,7 +263,7 @@ class SearchController < ApplicationController
       # lets us determine the Resource -Type (PageType) for every entry in the collection
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
-        @external_pages[page_type] =           
+        @external_pages[page_type] =
           { :pages => Crabgrass::ExternalPathFinder.find(page_type,@naked_path),
           :dom_id => get_dom_id_for(page_type)}
           # sketchtes
@@ -275,11 +276,11 @@ class SearchController < ApplicationController
       # would be available
       #
       # try something like @pages.to_json
-      
+
 
   end
-  
-  
+
+
   # general update method
   # sends the right partials to the browser
   # therefore takes the Hash in @pages an resolves it
@@ -290,34 +291,40 @@ class SearchController < ApplicationController
   #      down to clever partials/helpers
   #
   def send_pages!
-    debugger
+#    debugger
     if request.xhr?
      # Update every widget as one, if existing
       render :update do |page|
-          @page_store.to_hash.each_pair do |page_type,options|
-            dom_id = options[:dom_id]
-            pages = options[:pages]
-          page[dom_id].replace_html(:partial => list_partial_for({ :page_type => page_type}), :locals => { :pages => pages, :title => I18n.t("page_search_title".to_sym, :type => I18n.t(:"dg_#{page_type}")), :no_top_pagination => true} )
-          end
-      
+        @page_store.to_hash.each_pair do |page_type,options|
+          dom_id = options[:dom_id]
+          pages = options[:pages]
+          page[dom_id].replace_html(:partial => (partial = list_partial_for(:page_type => page_type)),
+                                    :locals => {
+                                      :pages => pages,
+                                      :title => I18n.t("page_search_title".to_sym,
+                                                       :type => I18n.t("dg_#{page_type}".to_sym)),
+                                      :no_top_pagination => true
+                                    } )
+          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'.")
+        end
       end
     end
   end
-  
-  
 
-  
+
+
+
   # the @page_store is our widget tree
   def setup_page_store
     @page_store = {}
   end
-    
-  
+
+
   # default for per page or something more complex
   def get_per_page
     params[:per_page] || 2
   end
-  
+
   #
   # access to external_results
   # NOTE this method is somehow deprecated
@@ -328,7 +335,7 @@ class SearchController < ApplicationController
     raise "no page type specified to retrieve external results" unless(page_type)
     Crabgrass::ExternalPathFinder.find(page_type,@path)
   end
-  
+
 
 end
 

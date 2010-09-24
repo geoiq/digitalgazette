@@ -1,6 +1,9 @@
-%div.subPageRightLinks
-  %ul.dynamicLinkList
-    - pages.each do |page|
-      - page_line page do
-        %li
-          = link_to page.title, page_url_for(page)
+%div
+  - if pages.any?
+    %ul.dynamicLinkList
+      - pages.each do |page|
+        - page_line page do
+          %li
+            = link_to page.title, page_url_for(page)
+  - else
+    %h3= I18n.t(:no_search_results)
