@@ -126,7 +126,7 @@ module SearchHelper
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
-    path = @path.to_param
+    path = @path
     raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any?
     content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
       (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
@@ -144,13 +144,11 @@ module SearchHelper
       args = SEARCHABLE_PAGE_TYPES
     end
     options = { :panel => @panel, :widget => @widget, :wrapper => @wrapper}.merge(options)
-    #debugger
     args.each do |arg|
       ret << widget_for(arg,{ :autoload => false}.merge(options))
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
-    #debugger
     ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))#+spinner(@panel, :show => true)
 
     ret
