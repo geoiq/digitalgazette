@@ -4,7 +4,7 @@
       - pages.each do |page|
         - page_line page do
           %li
-            - type = PAGE_NAMES[page.type]
+            - type = dg_page_type(page.class)
             - dom_id = "page_preview_#{type}_#{page.id}"
             = link_to_remote page.title, :url => { :controller => 'sidebar', :action => 'page', :type => type, :id => page.id }, :update => dom_id
             %div{:id => dom_id}

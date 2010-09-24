@@ -1,7 +1,7 @@
 module ApplicationHelper
 
-  
-  
+
+
   def page_line page, &block
     "<li class='small_icon #{page.icon}%>_16'>#{yield}</li>"
   end
@@ -18,7 +18,7 @@ module ApplicationHelper
     will_paginate(things, defaults.merge(options))
   end
 
-  # i had problems, this does exactly, what i want 
+  # i had problems, this does exactly, what i want
   def better_hidden_field group, name, value
    "<input type='hidden' id='#{group}_#{name}' name='#{group}[#{name}]' value='#{value}' />"
 
@@ -29,5 +29,12 @@ module ApplicationHelper
       s.gsub(char, "\\#{char}")
     end
   end
-  
+
+  def dg_page_class(type)
+    MODEL_NAMES[type.to_s].try(:constantize) || raise("No such page type: #{type.inspect}")
+  end
+
+  def dg_page_type(klass)
+    PAGE_NAMES[klass.to_s] || raise("No such page class: #{klass.to_s}")
+  end
 end
