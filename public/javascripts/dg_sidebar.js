@@ -1,3 +1,6 @@
+if(! console) { var console = {}; }
+if(! console.log) { console.log = function() {}; }
+
 var DigitalGazette = {
     Sidebar: {
         ToggleButton: {
@@ -26,6 +29,7 @@ var DigitalGazette = {
         setup: function() {
             if(this._is_setup)
                 return;
+            console.log("[Sidebar] Preparing...");
             this._is_setup = true;
             Element.extend(this.wrapper);
             Element.extend(this.div);
@@ -41,14 +45,21 @@ var DigitalGazette = {
             this.div.hide();
             window.onload = window.onresize = document.onresize = function() {
                 DigitalGazette.Sidebar.adjust(); };
+            console.log("[Sidebar] Calling setup callbacks...");
             this.setupCbs.each(function(cb) { cb(); });
         },
         adjust: function() {
-            this.wrapper.style['height'] = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
+            console.log("[Sidebar] Adjusting...");
+            var width, height;
+            // firefox 3.0.5 (amongst others) gives us invalid document.height.
+            height = ($('wrapper').getHeight() - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight());
             if(this.visible())
-                this.wrapper.style['width'] = ((window.innerWidth / 100) * 25) + 'px';
+                width = ((window.innerWidth / 100) * 25);
             else
-                this.wrapper.style['width'] = this.ToggleButton.width + 'px';
+                width = this.ToggleButton.width;
+            console.log("[Sidebar] "+width+"x"+height);
+            this.wrapper.style['height'] = height + 'px';
+            this.wrapper.style['width'] = width + 'px';
         },
         insert: function() {
             for(i in arguments) {
