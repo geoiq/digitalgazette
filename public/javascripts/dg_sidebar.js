@@ -51,14 +51,15 @@ var DigitalGazette = {
         adjust: function() {
             console.log("[Sidebar] Adjusting...");
             var width, height;
-            height = (document.height - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight()) + 'px';
+            // firefox 3.0.5 (amongst others) gives us invalid document.height.
+            height = ($('wrapper').getHeight() - Element.positionedOffset(this.wrapper)[1] - $('footer_wrapper').getHeight());
             if(this.visible())
-                width = ((window.innerWidth / 100) * 25) + 'px';
+                width = ((window.innerWidth / 100) * 25);
             else
-                width = this.ToggleButton.width + 'px';
+                width = this.ToggleButton.width;
             console.log("[Sidebar] "+width+"x"+height);
-            this.wrapper.style['height'] = height;
-            this.wrapper.style['width'] = width;
+            this.wrapper.style['height'] = height + 'px';
+            this.wrapper.style['width'] = width + 'px';
         },
         insert: function() {
             for(i in arguments) {
