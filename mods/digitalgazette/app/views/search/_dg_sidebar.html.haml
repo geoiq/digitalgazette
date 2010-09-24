@@ -1,12 +1,12 @@
-%script{ :type => 'text/javascript' }
-  - debugger
-  - content ||= render(:partial => 'dg_sidebar/search', :layout => false)
-  DigitalGazette.Sidebar.setup();
-  = "var content = '#{escape_javascript(content)}'"
-  console.log(content);
-  DigitalGazette.Sidebar.replaceContent(content);
-  //= "DigitalGazette.Sidebar.insert('#{escape_javascript render(:partial => 'dg_sidebar/search', :options => {:panel => 'dg_sidebar'})}');"
-  //  = "DigitalGazette.Sidebar.insert('TODO SEACHFIELD with remote and panel => :dg_sidebar'+'#{escape_javascript(content)}');"
-
-
-
+%div
+  - if pages.any?
+    %ul.dynamicLinkList
+      - pages.each do |page|
+        - page_line page do
+          %li
+            - type = PAGE_NAMES[page.type]
+            - dom_id = "page_preview_#{type}_#{page.id}"
+            = link_to_remote page.title, :url => { :controller => 'sidebar', :action => 'page', :type => type, :id => page.id }, :update => dom_id
+            %div{:id => dom_id}
+  - else
+    %h3= I18n.t(:no_search_results)
