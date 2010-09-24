@@ -1,0 +1,12 @@
+%script{ :type => 'text/javascript' }
+  - debugger
+  - content ||= render(:partial => 'dg_sidebar/search', :layout => false)
+  DigitalGazette.Sidebar.setup();
+  = "var content = '#{escape_javascript(content)}'"
+  console.log(content);
+  DigitalGazette.Sidebar.replaceContent(content);
+  //= "DigitalGazette.Sidebar.insert('#{escape_javascript render(:partial => 'dg_sidebar/search', :options => {:panel => 'dg_sidebar'})}');"
+  //  = "DigitalGazette.Sidebar.insert('TODO SEACHFIELD with remote and panel => :dg_sidebar'+'#{escape_javascript(content)}');"
+
+
+

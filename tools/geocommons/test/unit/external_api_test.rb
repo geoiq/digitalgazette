@@ -36,7 +36,9 @@ class ExternalAPITest < Test::Unit::TestCase
 
     context("that does not exist"){
       should("return nothing") {
-        assert_nil Crabgrass::ExternalAPI.for("something_that_does_not_exist")
+        assert_raises Crabgrass::ExternalAPI::APINotDefined do 
+          Crabgrass::ExternalAPI.for("something_that_does_not_exist") 
+        end
       }
     }
     context("for our registered model") {
@@ -75,7 +77,7 @@ class ExternalAPITest < Test::Unit::TestCase
         context("and clearing again") do
           setup{ Crabgrass::ExternalAPI.clear!}
           should("have nothing left") {
-            assert_nil Crabgrass::ExternalAPI.for(:overlay)
+            assert_raises Crabgrass::ExternalAPI::APINotDefined do Crabgrass::ExternalAPI.for(:overlay) end
           }
         end
       end

@@ -3,21 +3,6 @@
 self.load_once = false if RAILS_ENV =~ /development/
 #self.override_views = true
 
-
-PageClassRegistrar.add(
-  'MapPage',
-  :controller => 'maps',
-  :icon => 'page_maps',
-  :class_group => 'planning',
-  :order => 4
-)
-
-if File.exist?(config_path = File.join(Rails.root, 'config', 'geocommons.yml'))
-  Dispatcher.to_prepare do
-    Geocommons.config = YAML.load_file(config_path)
-  end
-end
-
 Dispatcher.to_prepare do
   User.send(:include, Crabgrass::UserCredentials)
 
@@ -25,7 +10,8 @@ Dispatcher.to_prepare do
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,
                                     :methods => {
-                                      :find => "paginate"
+                                      :find => "find",
+                                      :paginate => "paginate"
                                     },
                                     :query_builder => {
                                       :keywords => {
@@ -41,7 +27,8 @@ Dispatcher.to_prepare do
   Crabgrass::ExternalAPI.register('map',
                                   { :model => Geocommons::Map,
                                     :methods =>
-                                    { :find => "paginate"},
+                                    { :find => "find",
+                                      :paginate => "paginate"},
                                     :query_builder => {
                                       :keywords => {
                                         "text" => "",
@@ -52,6 +39,7 @@ Dispatcher.to_prepare do
                                     }
                                   }
                                 )
+  PathFinder::ParsedPath.send(:include, Crabgrass::PathFinderParsedPathExtension) unless PathFinder::ParsedPath.included_modules.include?(Crabgrass::PathFinderParsedPathExtension)
 end
 
   # Add "preferred" keyword to PathFinder.
@@ -63,7 +51,7 @@ new_path_keywords = PathFinder::ParsedPath::PATH_KEYWORDS.dup
 new_path_keywords['preferred'] = 1
 PathFinder::ParsedPath::PATH_KEYWORDS = new_path_keywords.freeze
 
-PathFinder::ParsedPath.send(:include, ::Geocommons::PathFinderParsedPathExtension)
+PathFinder::ParsedPath.send(:include, Crabgrass::PathFinderParsedPathExtension)
 
 
 

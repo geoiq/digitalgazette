@@ -2,15 +2,15 @@
 elements
 ********************/
 body{
-	color: #000;
+        color: #000;
 /*  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;   */
 /*  font-size: 14px;*/
 }
 
 body {
-	font-size:75%;
-	background:#fff;
-	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+        font-size:75%;
+        background:#fff;
+        font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 a{outline:none;text-decoration:none;}
@@ -22,120 +22,120 @@ div{
 header
 ********************/
 #header{
-	background: #27874c url(img/bg_header.jpg) repeat-x center top;
-	height: 159px;
+        background: #27874c url(img/bg_header.jpg) repeat-x center top;
+        height: 159px;
 }
 #header form{display: inline;}
 #buffer{
-	height:5px;
-	width:950px;
+        height:5px;
+        width:950px;
 }
 
 #top_heading{
-	width:950px;
-	height: 30px;
+        width:950px;
+        height: 30px;
 }
 
 #hdrLogin{
-	width:450px;
-	float: left;
-	height: 30px;
-	vertical-align: middle;
+        width:450px;
+        float: left;
+        height: 30px;
+        vertical-align: middle;
 }
 
 #hdrLogin a{
-	color: #FFF;
+        color: #FFF;
 }
 #hdrLogin a:hover{
-	color: #FFF;
-	text-decoration:underline;
+        color: #FFF;
+        text-decoration:underline;
 }
 #hdrLogin #btnLogin{
-	background: none;
-	border: none;
-	color: #000;
-	cursor: pointer;
-	font-weight: bold;
-	text-transform: uppercase;
+        background: none;
+        border: none;
+        color: #000;
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
 }
 #hdrLogo{
-	margin-top: 5px;
-	width: 500px;
-	height: 100px;
-	line-height: normal;
-	float: left;
+        margin-top: 5px;
+        width: 500px;
+        height: 100px;
+        line-height: normal;
+        float: left;
 }
 #hdrLogo a{
-	background: url(img/logo_hdr.png) no-repeat 0 0;
-	height: 99px;
-	width: 325px;
-	display: block;
+        background: url(img/logo_hdr.png) no-repeat 0 0;
+        height: 99px;
+        width: 325px;
+        display: block;
 }
 #search{
-	background: url(img/bg_search.gif) no-repeat 0 0;
-	float: right;
-	height: 30px;
-	line-height: 24px;
-	text-align: left;
-	width: 217px;
-	vertical-align: middle;
+        background: url(img/bg_search.gif) no-repeat 0 0;
+        float: right;
+        height: 30px;
+        line-height: 24px;
+        text-align: left;
+        width: 217px;
+        vertical-align: middle;
 }
 #txtSearch,#txtWikiSearch{
-	background: none;
-	border: none;
+        background: none;
+        border: none;
     margin-top:-5px;
-    padding-left:5px;	
+    padding-left:5px;
 }
 #btnSearch,#btnWikiSubmit{
-	background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
-	border: none;
-	cursor: pointer;
-	float: right;
-	height: 20px;
-	width: 16px;
-	margin: 2px 5px 0 0;
+        background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
+        border: none;
+        cursor: pointer;
+        float: right;
+        height: 20px;
+        width: 16px;
+        margin: 2px 5px 0 0;
 }
 #btnSearch{
-	font-weight: bold;
+        font-weight: bold;
 }
 #headerMenu{
-	margin-top: 30px;
-	color: #FFF;
-	width: 450px;
-	float: right;
-	text-align: right;
-	margin-bottom: 5px;
-	font-size: 40px;
-	font-weight: normal;
-	height: 40px;
+        margin-top: 30px;
+        color: #FFF;
+        width: 450px;
+        float: right;
+        text-align: right;
+        margin-bottom: 5px;
+        font-size: 40px;
+        font-weight: normal;
+        height: 40px;
 }
 #topSubNav a{
-	color: #FFF;
-	text-decoration: none;
-	text-transform: uppercase;
+        color: #FFF;
+        text-decoration: none;
+        text-transform: uppercase;
 }
 #topSubNav a:hover{text-decoration:underline;}
 #navMenu{
-	background: url(img/bg_navMenu.gif) repeat-x center top;
-	height: 76px;
-	margin-top: -4px;
+        background: url(img/bg_navMenu.gif) repeat-x center top;
+        height: 76px;
+        margin-top: -4px;
 }
 #navLinks{
-	height: 61px;
-	margin: 5px auto;
-	width: 556px;
+        height: 61px;
+        margin: 5px auto;
+        width: 556px;
 }
 #navLinks a{
-	background-position: center bottom;	
-	border-right: 1px solid #fff;
-	display: block;
-	float: left;
-	height: 61px;
-	margin: 0 2px;
-	width: 181px;
+        background-position: center bottom;
+        border-right: 1px solid #fff;
+        display: block;
+        float: left;
+        height: 61px;
+        margin: 0 2px;
+        width: 181px;
 }
 #navLinks a:hover{
-	background-position: center top;
+        background-position: center top;
 }
 #lnkMaps{background: url(img/bg_lnkMaps.png) no-repeat 0 0;}
 #lnkWiki{background: url(img/bg_lnkWiki.png) no-repeat 0 0;}
@@ -146,221 +146,221 @@ main content
 ********************/
 
 #lnkFeedback{
-	background: url(img/bg_lnkFeedBack.gif) no-repeat 0 0;
-	height: 76px;
-	position: absolute;
-	left: 0;
-	top: 270px;
-	width: 21px;
+        background: url(img/bg_lnkFeedBack.gif) no-repeat 0 0;
+        height: 76px;
+        position: absolute;
+        left: 0;
+        top: 270px;
+        width: 21px;
 }
 #mainHeadLine{
-	color: #a76272;
-	font-size: 20px;
-	margin-bottom: 20px;
-	line-height: 1.5;
-	float: left;
+        color: #a76272;
+        font-size: 20px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        float: left;
 }
 .homeBkt{text-align: center;}
 .homeBkt img{
-	height: 172px;
-	width: 133px;
+        height: 172px;
+        width: 133px;
 }
 
 
 #homePicHolder{
-	background: url(img/picture_background.png) no-repeat 0 0;
-	height: 470px;
-	margin: 10px auto;
-	text-align: left;
-	width: 392px;
-	float: right;
-	display: block;
+        background: url(img/picture_background.png) no-repeat 0 0;
+        height: 470px;
+        margin: 10px auto;
+        text-align: left;
+        width: 392px;
+        float: right;
+        display: block;
 }
 #homePic{
-	height: 349px;
-	margin: 20px 0 20px 15px;
-	width: 332px;
+        height: 349px;
+        margin: 20px 0 20px 15px;
+        width: 332px;
 }
 #holder{
-	width: 950px;
-	float: none;
+        width: 950px;
+        float: none;
 }
 .pageTitle {
-	font-size: 26px;
-	color: #a76272;
-	width: 674px;
-	height: 27px;
-	float: left;
-	display: block;
-	padding: 0;
-	line-height: 27px;
-	margin: 0 0 10px 0;
-	vertical-align: top;
-	text-align: left;
+        font-size: 26px;
+        color: #a76272;
+        width: 674px;
+        height: 27px;
+        float: left;
+        display: block;
+        padding: 0;
+        line-height: 27px;
+        margin: 0 0 10px 0;
+        vertical-align: top;
+        text-align: left;
 }
 .pageTitle h2{
-	margin: 0 0 0 0;
+        margin: 0 0 0 0;
 }
 .simpleMessage{
-	text-align: center;
-	line-height: 150%;
+        text-align: center;
+        line-height: 150%;
 }
 .Gazettestats{
-	text-align: center;
-	line-height: 150%;	
+        text-align: center;
+        line-height: 150%;
 }
 .DG-image{
-	float: left;
-	width: 700px;
+        float: left;
+        width: 700px;
 }
 .pageSubNav, .pageSubNavTop{
-	font-size: 14px;
-	font-weight: bold;
-	margin: 30px 0 0 0;
-	padding: 0;
-	text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 30px 0 0 0;
+        padding: 0;
+        text-align: center;
 }
 .pageSubNavTop{
-	margin: 15px 0 0 0;	
+        margin: 15px 0 0 0;
 }
 .pageSubNav a, .pageSubNavTop a{
-	color: #267a48;
-	text-decoration: none;
+        color: #267a48;
+        text-decoration: none;
 }
 .pageSubNav a:hover, .pageSubNavTop a:hover{text-decoration:underline;}
 
 #whatLinkList{
-	list-style: none outside none;
-	width: 226px;
-	display: block;
-	margin: 10px 0 0 0;
-	padding: 0;
+        list-style: none outside none;
+        width: 226px;
+        display: block;
+        margin: 10px 0 0 0;
+        padding: 0;
 }
 #whatLinkList li{
-	margin: 0;
-	padding: 0;
+        margin: 0;
+        padding: 0;
 }
 #whatLinkList a{
-	background: #e4e8ec;
-	border-bottom: 1px solid #fff;
-	color: #616f89;
-	display: block;	
-	line-height: 40px;
-	text-align: center;
-	text-transform: uppercase;
+        background: #e4e8ec;
+        border-bottom: 1px solid #fff;
+        color: #616f89;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+        text-transform: uppercase;
 }
 #whatLinkList a:hover, #whatLinkList a.active{
-	background: #bec6d1;	
-	color: #fff;
+        background: #bec6d1;
+        color: #fff;
 }
 #whatLinkList li#topLi a{
-	background: #fff url(img/bg_topLi.gif) no-repeat left top;
+        background: #fff url(img/bg_topLi.gif) no-repeat left top;
 }
 #whatLinkList li#btmLi a{
-	background: #fff url(img/bg_btmLi.gif) no-repeat left top;
-	border: none;
+        background: #fff url(img/bg_btmLi.gif) no-repeat left top;
+        border: none;
 }
 #whatLinkList li#topLi a.active, #whatLinkList li#topLi a:hover, #whatLinkList li#btmLi a.active, #whatLinkList li#btmLi a:hover{
-	background-position: left bottom;	
+        background-position: left bottom;
 }
 .dynamicLinkList{
-	width: 196px;
-	display: block;
-	padding: 0 15px 0 15px;
-	margin: 0 0 0 0;
-	list-style-type: none;
-	text-align: left;
-	line-height: 100%;
-	list-style-image: url(none);
+        width: 196px;
+        display: block;
+        padding: 0 15px 0 15px;
+        margin: 0 0 0 0;
+        list-style-type: none;
+        text-align: left;
+        line-height: 100%;
+        list-style-image: url(none);
 }
 .dynamicLinkList a:hover{
-	color:#093;
+        color:#093;
 }
 .roundTop h3{
-	font-size: 16px;	
+        font-size: 16px;
 }
 .rightmenubar{
-	float: right;
-	width: 226px;
-	text-align: center;
+        float: right;
+        width: 226px;
+        text-align: center;
 }
 .subPageRightLinks{
-	background: #e4e8ec;
-	width: 226px;
-	padding-top: 5px;
+        background: #e4e8ec;
+        width: 226px;
+        padding-top: 5px;
 }
 .subPageRightLinks ul li{
-margin-top: 10px;	
+margin-top: 10px;
 }
 .subPageRightLinks ul li a{
-	color: #000;
-	font-size: 12px;
-	display: block;
-	padding-left: 0px;
-	padding-right: 5px;
-	text-indent: 0px;
-	text-decoration: none;
-	text-transform: inherit;
+        color: #000;
+        font-size: 12px;
+        display: block;
+        padding-left: 0px;
+        padding-right: 5px;
+        text-indent: 0px;
+        text-decoration: none;
+        text-transform: inherit;
 }
 .subPageRightLinks a:hover{text-decoration: underline;}
 #wikiSearch{
-	background: url(img/bg_search.gif) no-repeat 0 0;
-	height: 26px;
-	width: 219px;
+        background: url(img/bg_search.gif) no-repeat 0 0;
+        height: 26px;
+        width: 219px;
 }
 .WikiOptions{
-	text-align: right;
-	color:#093;
-	font-size: 12px;
-	margin-bottom: 2px;
+        text-align: right;
+        color:#093;
+        font-size: 12px;
+        margin-bottom: 2px;
 }
 .WikiOptions a:link{
-	color:#093;
+        color:#093;
 }
 .WikiOptions a:hover{
-	color:#093;
-}	
+        color:#093;
+}
 
 #txtWikiSearch{margin:3px 0 0 5px;}
 .wikiTitle{
-	font-size: 16px;
-	font-weight: bold;	
-	margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
 }
 .roundTopGrn{
-	background: url(img/roundTopGrn.gif) no-repeat 0 0;
-	height: 30px;
-	line-height: 30px;
-	margin-top: 10px;
+        background: url(img/roundTopGrn.gif) no-repeat 0 0;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 10px;
 }
 .wikiTOC{
-	background: #d0e5d8;
+        background: #d0e5d8;
 }
 .wikiTOC a{
-	color: #000;
-	display: block;
-	line-height: 30px;
-	padding-left: 10px;
-	text-decoration: none;
+        color: #000;
+        display: block;
+        line-height: 30px;
+        padding-left: 10px;
+        text-decoration: none;
 }
 .wikiTOC a:hover{text-decoration: underline;}
 .roundBtmGrn{
-	background: url(img/roundBtmGrn.gif) no-repeat left bottom;
-	height: 20px;
-	line-height: 30px;
+        background: url(img/roundBtmGrn.gif) no-repeat left bottom;
+        height: 20px;
+        line-height: 30px;
 }
 
 .threeBlocks{
-	width: 170px;
-	padding: 20px;
-	background-color: #e0f1e7;
-	float: left;
-	font-size: 90%;
-	line-height: 135%;
-	margin-bottom: 20px;
-	margin-right: 10px;
-	height: 155px;
-	display: block;
+        width: 170px;
+        padding: 20px;
+        background-color: #e0f1e7;
+        float: left;
+        font-size: 90%;
+        line-height: 135%;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        height: 155px;
+        display: block;
 }
 
 
@@ -387,14 +387,14 @@ everywhere
 .txtAlignRight{text-align:right;}
 .txtAlignCenter{text-align:center;}
 .roundTop{
-	background: url(img/roundTop.gif) no-repeat left top;
-	height:30px;
-	line-height:30px;
-	margin-top: 10px;
+        background: url(img/roundTop.gif) no-repeat left top;
+        height:30px;
+        line-height:30px;
+        margin-top: 10px;
 }
 .roundBtm{
-	background: url(img/roundBtm.gif) no-repeat left bottom;
-	height: 20px;
+        background: url(img/roundBtm.gif) no-repeat left bottom;
+        height: 20px;
 }
 .lnkBlack{color:#000;text-decoration:none;}
 .lnkBlack:hover{text-decoration:underline;}
@@ -405,7 +405,7 @@ everywhere
 }
 
 /************************************************
-	Round Corners Button Rollover Example 2	
+        Round Corners Button Rollover Example 2
 ************************************************/
 
 .controlButtons {
@@ -417,7 +417,7 @@ everywhere
      margin-right:20px;
      font-size: 1.4em;
  }
-  
+
 .controlButtons  li a {
      background:#fff;
      border: 1px solid #ccc;
@@ -425,7 +425,7 @@ everywhere
      -webkit-border-radius:10px;
      -moz-border-radius:15px;
  }
-  
+
 .controlButtons  li a:hover {
      background:#5d9ddd;
      border:1px solid #2a7ecd;
@@ -438,13 +438,13 @@ everywhere
     background: none;
 }
 .pages-status li {
-     list-style:none;    
+     list-style:none;
 }
 .pages-info h4 {
     font-size: 1.4em;
 }
 #details  {
-	padding-left: 0;
+        padding-left: 0;
 }
 .topic_header {
     background-color:#28874D;
@@ -454,7 +454,7 @@ everywhere
 }
 
 
-#page_sidebar 
+#page_sidebar
 {
   text-align: left;
 }
@@ -469,7 +469,7 @@ everywhere
 }
 
 #wiki-content {
-	/*    width: 400px;*/
+        /*    width: 400px;*/
     margin-left: 250px;
 }
 ul.toc {
@@ -492,7 +492,7 @@ ul.tabset {
  /*   margin-left: 700px;*/
 }
 .info_box.tabs li.tab a {
-    color: rgb(153, 153, 153);    
+    color: rgb(153, 153, 153);
     font-size:12px;
     font-weight:normal;
     text-decoration:none;
@@ -510,10 +510,10 @@ ul.tabset.top a.active {
 ul.tabset.top  {
     background: none;
     border-bottom: 3px solid #28874D;
-	border-bottom: #28874D;
+        border-bottom: #28874D;
 }
 .black_bullet {
-	color: #000
+        color: #000
 }
 
 ul.tabset a {
@@ -530,65 +530,65 @@ ul.tabset a {
 color:#093;
 }
 a:link {
-	text-decoration: none;
-	color:#000
+        text-decoration: none;
+        color:#000
 }
 a:visited {
-	text-decoration: none;
-	color: #063;
+        text-decoration: none;
+        color: #063;
 }
 a:hover {
-	text-decoration: underline;
-	color: #093;
+        text-decoration: underline;
+        color: #093;
 }
 a:active {
-	color: #093;
+        color: #093;
 }
 .listing_info a, .listing_info a:visited {
-	color: #006633;
+        color: #006633;
 }
 .page_title1 {
-	font-style: normal;
-	font-variant: normal;
-	font-size: 24px;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #933;
+        font-style: normal;
+        font-variant: normal;
+        font-size: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #933;
 }
 #wikiTitle {
-	width: 650px;
-	color: a76272;
-	float: left;
+        width: 650px;
+        color: a76272;
+        float: left;
 }
 #menu_options {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-style: normal;
-	line-height: normal;
-	font-weight: bold;
-	text-align: right;
-	width: 650px;
-	padding-top: 15px;
-	color: #666;
-	float: left;
-	text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        line-height: normal;
+        font-weight: bold;
+        text-align: right;
+        width: 650px;
+        padding-top: 15px;
+        color: #666;
+        float: left;
+        text-decoration: none;
 }
 #wikisearch_box {
-	height: 75px;
-	width: 670px;
-	background-color: #28874D;
-	float: left;
+        height: 75px;
+        width: 670px;
+        background-color: #28874D;
+        float: left;
 }
 #browse {
-	width: 100%;
-	padding-top: 5px;
-	float: left;
-	font-weight: bold;
-	font-size: 12px;
-	color: #999;
-	text-align: center;
-	line-height: 160%;
-	height: 30px;
-	padding-bottom: 15px;
+        width: 100%;
+        padding-top: 5px;
+        float: left;
+        font-weight: bold;
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+        line-height: 160%;
+        height: 30px;
+        padding-bottom: 15px;
 /*  border-bottom-color: #CCC;
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -596,283 +596,283 @@ a:active {
 }
 
 #relig_soc_topics {
-	float: left;
-	width: 320px;
-	padding-left: 10px;
-	margin-top: 10px;
+        float: left;
+        width: 320px;
+        padding-left: 10px;
+        margin-top: 10px;
 }
 
 #what_do_you {
-	font-family: Arial, Helvetica, sans-serif;
-	width: 310px;
-	float: left;
-	font-size: 15px;
-	font-style: normal;
-	font-weight: bold;
-	color: #FFF;
-	vertical-align: middle;
-	text-align: right;
-	height: 0px;
-	padding: 30px 0 30px 0;
-	line-height: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        width: 310px;
+        float: left;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: bold;
+        color: #FFF;
+        vertical-align: middle;
+        text-align: right;
+        height: 0px;
+        padding: 30px 0 30px 0;
+        line-height: 15px;
 }
 #search_me {
-	float: right;
-	height: 26px;
-	width: 295px;
-	vertical-align: middle;
-	white-space: normal;
-	padding: 25px 0 24px 25px;
+        float: right;
+        height: 26px;
+        width: 295px;
+        vertical-align: middle;
+        white-space: normal;
+        padding: 25px 0 24px 25px;
 }
 #sidebar {
-	float: right;
-	position: relative;
+        float: right;
+        position: relative;
 }
 
 
 #wiki_container {
-	width: 650px;
-	float: left;
+        width: 650px;
+        float: left;
 }
 .wiki_TOC {
-	font-size: 12px;
-	background-color: #CCC;
-	width: 100px;
+        font-size: 12px;
+        background-color: #CCC;
+        width: 100px;
 }
 #wiki_TOC {
-	font-size: 12px;
-	background-color: #e4e8ec;
-	letter-spacing: normal;
-	text-align: left;
-	text-indent: 10px;
-	word-spacing: normal;
-	white-space: normal;
-	width: 175px;
-	float: left;
+        font-size: 12px;
+        background-color: #e4e8ec;
+        letter-spacing: normal;
+        text-align: left;
+        text-indent: 10px;
+        word-spacing: normal;
+        white-space: normal;
+        width: 175px;
+        float: left;
 }
 #wiki_article_title {
-	font-size: 20px;
-	color: #28874D;
-	height: auto;
-	width: 650px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	font-style: normal;
-	font-weight: bold;
-	float: left;
-	line-height: normal;
+        font-size: 20px;
+        color: #28874D;
+        height: auto;
+        width: 650px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-style: normal;
+        font-weight: bold;
+        float: left;
+        line-height: normal;
 }
 .TOCWIKI {
-	color: #000;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-style: normal;
-	line-height: 120%;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	letter-spacing: normal;
-	text-align: left;
-	text-indent: 0;
-	word-spacing: normal;
-	white-space: normal;
-	list-style-type: lower-roman;
+        color: #000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        line-height: 120%;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        letter-spacing: normal;
+        text-align: left;
+        text-indent: 0;
+        word-spacing: normal;
+        white-space: normal;
+        list-style-type: lower-roman;
 }
 #wiki_article {
-	padding-left: 15px;
-	float: left;
-	width: 425px;
-	font-size: 12px;
-	font-style: normal;
-	color: #000;
+        padding-left: 15px;
+        float: left;
+        width: 425px;
+        font-size: 12px;
+        font-style: normal;
+        color: #000;
 }
 .browse_articles {
-	color: #999;
-	font-size: 12px;
-	padding-top: 25px;
-	text-align: center;
-	padding-bottom: 15px;
+        color: #999;
+        font-size: 12px;
+        padding-top: 25px;
+        text-align: center;
+        padding-bottom: 15px;
 }
 .topic_header a{
 color:#093;
 font-size: 14px;
 }
 .political_topics{
-	width: 320px;
-	float: left;
-	margin-top: 10px;
-	}
+        width: 320px;
+        float: left;
+        margin-top: 10px;
+        }
 .second_level{
-	list-style-position: inside;
-	font-size: 10px;
-	}
+        list-style-position: inside;
+        font-size: 10px;
+        }
 .bullet_indent{
 margin-left: 20px;
 padding-left: 5px;
 margin-top: 0px;
-	}
+        }
 .group_entry{
-	width: 650px;
-	margin-top: 10px;
-	padding-top: 4px;
-	display: block;
-	float: left;
-	height: 100px;
-	border-top: solid #CCC 1px;
+        width: 650px;
+        margin-top: 10px;
+        padding-top: 4px;
+        display: block;
+        float: left;
+        height: 100px;
+        border-top: solid #CCC 1px;
 }
 .wiki_results{
-	width: 900px;
-	margin-top: 10px;
-	padding-top: 4px;
-	display: block;
-	float: left;
-	height: 80px;
-	border-top: solid #CCC 1px;
-	}
-	.report_results{
-	width: 900px;
-	margin-top: 10px;
-	padding-top: 4px;
-	display: block;
-	float: left;
-	height: 75px;
-	border-top: solid #CCC 1px;
-	}
+        width: 900px;
+        margin-top: 10px;
+        padding-top: 4px;
+        display: block;
+        float: left;
+        height: 80px;
+        border-top: solid #CCC 1px;
+        }
+        .report_results{
+        width: 900px;
+        margin-top: 10px;
+        padding-top: 4px;
+        display: block;
+        float: left;
+        height: 75px;
+        border-top: solid #CCC 1px;
+        }
 #report_filters{
-	border-bottom-color: #CCC;
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
-	border-top-color: #CCC;
-	display: block;
-	margin-bottom: 5px;
-	height: 35px;
-	width: 650px;
-	float: left;
-	}
+        border-bottom-color: #CCC;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-top-color: #CCC;
+        display: block;
+        margin-bottom: 5px;
+        height: 35px;
+        width: 650px;
+        float: left;
+        }
 .letter_pagination{
-	color: #999;
-	font-size:10px;
-	float: left;
-	display: block;
+        color: #999;
+        font-size:10px;
+        float: left;
+        display: block;
 }
 .letter_pagination a{
-	color: #093;	
+        color: #093;
 }
 .by_country{
-	color: #999;
-	font-size:10px;
-	width: 300px;
-	float: right;
-	}
+        color: #999;
+        font-size:10px;
+        width: 300px;
+        float: right;
+        }
 #country_submit{
-	background-color: #CCC;
-	font-size: 9px;
-	height: 14px;
+        background-color: #CCC;
+        font-size: 9px;
+        height: 14px;
 }
 #select_country_id{
-	background-color: #CCC;
-	font-size: 9px;
-	height: 14px;
-	width: 150px;
-	float: left;
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+        background-color: #CCC;
+        font-size: 9px;
+        height: 14px;
+        width: 150px;
+        float: left;
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
 }
 .listing_icon{
-	float: left;
-	width: 50px;
-	height: 100px;
-	display: block;
-	}
+        float: left;
+        width: 50px;
+        height: 100px;
+        display: block;
+        }
 .listing_info{
-	padding-left: 80px;
-	}
+        padding-left: 80px;
+        }
 .listing_info p{
-	margin: 0 0 0 0;
-	line-height: 120%;
-	font-size: 11px;
+        margin: 0 0 0 0;
+        line-height: 120%;
+        font-size: 11px;
 }
 .listing_title{
-	color: #093;
-	font-size: 14px;
-	}
+        color: #093;
+        font-size: 14px;
+        }
 .listing_data p{
-	font-size: 10px;
-	color: #999;
-	font-style: italic;
-	padding-left: 80px;
-		}
+        font-size: 10px;
+        color: #999;
+        font-style: italic;
+        padding-left: 80px;
+                }
 .pageSubhead{
-	color:#a76272;
-	font-size: 18px;
-	text-align:left;
-	margin: 0 0 0 0;
+        color:#a76272;
+        font-size: 18px;
+        text-align:left;
+        margin: 0 0 0 0;
 }
 .leftsidebar{
-	width: 175px;
-	padding: 20px;
-	background-color: #e0f1e7;
-	float: left;
-	font-size: 90%;
-	line-height: 135%;
-	margin-bottom: 20px;
-	list-style-image: url(none);
+        width: 175px;
+        padding: 20px;
+        background-color: #e0f1e7;
+        float: left;
+        font-size: 90%;
+        line-height: 135%;
+        margin-bottom: 20px;
+        list-style-image: url(none);
 }
 div#main{
-	width: 450px;
-	float: left;
-	padding-left: 20px;
-	line-height: 135%;
-	}
+        width: 450px;
+        float: left;
+        padding-left: 20px;
+        line-height: 135%;
+        }
 div#main_full{
-	width: 650px;
-	line-height: 135%;
-	margin-right: 20px;
-	height: inherit;
-	}	
+        width: 650px;
+        line-height: 135%;
+        margin-right: 20px;
+        height: inherit;
+        }
 div#main_full_home{
-	width: 425px;
-	line-height: 135%;
-	margin-right: 20px;
-	height: inherit;
-	}		
+        width: 425px;
+        line-height: 135%;
+        margin-right: 20px;
+        height: inherit;
+        }
 .bottom_buttons{
-	text-align: center;
-	margin: 0 0 0 0;
-	}
+        text-align: center;
+        margin: 0 0 0 0;
+        }
 .charity{
-	display: block;
-	}
+        display: block;
+        }
 .charity a{
-	background-image: url(../images/charity.png);	
-	}	
+        background-image: url(../images/charity.png);
+        }
 .charity a:hover{
-	}
+        }
 .leftsidebar li{
-	list-style-image: url(none);
-	padding-left: 1px;
-	margin: 4px 0 0 -6px;
+        list-style-image: url(none);
+        padding-left: 1px;
+        margin: 4px 0 0 -6px;
 }
 .bottom_buttons_maps{
-	z-index: 1000;
-	margin: 0 0 0 0;
-	text-align: center;
+        z-index: 1000;
+        margin: 0 0 0 0;
+        text-align: center;
 }
 .blackText{
-	color: #000;
-	}
+        color: #000;
+        }
 .main_buttons{
-	float: left;
-	width: 150px;
-	}
+        float: left;
+        width: 150px;
+        }
 .Home_page_content{
-	width: 500px;
-	float: left;
-	padding-right: 35px;
+        width: 500px;
+        float: left;
+        padding-right: 35px;
 }
 #subPageLeft {
-	line-height: 135%;
-    
+        line-height: 135%;
+
 }
 a.inlineLinks {
     color:#093;
@@ -889,4 +889,52 @@ ul.bullet_indent {
 
 td.label {
     width: 120px;
+}
+
+
+div#dg_sidebar_wrapper {
+    position: absolute;
+    top: 160px;
+    right: 0;
+}
+
+div#dg_sidebar_content {
+    height: 100%;
+    width: 100%;
+    background: #27874C;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27874C', endColorstr='#27874D');
+    background: -webkit-gradient(linear, left top, right top, from(#27874C), to(#38985D));
+    background: -moz-linear-gradient(left,  #ccc,  #000);
+}
+
+#dg_sidebar_content a {
+    color: white;
+}
+#dg_sidebar_content a:hover { text-decoration: underline; color: white;}
+
+div#dg_sidebar_toggle {
+  position: absolute;
+  right: 0px;
+  background: #999;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#ccc');
+  background: -webkit-gradient(linear, left top, right top, from(#999), to(#ccc));
+  background: -moz-linear-gradient(left,  #999,  #ccc);
+}
+
+
+div#dg_sidebar_toggle:hover {
+  background: #333;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999');
+  background: -webkit-gradient(linear, left top, right top, from(#333), to(#999));
+  background: -moz-linear-gradient(left,  #333,  #999);
+  cursor: pointer;
+}
+
+
+div#dg_sidebar_content #search {
+    float:none;
+}
+
+div#dg_sidebar_content h2 {
+    text-align:left;
 }

@@ -7,6 +7,7 @@ self.override_views = true
 
 require 'digital_gazette/page_extension'
 require 'digital_gazette/better_configuration'
+# require 'digital_gazette/stated_ui'
 
 Dispatcher.to_prepare do
   # Extend various classes.
@@ -19,12 +20,15 @@ Dispatcher.to_prepare do
   PagesController.send(:include, ::DigitalGazette::PagesControllerExtension)
   SearchController.send(:include, ::DigitalGazette::SearchControllerExtension)
   WikiController.send(:include, ::DigitalGazette::WikiControllerExtension)
-
+  ApplicationController.send(:include, ::DigitalGazette::StatedUI)
+  
   # helpers
+  #  ApplicationHelper.send(:include, ::DigitalGazette::ApplicationHelperExtension)
   LayoutHelper.send(:include, ::DigitalGazette::LayoutHelperExtension)
   MenuHelper.send(:include, ::DigitalGazette::MenuHelperExtension)
   SearchHelper.send(:include, ::DigitalGazette::SearchHelperExtension)
 
+  
   # models
   Page.send(:include, ::DigitalGazette::PageExtension)
   UnauthenticatedUser.send(:include, ::DigitalGazette::UnauthenticatedUserExtension)

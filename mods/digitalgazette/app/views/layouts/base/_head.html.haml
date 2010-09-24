@@ -5,7 +5,7 @@
   =favicon_link
   %title
     =h title_from_context
-  / begin styling 
+  / begin styling
   = crabgrass_stylesheets("ui_base")
   = stylesheet_link_tag("reset.css", :plugin => "digitalgazette")
   = stylesheet_link_tag("screen", :plugin => "digitalgazette")
@@ -14,6 +14,7 @@
   / end styling
   / begin scripts
   = crabgrass_javascripts
+  = javascript_include_tag 'dg_sidebar'
   / end scripts
   = call_hook :html_head
   = yield :html_head

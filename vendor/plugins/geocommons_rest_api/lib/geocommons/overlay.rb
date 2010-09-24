@@ -1,10 +1,3 @@
-require File.dirname(__FILE__) + '/../crabgrass/external_page'
-require File.dirname(__FILE__) + '/../crabgrass/external_api'
-require File.dirname(__FILE__) + '/../geocommons/base_page'
-require File.dirname(__FILE__) + '/../geocommons/find_methods'
-require File.dirname(__FILE__) + '/../geocommons/attributes'
-require File.dirname(__FILE__) + '/../geocommons/pagination'
-
 module Geocommons
   class Overlay < BasePage
     geocommons_service :finder
@@ -40,5 +33,6 @@ module Geocommons
     def url
       detail_link
     end
+      
   end
 end

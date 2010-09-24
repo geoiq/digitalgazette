@@ -15,8 +15,9 @@ module PageHelper
   #
   # supported classes must specify .url
   def page_url_for page
+#    debugger
     if external?(page)
-      page.url
+      page.url rescue raise("page.url not specified")
     else
       page_url(page)
     end

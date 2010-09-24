@@ -57,7 +57,19 @@ en:
   dg_search: "Search"
 
 
+  # FIXME mistakenly we lookup dg_dg_sidebar_wiki_list
+  # clean the name and add the dg_ here again
+  dg_dg_sidebar_wiki_list: "Wikis"
+  dg_dg_sidebar_map_list: "Maps"
+  dg_dg_sidebar_asset_list: "Reports"
+  dg_dg_sidebar_pages_list: "Pages"
+  dg_dg_sidebar_search: "Search"
+  dg_dg_sidebar_overlay_list: "Overlays"
+
   dg_wiki_search_header: "What do you want to learn about??"
+  dg_map_page_header: "Map!"
+  dg_new_map_page: "upload a map"
+  dg_map_search_header: "search maps"
   browse_wiki: "or Browse Articles by Topic"
   dg_asset_search_header: "What kind of Report would you like to find?"
   browse_asset: "Browse Reports"
@@ -66,6 +78,7 @@ en:
   dg_pages_list: "Pages"
   dg_most_recent_page: "Most Recent"
   dg_most_viewed_page: "Most Viewed"
+
   how_to_use: "How do I use this?"
   page_search_title: "{{type}}"
   map_page_display: "Map" #otherwise test fails

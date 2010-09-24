@@ -41,7 +41,7 @@ module Geocommons::Attributes
   def initialize(params={})
     (params.keys.map(&:to_sym) & self.class.attributes).each do |key|
       value = params[key] || params[key.to_s]
-      log_debug { "Loading attribute: #{key} = #{value}" }
+      # log_debug { "Loading attribute: #{key} = #{value}" }
       instance_variable_set("@#{key}", value)
     end
   end

@@ -1,0 +1,17 @@
+  <% options ||= {} %>
+  <div id="search">
+    <% form_remote_tag({:url => search_url(options), :method => :get, :loading => "$('sidebar_results').show();"}) do %>
+    <%= better_hidden_field :search, :preferred, @page_type %>
+    <%= mini_search_text_field_tag %>
+    <!-- <input type="text" value="Search" id="txtSearch" name="txtSearch" size="26" /> -->
+    <input type="submit" id="btnSearch" value="" />
+    <br class="clear" />
+    <%- end -%>
+  </div><!--#search//-->
+  <div id="sidebar_results" style="display:none;">
+    <% { :overlay => "Overlays", :map => "Maps", :wiki => "Articles", :asset => "Reports" }.each_pair do |type, label| -%>
+      <%= content_tag(:h2, label, :style => "font-size:1.4em;color:white") %>
+      <%= content_tag(:div, spinner('', :show => true), :id => "sidebar_results_#{type}_list", :style => 'color:white') %>
+    <br />
+    <% end -%>
+  </div>

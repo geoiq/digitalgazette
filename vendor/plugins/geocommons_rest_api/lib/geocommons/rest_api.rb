@@ -4,13 +4,25 @@ module Geocommons
   class RestAPI
     class << self
       def get(service, path)
-        start_connection(uri = service_uri(service)) do |http|
-          if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
-            return JSON.load(response.body)
-          else
-            raise "Error getting geocommons: #{response.inspect}"
+        # NOTE you can disable the connection globally for tests without internet connection
+        if ! (defined?(EXTERNAL_API_TEST_MODE) && EXTERNAL_API_TEST_MODE == :skip)
+            
+          begin   
+            start_connection(uri = service_uri(service)) do |http|
+              if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
+                return JSON.load(response.body)
+              else
+                raise "Error getting geocommons: #{response.inspect}"
+              end
+            end
+          rescue
+            errstr = "Error getting geocommons: connection not established Query:  "
+            errstr << File.join(uri.path, path)
+            raise errstr
           end
-        end
+        else
+          JSON.load({ :totalResults => 0, :entries => []})
+        end     
       end
 
       # Query the Geocommons search API via GET requests on /searches.json.

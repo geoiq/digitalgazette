@@ -20,7 +20,8 @@ module Geocommons::FindMethods
   # be determined by +geocommons_model_name+
   def _find(options={})
     raise "You need to set the geocommons_service in #{self.name}" unless @service
-    Geocommons::RestAPI.find(@service, options.merge(default_find_options))
+    options = options.merge(default_find_options)
+    Geocommons::RestAPI.find(@service, options)
   end
 
   def _get(id)
@@ -39,7 +40,7 @@ module Geocommons::FindMethods
   # takes a result hash, as returned by Geocommons::RestAPI and
   # turns it into an array of pages.
   def pack_entries(result)
-    log_debug { "Unpacking Result: #{result.inspect}" }
+    # log_debug { "Unpacking Result: #{result.inspect}" }
     result['entries'].map do |entry|
       pack_entry(entry)
     end

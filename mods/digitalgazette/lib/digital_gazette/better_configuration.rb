@@ -4,7 +4,7 @@
   # and configured in mods / sites TODO put it into Conf.
 
   PATHS_FOR_BOXES =
-    { :most_viewed => [["most_viewed"],["limit",5]],
+    { :most_viewed => [["most_viewed"],["limit",2]],
     :recent => [["limit",5],["ascending","created_at"]]}.freeze
 
   HEADERS_FOR_PAGE_TYPES = {
@@ -15,9 +15,28 @@
   # TODO move all this into Conf
   SEARCHABLE_PAGE_TYPES = ["wiki","asset","map","overlay"].freeze
 
+  
+  # TODO handle this via api
+  MODEL_NAMES = { 
+    "wiki" => "WikiPage",
+    "asset" => "AssetPage",
+    "map" => "Geocommons::Map",
+    "overlay" => "Geocommons::Overlay"
+  }.freeze
+  
+  PAGE_NAMES = MODEL_NAMES.invert.merge({ "MapPage", "map"}) #.freeze 
+  #FIXME I needed this, to resolve MapPage in SearchController 162
+  
+  
   EXTERNAL_PAGE_TYPES = ["overlay", "map"].freeze
 
-  LEGAL_PARTIALS = ["pages/list","overlays/list","pages/box"].freeze
+  LEGAL_PARTIALS = {
+    "page_list" => "pages/list",
+    "overlay_list" => "overlays/list",
+    "pages_box" => "pages/box", 
+    "dg_sidebar" => "search/dg_sidebar"
+
+  }.freeze
 
   PAGE_TYPE_PARTIALS = {
     "wiki" => "pages/list",
