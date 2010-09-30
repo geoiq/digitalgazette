@@ -1,8 +1,12 @@
 map:
-  maker: http://api-sandbox.geoiq.com/
-  finder: http://api-sandbox.geoiq.com/
-  core: http://api-sandbox.geoiq.com/
-  embed: http://api-sandbox.geoiq.com/javascripts/f1.api.js
+  maker: http://geocommons.com/
+  finder: http://geocommons.com/
+  core: http://geocommons.com/
+  embed: http://geocommons.com/
+#  maker: http://api-sandbox.geoiq.com/
+#  finder: http://api-sandbox.geoiq.com/
+#  core: http://api-sandbox.geoiq.com/
+#  embed: http://api-sandbox.geoiq.com/javascripts/f1.api.js
 
 
 
