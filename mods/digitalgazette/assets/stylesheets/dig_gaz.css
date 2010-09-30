@@ -907,6 +907,7 @@ div#dg_sidebar_content {
     background: -moz-linear-gradient(left,  #ccc,  #000);
     padding: 24px !important;
     text-align: left;
+    overflow: auto;
 }
 #dg_sidebar_content h1 { color: white; font-size: 1.8em; }
 

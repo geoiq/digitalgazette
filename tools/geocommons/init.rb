@@ -19,7 +19,7 @@ Dispatcher.to_prepare do
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",
-                                      :key_value_separator => ":"
+                                      :key_value_separator => ""
                                     }
                                   })
 
@@ -35,7 +35,7 @@ Dispatcher.to_prepare do
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",
-                                      :key_value_separator => ":"
+                                      :key_value_separator => ""
                                     }
                                   }
                                 )

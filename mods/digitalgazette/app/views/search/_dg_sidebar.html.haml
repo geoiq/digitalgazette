@@ -6,7 +6,8 @@
           %li
             - type = dg_page_type(page.class)
             - dom_id = "page_preview_#{type}_#{page.id}"
-            = link_to_remote page.title, :url => { :controller => 'sidebar', :action => 'page', :type => type, :id => page.id }, :update => dom_id
-            %div{:id => dom_id}
+            = link_to_remote page.title, :url => { :controller => 'sidebar', :action => 'page', :type => type, :id => page.id }, :update => dom_id, :loading => "$('#{dom_id}').show();"
+            %div{:id => dom_id, :style => "display:none;"}
+              = spinner(dom_id, :show => true)
   - else
     %h3= I18n.t(:no_search_results)

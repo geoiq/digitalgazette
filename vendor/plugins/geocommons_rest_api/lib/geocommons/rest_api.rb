@@ -6,23 +6,25 @@ module Geocommons
       def get(service, path)
         # NOTE you can disable the connection globally for tests without internet connection
         if ! (defined?(EXTERNAL_API_TEST_MODE) && EXTERNAL_API_TEST_MODE == :skip)
-            
-          begin   
+
+          begin
             start_connection(uri = service_uri(service)) do |http|
               if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
                 return JSON.load(response.body)
+              elsif response.kind_of?(Net::HTTPFound)
+                raise "Error getting geocommons path #{path}: Got redirected to: #{response['Location']}"
               else
-                raise "Error getting geocommons: #{response.inspect}"
+                raise "Error getting geocommons path #{path}: #{response.inspect}"
               end
             end
-          rescue
-            errstr = "Error getting geocommons: connection not established Query:  "
-            errstr << File.join(uri.path, path)
-            raise errstr
+          # rescue
+          #   errstr = "Error getting geocommons: connection not established Query:  "
+          #   errstr << File.join(uri.path, path)
+          #   raise errstr
           end
         else
           JSON.load({ :totalResults => 0, :entries => []})
-        end     
+        end
       end
 
       # Query the Geocommons search API via GET requests on /searches.json.
