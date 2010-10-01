@@ -11,8 +11,7 @@ class SearchController < ApplicationController
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
     @path = parse_filter_path(params[:search]) if @path.empty?
-#    debugger
-    if params[:limit]
+    if params[:limit] 
       @path.merge!(['limit', params[:limit]])
     end
     @preferred = @path.arg_for("preferred")
@@ -267,7 +266,7 @@ class SearchController < ApplicationController
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
-          { :pages => Crabgrass::ExternalPathFinder.find(page_type,@naked_path),
+          { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path),
           :dom_id => get_dom_id_for(page_type)}
           # sketchtes
           #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
