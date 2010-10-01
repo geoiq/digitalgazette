@@ -1,3 +1,6 @@
+        require 'rubygems'
+        require 'open-uri'
+
 module Crabgrass
   #
   #
@@ -137,8 +140,6 @@ module Crabgrass
 
 
       if options[:remote]
-        require 'rubygems'
-        require 'open-uri'
         file = open(file_locator)
       else
         file = File.read(file_locator)
