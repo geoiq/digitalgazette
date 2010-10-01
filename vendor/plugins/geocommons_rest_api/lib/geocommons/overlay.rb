@@ -7,10 +7,7 @@ module Geocommons
                   author can_download published icon_path id
                   contributor tags layer_size link description
                   source bbox created overlay_id detail_link)
-
-    def id
-      overlay_id
-    end
+    alias_method :summary, :description
 
     def cover
       if icon
@@ -33,6 +30,6 @@ module Geocommons
     def url
       detail_link
     end
-      
+
   end
 end

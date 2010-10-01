@@ -27,7 +27,11 @@ module Geocommons::Attributes
     def attributes(*attrs)
       if (attrs = attrs.flatten).any?
         (@attributes = attrs.map(&:to_sym)).each do |attribute|
-          attr(attribute.to_sym, true)
+          if public_instance_methods.include?(attribute.to_s)
+            attr_writer(attribute.to_sym)
+          else
+            attr(attribute.to_sym, true)
+          end
         end
       else
         unless @attributes.any?
