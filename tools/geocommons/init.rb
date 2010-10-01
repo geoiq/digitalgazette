@@ -14,8 +14,10 @@ Dispatcher.to_prepare do
                                       :paginate => "paginate"
                                     },
                                     :query_builder => {
+                                      :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        "text" => "",
+                                        'limit' => 'limit',
+                                        "text" => "query",
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",
@@ -30,8 +32,10 @@ Dispatcher.to_prepare do
                                     { :find => "find",
                                       :paginate => "paginate"},
                                     :query_builder => {
+                                      :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        "text" => "",
+                                        'limit' => 'limit',
+                                        "text" => "query",
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",

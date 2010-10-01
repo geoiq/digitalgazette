@@ -79,7 +79,7 @@ module SearchHelper
     page_types = options[:page_types]
     #
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
-    options[:dom_id] = box_type.to_s
+#   options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
     options[:wrapper] = "pages_box" # FIXME this should not be hardcoded?
 
@@ -89,6 +89,7 @@ module SearchHelper
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
       content_tag(:strong) { I18n.t(:dg_box_title, :type => I18n.t("dg_#{box_type}".to_sym))}
     end
+#    debugger
     # box content
     ret << content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
       content_tag(:ul, :class => "dynamicLinkList") do

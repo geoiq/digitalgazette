@@ -3,9 +3,10 @@
   # NOTE this will help us to make this behaviour easier enabled
   # and configured in mods / sites TODO put it into Conf.
 
-  PATHS_FOR_BOXES =
-    { :most_viewed => [["most_viewed"],["limit",2]],
-    :recent => [["limit",5],["ascending","created_at"]]}.freeze
+  PATHS_FOR_BOXES = { 
+    :most_viewed => [ [ "most_viewed" ], [ "limit", 1 ] ],
+    :recent => [ [ "limit", 1 ], [ "ascending", "created_at" ] ]
+  }.freeze
 
   HEADERS_FOR_PAGE_TYPES = {
     "wiki" => true,
