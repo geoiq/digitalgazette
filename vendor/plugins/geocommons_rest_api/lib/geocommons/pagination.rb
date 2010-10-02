@@ -4,7 +4,10 @@ module Geocommons::Pagination
   # * +page+ - number (>= 1), page to use. default: 1
   # * +per_page+ - number (>= 1), results to return per page. default: 10
   # * +query+ - query to send, such as tag:foobar
-  def paginate(query, options={})
+  def paginate(*args)
+    options = args.pop if args.last.kind_of?(Hash)
+    options ||= { }
+    query = args.first # NOTE nothing else in here!
     page = options[:page] || 1
     per_page = options[:per_page] || 2
     

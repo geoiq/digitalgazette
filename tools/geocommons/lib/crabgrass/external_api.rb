@@ -1,6 +1,5 @@
-        require 'rubygems'
-        require 'open-uri'
-
+require 'rubygems'
+require 'open-uri'
 module Crabgrass
   #
   #
@@ -115,9 +114,8 @@ module Crabgrass
     end
 
     # calls the mapped method
-    def call(method_name, args)
-      # model.method(get_method(method_name.to_sym).to_sym).call(args)
-      model.method(get_method(method_name.to_sym).to_sym).call(args) # FIXME
+    def call(method_name, *args)
+      model.method(get_method(method_name.to_sym).to_sym).call(*args) # FIXME
     end
 
     #
