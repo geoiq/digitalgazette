@@ -266,7 +266,7 @@ class SearchController < ApplicationController
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
-          { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path,pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
+          { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path),
           :dom_id => get_dom_id_for(page_type)}
           # sketchtes
           #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})

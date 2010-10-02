@@ -156,7 +156,7 @@ module SearchHelper
   end
 
   def options_for_widget(page_type, options)
-    page_type ? {:page_type => page_type, :per_page => params[:per_page], :page => params[:page] }.merge!(options) : options
+    page_type ? {:page_type => page_type }.merge!(options) : options
   end
 
   # returns the search banner and header for given page type
