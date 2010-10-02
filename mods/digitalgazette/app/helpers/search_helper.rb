@@ -79,7 +79,7 @@ module SearchHelper
     page_types = options[:page_types]
     #
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
-    options[:dom_id] = box_type.to_s
+#   options[:dom_id] = box_type.to_s
     options[:widget] = box_type.to_s
     options[:wrapper] = "pages_box" # FIXME this should not be hardcoded?
 
@@ -89,6 +89,7 @@ module SearchHelper
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
       content_tag(:strong) { I18n.t(:dg_box_title, :type => I18n.t("dg_#{box_type}".to_sym))}
     end
+#    debugger
     # box content
     ret << content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
       content_tag(:ul, :class => "dynamicLinkList") do
@@ -127,7 +128,7 @@ module SearchHelper
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
     path = @path
-    raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any?
+    raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any? # :)
     content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
       (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
   end
@@ -155,7 +156,7 @@ module SearchHelper
   end
 
   def options_for_widget(page_type, options)
-    page_type ? {:page_type => page_type }.merge!(options) : options
+    page_type ? {:page_type => page_type, :per_page => params[:per_page], :page => params[:page] }.merge!(options) : options
   end
 
   # returns the search banner and header for given page type

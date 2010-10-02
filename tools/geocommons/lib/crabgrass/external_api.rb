@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'open-uri'
 module Crabgrass
   #
   #
@@ -112,9 +114,8 @@ module Crabgrass
     end
 
     # calls the mapped method
-    def call(method_name, args)
-      # model.method(get_method(method_name.to_sym).to_sym).call(args)
-      model.method(get_method(method_name.to_sym).to_sym).call({ :query => args}) # FIXME
+    def call(method_name, *args)
+      model.method(get_method(method_name.to_sym).to_sym).call(*args) # FIXME
     end
 
     #
@@ -137,8 +138,6 @@ module Crabgrass
 
 
       if options[:remote]
-        require 'rubygems'
-        require 'open-uri'
         file = open(file_locator)
       else
         file = File.read(file_locator)

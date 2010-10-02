@@ -7,29 +7,13 @@
 
 = pagination_links_for_widgets(@page_types) if @page_types
 
--# - panel(:dg_sidebar, {:for => :all, :limit => 2, :pagination => true, :wrapper => "dg_sidebar"}) do
--#   = widgets_for :all, {:wrapper => "dg_sidebar", :panel => "dg_sidebar"}
 
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
-  = box_for(:most_viewed,{:page_types => @page_types, :limit => 2})
-  = box_for(:recent, {:page_types => @page_types, :limit => 2})
+  = box_for(:most_viewed,{:page_types => @page_types, :limit => 1})
+  = box_for(:recent, {:page_types => @page_types, :limit => 1, :panel => 'most_viewed'})
 
 
 
-//- if @page_type
-//  = render :partial => 'pages/list', :locals => {:pages => @pages}
-//- else
-//  - panel_for @page_types, {:wrapper => "dg_sidebar"} do
-//    = dynamic_widgets @preferred, {:panel => "dg_sidebar"}
-//  = dynamic_widgets @preferred
-//  = pagination_links_for_widgets(@page_types) if @page_types
-
-
-
-//- if @page_type
-//  = render :partial => 'pages/list', :locals => {:pages => @pages}
-//- else
-//= dynamic_widgets @preferred
 

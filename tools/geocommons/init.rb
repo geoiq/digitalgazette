@@ -1,12 +1,13 @@
-# Include hook code here
 
 self.load_once = false if RAILS_ENV =~ /development/
 #self.override_views = true
 
 Dispatcher.to_prepare do
   User.send(:include, Crabgrass::UserCredentials)
+  User.send(:include, Crabgrass::GeocommonsAuthentication)
 
   # TODO move this to geocommons.yml
+  # -- really? why would I? --wr, 9/30/10
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,
                                     :methods => {
@@ -14,12 +15,14 @@ Dispatcher.to_prepare do
                                       :paginate => "paginate"
                                     },
                                     :query_builder => {
+                                      :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        "text" => "",
+                                        'limit' => 'limit',
+                                        "text" => "query",
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",
-                                      :key_value_separator => ":"
+                                      :key_value_separator => ""
                                     }
                                   })
 
@@ -30,12 +33,14 @@ Dispatcher.to_prepare do
                                     { :find => "find",
                                       :paginate => "paginate"},
                                     :query_builder => {
+                                      :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        "text" => "",
+                                        'limit' => 'limit',
+                                        "text" => "query",
                                         "tag" => "tag"
                                       },
                                       :argument_separator => " ",
-                                      :key_value_separator => ":"
+                                      :key_value_separator => ""
                                     }
                                   }
                                 )

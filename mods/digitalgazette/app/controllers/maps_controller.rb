@@ -16,9 +16,7 @@ class MapsController < PagesController # TODO < ExternalPagesController
   end
 
   def show
-    get_page_type
-    # @map = Geocommons::Map.find(params[:id])
-    @map = fetch_page_for(params[:id])
+    @map = Geocommons::Map.find(params[:id])
     @page = @map
   end
 
@@ -45,26 +43,26 @@ class MapsController < PagesController # TODO < ExternalPagesController
 # Refactoring
 #
 
-  # get_pages # similar to SearchController 
+  # get_pages # similar to SearchController
   # maybe subclass of PagesController
 
-  
-  
+
+
   def get_page_type
     @page_type = "map" || params[:page_type] # hardcoded by now
   end
-  
+
   def fetch_page_for(id)
     Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id).first
   end
-  
-  
+
+
   def fetch_pages_for(path)
     Crabgrass::ExternalAPI.for(@page_type).call(:paginate, transform_path(path))
   end
-  
+
   def transform_path(path)
     Crabgrass::ExternalPathFinder.convert(@page_type, path)
   end
-  
+
 end

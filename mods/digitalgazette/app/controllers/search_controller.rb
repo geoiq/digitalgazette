@@ -11,6 +11,9 @@ class SearchController < ApplicationController
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
     @path = parse_filter_path(params[:search]) if @path.empty?
+    if params[:limit] 
+      @path.merge!(['limit', params[:limit]])
+    end
     @preferred = @path.arg_for("preferred")
     if request.post?
       # form was POSTed with search query
@@ -191,14 +194,13 @@ class SearchController < ApplicationController
     return params[:dom_id] if params[:dom_id]
     page_type ||= @page_type
     prefix = (@panel && !@panel.empty?) ? "#{@panel}_" : ""
-    prefix << "#{@widget}_" if @widget && !@widget.empty?
+    #prefix << "#{@widget}_" if @widget && !@widget.empty?
     prefix << (page_type ? page_type.underscore+"_list" : "pages_list")
     # FIXME in case of 'pages_list', and we have more than one page type,
     # we will get chaos or should use an appending technique
 
   end
-
-
+  
   # retrieve all page types in the current focus
   def get_page_types
     @page_types =  [@path.all_args_for("type")].flatten.compact.select{ |t|
@@ -242,7 +244,7 @@ class SearchController < ApplicationController
       # but we want the same limit per page for every model - figure out, how to do this best
       # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
       #
-      #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => (get_per_page)}))))
+      #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), )))
    #   @internal_pages = { }
 
       # OPTIMIZE this is ugly
@@ -252,7 +254,7 @@ class SearchController < ApplicationController
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a)) # sorting in the path is important
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # sorting in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
 
@@ -264,7 +266,7 @@ class SearchController < ApplicationController
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
-          { :pages => Crabgrass::ExternalPathFinder.find(page_type,@naked_path),
+          { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path,pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
           :dom_id => get_dom_id_for(page_type)}
           # sketchtes
           #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
@@ -291,7 +293,6 @@ class SearchController < ApplicationController
   #      down to clever partials/helpers
   #
   def send_pages!
-#    debugger
     if request.xhr?
      # Update every widget as one, if existing
       render :update do |page|
@@ -322,7 +323,7 @@ class SearchController < ApplicationController
 
   # default for per page or something more complex
   def get_per_page
-    params[:per_page] || 2
+    (@path.keywords.include?('limit') ? @path.arg_for('limit') : (params[:per_page] || 2))
   end
 
   #

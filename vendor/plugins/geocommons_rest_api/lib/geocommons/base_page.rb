@@ -7,10 +7,14 @@ module Geocommons
     end
 
     def user
-      
+
     end
-    
-    
+
+    def id
+      # GeoCommons formats id as Map:123
+      @id.kind_of?(String) ? @id.split(':').last.to_i : @id
+    end
+
     # FIXME: do we get a "updated" attribute from geocommons?
     def updated_at
       (DateTime.parse(created) if created) || Time.now
