@@ -35,7 +35,8 @@
     "page_list" => "pages/list",
     "overlay_list" => "overlays/list",
     "pages_box" => "pages/box", 
-    "dg_sidebar" => "search/dg_sidebar"
+    "dg_sidebar" => "search/dg_sidebar",
+    "sidebar_result" => "sidebar/result"
 
   }.freeze
 

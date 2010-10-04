@@ -115,6 +115,7 @@ class SearchController < ApplicationController
     end
     logger.debug("fallback to 'pages/list'") unless ret
     ret = "pages/list" if (ret.nil? || ret.empty?)
+    logger.debug "chose #{ret.to_s} for #{options.inspect}"
     ret
   end
 
@@ -254,7 +255,7 @@ class SearchController < ApplicationController
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # sorting in the path is important
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
 
@@ -266,7 +267,7 @@ class SearchController < ApplicationController
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
-          { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path),
+        { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path,pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
           :dom_id => get_dom_id_for(page_type)}
           # sketchtes
           #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
@@ -306,7 +307,7 @@ class SearchController < ApplicationController
                                                        :type => I18n.t("dg_#{page_type}".to_sym)),
                                       :no_top_pagination => true
                                     } )
-          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'.")
+          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'. CURRENT PAGE #{params[:page].inspect} PER PAGE #{params[:per_page].inspect}")
         end
       end
     end

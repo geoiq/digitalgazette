@@ -1,0 +1,6 @@
+<h2><%= title %></h2>
+    <% pages.each do |page|  %>
+      <%= render :partial => "sidebar/page_summary", :locals => {:page => page} %>
+    <br />
+    <% end -%>
+

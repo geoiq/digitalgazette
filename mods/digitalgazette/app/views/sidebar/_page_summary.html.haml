@@ -1,7 +1,8 @@
-- page_url = page_url_for(@page)
-%div{:style => "border:solid 1px black;padding-left:12px;",
-     :id => (id = "dg_sidebar_details_#{@page.class.name}_#{@page.id}")}
-  = link_to_function("Close", "$('#{id}').remove();")
-  %h2=h @page.title
-  %p=h @page.summary
-  %span= link_to("&laquo; Open", page_url, :target => "blank") if page_url
+- page ||= @page
+- page_url = page_url_for(page)
+%div{:class => "sidebar_page_details",
+     :id => (id = "dg_sidebar_details_#{clean_name_for(page).downcase}_#{page.id}")}
+  = link_to_function("close", "$('#{id}').remove();")
+  %h2=h page.title
+  %p=h page.summary
+  %span= link_to("&laquo; open", page_url, :target => "blank") if page_url

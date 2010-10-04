@@ -34,7 +34,7 @@ module SearchHelper
   # - pagination :all, :top, :bottom or nil
   # -
   def panel name, options={}, &block
-    options.merge!({ :for => :all, :box => false, :pagination => :bottom})
+    options = { :for => :all, :box => false, :pagination => :bottom}.merge(options)
     ret = ""
 
     content = capture(&block)
@@ -48,11 +48,15 @@ module SearchHelper
 
     # version with locals
     options[:id] ||= name.to_s
+    
     if options[:wrapper]
-      concat(render(:partial => list_partial_for(options),  :locals => { :content => content }), block.binding)
+      ret = concat(render(:partial => list_partial_for(options),  :locals => { :content => content }))
     else
-      concat(content_tag(:div, :id => options[:id], :class => options[:class], &block), block.binding)
+      ret = concat(content_tag(:div, :id => options[:id], :class => options[:class]){ content })
     end
+    
+    ret
+    # << panel_pagination_at(:bottom, options)
   end
 
   def panel_pagination_at position, options, *args
@@ -65,11 +69,11 @@ module SearchHelper
   # pagination links that reload the index
   # action providing a screen with widgets for
   # all pagetypes
-  def pagination_links_for_widgets(widgets)
+  def pagination_links_for_widgets(widgets,options={ })
     collection = WillPaginate::Collection.create((params[:page]||1),10,200) do |pager|
       "#TODO"
     end
-    pagination_links(collection)
+    pagination_links(collection,options)
   end
 
 
@@ -123,16 +127,19 @@ module SearchHelper
   # :dom_id           - save explicit dom-id
   # :autoload => 'when true, then adds a remote call to get the items'
   def widget_for page_type, options={}
-    debugger
+#    debugger if params[:page]
     options = options_for_widget(page_type, options)
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
     path = @path
     raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any? # :)
-    content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
+    ret = ""
+    ret << content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
       (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
+    ret
   end
+  
 
 
   def id_for_widget(page_type,options)
@@ -141,6 +148,7 @@ module SearchHelper
   end
 
   def widgets_for args, options={ }
+    logger.debug "#{args.inspect} #{options.inspect}"
     ret = ""
     if args == :all
       args = SEARCHABLE_PAGE_TYPES
@@ -151,15 +159,15 @@ module SearchHelper
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
-    ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"}))#+spinner(@panel, :show => true)
+    ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
 
     ret
   end
 
   def options_for_widget(page_type, options)
     options = page_type ? {:page_type => page_type}.merge!(options) : options
-    options = options.merge({ :page => params[:page]}) if params[:page]
-    options = options.merge({ :per_page => params[:per_page]}) if params[:per_page]
+    options = options.merge({ :page => (params[:page] || 1)}) 
+    options = options.merge({ :per_page => (params[:per_page] || 2)}) #if params[:page]
     options
   end
 

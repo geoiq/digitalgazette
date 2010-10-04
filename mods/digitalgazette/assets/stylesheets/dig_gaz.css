@@ -1,4 +1,4 @@
-/********************
+x/********************
 elements
 ********************/
 body{
@@ -941,4 +941,10 @@ div#dg_sidebar_content #search {
 
 div#dg_sidebar_content h2 {
     text-align:left;
+}
+
+.dg_sidebar_page_details {
+
+background: #ccc;
+
 }

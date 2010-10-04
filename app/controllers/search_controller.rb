@@ -11,6 +11,7 @@ class SearchController < ApplicationController
 
   # GET /search
   def index
+
     if request.post?
       # form was POSTed with search query
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
