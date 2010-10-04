@@ -123,6 +123,7 @@ module SearchHelper
   # :dom_id           - save explicit dom-id
   # :autoload => 'when true, then adds a remote call to get the items'
   def widget_for page_type, options={}
+    debugger
     options = options_for_widget(page_type, options)
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
@@ -156,7 +157,10 @@ module SearchHelper
   end
 
   def options_for_widget(page_type, options)
-    page_type ? {:page_type => page_type }.merge!(options) : options
+    options = page_type ? {:page_type => page_type}.merge!(options) : options
+    options = options.merge({ :page => params[:page]}) if params[:page]
+    options = options.merge({ :per_page => params[:per_page]}) if params[:per_page]
+    options
   end
 
   # returns the search banner and header for given page type
