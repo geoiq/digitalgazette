@@ -1,8 +1,8 @@
 - page ||= @page
 - page_url = page_url_for(page)
+- id =  "dg_sidebar_details_#{clean_name_for(page).downcase}_#{page.id}"
+= link_to_function h(page.title), "$('#{id}').toggle();"
 %div{:class => "sidebar_page_details",
-     :id => (id = "dg_sidebar_details_#{clean_name_for(page).downcase}_#{page.id}")}
-  = link_to_function("close", "$('#{id}').remove();")
-  %h2=h page.title
+     :id => id, :style => "display:none;"}
   %p=h page.summary
-  %span= link_to("&laquo; open", page_url, :target => "blank") if page_url
+  %span= preview_link(page)
