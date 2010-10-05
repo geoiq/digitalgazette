@@ -21,6 +21,14 @@ module Crabgrass
           params
         end
       end
+
+      # FIXME: this has been the original functionality, where you can map things from a to b
+      # it's not necessary for DG and we had the problem, that GC expects a hash
+      # instead of creating the ability to specify, that the result should be a hash and how it should look,
+      # we did this small hack above
+      #
+      # TODO try something like .inject(return_structure) do ...
+      
       # key_value_separator = api.key_value_separator
       # argument_separator = api.argument_separator
       # ret = ""
