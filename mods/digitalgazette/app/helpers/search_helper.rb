@@ -60,7 +60,7 @@ module SearchHelper
 
 
   def panel_pagination_at position, options={ }
-    if options[:pagination] && (options[:pagination] == :all || options[:pagination].to_sym == position.to_sym)  
+    if options[:pagination] && (options[:pagination] == :all || options[:pagination].to_sym == position.to_sym)
       options = { :page_links => false}.merge(options) # by default we don't show pagination links, because it's hard to calculate the total_pages for a whole panel with different types of resources
       pagination_links_for_widgets(options)
     end
@@ -122,7 +122,6 @@ module SearchHelper
   # :dom_id           - save explicit dom-id
   # :autoload => 'when true, then adds a remote call to get the items'
   def widget_for page_type, options={}
-#    debugger if params[:page]
     options = options_for_widget(page_type, options)
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
@@ -131,7 +130,7 @@ module SearchHelper
     raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any? # :)
     ret = ""
     ret << content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
-      (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
+      (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path.to_param), :method => 'get', :with => "'#{options.to_param}'"})) : '')
     ret
   end
 
@@ -147,7 +146,9 @@ module SearchHelper
     end
     path = @path.dup.remove_keyword("type")
     path.add_types! args
-    ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
+    # we need to call options_for_widget, to merge with defaults, and pagination params. page type therewhile remains nil
+    options = options_for_widget(nil, options)
+    ret << javascript_tag(remote_function({ :url => search_url(:path => path.to_param), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
     ret
   end
 
@@ -157,8 +158,8 @@ module SearchHelper
     options = options.merge({ :per_page => (params[:per_page] || 2)}) #if params[:page]
     options
   end
-  
-  
+
+
   def sidebar_mini_search_text_field_tag
         text_field_tag('search[text]', '', :class => 'text',
                                       :size => 17,

@@ -11,7 +11,7 @@ class SearchController < ApplicationController
   # TODO move @dom_id and @partial out of the controller logic some day
   def index
     @path = parse_filter_path(params[:search]) if @path.empty?
-    if params[:limit] 
+    if params[:limit]
       @path.merge!(['limit', params[:limit]])
     end
     @preferred = @path.arg_for("preferred")
@@ -20,7 +20,8 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-      render_search_results
+      # in digitalgazette we fetch all pages via xhr, this way we do not want to render search results if its non-xhr
+      render_search_results if request.xhr?
     end
   end
 
@@ -201,7 +202,7 @@ class SearchController < ApplicationController
     # we will get chaos or should use an appending technique
 
   end
-  
+
   # retrieve all page types in the current focus
   def get_page_types
     @page_types =  [@path.all_args_for("type")].flatten.compact.select{ |t|
@@ -217,13 +218,11 @@ class SearchController < ApplicationController
 
    # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
-
       # separate the page_types by the condition wether
       # a) they are internal, means Crabgrass::Page or
       # b) external, means Crabgrass::ExternalPage
       @page_type_groups = @page_types.group_by {|page_type|
         EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
-
 
 
       # Process internal Pages
@@ -267,9 +266,10 @@ class SearchController < ApplicationController
       @external_pages = {}
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
-        { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path,pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
+        { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
           :dom_id => get_dom_id_for(page_type)}
-          # sketchtes
+          #debugger
+          # sketches
           #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
           #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
       end
