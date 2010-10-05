@@ -307,7 +307,11 @@ class SearchController < ApplicationController
                                                        :type => I18n.t("dg_#{page_type}".to_sym)),
                                       :no_top_pagination => true
                                     } )
+          page[dom_id].insert( { :after => panel_pagination_at(:bottom, options)})
           logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'. CURRENT PAGE #{params[:page].inspect} PER PAGE #{params[:per_page].inspect}")
+        end
+        if @panel && params[:pagination]
+          page["#{@panel}_pagination_bottom"].replace_html(panel_pagination_at(:bottom, { :pagination => params[:pagination], :path => @path.to_param}))
         end
       end
     end

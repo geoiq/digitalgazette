@@ -1,6 +1,6 @@
 - options ||= {}.merge({ :panel => 'sidebar_results', :pagination => :bottom})
 = render :partial => "sidebar/mini_search", :locals => {:options => options}
-- panel "sidebar_results" do
+- panel "sidebar_results", {:pagination => :bottom} do
   = widgets_for :all, :panel => "sidebar_results", :load => false
   
 

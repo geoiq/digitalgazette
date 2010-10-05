@@ -36,6 +36,7 @@ module SearchHelper
   def panel name, options={}, &block
     options = { :for => :all, :box => false, :pagination => :bottom}.merge(options)
     ret = ""
+    ret << content_tag(:div, "", :id => "#{name}_pagination_top}") if options[:pagination] && options[:pagination].to_sym == :top
 
     content = capture(&block)
 
@@ -54,13 +55,13 @@ module SearchHelper
     else
       ret = concat(content_tag(:div, :id => options[:id], :class => options[:class]){ content })
     end
-    
+    ret << content_tag(:div, "", :id => "#{name}_pagination_bottom") if options[:pagination] && options[:pagination].to_sym == :bottom
     ret
-    # << panel_pagination_at(:bottom, options)
   end
 
   def panel_pagination_at position, options={ }
-    if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
+    if options[:pagination] && (options[:pagination] == :all || options[:pagination].to_sym == position.to_sym)  
+      options = { :page_links => false}.merge(options) # by default we don't show pagination links, because it's hard to calculate the total_pages for a whole panel with different types of resources
       pagination_links_for_widgets(options)
     end
   end
@@ -73,7 +74,7 @@ module SearchHelper
     collection = WillPaginate::Collection.create((params[:page]||1),10,200) do |pager|
       "#TODO"
     end
-    pagination_links(collection,options)
+    pagination_for(collection,options)
   end
 
 
@@ -168,6 +169,16 @@ module SearchHelper
     options = options.merge({ :page => (params[:page] || 1)}) 
     options = options.merge({ :per_page => (params[:per_page] || 2)}) #if params[:page]
     options
+  end
+  
+  
+  def sidebar_mini_search_text_field_tag
+        text_field_tag('search[text]', '', :class => 'text',
+                                      :size => 17,
+                                      :value => I18n.t(:search_input_caption),
+ #                                     :onkeypress => "this.form.submit();",
+                                      :onfocus => hide_default_value,
+                                      :onblur => show_default_value)
   end
 
   # returns the search banner and header for given page type

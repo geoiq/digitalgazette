@@ -948,3 +948,25 @@ div#dg_sidebar_content h2 {
 background: #ccc;
 
 }
+
+#sidebar_results_pagination_bottom {
+
+  float: left;
+  margin: 2px;
+  color: #fff; 
+}
+
+#sidebar_results_pagination_bottom a {
+  text-decoration: underline;
+}
+
+#sidebar_results_pagination_bottom span.disabled {
+  display: none;
+}
+
+#sidebar_results_pagination_bottom span.current {
+  font-weight: bold;
+  color: #fff;
+}
+
+
