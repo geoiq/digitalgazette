@@ -20,35 +20,17 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-      # in digitalgazette we fetch all pages via xhr, this way we do not want to render search results if its non-xhr
-      render_search_results if request.xhr?
+
+      render_search_results # if request.xhr?
     end
   end
 
-=begin DRAFT
-  def paginate_panel
-    # what do we do, if we have no items in one box, but many on others
-
-    # get params[:panel_page]
-    panel_page = params[:panel_page]
-    # create a storage for the multi-widget-pagination
-    @widget_pages = params[:widget_pages]
-    # get the widgets that are currently active
-    get_page_types
-    # now collect the pages per page - type
-    #
-    # we get the request via xhr
-    # and so we select the current - widget - page and path for the pagination from the dom
-    with_options_for_widget do |options|
-      render_search_results
-    end
-  end
-=end
 
   def render_search_results
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags @panel
-    get_pages # @pages
+    # in digitalgazette we fetch all pages via xhr, this way we do not want to render search results if its non-xhr
+    get_pages if request.xhr? # @pages
 
     #FIXME this won't happen, we have no @pages anymore
     # if there was a text string in the search, generate extracts for the results
