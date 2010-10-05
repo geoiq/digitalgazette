@@ -2,8 +2,10 @@
 %br
 
 
+- panel :main_list do
+  = dynamic_widgets @preferred, {:panel => "main_list"}
 
-= dynamic_widgets @preferred, {:panel => "main_list"}
+
 
 = pagination_links_for_widgets({})
 
@@ -13,7 +15,3 @@
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
   = box_for(:most_viewed,{:page_types => @page_types, :limit => 1, :panel => "most_viewed", :load => false})
   = box_for(:recent, {:page_types => @page_types, :limit => 1, :panel => "recent", :load => false})
-
-
-
-
