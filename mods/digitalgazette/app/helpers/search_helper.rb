@@ -77,14 +77,15 @@ module SearchHelper
 
 
   # wraps one into a box
+  # - options[:load] = false prevents panel from loading itself completlty. this should be the default behaviour when options[:autoload] is true
+  # - options[:autoload] = false prevents each individual widget from loading itself. combined with options[:load] being false, nothing would be rendered at all
   def box_for box_type, options={}
     page_type = options[:page_type]
     page_types = options[:page_types]
 
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:widget] = box_type.to_s
-    options[:wrapper] = "pages_box" # FIXME this should not be hardcoded?
-
+    options[:wrapper] ||= "pages_box" # FIXME this should not be hardcoded?
     options[:autoload] ||= true #NOTE boxes are autoloaded see widget_for
     ret = ""
     # box title
