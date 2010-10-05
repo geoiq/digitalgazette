@@ -58,11 +58,12 @@ module SearchHelper
     # << panel_pagination_at(:bottom, options)
   end
 
-  def panel_pagination_at position, options={ }
-    if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
-      pagination_links_for_widgets(options)
-    end
-  end
+  # TODO this is not used anymore. i put it in comments, on oct.5.2010
+  # def panel_pagination_at position, options={ }
+  #   if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
+  #     pagination_links_for_widgets(options)
+  #   end
+  # end
 
   # takes more than one widget and provides
   # pagination links that reload the index
@@ -75,8 +76,7 @@ module SearchHelper
     pagination_links(collection,options)
   end
 
-
-  # wraps one into a box
+  # wraps one or more widgets into a box
   # - options[:load] = false prevents panel from loading itself completlty. this should be the default behaviour when options[:autoload] is true
   # - options[:autoload] = false prevents each individual widget from loading itself. combined with options[:load] being false, nothing would be rendered at all
   def box_for box_type, options={}
@@ -157,6 +157,8 @@ module SearchHelper
     options
   end
 
+  # returns a widgets id base ond page_type or options
+  # returns the panels id if a options[:panel] is set
   def id_for_widget(page_type,options)
     str = options[:dom_id] || "#{page_type}_list"
     options[:panel] ? "#{options[:panel]}_#{str}" : str
