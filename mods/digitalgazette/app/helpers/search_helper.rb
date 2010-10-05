@@ -59,9 +59,9 @@ module SearchHelper
     # << panel_pagination_at(:bottom, options)
   end
 
-  def panel_pagination_at position, options, *args
+  def panel_pagination_at position, options={ }
     if options[:pagination] && (options[:pagination] == :all || options[:pagination] == position.to_sym)
-      pagination_links_for_widgets(args)
+      pagination_links_for_widgets(options)
     end
   end
 
@@ -69,7 +69,7 @@ module SearchHelper
   # pagination links that reload the index
   # action providing a screen with widgets for
   # all pagetypes
-  def pagination_links_for_widgets(widgets,options={ })
+  def pagination_links_for_widgets(options={ })
     collection = WillPaginate::Collection.create((params[:page]||1),10,200) do |pager|
       "#TODO"
     end
@@ -160,7 +160,6 @@ module SearchHelper
     path = @path.dup.remove_keyword("type")
     path.add_types! args
     ret << javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
-
     ret
   end
 

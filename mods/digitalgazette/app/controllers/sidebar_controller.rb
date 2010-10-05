@@ -13,7 +13,7 @@ class SidebarController < ApplicationController
     id = params[:id]
     return unless id
     @page = dg_page_class(type).find(id)
-    render :text => 'test'
+    render :text => ""
     # render :partial => "/sidebar/page_summary", :layout => false
   end
 
