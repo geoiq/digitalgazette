@@ -1,6 +1,22 @@
 require 'will_paginate/collection'
 module SearchHelper
 
+  # TODO move!
+  # returns a summary or "no summary available"
+  def page_summary page
+    ret = ""
+    ret << page.summary
+    ret << page.description if ret.empty?
+    ret << I18n.t("dg_no_summary") if ret.empty?
+    truncate(ret, 200)
+  end
+  
+  # TODO move!
+  # opens a page in a stylish new window
+  def preview_link page
+    link_to_function "&laquo; #{I18n.t(:dg_open)}", "window.open('#{page_url_for(page)}','#{page.title}','personalbar=false,toolbar=false,scrollbars=yes').focus();"
+  end
+  
 
   # EXAMPLE Widget configuration
   # TODO make widgets globally configured,
