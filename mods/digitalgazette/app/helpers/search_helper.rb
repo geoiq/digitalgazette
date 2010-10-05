@@ -18,7 +18,6 @@ module SearchHelper
   #
   #
 
-
   # NOTE we could use it for every page list
   # but we only need it if we want to loa
   #
@@ -49,7 +48,7 @@ module SearchHelper
 
     # version with locals
     options[:id] ||= name.to_s
-    
+
     if options[:wrapper]
       ret = concat(render(:partial => list_partial_for(options),  :locals => { :content => content }))
     else
@@ -58,6 +57,7 @@ module SearchHelper
     ret << content_tag(:div, "", :id => "#{name}_pagination_bottom") if options[:pagination] && options[:pagination].to_sym == :bottom
     ret
   end
+
 
   def panel_pagination_at position, options={ }
     if options[:pagination] && (options[:pagination] == :all || options[:pagination].to_sym == position.to_sym)  
@@ -77,24 +77,22 @@ module SearchHelper
     pagination_for(collection,options)
   end
 
-
-  # wraps one into a box
+  # wraps one or more widgets into a box
+  # - options[:load] = false prevents panel from loading itself completlty. this should be the default behaviour when options[:autoload] is true
+  # - options[:autoload] = false prevents each individual widget from loading itself. combined with options[:load] being false, nothing would be rendered at all
   def box_for box_type, options={}
     page_type = options[:page_type]
     page_types = options[:page_types]
-    #
-    options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
-#   options[:dom_id] = box_type.to_s
-    options[:widget] = box_type.to_s
-    options[:wrapper] = "pages_box" # FIXME this should not be hardcoded?
 
+    options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
+    options[:widget] = box_type.to_s
+    options[:wrapper] ||= "pages_box" # FIXME this should not be hardcoded?
     options[:autoload] ||= true #NOTE boxes are autoloaded see widget_for
     ret = ""
     # box title
     ret << content_tag(:div, :class => 'roundTop txtDrkGray') do
       content_tag(:strong) { I18n.t(:dg_box_title, :type => I18n.t("dg_#{box_type}".to_sym))}
     end
-#    debugger
     # box content
     ret << content_tag(:div, :class => 'subPageRightLinks', :id => box_type.to_s) do
       content_tag(:ul, :class => "dynamicLinkList") do
@@ -118,10 +116,6 @@ module SearchHelper
     widgets_for page_types, options
   end
 
-
-
-
-
   # :per_page => nil  - no pagination
   # :per_page => 3    - pagination (3 per page)
   # TODO create default behaviour (list partial) for non js
@@ -139,13 +133,6 @@ module SearchHelper
     ret << content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
       (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path), :method => 'get', :with => "'#{options.to_param}'"})) : '')
     ret
-  end
-  
-
-
-  def id_for_widget(page_type,options)
-    str = options[:dom_id] || "#{page_type}_list"
-   options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
 
   def widgets_for args, options={ }
@@ -166,7 +153,7 @@ module SearchHelper
 
   def options_for_widget(page_type, options)
     options = page_type ? {:page_type => page_type}.merge!(options) : options
-    options = options.merge({ :page => (params[:page] || 1)}) 
+    options = options.merge({ :page => (params[:page] || 1)})
     options = options.merge({ :per_page => (params[:per_page] || 2)}) #if params[:page]
     options
   end
@@ -179,6 +166,13 @@ module SearchHelper
  #                                     :onkeypress => "this.form.submit();",
                                       :onfocus => hide_default_value,
                                       :onblur => show_default_value)
+  end
+
+  # returns a widgets id base ond page_type or options
+  # returns the panels id if a options[:panel] is set
+  def id_for_widget(page_type,options)
+    str = options[:dom_id] || "#{page_type}_list"
+    options[:panel] ? "#{options[:panel]}_#{str}" : str
   end
 
   # returns the search banner and header for given page type
