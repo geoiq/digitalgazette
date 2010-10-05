@@ -19,7 +19,10 @@ Dispatcher.to_prepare do
                                       :keywords => {
                                         'limit' => 'limit',
                                         "text" => "query",
-                                        "tag" => "tag"
+                                        "tag" => "tag",
+                                        "per_page" => "per_page",
+                                        "page" => "page"
+                                        
                                       },
                                       :argument_separator => " ",
                                       :key_value_separator => ""
@@ -37,7 +40,9 @@ Dispatcher.to_prepare do
                                       :keywords => {
                                         'limit' => 'limit',
                                         "text" => "query",
-                                        "tag" => "tag"
+                                        "tag" => "tag",
+                                        "per_page" => "per_page",
+                                        "page" => "page"
                                       },
                                       :argument_separator => " ",
                                       :key_value_separator => ""
