@@ -6,11 +6,6 @@ require 'test/unit'
 require 'ruby-debug'
 require 'shoulda'
 
-class TestModel < Object
-  def self.paginate(args)
-    return args
-  end
-end
 
 class ExternalAPITest < Test::Unit::TestCase
 
@@ -59,6 +54,12 @@ class ExternalAPITest < Test::Unit::TestCase
         }
         should("map the registered finder method") {
           assert @api.get_method(:find)
+        }
+        should("map the registered paginate method") { 
+          assert @api.get_method(:paginate)
+        }
+        should("raise for a not defined method") { 
+          assert_raises @api.get_method(:not_defined)
         }
         should("return an argument separator ") {
           assert @api.argument_separator
