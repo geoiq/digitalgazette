@@ -19,12 +19,13 @@ module Geocommons::Pagination
     WillPaginate::Collection.create(page, per_page, count(options)) do |pager|
       # @options_from_last_find = nil
       count_options = options.except :page, :per_page, :total_entries, :finder
-      find_options = count_options.except(:count).update(:offset => pager.offset, :limit => pager.per_page)
+      find_options = count_options.except(:count).update(:page => pager.offset, :limit => pager.per_page)
       results = pack_entries((_find(find_options)))
       pager.replace(results)
 
-      pager.total_entries = results.size
+      # pager.total_entries = results.size
     end
+
   end
 
   def paginate_by_tag(tags, options = {})
