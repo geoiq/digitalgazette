@@ -16,11 +16,11 @@ module Crabgrass
   class ExternalPathFinder
 
     def self.find(page_type,path,options={})
-      Crabgrass::ExternalAPI.for(page_type).call(:find, convert(page_type,path),options) #FIXME options handling not implemented in Geocommons::RestAPI::FinderMethods#find, see ::Pagination#paginate # NOTE we do not use find in DG at this time
+      Crabgrass::ExternalAPI.for(page_type).call(:find, convert(page_type,path,options)) #FIXME options handling not implemented in Geocommons::RestAPI::FinderMethods#find, see ::Pagination#paginate # NOTE we do not use find in DG at this time
     end
 
     def self.paginate(page_type,path,options={})
-      Crabgrass::ExternalAPI.for(page_type).call(:paginate, convert(page_type,path), options)
+      Crabgrass::ExternalAPI.for(page_type).call(:paginate, convert(page_type,path,options))
     end
     
     # takes a crabgrass ParsedPath Object, and maps it on a external api
