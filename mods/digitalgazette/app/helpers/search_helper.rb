@@ -17,6 +17,12 @@ module SearchHelper
     link_to_function "&laquo; #{I18n.t(:dg_open)}", "window.open('#{page_url_for(page)}','#{page.title}','personalbar=false,toolbar=false,scrollbars=yes').focus();"
   end
   
+  # kicks html out of external titles
+  def clean_title_for(page)
+    page.title.gsub(/<\/?[^>]*>/, "")
+  end
+  
+  
 
   # EXAMPLE Widget configuration
   # TODO make widgets globally configured,

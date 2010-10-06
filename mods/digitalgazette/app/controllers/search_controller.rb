@@ -30,7 +30,7 @@ class SearchController < ApplicationController
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags @panel
     # in digitalgazette we fetch all pages via xhr, this way we do not want to render search results if its non-xhr
-    get_pages if request.xhr? # @pages
+    get_pages if request.xhr? # we catch non-xhr requests to avoid double loading
 
     #FIXME this won't happen, we have no @pages anymore
     # if there was a text string in the search, generate extracts for the results
@@ -62,21 +62,12 @@ class SearchController < ApplicationController
   end
 
 
-  # separate by page types into instance variables
-  # NOTE not used anymore, because we get the pages each via ajax
-  # def split_by_page_types
-  #   @grouped_pages = @pages.group_by{ |page| page.class.name}
-  #   # splitting grouped pages into it's own instance variables
-  #   SEARCHABLE_PAGE_TYPES.each do |t|
-  #     instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
-  #   end
-  # end
-
   # retrieve all pages
   def get_pages
     setup_page_store #setup the page store to store the pages -> ui - configuration
     # if no explicit pagetype is set, we want to search in all searchable page types
 
+    
    # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
       # separate the page_types by the condition wether
@@ -120,6 +111,8 @@ class SearchController < ApplicationController
       # this requires, that every source returns a collection, that
       # lets us determine the Resource -Type (PageType) for every entry in the collection
       @external_pages = {}
+    
+    
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
         { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
