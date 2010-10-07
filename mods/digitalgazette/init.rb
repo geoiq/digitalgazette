@@ -8,6 +8,7 @@ self.override_views = true
 require 'digital_gazette/page_extension'
 require 'digital_gazette/better_configuration'
 # require 'digital_gazette/stated_ui'
+require 'digital_gazette/view_listener'
 
 Dispatcher.to_prepare do
   # Extend various classes.
