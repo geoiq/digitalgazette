@@ -1,7 +1,6 @@
 = render :partial => "pages/#{@page_type.underscore}/header"
 = render :partial => 'search/banner', :locals => {:page_type => @page_type}
 /= render :partial => 'pages/search', :locals => {:users => @user.friends, :groups => @user.groups}
-
 %div#browse
   %h4= "... or Browse #{@page_type.pluralize} by Topic"
 = render :partial => 'pages/topics', :locals => { :page_type => (@page_type || "WikiPage") }

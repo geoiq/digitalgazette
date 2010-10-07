@@ -12,6 +12,7 @@ class MapsController < PagesController # TODO < ExternalPagesController
   include PagesHelper
   # FIXME: do we really need that "all" action?
   def index
+    @page_type = "map"
     render :template => 'pages/index'
   end
 
