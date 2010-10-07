@@ -13,4 +13,4 @@
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
   = box_for(:most_viewed,{:page_types => SEARCHABLE_PAGE_TYPES, :limit => 2})
-  = box_for(:recent, {:limit => 2})
+  = box_for(:recent, {:page_types => SEARCHABLE_PAGE_TYPES, :limit => 2})
