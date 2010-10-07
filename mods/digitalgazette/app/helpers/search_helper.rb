@@ -108,6 +108,7 @@ module SearchHelper
 
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:widget] = box_type.to_s
+    options[:panel] = box_type.to_s
     options[:wrapper] ||= "pages_box" # FIXME this should not be hardcoded?
     options[:autoload] ||= true #NOTE boxes are autoloaded see widget_for
     ret = ""
@@ -148,11 +149,11 @@ module SearchHelper
     widget_id = id_for_widget(page_type,options)
     @path = @path.remove_keyword("type") if page_type
     autoload = options[:autoload] # TODO add remote call then
-    path = @path
+    path = options[:path] || @path
     raise "INVALID WIDGET ID: #{widget_id.inspect} (for page type: #{page_type.inspect})" unless widget_id && widget_id.any? # :)
     ret = ""
     ret << content_tag(:div, (autoload ? spinner(widget_id, :show => true) : ''), :id => widget_id) +
-      (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path.to_param), :method => 'get', :with => "'#{options.to_param}'"})) : '')
+      (autoload ? javascript_tag(remote_function({ :url => search_url(:path => path.flatten), :method => 'get', :with => "'#{options.to_param}'"})) : '')
     ret
   end
 
@@ -170,7 +171,7 @@ module SearchHelper
     path.add_types! args
     # we need to call options_for_widget, to merge with defaults, and pagination params. page type therewhile remains nil
     options = options_for_widget(nil, options)
-    ret << javascript_tag(remote_function({ :url => search_url(:path => path.to_param), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
+    ret << javascript_tag(remote_function({ :url => search_url(:path => path.flatten), :method => 'get', :with => "'#{options.to_param}'"})) unless options[:load] == false
     ret
   end
 
@@ -214,4 +215,11 @@ module SearchHelper
       end
     end
   end
+
+  # NOTE this is actually only used by the most_viewed and most_recent
+  # boxes, so it's behaviour is kind of... special
+  def limit_for_box_widget(page_types)
+    page_types.kind_of?(Array) ? 5 - page_types.size : 1
+  end
+
 end

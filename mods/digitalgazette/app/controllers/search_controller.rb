@@ -45,7 +45,6 @@ class SearchController < ApplicationController
     handle_rss(:title => full_url, :link => full_url,
                :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
 
-
     unless send_pages! # send the pages to the browser
       # museum during refactoring
      # if request.xhr?
@@ -100,7 +99,7 @@ class SearchController < ApplicationController
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.dup.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
 
@@ -151,6 +150,7 @@ class SearchController < ApplicationController
           page[dom_id].replace_html(:partial => (partial = list_partial_for(:page_type => page_type)),
                                     :locals => {
                                       :pages => pages,
+                                      :page_type => page_type,
                                       :title => I18n.t("page_search_title".to_sym,
                                                        :type => I18n.t("dg_#{page_type}".to_sym)),
                                       :no_top_pagination => true
@@ -164,8 +164,6 @@ class SearchController < ApplicationController
       end
     end
   end
-
-
 
   #
   #
@@ -191,7 +189,7 @@ class SearchController < ApplicationController
   # but used for iterative partial resolving of a group of page types
   def list_partial_for(options={ })
     ret =
-    if  options[:wrapper] ||= @wrapper
+    if options[:wrapper] ||= @wrapper
        LEGAL_PARTIALS[options[:wrapper].to_s]
     elsif options[:widget] ||= @widget
       BOX_PARTIALS[options[:widget].to_s] || ""
@@ -280,39 +278,6 @@ class SearchController < ApplicationController
       t != "type" && SEARCHABLE_PAGE_TYPES.include?(t)}
     @page_types = SEARCHABLE_PAGE_TYPES if @page_types.empty?
     @page_type = @page_types.first if @page_types.size == 1
-  end
-
-   # general update method
-  # sends the right partials to the browser
-  # therefore takes the Hash in @pages an resolves it
-  # to the pages/list or the widget/panel - specific partials
-  #
-  # TODO implement non-xhr fallback by passing
-  #      the relevant widget-tree
-  #      down to clever partials/helpers
-  #
-  def send_pages!
-    if request.xhr?
-     # Update every widget as one, if existing
-      render :update do |page|
-        @page_store.to_hash.each_pair do |page_type,options|
-          dom_id = options[:dom_id]
-          pages = options[:pages]
-          page[dom_id].replace_html(:partial => (partial = list_partial_for(:page_type => page_type)),
-                                    :locals => {
-                                      :pages => pages,
-                                      :title => I18n.t("page_search_title".to_sym,
-                                                       :type => I18n.t("dg_#{page_type}".to_sym)),
-                                      :no_top_pagination => true
-                                    } )
-          page[dom_id].insert( { :after => panel_pagination_at(:bottom, options)})
-          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'. CURRENT PAGE #{params[:page].inspect} PER PAGE #{params[:per_page].inspect}")
-        end
-        if @panel && params[:pagination]
-          page["#{@panel}_pagination_bottom"].replace_html(panel_pagination_at(:bottom, { :pagination => params[:pagination], :path => @path.to_param}))
-        end
-      end
-    end
   end
 
 

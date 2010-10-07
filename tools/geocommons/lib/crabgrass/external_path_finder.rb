@@ -33,7 +33,15 @@ module Crabgrass
       query_builder = spec[:query_builder]
       query_builder[:keywords].each_pair.inject({ }) do |params, (cg_key, external_key)|
         if path.keywords.include?(cg_key)
-          params.merge(external_key.to_sym => path.arg_for(cg_key))
+          if external_key.kind_of?(Proc)
+            if cg_key.kind_of?(Proc)
+              cg_key.call(path)
+            else
+               params.merge(external_key.call(path.arg_for(cg_key)))
+            end
+          else
+            params.merge(external_key.to_sym => path.arg_for(cg_key))
+          end
         elsif options.keys.include?(cg_key.to_sym)
           params.merge({ external_key.to_sym => options[cg_key.to_sym]})
         else

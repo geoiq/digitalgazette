@@ -969,4 +969,22 @@ background: #ccc;
   color: #fff;
 }
 
+div.main_list_pagination div.pagination {
+  text-align: center
+  display: block
+}
 
+.pagination {
+  float: none;
+  display: block;
+  text-align: center;
+
+}
+
+.main_list_pagination {
+  background: #ccc;
+}
+
+.main_list_pagination div a {
+  color: #333;
+}

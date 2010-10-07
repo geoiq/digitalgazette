@@ -55,6 +55,7 @@ en:
   dg_asset_list: "Reports"
   dg_pages_list: "Pages"
   dg_search: "Search"
+  dg_open: "open"
 
 
   # FIXME mistakenly we lookup dg_dg_sidebar_wiki_list

@@ -3,7 +3,6 @@
 - # it basically adds logic to handel @maps seperated from pages
 - pages ||= @pages
 = render(:partial => heading_partial) if local_assigns[:heading_partial]
-
 %section#pages{:class=> local_assigns[:full_width] ? 'full' : ''}
   %header
     - if local_assigns[:title] && !title.blank?
@@ -11,9 +10,9 @@
         = title
         %div.right
           = render(:partial => pages_dropdown) if local_assigns[:pages_dropdown]
-          = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
+          = pagination_for(pages, :method => 'get', :page_type => local_assigns[:page_type]) unless local_assigns[:no_top_pagination]
     - else
-      = pagination_for(pages, :method => 'get') unless local_assigns[:no_top_pagination]
+      = pagination_for(pages, :method => 'get', :page_type => local_assigns[:page_type]) unless local_assigns[:no_top_pagination]
 
   - if pages && pages.any?
     = render(:partial => block_above_pages_list_partial) if local_assigns[:block_above_pages_list_partial]
@@ -25,4 +24,4 @@
     - if defined?(pagination_link) && pagination_link.present?
       %span.pagination
     - else
-      = pagination_for(pages, :method => 'get')
+      = pagination_for(pages, :method => 'get', :page_type => local_assigns[:page_type])
