@@ -14,7 +14,13 @@ module SearchHelper
   # TODO move!
   # opens a page in a stylish new window
   def preview_link page
-    link_to_function "&laquo; #{I18n.t(:dg_open)}", "window.open('#{page_url_for(page)}','#{page.title}','personalbar=false,toolbar=false,scrollbars=yes').focus();"
+    link_to_function "&laquo; #{I18n.t(:dg_open)}", "window.open('#{hide_header_at(page_url_for(page))}','#{page.title}','personalbar=false,toolbar=false,scrollbars=yes').focus();"
+  end
+
+  def hide_header_at(url)
+    url = url.to_s
+    debugger
+    "#{url}#{url.include?('?') ? '&' : '?'}hide_header=true"
   end
 
   # kicks html out of external titles

@@ -11,17 +11,35 @@ Dispatcher.to_prepare do
   # mapping of special cases
   order_mapper = lambda{|a|
     ret = { :order => "descending"}
-    if a == "views_count"
+    case a
+    when "views_count"
       ret[:sort] = 'relevance'
-      return ret
-    elsif a == "created_at"
+    when "created_at"
       ret[:sort] = 'created_at'
-      return ret
-    else
-      return ret
     end
+    ret
   }
 
+#   cg_key = lambda { |path|
+#     path.keys
+#   }
+
+#   ext_key = lambda { |args|
+#     keys[rand(keys.size)]
+#   }
+
+#   { cg_key => ext_key }
+#   # /foo/1/bar/2
+#   args = cg_key.call('/foo/1/bar/2')
+#   { ext_key.call(args) => '???' }
+# #----------------------
+#   { 'desc' => order_mapper }
+#   # /desc/1
+#   { order_mapper(1) => 1 }
+# #----------------------------------------------
+#   keywords = { 'foo' => 'bar' }
+#   # path: /foo/x
+#   { :bar => 'x' }
 
   # TODO move this to geocommons.yml
   # -- really? why would I? --wr, 9/30/10
