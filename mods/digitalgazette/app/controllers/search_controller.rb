@@ -101,7 +101,7 @@ class SearchController < ApplicationController
       @internal_pages = { }
       @page_type_groups[:internal].each do |page_type|
         @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.dup.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
 
