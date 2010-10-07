@@ -49,6 +49,8 @@ var DigitalGazette = {
             this.setupCbs.each(function(cb) { cb(); });
         },
         adjust: function() {
+            if(! $('wrapper')) // global content wrapper. not present on login page. so we don't have a sidebar on the login page. sad that is.
+                return;
             console.log("[Sidebar] Adjusting...");
             var width, height;
             // firefox 3.0.5 (amongst others) gives us invalid document.height.
@@ -60,6 +62,8 @@ var DigitalGazette = {
             console.log("[Sidebar] "+width+"x"+height);
             this.wrapper.style['height'] = height + 'px';
             this.wrapper.style['width'] = width + 'px';
+            // height is usually 100%, but some browsers seem to forget that when the parent changes size... had trouble in firefox.
+            this.ToggleButton.div.style['height'] = height + 'px';
         },
         insert: function() {
             for(i in arguments) {

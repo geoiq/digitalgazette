@@ -42,7 +42,6 @@ Dispatcher.to_prepare do
 #   { :bar => 'x' }
 
   # TODO move this to geocommons.yml
-  # -- really? why would I? --wr, 9/30/10
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,
                                     :methods => {

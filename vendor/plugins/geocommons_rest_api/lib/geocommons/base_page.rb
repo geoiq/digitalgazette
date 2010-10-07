@@ -7,7 +7,7 @@ module Geocommons
     end
 
     def user
-
+      Geocommons::User.new(@author)
     end
 
     def id
