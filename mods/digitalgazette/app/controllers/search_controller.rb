@@ -20,7 +20,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-
       render_search_results # if request.xhr?
     end
   end
@@ -67,7 +66,7 @@ class SearchController < ApplicationController
     setup_page_store #setup the page store to store the pages -> ui - configuration
     # if no explicit pagetype is set, we want to search in all searchable page types
 
-    
+
    # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
       # separate the page_types by the condition wether
@@ -95,7 +94,7 @@ class SearchController < ApplicationController
       # We want e.g. WHERE pages.type = wiki OR pages.type = asset
       # but we want the same limit per page for every model - figure out, how to do this best
       # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
-  
+
      # creates the hash of @internal_pages
       # and decorates it with the corresponding results from the query
       @internal_pages = { }
@@ -111,8 +110,8 @@ class SearchController < ApplicationController
       # this requires, that every source returns a collection, that
       # lets us determine the Resource -Type (PageType) for every entry in the collection
       @external_pages = {}
-    
-    
+
+
       @page_type_groups[:external].each do |page_type|
         @external_pages[page_type] =
         { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
@@ -167,14 +166,14 @@ class SearchController < ApplicationController
   end
 
 
-  
+
   #
   #
   # OPTIONS & FILTERS
   #
-  
 
-  
+
+
   # add to the path
   # NOTE deprecated
   def prefix_path
@@ -283,7 +282,39 @@ class SearchController < ApplicationController
     @page_type = @page_types.first if @page_types.size == 1
   end
 
-  
+   # general update method
+  # sends the right partials to the browser
+  # therefore takes the Hash in @pages an resolves it
+  # to the pages/list or the widget/panel - specific partials
+  #
+  # TODO implement non-xhr fallback by passing
+  #      the relevant widget-tree
+  #      down to clever partials/helpers
+  #
+  def send_pages!
+    if request.xhr?
+     # Update every widget as one, if existing
+      render :update do |page|
+        @page_store.to_hash.each_pair do |page_type,options|
+          dom_id = options[:dom_id]
+          pages = options[:pages]
+          page[dom_id].replace_html(:partial => (partial = list_partial_for(:page_type => page_type)),
+                                    :locals => {
+                                      :pages => pages,
+                                      :title => I18n.t("page_search_title".to_sym,
+                                                       :type => I18n.t("dg_#{page_type}".to_sym)),
+                                      :no_top_pagination => true
+                                    } )
+          page[dom_id].insert( { :after => panel_pagination_at(:bottom, options)})
+          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'. CURRENT PAGE #{params[:page].inspect} PER PAGE #{params[:per_page].inspect}")
+        end
+        if @panel && params[:pagination]
+          page["#{@panel}_pagination_bottom"].replace_html(panel_pagination_at(:bottom, { :pagination => params[:pagination], :path => @path.to_param}))
+        end
+      end
+    end
+  end
+
 
   # the @page_store is our widget tree
   def setup_page_store
