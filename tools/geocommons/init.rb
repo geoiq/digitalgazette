@@ -6,6 +6,23 @@ Dispatcher.to_prepare do
   User.send(:include, Crabgrass::UserCredentials)
   User.send(:include, Crabgrass::GeocommonsAuthentication)
 
+
+  #
+  # mapping of special cases
+  order_mapper = lambda{|a|
+    ret = { :order => "descending"}
+    if a == "views_count"
+      ret[:sort] = 'relevance'
+      return ret
+    elsif a == "created_at"
+      ret[:sort] = 'created_at'
+      return ret
+    else
+      return ret
+    end
+  }
+
+
   # TODO move this to geocommons.yml
   # -- really? why would I? --wr, 9/30/10
   Crabgrass::ExternalAPI.register('overlay',
@@ -21,8 +38,8 @@ Dispatcher.to_prepare do
                                         "text" => "query",
                                         "tag" => "tag",
                                         "per_page" => "per_page",
-                                        "page" => "page"
-
+                                        "page" => "page",
+                                        "descending" => order_mapper
                                       },
                                       :argument_separator => " ",
                                       :key_value_separator => ""
@@ -42,7 +59,8 @@ Dispatcher.to_prepare do
                                         "text" => "query",
                                         "tag" => "tag",
                                         "per_page" => "per_page",
-                                        "page" => "page"
+                                        "page" => "page",
+                                        "descending" => order_mapper
                                       },
                                       :argument_separator => " ",
                                       :key_value_separator => ""
