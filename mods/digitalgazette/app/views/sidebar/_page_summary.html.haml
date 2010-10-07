@@ -1,8 +1,7 @@
 - page ||= @page
 - page_url = page_url_for(page)
 - id =  "dg_sidebar_details_#{clean_name_for(page).downcase}_#{page.id}"
-= link_to_function clean_title_for(page)), "$('#{id}').toggle();"
-%div{:class => "sidebar_page_details",
-     :id => id, :style => "display:none;"}
+= link_to_function clean_title_for(page), "$('#{id}').toggle();"
+%div.sidebar_page_details{:id => id, :style => "display:none;"}
   %p=h page.summary
   %span= preview_link(page)
