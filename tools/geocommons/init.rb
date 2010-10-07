@@ -7,7 +7,6 @@ Dispatcher.to_prepare do
   User.send(:include, Crabgrass::GeocommonsAuthentication)
 
   # TODO move this to geocommons.yml
-  # -- really? why would I? --wr, 9/30/10
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,
                                     :methods => {
@@ -22,7 +21,7 @@ Dispatcher.to_prepare do
                                         "tag" => "tag",
                                         "per_page" => "per_page",
                                         "page" => "page"
-                                        
+
                                       },
                                       :argument_separator => " ",
                                       :key_value_separator => ""
