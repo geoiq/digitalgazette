@@ -16,7 +16,7 @@ Dispatcher.to_prepare do
                                     :query_builder => {
                                       :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        'limit' => 'limit',
+                                        'limit' => 'per_page',
                                         "text" => "query",
                                         "tag" => "tag",
                                         "per_page" => "per_page",
@@ -37,7 +37,7 @@ Dispatcher.to_prepare do
                                     :query_builder => {
                                       :defaults => { 'limit' => 2 },
                                       :keywords => {
-                                        'limit' => 'limit',
+                                        'limit' => 'per_page',
                                         "text" => "query",
                                         "tag" => "tag",
                                         "per_page" => "per_page",

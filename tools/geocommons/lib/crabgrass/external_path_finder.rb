@@ -11,21 +11,21 @@ module Crabgrass
   # we convert the internal path into one of the externals.
   #
   # This should be done by a specification for every external model, that, at best, would be hosted online
-  # 
+  #
   #
   class ExternalPathFinder
 
     def self.find(page_type,path,options={})
-      Crabgrass::ExternalAPI.for(page_type).call(:find, convert(page_type,path),options) #FIXME options handling not implemented in Geocommons::RestAPI::FinderMethods#find, see ::Pagination#paginate # NOTE we do not use find in DG at this time
+      Crabgrass::ExternalAPI.for(page_type).call(:find, convert(page_type,path).merge(options)) #FIXME options handling not implemented in Geocommons::RestAPI::FinderMethods#find, see ::Pagination#paginate # NOTE we do not use find in DG at this time
     end
 
     def self.paginate(page_type,path,options={})
-      Crabgrass::ExternalAPI.for(page_type).call(:paginate, convert(page_type,path), options)
+      Crabgrass::ExternalAPI.for(page_type).call(:paginate, convert(page_type,path).merge(options))
     end
-    
+
     # takes a crabgrass ParsedPath Object, and maps it on a external api
     #
-    
+
     # TODO this is too hardcoded
     def self.convert(page_type,path,options={ })
       api = Crabgrass::ExternalAPI.for(page_type)
@@ -33,9 +33,9 @@ module Crabgrass
       query_builder = spec[:query_builder]
       query_builder[:keywords].each_pair.inject({ }) do |params, (cg_key, external_key)|
         if path.keywords.include?(cg_key)
-          params.merge(external_key => path.arg_for(cg_key))
-        elsif options.keys.include?(cg_key)
-          params.merge({ external_key => options[cg_key]})
+          params.merge(external_key.to_sym => path.arg_for(cg_key))
+        elsif options.keys.include?(cg_key.to_sym)
+          params.merge({ external_key.to_sym => options[cg_key.to_sym]})
         else
           params
         end
@@ -47,7 +47,7 @@ module Crabgrass
       # we did this small hack above
       #
       # TODO try something like .inject(return_structure) do ...
-      
+
       # key_value_separator = api.key_value_separator
       # argument_separator = api.argument_separator
       # ret = ""

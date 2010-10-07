@@ -10,13 +10,19 @@ module SearchHelper
     ret << I18n.t("dg_no_summary") if ret.empty?
     truncate(ret, 200)
   end
-  
+
   # TODO move!
   # opens a page in a stylish new window
   def preview_link page
     link_to_function "&laquo; #{I18n.t(:dg_open)}", "window.open('#{page_url_for(page)}','#{page.title}','personalbar=false,toolbar=false,scrollbars=yes').focus();"
   end
-  
+
+  # kicks html out of external titles
+  def clean_title_for(page)
+    page.title.gsub(/<\/?[^>]*>/, "")
+  end
+
+
 
   # EXAMPLE Widget configuration
   # TODO make widgets globally configured,
@@ -170,8 +176,8 @@ module SearchHelper
 
   def options_for_widget(page_type, options)
     options = page_type ? {:page_type => page_type}.merge!(options) : options
-    options = options.merge({ :page => (params[:page] || 1)})
-    options = options.merge({ :per_page => (params[:per_page] || 2)}) #if params[:page]
+    options = options.merge({ :page => (params[:page] || options[:page] || 1)})
+    options = options.merge({ :per_page => (params[:per_page] || options[:per_page] || 2)}) #if params[:page]
     options
   end
 

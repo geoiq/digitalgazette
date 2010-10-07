@@ -20,7 +20,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-
       render_search_results # if request.xhr?
     end
   end
@@ -30,7 +29,7 @@ class SearchController < ApplicationController
     @path.default_sort('updated_at') if @path.search_text.empty?
     get_options # @page_type @page_types @dom_id @widget @wrapper @tags @panel
     # in digitalgazette we fetch all pages via xhr, this way we do not want to render search results if its non-xhr
-    get_pages if request.xhr? # @pages
+    get_pages if request.xhr? # we catch non-xhr requests to avoid double loading
 
     #FIXME this won't happen, we have no @pages anymore
     # if there was a text string in the search, generate extracts for the results
@@ -62,15 +61,118 @@ class SearchController < ApplicationController
   end
 
 
-  # separate by page types into instance variables
-  # NOTE not used anymore, because we get the pages each via ajax
-  # def split_by_page_types
-  #   @grouped_pages = @pages.group_by{ |page| page.class.name}
-  #   # splitting grouped pages into it's own instance variables
-  #   SEARCHABLE_PAGE_TYPES.each do |t|
-  #     instance_variable_set(:"@#{t.underscore.pluralize}",@grouped_pages[t])
-  #   end
-  # end
+  # retrieve all pages
+  def get_pages
+    setup_page_store #setup the page store to store the pages -> ui - configuration
+    # if no explicit pagetype is set, we want to search in all searchable page types
+
+
+   # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
+
+      # separate the page_types by the condition wether
+      # a) they are internal, means Crabgrass::Page or
+      # b) external, means Crabgrass::ExternalPage
+      @page_type_groups = @page_types.group_by {|page_type|
+        EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
+
+
+      # Process internal Pages
+      @naked_path = @path.dup.remove_keyword("type")
+      # Create the path for the internal resources
+      # @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal]).sort!
+      # TODO this does not work as we want
+      #
+      # Benchmarks: OPTIMIZE use Union, i am running out of time.
+      #
+      # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
+#=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
+#>>
+  #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
+# => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
+      #
+      #
+      # We want e.g. WHERE pages.type = wiki OR pages.type = asset
+      # but we want the same limit per page for every model - figure out, how to do this best
+      # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
+
+     # creates the hash of @internal_pages
+      # and decorates it with the corresponding results from the query
+      @internal_pages = { }
+      @page_type_groups[:internal].each do |page_type|
+        @internal_pages[page_type] ||={}
+        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
+        @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
+      end
+
+      # Create the path for the external resources
+      # TODO implement some logic, that groups the external resources
+      # by their source
+      # this requires, that every source returns a collection, that
+      # lets us determine the Resource -Type (PageType) for every entry in the collection
+      @external_pages = {}
+
+
+      @page_type_groups[:external].each do |page_type|
+        @external_pages[page_type] =
+        { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
+          :dom_id => get_dom_id_for(page_type)}
+          #debugger
+          # sketches
+          #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
+          #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
+      end
+      @page_store = @page_store.merge(@external_pages).merge(@internal_pages)
+    # TODO create WillPaginate::Collection
+      # NOTE this is the place, where the full WidgetTree
+      # would be available
+      #
+      # try something like @pages.to_json
+
+
+  end
+
+
+  # general update method
+  # sends the right partials to the browser
+  # therefore takes the Hash in @pages an resolves it
+  # to the pages/list or the widget/panel - specific partials
+  #
+  # TODO implement non-xhr fallback by passing
+  #      the relevant widget-tree
+  #      down to clever partials/helpers
+  #
+  def send_pages!
+    if request.xhr?
+     # Update every widget as one, if existing
+      render :update do |page|
+        @page_store.to_hash.each_pair do |page_type,options|
+          dom_id = options[:dom_id]
+          pages = options[:pages]
+          page[dom_id].replace_html(:partial => (partial = list_partial_for(:page_type => page_type)),
+                                    :locals => {
+                                      :pages => pages,
+                                      :title => I18n.t("page_search_title".to_sym,
+                                                       :type => I18n.t("dg_#{page_type}".to_sym)),
+                                      :no_top_pagination => true
+                                    } )
+          page[dom_id].insert( { :after => panel_pagination_at(:bottom, options)})
+          logger.debug("REPLACING '#{dom_id}' WITH PARTIAL '#{partial}'. HAVE #{pages.size} PAGES OF TYPE '#{page_type}'. CURRENT PAGE #{params[:page].inspect} PER PAGE #{params[:per_page].inspect}")
+        end
+        if @panel && params[:pagination]
+          page["#{@panel}_pagination_bottom"].replace_html(panel_pagination_at(:bottom, { :pagination => params[:pagination], :path => @path.to_param}))
+        end
+      end
+    end
+  end
+
+
+
+  #
+  #
+  # OPTIONS & FILTERS
+  #
+
+
 
   # add to the path
   # NOTE deprecated
@@ -161,19 +263,6 @@ class SearchController < ApplicationController
   end
 
   # create an id for the container we want to update in
-
-  #
-  # if @wrapper is set, then the id's are built like this:
-  #
-  # sidebar_wiki_page_list
-#   def get_dom_id
-#     return params[:dom_id] if params[:dom_id]
-#     base_name =  @dom_id || (@page_type ? @page_type.underscore+"_list" : "pages_list")
-
-#     prefix = @namespace ? @namespace : @wrapper || ""
-#     "#{prefix}#{base_name}"
-
-
   def get_dom_id(page_type = nil, options = { })
     return params[:dom_id] if params[:dom_id]
     page_type ||= @page_type
@@ -193,80 +282,7 @@ class SearchController < ApplicationController
     @page_type = @page_types.first if @page_types.size == 1
   end
 
-  # retrieve all pages
-  def get_pages
-    setup_page_store #setup the page store to store the pages -> ui - configuration
-    # if no explicit pagetype is set, we want to search in all searchable page types
-
-   # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
-
-      # separate the page_types by the condition wether
-      # a) they are internal, means Crabgrass::Page or
-      # b) external, means Crabgrass::ExternalPage
-      @page_type_groups = @page_types.group_by {|page_type|
-        EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
-
-
-      # Process internal Pages
-      @naked_path = @path.dup.remove_keyword("type")
-      # Create the path for the internal resources
-      # @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal]).sort!
-      # TODO this does not work as we want
-      #
-      # Benchmarks: OPTIMIZE use Union, i am running out of time.
-      #
-      # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
-#=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
-#>>
-  #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
-# => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
-      #
-      #
-      # We want e.g. WHERE pages.type = wiki OR pages.type = asset
-      # but we want the same limit per page for every model - figure out, how to do this best
-      # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
-      #
-      #  @internal_pages =  Page.paginate_by_path(PathFinder::ParsedPath.new(@internal_path), )))
-   #   @internal_pages = { }
-
-      # OPTIMIZE this is ugly
-   #   @stored_internal_pages = @internal_pages.dup.group_by(){ |page| PAGE_NAMES[page.class.name].to_s.underscore} #FIXME see ../better_configuration }
-      # creates the hash of @internal_pages
-      # and decorates it with the corresponding results from the query
-      @internal_pages = { }
-      @page_type_groups[:internal].each do |page_type|
-        @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
-        @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
-      end
-
-      # Create the path for the external resources
-      # TODO implement some logic, that groups the external resources
-      # by their source
-      # this requires, that every source returns a collection, that
-      # lets us determine the Resource -Type (PageType) for every entry in the collection
-      @external_pages = {}
-      @page_type_groups[:external].each do |page_type|
-        @external_pages[page_type] =
-        { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
-          :dom_id => get_dom_id_for(page_type)}
-          #debugger
-          # sketches
-          #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
-          #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
-      end
-      @page_store = @page_store.merge(@external_pages).merge(@internal_pages)
-    # TODO create WillPaginate::Collection
-      # NOTE this is the place, where the full WidgetTree
-      # would be available
-      #
-      # try something like @pages.to_json
-
-
-  end
-
-
-  # general update method
+   # general update method
   # sends the right partials to the browser
   # therefore takes the Hash in @pages an resolves it
   # to the pages/list or the widget/panel - specific partials
@@ -298,8 +314,6 @@ class SearchController < ApplicationController
       end
     end
   end
-
-
 
 
   # the @page_store is our widget tree
