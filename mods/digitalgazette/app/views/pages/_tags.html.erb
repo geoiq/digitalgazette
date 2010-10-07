@@ -1,5 +1,5 @@
 <ul  class="bullet_indent">
 <%- tags.each do |tag| -%>
-  <li><a href="/<%=@page_type == 'asset' ? 'reports' : 'wiki' %>/search/tag/<%= tag.downcase %>"><%= tag %></a></li>
+  <li><a href="/search/type/<%= @page_type.to_s %>/tag/<%= tag.downcase %>"><%= tag %></a></li>
 <%- end -%>
 </ul>
