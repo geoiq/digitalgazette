@@ -20,7 +20,6 @@ class SearchController < ApplicationController
       # let's redirect to nice GET search url like /me/search/text/abracadabra/person/2
       redirect_to_search_results
     else
-
       render_search_results # if request.xhr?
     end
   end
