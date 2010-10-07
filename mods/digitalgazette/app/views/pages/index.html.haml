@@ -8,8 +8,8 @@
 
 - content_for :right_sidebar do
   = link_to(image_tag("add_data_blue.png", :plugin => "digitalgazette", :width => 225, :height => 48, :alt => "Add Data"), "/pages/new",  :style => "display: block; text-align: center; margin-left: -10px", :id => "givenow")
-  = box_for :most_viewed, {:limit => 5, :page_type => @page_type}
-  = box_for :recent, {:limit => 5, :page_type => @page_type}
+  = box_for :most_viewed, {:limit => 5, :page_types => [@page_type], :load => false}
+  = box_for :recent, {:limit => 5, :page_types => [@page_type], :load => false}
 
 
 

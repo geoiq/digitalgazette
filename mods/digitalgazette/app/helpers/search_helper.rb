@@ -108,6 +108,7 @@ module SearchHelper
 
     options[:path] = PATHS_FOR_BOXES[box_type.to_sym]
     options[:widget] = box_type.to_s
+    options[:panel] = box_type.to_s
     options[:wrapper] ||= "pages_box" # FIXME this should not be hardcoded?
     options[:autoload] ||= true #NOTE boxes are autoloaded see widget_for
     ret = ""
