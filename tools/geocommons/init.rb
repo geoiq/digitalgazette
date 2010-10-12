@@ -14,8 +14,10 @@ Dispatcher.to_prepare do
     case a
     when "views_count"
       ret[:sort] = 'relevance'
+      return ret
     when "created_at"
       ret[:sort] = 'created_at'
+      return ret
     end
     ret
   }
