@@ -5,7 +5,7 @@ var DigitalGazette = {
     Sidebar: {
         ToggleButton: {
             div: document.createElement('div'),
-            width: 16, // px
+            width: 46, // px
             setup: function() {
                 this.div.setAttribute('id', 'dg_sidebar_toggle');
                 this.div.style['position'] = 'absolute';
@@ -64,6 +64,8 @@ var DigitalGazette = {
             this.wrapper.style['width'] = width + 'px';
             // height is usually 100%, but some browsers seem to forget that when the parent changes size... had trouble in firefox.
             this.ToggleButton.div.style['height'] = height + 'px';
+            var fw = $('footer_wrapper');
+            fw.style['width'] = (this.visible() ? (fw.getWidth() - width + this.ToggleButton.width) + 'px' : '100%');
         },
         insert: function() {
             for(i in arguments) {
