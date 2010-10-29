@@ -34,13 +34,14 @@ div#footer_wrapper, div#content_wrapper {
        min-width: 950px;
  }
  div#footer_wrapper{
-	background: #28874d;
-	color: #fff;
+	color: #a44d2f;
 	line-height: 40px;
 	text-align: center;
+	background-image: url(../images/footer_bg.jpg);
+	background-color: #fcdeb3;
  }
   div#footer_wrapper a{
-	color: #fff;
+	color: #000;
 	text-decoration: none;
   }
   div#footer_wrapper a:hover{

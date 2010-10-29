@@ -1,8 +1,9 @@
-<% content_for :left_sidebar do %>
-  <% render :partial => 'wiki_page/tabs' %>
+<% content_for :right_sidebar do %>
+  <h2 class='info'><b><%= I18n.t(:information) %></b></h2>
+  <%= render :partial => 'base_page/information' %>
   <%= render :partial => 'base_page/sidebar' %>
 <% end %>
-
+<% raise 'bla' %>
 <div id="line"></div>
 <section id='wiki-content'>
   <div class='wiki'>

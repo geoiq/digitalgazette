@@ -1,7 +1,6 @@
 <% content_for :right_sidebar do %>
-  <h2 class='section'><%= I18n.t(:information) %></h2>
-  <%= render :partial => 'information' %>
-  
+  <h2 class='info'><b><%= I18n.t(:information) %></b></h2>
+  <%= render :partial => 'base_page/information' %>
   <%= render :partial => 'base_page/sidebar' %>
 <% end %>
 
@@ -19,7 +18,7 @@
         <h4>Summary</h4>
       <p><%= @page.summary %></p>
       </section>
-      <div class='upload_file_info'>      
+      <div class='upload_file_info'>
       <p><%= download_link %> &nbsp;&nbsp; <%#= upload_link %></p>
       <div id="upload_new" style="display: none;">
         <% form_tag page_url(@page, :action => 'update'), :multipart => true do -%>
@@ -37,10 +36,9 @@
       <%# render :partial => 'version_history' %>
       <br/>
       <h2 class='section'><%= I18n.t(:other_formats) %></h2>
-            <%# render :partial => 'thumbnails' %> 
+            <%# render :partial => 'thumbnails' %>
         -->
     </div> <!-- end left -->
 
 </div> <!-- end asset_page -->
 <br style='clear:both'/>
-

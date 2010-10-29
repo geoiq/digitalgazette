@@ -3,7 +3,7 @@
   = render :partial => '/layouts/base/head'
   %body{:class=>language_direction}
     =render :partial => 'layouts/base/feedback' unless RAILS_ENV == "development"
- 
+
     #wrapper
       #content_wrapper
         #content_inner_wrapper
@@ -19,11 +19,11 @@
             %section#breadcrumb
               = render :partial => '/layouts/base/breadcrumb'
           /
-          / extended sidebar for landing pages 
+          / extended sidebar for landing pages
           /
           - unless yield :extended_sidebar
             /
-            / full content width pages 
+            / full content width pages
             /
             = render :partial => '/layouts/base/full_width_content'
 

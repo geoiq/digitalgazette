@@ -1,4 +1,4 @@
-x/********************
+/********************
 elements
 ********************/
 body{
@@ -22,12 +22,15 @@ div{
 header
 ********************/
 #header{
-        background: #27874c url(img/bg_header.jpg) repeat-x center top;
-        height: 159px;
+        background-color: #a44d2f;
+        background-image: url(../images/bg_header.jpg);
+        background-repeat: repeat-x;
+        background-position: center top;
+        height: 225px;
 }
 #header form{display: inline;}
 #buffer{
-        height:5px;
+        height:px;
         width:950px;
 }
 
@@ -66,19 +69,24 @@ header
         float: left;
 }
 #hdrLogo a{
-        background: url(img/logo_hdr.png) no-repeat 0 0;
         height: 99px;
         width: 325px;
         display: block;
+        background-image: url(../images/logo_hdr.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #search{
-        background: url(img/bg_search.gif) no-repeat 0 0;
         float: right;
         height: 30px;
         line-height: 24px;
         text-align: left;
         width: 217px;
         vertical-align: middle;
+        background-image: url(../images/bg_search.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        margin-top: 3px;
 }
 #txtSearch,#txtWikiSearch{
         background: none;
@@ -87,59 +95,109 @@ header
     padding-left:5px;
 }
 #btnSearch,#btnWikiSubmit{
-        background: #fff url(img/bg_btnSearch.gif) no-repeat 0 0;
         border: none;
         cursor: pointer;
         float: right;
         height: 20px;
         width: 16px;
         margin: 2px 5px 0 0;
+        background-color: #fff;
+        background-image: url(../images/bg_btnSearch.gif);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #btnSearch{
         font-weight: bold;
 }
 #headerMenu{
-        margin-top: 30px;
-        color: #FFF;
-        width: 450px;
+        background-repeat: repeat-x;
+        background-position: center center;
+        }
+#headerlinks{
+        margin-top: 35px;
+        color: #000;
         float: right;
         text-align: right;
-        margin-bottom: 5px;
-        font-size: 40px;
-        font-weight: normal;
-        height: 40px;
+        height: 35px;
+        width: 360px;
+        background-position: center bottom;
+        margin-right: -35px;
 }
+#headerlinks a{
+        background-position: center bottom;
+        display: block;
+        float: right;
+        height: 35px;
+        width: 120px;
+}
+#headerlinks a:hover{
+    background-position: center top;
+}
+#headerlinks a:active{
+    background-position: center top;
+}
+#who{
+        background-image: url(../images/who.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#what{
+        background-image: url(../images/what.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#how{
+        background-image: url(../images/how.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+/*
 #topSubNav a{
         color: #FFF;
         text-decoration: none;
         text-transform: uppercase;
 }
-#topSubNav a:hover{text-decoration:underline;}
+#topSubNav a:hover{text-decoration:underline;}*/
 #navMenu{
-        background: url(img/bg_navMenu.gif) repeat-x center top;
-        height: 76px;
-        margin-top: -4px;
+        height: 0px;
+        margin-top: 0px;
+        background-repeat: repeat-x;
+        background-position: center center;
 }
 #navLinks{
-        height: 61px;
-        margin: 5px auto;
+        height: 66px;
+        margin: 0px auto;
         width: 556px;
 }
 #navLinks a{
-        background-position: center bottom;
-        border-right: 1px solid #fff;
+        background-position: center center;
         display: block;
         float: left;
-        height: 61px;
-        margin: 0 2px;
-        width: 181px;
+        height: 66px;
+        margin: 0 0x;
+        width: 183px;
 }
 #navLinks a:hover{
         background-position: center top;
 }
-#lnkMaps{background: url(img/bg_lnkMaps.png) no-repeat 0 0;}
-#lnkWiki{background: url(img/bg_lnkWiki.png) no-repeat 0 0;}
-#lnkReports{background: url(img/bg_lnkReports.png) no-repeat 0 0;}
+#navLinks a:active{
+        background-position: center top;
+}
+#lnkMaps{
+        background-image: url(../images/bg_lnkMaps.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#lnkWiki{
+        background-image: url(../images/bg_lnkWiki.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#lnkReports{
+        background-image: url(../images/bg_lnkReports.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
 
 /********************
 main content
@@ -154,12 +212,15 @@ main content
         width: 21px;
 }
 #mainHeadLine{
-        color: #a76272;
+        color: #2b693f;
         font-size: 20px;
         margin-bottom: 20px;
-        line-height: 1.5;
+        line-height: 1.3;
         float: left;
+        margin-top: 20px;
+        text-align: left;
 }
+#contentLeft{text-align: left;}
 .homeBkt{text-align: center;}
 .homeBkt img{
         height: 172px;
@@ -168,18 +229,19 @@ main content
 
 
 #homePicHolder{
-        background: url(img/picture_background.png) no-repeat 0 0;
-        height: 470px;
-        margin: 10px auto;
+
+        margin: 15px auto;
         text-align: left;
-        width: 392px;
+
         float: right;
         display: block;
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #homePic{
-        height: 349px;
+        height: 295px;
         margin: 20px 0 20px 15px;
-        width: 332px;
+        width: 403px;
 }
 #holder{
         width: 950px;
@@ -187,14 +249,14 @@ main content
 }
 .pageTitle {
         font-size: 26px;
-        color: #a76272;
+        color: #2b693f;
         width: 674px;
         height: 27px;
         float: left;
         display: block;
         padding: 0;
         line-height: 27px;
-        margin: 0 0 10px 0;
+        margin: 0 0 15px 0;
         vertical-align: top;
         text-align: left;
 }
@@ -264,7 +326,7 @@ main content
         background-position: left bottom;
 }
 .dynamicLinkList{
-        width: 196px;
+        width: 200px;
         display: block;
         padding: 0 15px 0 15px;
         margin: 0 0 0 0;
@@ -274,19 +336,22 @@ main content
         list-style-image: url(none);
 }
 .dynamicLinkList a:hover{
-        color:#093;
+        color:#2b693f;
 }
 .roundTop h3{
         font-size: 16px;
 }
 .rightmenubar{
         float: right;
-        width: 226px;
+        width: 230px;
         text-align: center;
 }
+.subPageRight{
+    margin-top: 100px;
+}
 .subPageRightLinks{
-        background: #e4e8ec;
-        width: 226px;
+        background: #fcdeb3;
+        width: 230px;
         padding-top: 5px;
 }
 .subPageRightLinks ul li{
@@ -304,21 +369,51 @@ margin-top: 10px;
 }
 .subPageRightLinks a:hover{text-decoration: underline;}
 #wikiSearch{
-        background: url(img/bg_search.gif) no-repeat 0 0;
         height: 26px;
         width: 219px;
+        background-image: url(../images/bg_search.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
+h2.info{
+        margin-top: 20px;
+        color: #FFF;
+        background-color: #a44d2f;
+        font-size: 12px;
+        padding: 2px 0 2px 0;
+        }
+td.info{
+        text-align: right;
+        color: #a44d2f;
+        vertical-align: top;
+        font-size: 11px;
+        margin: 0 0 0 0;
+        padding: 10px 0 0 0;
+        }
+td.info2{
+        text-align: left;
+        vertical-align: top;
+        font-size: 11px;
+        margin: 0 0 0 0;
+        padding: 10px 0 0 5px;
+        }
+table.info{
+        font-size: 12px;
+        margin-top: 5px;
+
+        }
+
 .WikiOptions{
         text-align: right;
-        color:#093;
+        color:#2b693f;
         font-size: 12px;
         margin-bottom: 2px;
 }
 .WikiOptions a:link{
-        color:#093;
+        color:#2b693f;
 }
 .WikiOptions a:hover{
-        color:#093;
+        color:#2b693f;
 }
 
 #txtWikiSearch{margin:3px 0 0 5px;}
@@ -362,8 +457,105 @@ margin-top: 10px;
         height: 155px;
         display: block;
 }
+#homepageLinks{
+        height: 120px;
+        margin: 0px auto;
+        width: 500px;
+}
+#homepageLinks a{
+        background-position: center top;
+        display: block;
+        float: left;
+        height: 120px;
+        margin: 0 0x;
+        width: 133px;
+}
+#homepageLinks a:hover{
+    background-position: center bottom;
+}
+#homepageLinks a:active{
+    background-position: center bottom;
+}
+#homepageMaps{
+        background-image: url(../images/lnkMap.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#homepageReports{
+        background-image: url(../images/lnkReports.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#homepageWiki{
+        background-image: url(../images/lnkWiki.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#givenow{
+        margin-top: 10px;
+        }
+#givenow a{
+        background-position: center bottom;
+        display: block;
+        float: left;
+        height: 36px;
+        margin: 0 0;
+        width: 230px;
+}
+#givenow a:hover{
+    background-position: center top;
+}
+#givenow a:active{
+    background-position: center top;
+}
+#adddata{
+        background-image: url(../images/Add_data.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#bottom_buttons_maps{
+        z-index: 1000;
+        margin: 0 100px 0px 0px;
+        float: right;
+        text-align: right;
+        width: 400px;
+        height: 71;
+}
+h1.geocommons_map_title {
+        font-size: 20px;
+        margin: 0 0 0 25px;
+        vertical-align: bottom;
+        padding-top: 25px;
+}
 
-
+#bottom_buttons_maps a{
+        background-position: center top;
+        display: inline-block;
+        height: 71px;
+        margin: 0 0;
+        width: 80px;
+}
+#bottom_buttons_maps a:hover{
+    background-position: center bottom;
+}
+#bottom_buttons_maps a:active{
+    background-position: center bottom;
+}
+#view{
+        background-image: url(../images/View_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#build{
+        background-image: url(../images/build_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
+#add{
+        background-image: url(../images/add_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+}
 /********************
 footer
 ********************/
@@ -379,7 +571,7 @@ everywhere
 ********************/
 .txtRed{color:#a76272;}
 .txtWhite, .txtWhite a, .txtWhite a:visited {color:#fff;}
-.txtDrkGray{color:#8c99b2;}
+.txtDrkGray{color:#a44d2f;}
 .pad10{padding:10px;}
 .pad10h{padding: 0 10px;}
 .pad10v{padding: 10px 0;}
@@ -387,14 +579,18 @@ everywhere
 .txtAlignRight{text-align:right;}
 .txtAlignCenter{text-align:center;}
 .roundTop{
-        background: url(img/roundTop.gif) no-repeat left top;
         height:30px;
         line-height:30px;
-        margin-top: 10px;
+        margin-top: 60px;
+        background-image: url(../images/roundTop.png);
+        background-repeat: no-repeat;
+        background-position: left top;
 }
 .roundBtm{
-        background: url(img/roundBtm.gif) no-repeat left bottom;
-        height: 20px;
+        height: 30px;
+        background-image: url(../images/roundbtm.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
 }
 .lnkBlack{color:#000;text-decoration:none;}
 .lnkBlack:hover{text-decoration:underline;}
@@ -447,13 +643,14 @@ everywhere
         padding-left: 0;
 }
 .topic_header {
-    background-color:#28874D;
+        background-image:url(../images/topic_header_bg.jpg);
     line-height:110%;
     margin:0 0 5px;
-    padding:5px 0 5px 5px;
+    padding:5px 0 5px 15px;
 }
-
-
+.topic_header a{
+font-size: 15px;
+}
 #page_sidebar
 {
   text-align: left;
@@ -465,7 +662,7 @@ everywhere
     margin-bottom: 10px;
 }
 .content_box {
-    padding: 0 1em;
+    padding: 0 0;
 }
 
 #wiki-content {
@@ -509,25 +706,26 @@ ul.tabset.top a.active {
 
 ul.tabset.top  {
     background: none;
-    border-bottom: 3px solid #28874D;
-        border-bottom: #28874D;
+    border-bottom: 3px solid #a44d2f;
+        border-bottom: #a44d2f;
 }
 .black_bullet {
-        color: #000
+        color: #a44d2f
 }
 
 ul.tabset a {
 }
 
 #line {
-    background-color:#28874D;
-    height:1px;
-    padding-bottom:3px;
-    padding-top:3px;
-    width:100%;
+        background-color:#2b693f;
+        height:1px;
+        padding-bottom:1px;
+        padding-top:1px;
+        width:100%;
+        margin-bottom: 10px;
 }
 .political_topics a:links{
-color:#093;
+color:#a44d2f;
 }
 a:link {
         text-decoration: none;
@@ -539,24 +737,24 @@ a:visited {
 }
 a:hover {
         text-decoration: underline;
-        color: #093;
+        color: #2b693f;
 }
 a:active {
-        color: #093;
+        color: #2b693f;
 }
 .listing_info a, .listing_info a:visited {
-        color: #006633;
+        color: #2b693f;
 }
 .page_title1 {
         font-style: normal;
         font-variant: normal;
         font-size: 24px;
         font-family: Arial, Helvetica, sans-serif;
-        color: #933;
+        color: #a44d2f;
 }
 #wikiTitle {
         width: 650px;
-        color: a76272;
+        color: a44d2f;
         float: left;
 }
 #menu_options {
@@ -575,12 +773,13 @@ a:active {
 #wikisearch_box {
         height: 75px;
         width: 670px;
-        background-color: #28874D;
+        background-image:url(../images/searchbox.jpg);
+        /*background-color: #2b693f;*/
         float: left;
 }
 #browse {
         width: 100%;
-        padding-top: 5px;
+        padding-top: 20px;
         float: left;
         font-weight: bold;
         font-size: 12px;
@@ -588,7 +787,7 @@ a:active {
         text-align: center;
         line-height: 160%;
         height: 30px;
-        padding-bottom: 15px;
+        padding-bottom: 0px;
 /*  border-bottom-color: #CCC;
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -604,7 +803,7 @@ a:active {
 
 #what_do_you {
         font-family: Arial, Helvetica, sans-serif;
-        width: 310px;
+        width: 350px;
         float: left;
         font-size: 15px;
         font-style: normal;
@@ -623,6 +822,7 @@ a:active {
         vertical-align: middle;
         white-space: normal;
         padding: 25px 0 24px 25px;
+
 }
 #sidebar {
         float: right;
@@ -641,7 +841,7 @@ a:active {
 }
 #wiki_TOC {
         font-size: 12px;
-        background-color: #e4e8ec;
+        background-color: #a44d2f;
         letter-spacing: normal;
         text-align: left;
         text-indent: 10px;
@@ -693,10 +893,7 @@ a:active {
         text-align: center;
         padding-bottom: 15px;
 }
-.topic_header a{
-color:#093;
-font-size: 14px;
-}
+
 .political_topics{
         width: 320px;
         float: left;
@@ -707,12 +904,13 @@ font-size: 14px;
         font-size: 10px;
         }
 .bullet_indent{
-margin-left: 20px;
-padding-left: 5px;
-margin-top: 0px;
+        margin-left: 20px;
+        padding-left: 5px;
+        margin-top: 0px;
+        text-align: left;
         }
 .group_entry{
-        width: 650px;
+        width: 670px;
         margin-top: 10px;
         padding-top: 4px;
         display: block;
@@ -756,7 +954,7 @@ margin-top: 0px;
         display: block;
 }
 .letter_pagination a{
-        color: #093;
+        color: #2b693f;
 }
 .by_country{
         color: #999;
@@ -793,8 +991,9 @@ margin-top: 0px;
         font-size: 11px;
 }
 .listing_title{
-        color: #093;
+        color: #2b693f;
         font-size: 14px;
+
         }
 .listing_data p{
         font-size: 10px;
@@ -853,11 +1052,7 @@ div#main_full_home{
         padding-left: 1px;
         margin: 4px 0 0 -6px;
 }
-.bottom_buttons_maps{
-        z-index: 1000;
-        margin: 0 0 0 0;
-        text-align: center;
-}
+
 .blackText{
         color: #000;
         }
@@ -875,7 +1070,7 @@ div#main_full_home{
 
 }
 a.inlineLinks {
-    color:#093;
+    color:#2b693f;
 }
 ul.bullet_indent {
     list-style-image:url("img/ar.jpg");
@@ -893,23 +1088,24 @@ td.label {
 
 
 div#dg_sidebar_wrapper {
-    position: absolute;
-    top: 160px;
-    right: 0;
+        position: fixed;
+        top: 220px;
+        right: 0px;
 }
 
 div#dg_sidebar_content {
-    height: 100%;
-    width: 100%;
-    background: #27874C;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#27874C', endColorstr='#27874D');
-    background: -webkit-gradient(linear, left top, right top, from(#27874C), to(#38985D));
-    background: -moz-linear-gradient(left,  #ccc,  #000);
+        height: 100%;
+        width: 100%;
+        background: #2b693f;
+        /*  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a44d2f', endColorstr='#27874D');
+    background: -webkit-gradient(linear, left top, right top, from(#a44d2f), to(#38985D));
+    background: -moz-linear-gradient(left,  #ccc,  #000);*/
     padding: 24px !important;
-    text-align: left;
-    overflow: auto;
+        text-align: left;
+        overflow: auto;
+        margin: 3px 0 0 46px;
 }
-#dg_sidebar_content h1 { color: white; font-size: 1.8em; }
+#dg_sidebar_content h1 { color: white; font-size: 11px; }
 
 #dg_sidebar_content a {
     color: white;
@@ -917,22 +1113,24 @@ div#dg_sidebar_content {
 #dg_sidebar_content a:hover { text-decoration: underline; color: white;}
 
 div#dg_sidebar_toggle {
-  position: absolute;
-  right: 0px;
-  background: #999;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#ccc');
-  background: -webkit-gradient(linear, left top, right top, from(#999), to(#ccc));
-  background: -moz-linear-gradient(left,  #999,  #ccc);
+        position: absolute;
+        right: -46px;
+        /*  background: #2b693f;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e0f1e7', endColorstr='#ccc');*/
+        background-image: url(../images/side_search_bar.png);
+        background-repeat: no-repeat;
 }
 
 
 div#dg_sidebar_toggle:hover {
-  background: #333;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999');
+        background-image: url(../images/side_search_bar_active.png);
+        background-repeat: no-repeat;
+        /*   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999');
   background: -webkit-gradient(linear, left top, right top, from(#333), to(#999));
-  background: -moz-linear-gradient(left,  #333,  #999);
+  background: -moz-linear-gradient(left,  #333,  #999);*/
   cursor: pointer;
 }
+
 
 
 div#dg_sidebar_content #search {
@@ -942,6 +1140,37 @@ div#dg_sidebar_content #search {
 div#dg_sidebar_content h2 {
     text-align:left;
 }
+div#dg_sidebar_content h1 {
+    text-align:left;
+font-size: 12px;
+color: #389459;
+border-bottom: 1px #389459 solid;
+margin-top: 10px;
+text-indent: 0px;
+text-transform: uppercase;
+        font-weight: bold;
+}
+div#dg_sidebar_content a {
+    text-align:left;
+    font-size: 12px;
+    color: #fff;
+    line-height: 100%;
+
+}
+
+div#dg_sidebar_content p {
+    text-align:left;
+    font-size: 12px;
+    color: #ccc;
+        font-style: italic;
+font-weight: bold;
+}
+
+
+
+
+
+
 
 .dg_sidebar_page_details {
 
@@ -953,7 +1182,7 @@ background: #ccc;
 
   float: left;
   margin: 2px;
-  color: #fff; 
+  color: #fff;
 }
 
 #sidebar_results_pagination_bottom a {

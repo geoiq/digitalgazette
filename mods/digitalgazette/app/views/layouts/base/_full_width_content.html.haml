@@ -20,7 +20,7 @@
   #third-level-container
     %nav#third-level
       = yield :third_nav
-        
+
 #holder.container
   #content-container
     #content-wrap
@@ -29,8 +29,8 @@
       /
       - if yield :misc_header
         = yield :misc_header
-  
-  
+
+
       - if yield :browse_content
         %section#browse-content
           = yield :browse_content

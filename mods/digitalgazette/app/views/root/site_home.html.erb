@@ -1,6 +1,6 @@
 
   <div id="contentLeft" class="span-12 prepend-1">
-        	<h2 id="mainHeadLine">
+                <h2 id="mainHeadLine">
 Welcome to the world's first interactive, open source knowledgebase dedicated to the Malakand Division of Khyber Pakhtunkhwa Province (formerly North West Frontier Province) in Pakistan.
 </h2>
 
@@ -11,25 +11,26 @@ just plain curious about Malakand Division?  The Digital Gazette will give you i
 
 
           <%# @group.profiles.public.summary_html %>
+          <div id="homepageLinks">
 
-
-             <div class="homeBkt span-4 first">
-             <%= link_to(image_tag("lnkMap.jpg", :plugin => "digitalgazette", :alt => "maps"), "/maps", :title => "Maps") %>
+            <div class="homeBkt span-4 first">
+             <%= link_to("", "/maps", :title => "Maps", :id => "homepageMaps") %>
             </div>
             <div class="homeBkt span-4">
-             <%= link_to(image_tag("lnkWiki.jpg", :plugin => "digitalgazette", :alt => "wiki"), "/pages", :title => "Wiki") %>
+             <%= link_to("", "/pages", :title => "Wiki", :id => "homepageWiki") %>
             </div>
             <div class="homeBkt span-4 last">
-             <%= link_to(image_tag("lnkReports.jpg", :plugin => "digitalgazette", :alt => "reports"), "/reports", :title => "Reports") %>
+             <%= link_to("", "/reports", :title => "Reports", :id => "homepageReports") %>
             </div>
+          </div>
 </div>
 <div id="contentRight" class="span-11 last txtAlignCenter">
   <div id="homePicHolder">
     <%= image_tag("homePic.jpg", :plugin => "digitalgazette", :id => "homePic") %>
   </div><!--#homePicHolder// -->
-</div>          
+</div>
 <%# content_for :right_sidebar do %>
-  <%# render :partial => 'sidebar' %>  
+  <%# render :partial => 'sidebar' %>
 <%# end %>
 
 

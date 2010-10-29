@@ -2,7 +2,7 @@ map:
   maker: http://geocommons.com/
   finder: http://geocommons.com/
   core: http://geocommons.com/
-  embed: http://geocommons.com/
+  embed: http://geocommons.com/javascripts/f1.api.js
   # maker: http://api-sandbox.geoiq.com/
   # finder: http://api-sandbox.geoiq.com/
   # core: http://api-sandbox.geoiq.com/

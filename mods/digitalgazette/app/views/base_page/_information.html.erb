@@ -1,0 +1,52 @@
+<table>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:publisher) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= @page.publisher %></td>
+  </tr>
+  <%- if @page.research_report -%>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:methodology) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= @page.methodology %></td>
+  </tr>
+  <!-- <tr>
+       <td align='right'><b><%= I18n.t(:certification) %>:</b></td>
+       <td>&nbsp;</td>
+       <td><%= @page.certification %></td>
+  </tr> -->
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:sample_size) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= @page.sample_size %></td>
+  </tr>
+  <%- end # if page.research_report -%>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:year_published) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= @page.year_published %></td>
+  </tr>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:created_by) %>:</b></td>
+    <td>&nbsp;</td>
+    <td class='info2'><%= link_to_user(@page.created_by, :avatar => 'xsmall') if @page.created_by %></td>
+  </tr>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:created_on) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= friendly_date(@page.created_at) %></td>
+  </tr>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:file_size) %>:</b></td>
+    <td>&nbsp;</td>
+    <td><%= friendly_size(@asset.size) %></td>
+  </tr>
+  <tr>
+    <td align='right' class='info'><b><%= I18n.t(:format) %>:</b></td>
+    <td>&nbsp;</td>
+    <td>
+      <%= I18n.t(@asset.format_description.to_sym, :default => @asset.format_description) %>
+      (<%= @asset.ext %>)
+    </td>
+  </tr>
+</table>
