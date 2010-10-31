@@ -108,6 +108,8 @@ module Geocommons
           http.use_ssl = true if uri.scheme == 'https'
           return yield(http)
         end
+      rescue Net::HTTP::Unauthorized => exc
+        raise PermissionDenied
       end
 
       def service_uri(service)
