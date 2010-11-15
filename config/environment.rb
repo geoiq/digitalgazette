@@ -112,6 +112,9 @@ Rails::Initializer.run do |config|
   config.gem "compass"
   config.gem "ericam-compass-susy-plugin", :lib => "susy"
 
+  config.plugins = ["engines", "aa_pseudo_rmagick", "aa_validates_as_email", "acts-as-taggable-on", "acts_as_list", "acts_as_rateable", "acts_as_solr", "acts_as_state_machine", "acts_as_versioned", "asset_tool", "auto_complete", "backgroundrb", "before_render", "better_acts_as_tree", "browser_filters", "calendar_date_select", "core_tools", "country_select", "crabgrass_acts_as_site_limited", "database_cleaner", "external_video_tool", "flex_image", "gallery_tool", "geocommons", "geocommons_rest_api", "geocommons_search", "haml", "http_accept_language", "i18n-0.1.3", "machinist", "mocha", "mod_settings", "moderation", "multiple_select", "nested_layouts", "optional_haml", "partioprint", "pickle", "public_home", "rails_indexes", "responds_to_parent", "routing_filter", "ruby-graphviz-0.9.0", "ruby-svg-1.0.3", "shoulda", "spider_test", "super_admin", "thinking-sphinx", "translator", "wiki_tool", "will_paginate", "ya2yaml", "digitalgazette"]
+
+
 
   # see http://ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html
   # for information on how trim_mode works.

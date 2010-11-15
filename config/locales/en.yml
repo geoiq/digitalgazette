@@ -5,7 +5,7 @@ en:
   developers_invited: "Developers Invited"
   venture_of: "A Venture of"
   who_we_are: "Who is involved"
-  how_to_use: "How to use this"
+  how_to_use: "How to use this?"
   what_is_this: "What is this"
   sitemap: "Sitemap"
   reports: "Reports"
@@ -30,9 +30,9 @@ en:
   source: "Source"
   legal: "The Legals"
   dg_asset_page: "Report"
-  dg_new_asset_page: "Upload a new Report"
+  dg_new_asset_page: "UPLOAD A NEW REPORT"
   dg_wiki_page: "Article"
-  dg_new_wiki: "Create a new Article"
+  dg_new_wiki: "CREATE A NEW ARTICLE"
   dg_wiki_header: "Welcome to Wiki"
   dg_asset_page_header: "Welcome to the Reports Library"
   dg_map_page: "Map"
@@ -69,7 +69,7 @@ en:
 
   dg_wiki_search_header: "What do you want to learn about??"
   dg_map_page_header: "Map!"
-  dg_new_map_page: "upload a map"
+  dg_new_map_page: "UPLOAD A MAP"
   dg_map_search_header: "search maps"
   browse_wiki: "or Browse Articles by Topic"
   dg_asset_search_header: "What kind of Report would you like to find?"
@@ -80,7 +80,7 @@ en:
   dg_most_recent_page: "Most Recent"
   dg_most_viewed_page: "Most Viewed"
 
-  how_to_use: "How do I use this?"
+  how_to_use: "HOW DO I USE THIS"
   page_search_title: "{{type}}"
   map_page_display: "Map" #otherwise test fails
   map_page_description: "A Map ..."

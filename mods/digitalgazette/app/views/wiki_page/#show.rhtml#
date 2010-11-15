@@ -3,6 +3,7 @@
   <%= render :partial => 'base_page/information' %>
   <%= render :partial => 'base_page/sidebar' %>
 <% end %>
+
 <section id='wiki-content'>
   <div class='wiki'>
     <div id='wiki_html'>

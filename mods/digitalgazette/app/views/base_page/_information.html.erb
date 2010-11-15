@@ -36,6 +36,7 @@
     <td>&nbsp;</td>
     <td><%= friendly_date(@page.created_at) %></td>
   </tr>
+  <% if @asset %>
   <tr>
     <td align='right' class='info'><b><%= I18n.t(:file_size) %>:</b></td>
     <td>&nbsp;</td>
@@ -49,4 +50,5 @@
       (<%= @asset.ext %>)
     </td>
   </tr>
+  <% end %>
 </table>
