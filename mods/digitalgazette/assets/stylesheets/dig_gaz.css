@@ -22,11 +22,11 @@ div{
 header
 ********************/
 #header{
-	background-color: #a44d2f;
-	background-image: url(../images/bg_header.jpg);
-	background-repeat: repeat-x;
-	background-position: center top;
-	height: 225px;
+        background-color: #a44d2f;
+        background-image: url(../images/bg_header.jpg);
+        background-repeat: repeat-x;
+        background-position: center top;
+        height: 225px;
 }
 #header form{display: inline;}
 #buffer{
@@ -69,24 +69,24 @@ header
         float: left;
 }
 #hdrLogo a{
-	height: 99px;
-	width: 325px;
-	display: block;
-	background-image: url(../images/logo_hdr.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        height: 99px;
+        width: 325px;
+        display: block;
+        background-image: url(../images/logo_hdr.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #search{
-	float: right;
-	height: 30px;
-	line-height: 24px;
-	text-align: left;
-	width: 217px;
-	vertical-align: middle;
-	background-image: url(../images/bg_search.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	margin-top: 3px;
+        float: right;
+        height: 30px;
+        line-height: 24px;
+        text-align: left;
+        width: 217px;
+        vertical-align: middle;
+        background-image: url(../images/bg_search.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        margin-top: 3px;
 }
 #txtSearch,#txtWikiSearch{
         background: none;
@@ -95,61 +95,61 @@ header
     padding-left:5px;
 }
 #btnSearch,#btnWikiSubmit{
-	border: none;
-	cursor: pointer;
-	float: right;
-	height: 20px;
-	width: 16px;
-	margin: 2px 5px 0 0;
-	background-color: #fff;
-	background-image: url(../images/bg_btnSearch.gif);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        border: none;
+        cursor: pointer;
+        float: right;
+        height: 20px;
+        width: 16px;
+        margin: 2px 5px 0 0;
+        background-color: #fff;
+        background-image: url(../images/bg_btnSearch.gif);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #btnSearch{
         font-weight: bold;
 }
 #headerMenu{
-	background-repeat: repeat-x;
-	background-position: center center;
-	}
+        background-repeat: repeat-x;
+        background-position: center center;
+        }
 #headerlinks{
-	margin-top: 35px;
-	color: #000;
-	float: right;
-	text-align: right;
-	height: 35px;
-	width: 360px;
-	background-position: center bottom;
-	margin-right: -35px;
+        margin-top: 35px;
+        color: #000;
+        float: right;
+        text-align: right;
+        height: 35px;
+        width: 360px;
+        background-position: center bottom;
+        margin-right: -35px;
 }
 #headerlinks a{
-	background-position: center bottom;
-	display: block;
-	float: right;
-	height: 35px;
-	width: 120px;
+        background-position: center bottom;
+        display: block;
+        float: right;
+        height: 35px;
+        width: 120px;
 }
 #headerlinks a:hover{
     background-position: center top;
 }
 #headerlinks a:active{
-    background-position: center top;	
+    background-position: center top;
 }
 #who{
-	background-image: url(../images/who.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/who.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #what{
-	background-image: url(../images/what.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/what.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #how{
-	background-image: url(../images/how.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/how.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 /*
 #topSubNav a{
@@ -159,10 +159,10 @@ header
 }
 #topSubNav a:hover{text-decoration:underline;}*/
 #navMenu{
-	height: 0px;
-	margin-top: 0px;
-	background-repeat: repeat-x;
-	background-position: center center;
+        height: 0px;
+        margin-top: 0px;
+        background-repeat: repeat-x;
+        background-position: center center;
 }
 #navLinks{
         height: 66px;
@@ -170,12 +170,12 @@ header
         width: 556px;
 }
 #navLinks a{
-	background-position: center center;
-	display: block;
-	float: left;
-	height: 66px;
-	margin: 0 0x;
-	width: 183px;
+        background-position: center center;
+        display: block;
+        float: left;
+        height: 66px;
+        margin: 0 0x;
+        width: 183px;
 }
 #navLinks a:hover{
         background-position: center top;
@@ -184,19 +184,19 @@ header
         background-position: center top;
 }
 #lnkMaps{
-	background-image: url(../images/bg_lnkMaps.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/bg_lnkMaps.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #lnkWiki{
-	background-image: url(../images/bg_lnkWiki.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/bg_lnkWiki.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #lnkReports{
-	background-image: url(../images/bg_lnkReports.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/bg_lnkReports.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 
 /********************
@@ -212,13 +212,13 @@ main content
         width: 21px;
 }
 #mainHeadLine{
-	color: #2b693f;
-	font-size: 20px;
-	margin-bottom: 20px;
-	line-height: 1.3;
-	float: left;
-	margin-top: 20px;
-	text-align: left;
+        color: #2b693f;
+        font-size: 20px;
+        margin-bottom: 20px;
+        line-height: 1.3;
+        float: left;
+        margin-top: 20px;
+        text-align: left;
 }
 #contentLeft{text-align: left;}
 .homeBkt{text-align: center;}
@@ -229,14 +229,14 @@ main content
 
 
 #homePicHolder{
-	
-	margin: 15px auto;
-	text-align: left;
-	
-	float: right;
-	display: block;
-	background-repeat: no-repeat;
-	background-position: 0 0;
+
+        margin: 15px auto;
+        text-align: left;
+
+        float: right;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #homePic{
         height: 295px;
@@ -261,18 +261,18 @@ main content
         text-align: left;
 }
 .pageSubTitle {
-	font-size: 14px;
-	color: #FFF;
-	width: 674px;
-	height: 20px;
-	float: left;
-	display: block;
-	padding: 0;
-	line-height: 20px;
-	margin: 0 0 15px 0;
-	vertical-align: top;
-	text-align: left;
-	font-weight: bold;
+        font-size: 14px;
+        color: #FFF;
+        width: 674px;
+        height: 20px;
+        float: left;
+        display: block;
+        padding: 0;
+        line-height: 20px;
+        margin: 0 0 15px 0;
+        vertical-align: top;
+        text-align: left;
+        font-weight: bold;
 }
 .pageTitle h2{
         margin: 0 0 0 0;
@@ -317,32 +317,32 @@ main content
         padding: 0;
 }
 #whatLinkList a{
-	background: #bd806b;
-	border-bottom: 1px solid #fff;
-	color: #fff;
-	display: block;
-	line-height: 40px;
-	text-align: center;
-	text-transform: uppercase;
-	font-weight: normal;
+        background: #bd806b;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        display: block;
+        line-height: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: normal;
 }
 #whatLinkList a:hover, #whatLinkList a.active{
-	background: #a44d2f;
-	color: #fff;
-	text-decoration:none;
+        background: #a44d2f;
+        color: #fff;
+        text-decoration:none;
 }
 #whatLinkList li#topLi a{
-	background-color: #fff;
-	background-image: url(../images/bg_topLi.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
+        background-color: #fff;
+        background-image: url(../images/bg_topLi.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
 }
 #whatLinkList li#btmLi a{
-	border: none;
-	background-color: #FFF;
-	background-image: url(../images/bg_btmLi.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
+        border: none;
+        background-color: #FFF;
+        background-image: url(../images/bg_btmLi.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
 }
 #whatLinkList li#topLi a.active, #whatLinkList li#topLi a:hover, #whatLinkList li#btmLi a.active, #whatLinkList li#btmLi a:hover{
         background-position: left top;
@@ -391,39 +391,39 @@ margin-top: 10px;
 }
 .subPageRightLinks a:hover{text-decoration: underline;}
 #wikiSearch{
-	height: 26px;
-	width: 219px;
-	background-image: url(../images/bg_search.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        height: 26px;
+        width: 219px;
+        background-image: url(../images/bg_search.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 h2.info{
-	margin-top: 20px;
-	color: #FFF;
-	background-color: #a44d2f;
-	font-size: 12px;
-	padding: 2px 0 2px 0;
-	}
+        margin-top: 20px;
+        color: #FFF;
+        background-color: #a44d2f;
+        font-size: 12px;
+        padding: 2px 0 2px 0;
+        }
 td.info{
-	text-align: right;
-	color: #a44d2f;
-	vertical-align: top;
-	font-size: 11px;
-	margin: 0 0 0 0;
-	padding: 10px 0 0 0;
-	}
+        text-align: right;
+        color: #a44d2f;
+        vertical-align: top;
+        font-size: 11px;
+        margin: 0 0 0 0;
+        padding: 10px 0 0 0;
+        }
 td.info2{
-	text-align: left;
-	vertical-align: top;
-	font-size: 11px;
-	margin: 0 0 0 0;
-	padding: 10px 0 0 5px;
-	}
+        text-align: left;
+        vertical-align: top;
+        font-size: 11px;
+        margin: 0 0 0 0;
+        padding: 10px 0 0 5px;
+        }
 table.info{
-	font-size: 12px;
-	margin-top: 5px;
-	
-	}
+        font-size: 12px;
+        margin-top: 5px;
+
+        }
 
 .WikiOptions{
         text-align: right;
@@ -485,151 +485,151 @@ table.info{
         width: 500px;
 }
 #homepageLinks a{
-	background-position: center top;
-	display: block;
-	float: left;
-	height: 120px;
-	margin: 0 0x;
-	width: 133px;
+        background-position: center top;
+        display: block;
+        float: left;
+        height: 120px;
+        margin: 0 0x;
+        width: 133px;
 }
 #homepageLinks a:hover{
     background-position: center bottom;
 }
 #homepageLinks a:active{
-    background-position: center bottom;	
+    background-position: center bottom;
 }
 #homepageMaps{
-	background-image: url(../images/lnkMap.jpg);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/lnkMap.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #homepageReports{
-	background-image: url(../images/lnkReports.jpg);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/lnkReports.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #homepageWiki{
-	background-image: url(../images/lnkWiki.jpg);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/lnkWiki.jpg);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #givenow{
-	margin-top: 10px;
-	}
+        margin-top: 10px;
+        }
 #givenow a{
-	background-position: center bottom;
-	display: block;
-	float: left;
-	height: 36px;
-	margin: 0 0;
-	width: 230px;
+        background-position: center bottom;
+        display: block;
+        float: left;
+        height: 36px;
+        margin: 0 0;
+        width: 230px;
 }
 #givenow a:hover{
     background-position: center top;
 }
 #givenow a:active{
-    background-position: center top;	
+    background-position: center top;
 }
 #adddata{
-	background-image: url(../images/Add_data.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/Add_data.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #bottom_buttons_maps{
-	z-index: 1000;
-	margin: 0 100px 0px 0px;
-	float: right;
-	text-align: right;
-	width: 400px;
-	height: 71;
+        z-index: 1000;
+        margin: 0 100px 0px 0px;
+        float: right;
+        text-align: right;
+        width: 400px;
+        height: 71;
 }
 h1.geocommons_map_title {
-	font-size: 20px;
-	margin: 0 0 0 40px;
-	vertical-align: bottom;
-	padding-top: 25px;
+        font-size: 20px;
+        margin: 0 0 0 40px;
+        vertical-align: bottom;
+        padding-top: 25px;
 }
 
 #bottom_buttons_maps a{
-	background-position: center top;
-	display: inline-block;
-	height: 71px;
-	margin: 0 0;
-	width: 80px;
+        background-position: center top;
+        display: inline-block;
+        height: 71px;
+        margin: 0 0;
+        width: 80px;
 }
 #bottom_buttons_maps a:hover{
     background-position: center bottom;
 }
 #bottom_buttons_maps a:active{
-    background-position: center bottom;	
+    background-position: center bottom;
 }
 #view{
-	background-image: url(../images/View_btn.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/View_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #build{
-	background-image: url(../images/build_btn.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/build_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #add{
-	background-image: url(../images/add_btn.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/add_btn.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #joinlink a{
-	background-position: center top;
-	display: inline-block;
-	height: 92px;
-	margin: 0 0;
-	width: 100px;
+        background-position: center top;
+        display: inline-block;
+        height: 92px;
+        margin: 0 0;
+        width: 100px;
 }
 #joinlink a:hover{
     background-position: center bottom;
 }
 #joinlink a:active{
-    background-position: center bottom;	
+    background-position: center bottom;
 }
 #join{
-	background-image: url(../images/join.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/join.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 
 #bottom_buttons1 a{
-	background-position: center top;
-	display: inline-block;
-	height: 110px;
-	margin: 0 0;
-	width:160px
+        background-position: center top;
+        display: inline-block;
+        height: 110px;
+        margin: 0 0;
+        width:160px
 }
 #bottom_buttons1 a:hover{
     background-position: center bottom;
 }
 #bottom_buttons1 a:active{
-    background-position: center bottom;	
+    background-position: center bottom;
 }
 #charity{
-	background-image: url(../images/charity.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/charity.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 
 #researcher{
-	background-image: url(../images/researcher.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/researcher.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #donor{
-	background-image: url(../images/donor.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/donor.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 #government{
-	background-image: url(../images/government.png);
-	background-repeat: no-repeat;
-	background-position: 0 0;
+        background-image: url(../images/government.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
 }
 /********************
 footer
@@ -654,18 +654,18 @@ everywhere
 .txtAlignRight{text-align:right;}
 .txtAlignCenter{text-align:center;}
 .roundTop{
-	height:30px;
-	line-height:30px;
-	margin-top: 60px;
-	background-image: url(../images/roundTop.png);
-	background-repeat: no-repeat;
-	background-position: left top;
+        height:30px;
+        line-height:30px;
+        margin-top: 60px;
+        background-image: url(../images/roundTop.png);
+        background-repeat: no-repeat;
+        background-position: left top;
 }
 .roundBtm{
-	height: 30px;
-	background-image: url(../images/roundbtm.png);
-	background-repeat: no-repeat;
-	background-position: left bottom;
+        height: 30px;
+        background-image: url(../images/roundbtm.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
 }
 .lnkBlack{color:#000;text-decoration:none;}
 .lnkBlack:hover{text-decoration:underline;}
@@ -718,7 +718,7 @@ everywhere
         padding-left: 0;
 }
 .topic_header {
-	background-image:url(../images/topic_header_bg.jpg);
+        background-image:url(../images/topic_header_bg.jpg);
     line-height:110%;
     margin:0 0 5px;
     padding:5px 0 5px 15px;
@@ -792,12 +792,12 @@ ul.tabset a {
 }
 
 #line {
-	background-color:#2b693f;
-	height:1px;
-	padding-bottom:1px;
-	padding-top:1px;
-	width:100%;
-	margin-bottom: 10px;
+        background-color:#2b693f;
+        height:1px;
+        padding-bottom:1px;
+        padding-top:1px;
+        width:100%;
+        margin-bottom: 10px;
 }
 .political_topics a:links{
 color:#a44d2f;
@@ -818,7 +818,7 @@ a:active {
         color: #2b693f;
 }
 .listing_info a, .listing_info a:visited {
-	color: #2b693f;
+        color: #2b693f;
 }
 .page_title1 {
         font-style: normal;
@@ -846,10 +846,10 @@ a:active {
         text-decoration: none;
 }
 #wikisearch_box {
-	height: 75px;
-	width: 670px;
-	background-image:url(../images/searchbox.jpg);
-	/*background-color: #2b693f;*/
+        height: 75px;
+        width: 670px;
+        background-image:url(../images/searchbox.jpg);
+        /*background-color: #2b693f;*/
         float: left;
 }
 #browse {
@@ -897,7 +897,7 @@ a:active {
         vertical-align: middle;
         white-space: normal;
         padding: 25px 0 24px 25px;
-		
+
 }
 #sidebar {
         float: right;
@@ -979,10 +979,10 @@ a:active {
         font-size: 10px;
         }
 .bullet_indent{
-	margin-left: 20px;
-	padding-left: 5px;
-	margin-top: 0px;
-	text-align: left;
+        margin-left: 20px;
+        padding-left: 5px;
+        margin-top: 0px;
+        text-align: left;
         }
 .group_entry{
         width: 670px;
@@ -1068,7 +1068,7 @@ a:active {
 .listing_title{
         color: #2b693f;
         font-size: 14px;
-		
+
         }
 .listing_data p{
         font-size: 10px;
@@ -1083,26 +1083,26 @@ a:active {
         margin: 0 0 0 0;
 }
 .leftsidebar{
-	width: 180px;
-	padding-top: 40px;
-	float: left;
-	font-size: 90%;
-	line-height: 135%;
-	margin-bottom: 20px;
-	list-style-image: url(none);
-	color: #2b693f;
-	margin-top: 20px;
-	padding-left: 10px;
+        width: 180px;
+        padding-top: 40px;
+        float: left;
+        font-size: 90%;
+        line-height: 135%;
+        margin-bottom: 20px;
+        list-style-image: url(none);
+        color: #2b693f;
+        margin-top: 20px;
+        padding-left: 10px;
 }
 .leftsidebar-wrapper{
-	width:210px;
-	padding: 0px;
-	background-color: #fff;
-	float: left;
-	list-style-image: url(none);
-	background-image: url(../images/subheader_bg.png);
-	background-repeat: no-repeat;
-	background-position: right top;
+        width:210px;
+        padding: 0px;
+        background-color: #fff;
+        float: left;
+        list-style-image: url(none);
+        background-image: url(../images/subheader_bg.png);
+        background-repeat: no-repeat;
+        background-position: right top;
 }
 
 div#main{
@@ -1176,22 +1176,22 @@ td.label {
 
 
 div#dg_sidebar_wrapper {
-	position: fixed;
-	top: 220px;
-	right: 0px;
+        position: fixed;
+        top: 220px;
+        right: 0px;
 }
 
 div#dg_sidebar_content {
-	height: 100%;
-	width: 100%;
-	background: #2b693f;
-	/*  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a44d2f', endColorstr='#27874D');
+        height: 100%;
+        width: 100%;
+        background: #2b693f;
+        /*  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a44d2f', endColorstr='#27874D');
     background: -webkit-gradient(linear, left top, right top, from(#a44d2f), to(#38985D));
     background: -moz-linear-gradient(left,  #ccc,  #000);*/
     padding: 24px !important;
-	text-align: left;
-	overflow: auto;
-	margin: 3px 0 0 46px;
+        text-align: left;
+        overflow: auto;
+        margin: 3px 0 0 46px;
 }
 #dg_sidebar_content h1 { color: white; font-size: 11px; }
 
@@ -1201,19 +1201,19 @@ div#dg_sidebar_content {
 #dg_sidebar_content a:hover { text-decoration: underline; color: white;}
 
 div#dg_sidebar_toggle {
-	position: absolute;
-	right: -46px;
-	/*  background: #2b693f;
+        position: absolute;
+        right: -46px;
+        /*  background: #2b693f;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e0f1e7', endColorstr='#ccc');*/
-	background-image: url(../images/side_search_bar.png);
-	background-repeat: no-repeat;	
+        background-image: url(../images/side_search_bar.png);
+        background-repeat: no-repeat;
 }
 
 
 div#dg_sidebar_toggle:hover {
-	background-image: url(../images/side_search_bar_active.png);
-	background-repeat: no-repeat;
-	/*   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999');
+        background-image: url(../images/side_search_bar_active.png);
+        background-repeat: no-repeat;
+        /*   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333', endColorstr='#999');
   background: -webkit-gradient(linear, left top, right top, from(#333), to(#999));
   background: -moz-linear-gradient(left,  #333,  #999);*/
   cursor: pointer;
@@ -1231,17 +1231,17 @@ div#dg_sidebar_content h2 {
 div#dg_sidebar_content h1 {
     text-align:left;
 font-size: 12px;
-color: #389459; 
+color: #389459;
 border-bottom: 1px #389459 solid;
 margin-top: 10px;
 text-indent: 0px;
 text-transform: uppercase;
-	font-weight: bold;
+        font-weight: bold;
 }
 div#dg_sidebar_content a {
     text-align:left;
     font-size: 12px;
-    color: #fff; 
+    color: #fff;
     line-height: 100%;
 
 }
@@ -1250,7 +1250,7 @@ div#dg_sidebar_content p {
     text-align:left;
     font-size: 12px;
     color: #ccc;
-	font-style: italic;
+        font-style: italic;
 font-weight: bold;
 }
 
@@ -1270,7 +1270,7 @@ background: #ccc;
 
   float: left;
   margin: 2px;
-  color: #fff; 
+  color: #fff;
 }
 
 #sidebar_results_pagination_bottom a {
@@ -1305,3 +1305,5 @@ div.main_list_pagination div.pagination {
 .main_list_pagination div a {
   color: #333;
 }
+
+div.info_box { height:1.5em; }
