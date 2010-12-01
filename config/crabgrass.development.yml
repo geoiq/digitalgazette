@@ -19,6 +19,8 @@ enabled_languages:
 #  - es_ES
 
 # text_editor: html_preferred
+text_editor: 3
+
 ##
 ## GLOBAL
 ##
@@ -61,32 +63,8 @@ enabled_tools:
 sites:
   - name: pakistan
     admin_group: pakistanadmin
+    text_editor: 2
     moderation_group: pakistanmoderation
     translation_group: pakistantranslation
 #  - name: red
 #    admin_group: redadmins
-
-##
-## SITE DEFAULTS
-##
-
-pagination_size: 30
-default_language: en
-enforce_ssl: false
-show_exceptions: false
-email_sender: "robot@$current_host"
-tracking: true
-available_page_types:
-  - AssetPage
-  - EventPage
-  - ExternalVideoPage
-  - TaskListPage
-  - AnnouncementPage
-  - SurveyPage
-  - DiscussionPage
-  - RateManyPage
-  - MessagePage
-  - RankedVotePage
-  - ArticlePage
-  - Gallery
-  - WikiPage

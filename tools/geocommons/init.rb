@@ -22,7 +22,6 @@ Dispatcher.to_prepare do
     end
   }
 
-
   # TODO move this to geocommons.yml
   Crabgrass::ExternalAPI.register('overlay',
                                   { :model => Geocommons::Overlay,

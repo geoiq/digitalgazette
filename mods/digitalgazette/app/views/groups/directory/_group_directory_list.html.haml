@@ -1,4 +1,3 @@
-%p= "The following organizations have joined the Digital Gazette to share information and contribute to the effort to sustainably rebuild Malakand Division."
 - if @groups.any?
   %div{:align=>'center'}  
     =# letter_pagination_links(directory_params(:type => @group_type, :action => 'search'), :available_letters => @pagination_letters) if @pagination_letters

@@ -27,14 +27,14 @@ map:
   #       configure:
 
 # maker:
-#   new: http://maker.digitalgazette.org/maps/new?embed=true
+#   new: http://maker.digitalgazette.vm/maps/new?embed=true
 #   show:
-#     embed: http://maker.digitalgazette.org/javascripts/embed.js
-#     maker_host: http://maker.digitalgazette.org
-#     finder_host: http://finder.digitalgazette.org
-#     core_host: http://maker.digitalgazette.org
+#     embed: http://maker.digitalgazette.vm/javascripts/embed.js
+#     maker_host: http://maker.digitalgazette.vm
+#     finder_host: http://finder.digitalgazette.vm
+#     core_host: http://maker.digitalgazette.vm
 #   edit:
-#     - http://maker.digitalgazette.org/maps/
+#     - http://digitalgazette.vm/maker/maps/
 #     - /edit?embed=true
 #   index:
 #     -
