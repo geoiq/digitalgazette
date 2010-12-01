@@ -5,7 +5,7 @@ div.swatch_list label img { vertical-align: middle; }
 
 .markdown_toolbar { position: relative; list-style: none; border: 1px solid #d7d7d7; background-color: #f6f6f6; margin: 0; padding: 0; height: 18px; margin-bottom: 2px; max-width: 70em; }
 .markdown_toolbar li { list-style: none; margin: 0; padding: 0; float: left; }
-.markdown_toolbar li a { width: 24px; height: 16px; float: left; display: block; background-image: url('"/images/ui/markdown_icons.gif"'); border: 1px solid white; border-right-color: #d7d7d7; }
+.markdown_toolbar li a { width: 24px; height: 16px; float: left; display: block; background-image: url('/images/ui/markdown_icons.gif'); border: 1px solid white; border-right-color: #d7d7d7; }
 .markdown_toolbar li a:hover { border-color: #990000; }
 .markdown_toolbar li a.markdown_help_button { position: absolute; top: 0; right: 0; border-left-color: #d7d7d7; border-right-color: white; }
 .markdown_toolbar li a.markdown_help_button:hover { border-left-color: #990000; border-right-color: #990000; }
