@@ -10,7 +10,7 @@ see PeopleController.
 
 class PersonController < ApplicationController
 
-  helper 'task_list_page', 'profile'
+  helper 'profile'
   stylesheet 'tasks', :action => :tasks
   stylesheet 'messages', :action => :show
   layout 'header'
