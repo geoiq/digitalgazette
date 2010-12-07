@@ -200,7 +200,7 @@ class SearchController < ApplicationController
   def list_partial_for(options={ })
     ret =
     if options[:wrapper] ||= @wrapper
-       LEGAL_PARTIALS[options[:wrapper].to_s]
+      LEGAL_PARTIALS[options[:wrapper].to_s]
     elsif options[:widget] ||= @widget
       BOX_PARTIALS[options[:widget].to_s] || ""
     elsif options[:page_type] ||= @page_type

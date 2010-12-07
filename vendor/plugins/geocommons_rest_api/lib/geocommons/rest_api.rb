@@ -5,11 +5,16 @@ module Geocommons
     class << self
       # get a specific response entity based on the given path.
       def get(service, path)
+        format = path.split('.').last.to_sym || :json
         # NOTE you can disable the connection globally for tests without internet connection
         if ! (defined?(EXTERNAL_API_TEST_MODE) && EXTERNAL_API_TEST_MODE == :skip)
           start_connection(uri = service_uri(service)) do |http|
             if (response = http.request(build_request(File.join(uri.path, path)))).kind_of?(Net::HTTPOK)
-              return JSON.load(response.body)
+              if format == :json
+                return JSON.load(response.body)
+              else
+                return response.body
+              end
             elsif response.kind_of?(Net::HTTPFound)
               raise "Error getting geocommons path #{path}: Got redirected to: #{response['Location']}"
             else
@@ -108,7 +113,7 @@ module Geocommons
           http.use_ssl = true if uri.scheme == 'https'
           return yield(http)
         end
-      rescue Net::HTTP::Unauthorized => exc
+      rescue Net::HTTPUnauthorized => exc
         raise PermissionDenied
       end
 
