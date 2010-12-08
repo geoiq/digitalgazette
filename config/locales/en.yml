@@ -56,6 +56,7 @@ en:
   dg_pages_list: "Pages"
   dg_search: "Search"
   dg_open: "open"
+  wiki_pdf_link: "Download PDF"
 
 
   # FIXME mistakenly we lookup dg_dg_sidebar_wiki_list
