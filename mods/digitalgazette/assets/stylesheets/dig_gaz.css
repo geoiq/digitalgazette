@@ -1160,9 +1160,9 @@ div#main_full_home{
 a.inlineLinks {
     color:#2b693f;
 }
-ul.bullet_indent {
-    list-style-image:url("img/ar.jpg");
-}
+/* ul.bullet_indent { */
+/*     list-style-image:url("img/ar.jpg"); */
+/* } */
 .bullet_indent a {
     color: #000000;
 }
@@ -1180,6 +1180,8 @@ div#dg_sidebar_wrapper {
         top: 220px;
         right: 0px;
 }
+
+#content-wrap { padding-right:45px; }
 
 div#dg_sidebar_content {
         height: 100%;

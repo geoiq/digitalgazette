@@ -11,7 +11,13 @@ module GeocommonsHelper
           Maker.maker_host = "#{Geocommons.config(:map, :maker)}";
           Maker.finder_host = "#{Geocommons.config(:map, :finder)}";
           Maker.core_host = "#{Geocommons.config(:map, :core)}";
-          Maker.load_map("#{target}", #{map_id})
+          // Maker.load_map("#{target}", #{map_id})
+          var map = new F1.Maker.Map({
+            map_id: #{map_id},
+            dom_id: "#{target}",
+            uiLegend: false
+          });
+          map.showControl('legend', true);
         }, :charset => 'utf-8')
   end
 end

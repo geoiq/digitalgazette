@@ -19,22 +19,23 @@ h1.geocommons_map_title { font-size: 1.5em; }
 
   <br />
   <p><%=h @map.description %></p>
-  <p>
+  <div>
     <h3>Download</h3>
-    <%= link_to('kml', :controller => 'maps', :action => 'show', :id => @map.id, :format => 'kml')%></a>
+    <%= link_to('kml', :controller => 'maps', :action => 'show', :id => @map.id, :format => 'kml') %>
     <h3>Data used in this Map</h3>
     <table class="nice data_attributes" style="width: 600px; padding:5px;">
       <tbody>
-    <% @map.layers.each do |overlay| %>
-    <tr>
-        <td> <%= overlay.title %></td>
-        <td class="details">
-          <%= link_to "Download as CSV", :controller => "overlays", :action => 'show', :id => overlay.id_from_source, :format => 'csv' %>
+        <% @map.layers.each do |overlay| %>
+        <tr>
+          <td> <%= overlay.title %></td>
+          <td class="details">
+            <%= link_to "Download as CSV", :controller => "overlays", :action => 'show', :id => overlay.id_from_source, :format => 'csv' %>
           </td>
         </tr>
-  <% end %>
-    </tbody></table>
-</p>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <%- end -%>
 <% else %>
   No Map with ID <%= params[:id] %>
