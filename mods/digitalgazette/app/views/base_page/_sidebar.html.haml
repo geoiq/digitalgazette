@@ -18,17 +18,21 @@
       %ul.side_list.commands
         = watch_line
         = star_line
-      - if (access_changing_commands = [share_line, notify_line, share_all_line, public_line].compact).any?
+      - if (access_changing_commands = [share_line, notify_line, share_all_line].compact).any?
         %ul.side_list.commands.rule
           = access_changing_commands if may_admin_site?
       %ul.side_list.commands.rule
         = delete_line if may_admin_site?
         -# move_line
         = details_line if may_admin_site?
+        = public_line
         = history_line
         = view_line
         = export_line
     = call_hook :page_sidebar_actions
+  - else
+    %ul.side_list.commands
+      = export_line
 
 
   - if @page.group_participations.any? or @page.user_participations.any?

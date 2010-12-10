@@ -16,5 +16,15 @@ module DigitalGazette
     def html_for_export
       render_to_string(:template => "wiki_page/print", :layout => "printer-friendly")
     end
+
+    # don't require a login for public pages
+    # (overriding BasePageController)
+    def login_or_public_page_required
+      if %w(show print pdf rtf).include?(action_name) and @page and @page.public?
+        true
+      else
+        return login_required
+      end
+    end
   end
 end
