@@ -6,13 +6,13 @@
 ## Items to configure
 ##
 
-set :application, "dg-staging"
-set :user, "crabgrass"
+set :application, "digitalgazette"
+set :user, "wrapper"
 
-set :repository, "/var/git/repositories/digitalgazette.git"
-set :branch, "staging"
+set :repository, "git@github.com:fortiusone/digitalgazette.git"
+set :branch, "master"
 
-deploy_host = "0xb5.org"
+deploy_host = "10.0.30.149"
 
 set :app_db_host, 'localhost'
 set :app_db_user, 'dg_staging'
@@ -26,12 +26,12 @@ set :secret,  "0704c166845573a8a5b5ab4cec0766a81f16a5c2a6dd6a32d479ff3d9db267a05
 set :scm, "git"
 set :local_repository, "#{File.dirname(__FILE__)}/../"
 
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 
 # as an alternative, if you server does NOT have direct git access to the,
 # you can deploy_via :copy, which will build a tarball locally and upload
 # it to the deploy server.
-#set :deploy_via, :copy
+set :deploy_via, :copy
 set :copy_strategy, :checkout
 set :copy_exclude, [".git"]
 
@@ -46,7 +46,7 @@ role :web, deploy_host
 role :app, deploy_host
 role :db, deploy_host, :primary=>true
 
-set :deploy_to, "/var/rails/crabgrass/xb5-instances/#{application}"
+set :deploy_to, "/fortiusone/live/apps/#{application}"
 
 
 ##
@@ -85,7 +85,7 @@ login: &login
   password: #{eval(db_role+"_db_pass")}
 
 production:
-  database: digitalgazette_staging
+  database: digitalgazette
   <<: *login
 ]
 end
