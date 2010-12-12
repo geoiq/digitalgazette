@@ -13,3 +13,4 @@ map.wiki_search '/wiki/search/*path', :controller => 'search', :action => 'index
 
 # Normal RESTful routes even though we really just need #show
 map.resources :maps, {:collection => {:all => :get, :upload => :get}}
+map.resources :overlays, {:collection => {:all => :get, :upload => :get}}

@@ -2,7 +2,7 @@ class Geocommons::Map < Geocommons::BasePage
   geocommons_service :maker
   geocommons_model 'Map'
 
-  attributes :short_classification, :author, :title, :id, :tags, :pk, :type, :description, :permissions, :link, :bbox, :created, :link
+  attributes :short_classification, :author, :title, :id, :tags, :pk, :type, :description, :permissions, :link, :bbox, :created, :link, :layers
 
   def author_name
     author['name']
@@ -20,4 +20,9 @@ class Geocommons::Map < Geocommons::BasePage
     "/maps/#{id}"
   end
 
+  def layers
+    @layers.map { |data|
+      Geocommons::Overlay.new(data)
+    }
+  end
 end

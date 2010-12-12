@@ -22,6 +22,8 @@ Dispatcher.to_prepare do
   SearchController.send(:include, ::DigitalGazette::SearchControllerExtension)
   WikiController.send(:include, ::DigitalGazette::WikiControllerExtension)
   ApplicationController.send(:include, ::DigitalGazette::StatedUI)
+  WikiPageController.send(:include, ::DigitalGazette::WikiPageControllerExtension)
+  WikiPagePermission.send(:include, ::DigitalGazette::WikiPagePermissionExtension)
 
   # helpers
   #  ApplicationHelper.send(:include, ::DigitalGazette::ApplicationHelperExtension)

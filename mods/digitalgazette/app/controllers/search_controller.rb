@@ -32,7 +32,7 @@ class SearchController < ApplicationController
     get_pages if request.xhr? # we catch non-xhr requests to avoid double loading
 
     #FIXME this won't happen, we have no @pages anymore
-    # if there was a text string in the search, generate extracts for the results
+    #if there was a text string in the search, generate extracts for the results
     if @path.search_text and @pages.any?
       begin
         add_excerpts_to_pages(@pages)
@@ -46,7 +46,7 @@ class SearchController < ApplicationController
                :image => (@user ? avatar_url(:id => @user.avatar_id||0, :size => 'huge') : nil))
 
     unless send_pages! # send the pages to the browser
-      # museum during refactoring
+     # museum during refactoring
      # if request.xhr?
      #
      #
@@ -96,10 +96,20 @@ class SearchController < ApplicationController
 
      # creates the hash of @internal_pages
       # and decorates it with the corresponding results from the query
-      @internal_pages = { }
-      @page_type_groups[:internal].each do |page_type|
-        @internal_pages[page_type] ||={}
-        @internal_pages[page_type][:pages] = Page.paginate_by_path(@naked_path.dup.add_types!(page_type.to_a), options_for_me({:method => :sphinx}.merge(pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})))) # order in the path is important
+    @internal_pages = { }
+    @page_type_groups[:internal].each do |page_type|
+      @internal_pages[page_type] ||={}
+      options_for_options = {
+        :method => :sphinx
+      }.merge(pagination_params.
+              merge({ :per_page => get_per_page,
+                      :page => (params[:page] || 1)
+                    }))
+      @internal_pages[page_type][:pages] =
+        Page.paginate_by_path(@naked_path.dup.add_types!(page_type.to_a),
+                              options_for_me(options_for_options).
+                              merge(:public => true)
+                              ) # order in the path is important
         @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
       end
 
@@ -190,7 +200,7 @@ class SearchController < ApplicationController
   def list_partial_for(options={ })
     ret =
     if options[:wrapper] ||= @wrapper
-       LEGAL_PARTIALS[options[:wrapper].to_s]
+      LEGAL_PARTIALS[options[:wrapper].to_s]
     elsif options[:widget] ||= @widget
       BOX_PARTIALS[options[:widget].to_s] || ""
     elsif options[:page_type] ||= @page_type

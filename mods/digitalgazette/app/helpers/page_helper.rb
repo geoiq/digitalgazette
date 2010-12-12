@@ -3,8 +3,8 @@
 
 module PageHelper
   def cover_for(page)
-    if page.cover    
-      thumbnail_img_tag(page.cover, :medium, :scale => '74x96', :plugin => "digitalgazette") 
+    if page.cover
+      thumbnail_img_tag(page.cover, :medium, :scale => '74x96', :plugin => "digitalgazette")
     else
       image_tag(clean_name_for(page).downcase + ".png", :plugin => "digitalgazette", :alt => "Thumbnail for #{clean_name_for(page)}")
     end
@@ -21,19 +21,19 @@ module PageHelper
       page_url(page)
     end
   end
-  
+
   # need this for support of namespaced external resources
   def clean_name_for page
     page.class.name.to_s.split("::").last
   end
 
-  
-  
+
+
   #
   # NOTE this is really really coupled and complicated in core
-  # - trying to fix something, that maybe should be solved somewhere else --suung      
-   
-  
+  # - trying to fix something, that maybe should be solved somewhere else --suung
+
+
   # *NEWUI
   #
   # helper to show the information box of a page
@@ -51,7 +51,7 @@ module PageHelper
       locals.merge!(:tags => (page.tags))
     else
       username = link_to_user(page.updated_by_login)
-    end   
+    end
     date     = friendly_date(page.send(field))
     locals.merge!(:status => status, :username => username, :date => date)
 
@@ -62,14 +62,14 @@ module PageHelper
         locals.merge!(:stars_count => content_tag(:span, "%s %s" % [star_icon, page.stars_count]))
       end
       locals.merge!(:contributors =>  content_tag(:span, "%s %s" % [image_tag('ui/person-dark.png'), page.stars_count])) if options[:columns].include?(:contributors)
-      
+
 
     end
 
     render :partial => 'pages/information_box', :locals => locals
   end
-  
-  
+
+
   def notices_for(page)
     if external?(page)
       notices = [{ :external_user => page.author, :date => page.updated_at}] # TODO this can cause problems with other models than GeoCommons
@@ -105,13 +105,10 @@ module PageHelper
     else
       "/search/tag/#{tag.downcase}/"
     end
-  end 
-  
+  end
+
   def external?(page)
     EXTERNAL_PAGE_TYPES.include?(clean_name_for(page).downcase)
   end
-  
 
-  
-  
 end

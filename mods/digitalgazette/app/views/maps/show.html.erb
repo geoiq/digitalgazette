@@ -2,7 +2,7 @@
 <% target_dom_id = "maker_map_#{@map.id}" -%>
 
 <style type="text/css">
-#<%= target_dom_id %> {width: 100%; height: 500px; margin-top: 0px; border-top: 3px solid #2b693f;}
+#<%= target_dom_id %> {width: 90%; height: 500px; margin-top: 0px; border-top: 3px solid #2b693f;}
 #holder {width: 100%;}
 h1.geocommons_map_title { font-size: 1.5em; }
 </style>
@@ -18,9 +18,24 @@ h1.geocommons_map_title { font-size: 1.5em; }
   <%= geocommons_load_map(target_dom_id, @map.id) %>
 
   <br />
-
   <p><%=h @map.description %></p>
-
+  <div>
+    <h3>Download</h3>
+    <%= link_to('kml', :controller => 'maps', :action => 'show', :id => @map.id, :format => 'kml') %>
+    <h3>Data used in this Map</h3>
+    <table class="nice data_attributes" style="width: 600px; padding:5px;">
+      <tbody>
+        <% @map.layers.each do |overlay| %>
+        <tr>
+          <td> <%= overlay.title %></td>
+          <td class="details">
+            <%= link_to "Download as CSV", :controller => "overlays", :action => 'show', :id => overlay.id_from_source, :format => 'csv' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <%- end -%>
 <% else %>
   No Map with ID <%= params[:id] %>

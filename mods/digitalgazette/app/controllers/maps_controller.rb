@@ -5,10 +5,9 @@ class MapsController < PagesController # TODO < ExternalPagesController
   stylesheet 'messages'
   permissions 'pages', 'groups/base', 'groups/memberships', 'groups/requests'
   helper 'action_bar', 'tab_bar', 'groups'
-#  layout 'header'
 
   before_filter :get_page_type
-  require 'ruby-debug'
+
   include PagesHelper
   # FIXME: do we really need that "all" action?
   def index
@@ -17,8 +16,10 @@ class MapsController < PagesController # TODO < ExternalPagesController
   end
 
   def show
-    @map = Geocommons::Map.find(params[:id])
+    @map = Geocommons::Map.find(params[:id], params[:format])
     @page = @map
+    # send data instead of rendering the map, if a specific format is given
+    send_data @map if params[:format]
   end
 
   def all
@@ -53,8 +54,8 @@ class MapsController < PagesController # TODO < ExternalPagesController
     @page_type = "map" || params[:page_type] # hardcoded by now
   end
 
-  def fetch_page_for(id)
-    Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id).first
+  def fetch_page_for(id, format = :json)
+    Crabgrass::ExternalAPI.for(@page_type.to_s).call(:find, id, format).first
   end
 
 

@@ -1,10 +1,13 @@
 # extensions for geocommons based page classes to provide convenient +find+ methods.
 module Geocommons::FindMethods
-  def find(options_or_id)
+  def find(options_or_id, format = nil)
     if options_or_id.kind_of?(Hash)
       pack_entries(_find(options_or_id))
     else
-      pack_entry(_get(options_or_id))
+      entry = _get(options_or_id, format)
+      # if a format is given, we simply return the plain unpacked result
+      entry = pack_entry(entry) unless format
+      return entry
     end
   end
 
@@ -24,9 +27,10 @@ module Geocommons::FindMethods
     Geocommons::RestAPI.find(@service, options)
   end
 
-  def _get(id)
+  def _get(id, format)
     raise "You need to set the geocommons_service in #{self.name}" unless @service
-    Geocommons::RestAPI.get(@service, "/#{@model.underscore.pluralize}/#{id}.json")
+    format ||= :json
+    Geocommons::RestAPI.get(@service, "/#{@model.underscore.pluralize}/#{id}.#{format}")
   end
 
   def default_find_options
