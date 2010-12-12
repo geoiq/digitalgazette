@@ -34,27 +34,22 @@ class SearchControllerTest < ActionController::TestCase
        #return unless sphinx_working?
        ["wiki", "asset"].each do |page_type|
          get :index, :path => ["type", page_type]
-         assert assigns(:page_type) == page_type
-         assert assigns(:pages)
-         assert assigns(:pages).total_pages
-         assigns(:pages).each do |page|
-           assert page.class.name == (page_type+'_page').camelize
-         end
-         assert_select("section#pages")
+         assert_equal assigns(:page_type), page_type
+         assert_select("##{page_type}_list")
        end
      end
 
      def test_typed_search_xhr
        # test xhr requests
        ["wiki", "asset", "map"].each do |page_type|
-         xhr :get, :index, :path => ["type", page_type]
+         xhr :get, :index, :path => ["text", "wiki"], :page_type => page_type, :per_page => 10, :page => 1, :autoload => true
          assert assigns(:page_type) == page_type
-#         assert assigns(:pages)
-#         assert assigns(:pages).total_pages
-#         assigns(:pages).each do |page|
-#           assert (page.class.name == (page_type+'_page').camelize)
-#         end
-         assert @response.body.match("#{page_type}_page_list").kind_of?(MatchData), "expected a #{page_type}_list "
+         assert ps = assigns(:page_store)
+         assert ps[page_type]
+         assert ps[page_type][:pages]
+         assert ps[page_type][:pages].total_pages
+         # assert_select does not work for an Ajax.update response
+         @response.body.match("id='pages'")
        end
      end
 
@@ -115,30 +110,18 @@ class SearchControllerTest < ActionController::TestCase
      end
 
      def test_partial_recognition
-       xhr :get, :index, :wrapper => 'pages/box'
-       assert_template( "_box", "pages/box should have been rendered")
-       xhr :get, :index, :widget => 'most_viewed'
+       xhr :get, :index, :page_type => 'wiki', :wrapper => 'pages_box'
+       assert_template("_box", "pages/box should have been rendered")
+       xhr :get, :index, :page_type => 'wiki', :widget => 'most_viewed'
        assert_template("_box", "pages/box should have been rendered")
        xhr :get, :index, :path => ["type","overlay"]
        assert_template('_list', "overlays/list should have been rendered")
        xhr :get, :index, :path => ["type","wiki"]
        assert_template('_list', "pages/list should have been rendered for type:wiki")
-       assert_raises RuntimeError, "illegal widget should be reised for :widget => 'maeh'" do
-         xhr :get, :index, :widget => "maeh"
-       end
      end
 
-     def test_illegal_wrapper_recognition
-       assert_raises RuntimeError, "illegal partial should be raised for :wrapper => 'jenga'" do
-         xhr :get, :index, :wrapper => "jenga"
-       end
-     end
-
-   
-
-
-   context("with a path containing external and internal pages") do
-     context("with a panel given") { 
+     context("with a path containing external and internal pages") do
+       context("with a panel given") { 
        
        setup { 
          xhr :get, :index, { :path => PathFinder::ParsedPath.new([["text","pakistan"],["type","wiki"],["type","overlay"]]).to_param, :panel => "sidebar"}
@@ -182,7 +165,7 @@ class SearchControllerTest < ActionController::TestCase
      }
      should("assign pages and dom_id for every internal pagetype") {
          
-       assigns(:page_type_groups)[:internal].each do |page_type|
+         assigns(:page_type_groups)[:internal].each do |page_type|
          assert assigns(:internal_pages)[page_type], "no storage for #{page_type}"
          assert assigns(:internal_pages)[page_type][:pages], "no pages for #{page_type}"
          assert_equal @controller.method(:get_dom_id_for).call(page_type), assigns(:internal_pages)[page_type][:dom_id], "dom_id wasn't right configured for #{page_type}"
@@ -203,11 +186,6 @@ class SearchControllerTest < ActionController::TestCase
      
         
    end
-
-
-
-
-
 
 
  end

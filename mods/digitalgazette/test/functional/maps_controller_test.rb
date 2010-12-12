@@ -41,8 +41,8 @@ class MapsControllerTest < ActionController::TestCase
     context "the index" do
       setup { get :index }
       should "be redirect to :all action" do
-        assert_response :redirect
-        assert_redirected_to :action => 'all'
+        assert_response :success
+        assert_template "pages/index"
       end
     end
 

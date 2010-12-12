@@ -24,5 +24,7 @@ class Geocommons::Map < Geocommons::BasePage
     @layers.map { |data|
       Geocommons::Overlay.new(data)
     }
+  rescue
+    []
   end
 end
