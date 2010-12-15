@@ -10,11 +10,11 @@ module DigitalGazette
     include DigitalGazette::HtmlToRtf
 
     def pdf
-      send_data(html_to_pdf(html_for_export), :type => "application/pdf", :filename => "#{@page.name}.pdf")
+      send_data(html_to_pdf(html_for_export), :type => "application/pdf", :filename => "#{@page.name_url}.pdf")
     end
 
     def rtf
-      send_data(html_to_rtf(html_for_export), :type => "application/rtf", :filename => "#{@page.name}.rtf")
+      send_data(html_to_rtf(html_for_export), :type => "application/rtf", :filename => "#{@page.name_url}.rtf")
     end
 
     protected

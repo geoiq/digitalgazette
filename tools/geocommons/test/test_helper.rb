@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../../../test/test_helper'
+#require 'ostruct'
 
 class TestModel < Object
+
+  attr :name
 
   def initialize(options={ })
     options.each_pair do |k,v|
@@ -22,11 +25,11 @@ class TestModel < Object
   
   def self.find(*args)
     ret = []
+    name = args && args.first ? args.first.to_s : "somename"
     30.times do
-      ret << TestModel.new({ :name => "somename"}) #OPTIMIZE write a cooler mock class
+      ret << TestModel.new({ :name => name }) #OPTIMIZE write a cooler mock class
     end
     ret
   end
-
 
 end

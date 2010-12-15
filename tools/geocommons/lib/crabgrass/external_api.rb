@@ -98,7 +98,7 @@ module Crabgrass
     end
 
     def get_method(method)
-      map_table[:methods][method] rescue raise(APIMethodNotDefined, "Method #{method} not defined for #{name}")
+      map_table[:methods][method] || raise(APIMethodNotDefined, "Method #{method} not defined for #{name}")
     end
 
     def key_value_separator

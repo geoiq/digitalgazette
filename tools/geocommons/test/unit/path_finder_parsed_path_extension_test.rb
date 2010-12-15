@@ -13,12 +13,12 @@ class PathFinderParsedPathExtenstionTest < ActiveSupport::TestCase
     }
       
     should("return a valid path") { 
-      assert_equal [["tag", "pakistan"], ["type", "wiki"]], @path
+      assert @path.include?(["tag", "pakistan"])
+      assert @path.include?(["type", "wiki"])
       assert_kind_of PathFinder::ParsedPath, @path
     }
     
   }  
-  
   
   context("given a path as an argument") { 
     setup{ @query = "type/wiki/tag/pakistan"
@@ -28,7 +28,6 @@ class PathFinderParsedPathExtenstionTest < ActiveSupport::TestCase
     should("look like a path") { 
       assert_equal @path, [["type","wiki"],["tag","pakistan"]]
     }
-
     
     context("testing the extension") { 
       
@@ -37,8 +36,7 @@ class PathFinderParsedPathExtenstionTest < ActiveSupport::TestCase
         should("look have added two types to the path") { 
           assert_equal @path.sort, [["type","wiki"],["tag","pakistan"],['type','overlay'],['type','asset']].sort
         }
-      }
-      
+      }      
       
       context("testing keywords") { 
         setup { @args = @path.keywords}
@@ -55,8 +53,7 @@ class PathFinderParsedPathExtenstionTest < ActiveSupport::TestCase
             assert ! @path2.keywords({ :ignore_atoms => true}).include?("or")
           }
         }
-      }
-      
+      }      
       
       context("testing remove_keyword") { 
         should("have removed tag from the path") { 
@@ -96,13 +93,8 @@ class PathFinderParsedPathExtenstionTest < ActiveSupport::TestCase
       
     }  
     
-
     
-    
-    
-  }  
-  
-  
+  }    
   
   
 end

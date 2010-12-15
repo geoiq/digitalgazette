@@ -29,7 +29,7 @@ class WikiPageControllerTest < ActionController::TestCase
     get format, :page_id => page.id
     assert_response :success
     headers = @controller.response.headers
-    assert_equal "application/#{format}", headers['type']
+    assert_equal "application/#{format}", @controller.response.content_type
     assert headers['Content-Disposition'] =~ /^attachment/
     assert headers['Content-Length'] > 0
   end

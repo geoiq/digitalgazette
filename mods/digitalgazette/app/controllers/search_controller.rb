@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
 
   prepend_before_filter :prefix_path
-  helper_method :list_partial
   helper_method :get_dom_id_for
   helper_method :list_partial_for
 
@@ -66,36 +65,36 @@ class SearchController < ApplicationController
     # if no explicit pagetype is set, we want to search in all searchable page types
 
 
-   # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
+    # if ! @page_type # if @page_type is set, we only need to save @pages = @page_type.constantize.find ....
 
-      # separate the page_types by the condition wether
-      # a) they are internal, means Crabgrass::Page or
-      # b) external, means Crabgrass::ExternalPage
-      @page_type_groups = @page_types.group_by {|page_type|
-        EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
+    # separate the page_types by the condition wether
+    # a) they are internal, means Crabgrass::Page or
+    # b) external, means Crabgrass::ExternalPage
+    @page_type_groups = @page_types.group_by {|page_type|
+      EXTERNAL_PAGE_TYPES.include?(page_type) ? :external : :internal}.to_hash # group the external and internal pages
 
 
-      # Process internal Pages
-      @naked_path = @path.dup.remove_keyword("type")
-      # Create the path for the internal resources
-      # @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal]).sort!
-      # TODO this does not work as we want
-      #
-      # Benchmarks: OPTIMIZE use Union, i am running out of time.
-      #
-      # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
-#=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
-#>>
-  #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
-# => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
-      #
-      #
-      # We want e.g. WHERE pages.type = wiki OR pages.type = asset
-      # but we want the same limit per page for every model - figure out, how to do this best
-      # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
+    # Process internal Pages
+    @naked_path = @path.dup.remove_keyword("type")
+    # Create the path for the internal resources
+    # @internal_path = @naked_path.dup.add_types!(@page_type_groups[:internal]).sort!
+    # TODO this does not work as we want
+    #
+    # Benchmarks: OPTIMIZE use Union, i am running out of time.
+    #
+    # >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1)"); Page.find_by_sql("SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1")}}
+    #=> #<Benchmark::Tms:0x7f86d9ddddc8 @total=1.52, @utime=1.47, @cstime=0.0, @cutime=0.0, @label="", @stime=0.05000#00000000003, @real=1.59843301773071>
+    #>>
+    #     >> Benchmark.measure {1000.times{Page.find_by_sql("(SELECT * FROM pages where pages.type = 'AssetPage' LIMIT 1) UNION (SELECT * FROM pages where pages.type = 'WikiPage' LIMIT 1)")}}
+    # => #<Benchmark::Tms:0x7f86d98bcdd0 @total=0.909999999999999, @utime=0.859999999999999, @cstime=0.0, @cutime=0.0, @label="", @stime=0.0499999999999998, @real=0.917029857635498>
+    #
+    #
+    # We want e.g. WHERE pages.type = wiki OR pages.type = asset
+    # but we want the same limit per page for every model - figure out, how to do this best
+    # NOTE maybe Crabgras internals could also deal with external pages already and just skip them
 
-     # creates the hash of @internal_pages
-      # and decorates it with the corresponding results from the query
+    # creates the hash of @internal_pages
+    # and decorates it with the corresponding results from the query
     @internal_pages = { }
     @page_type_groups[:internal].each do |page_type|
       @internal_pages[page_type] ||={}
@@ -105,37 +104,39 @@ class SearchController < ApplicationController
               merge({ :per_page => get_per_page,
                       :page => (params[:page] || 1)
                     }))
+      #debugger if page_type == "wiki"
       @internal_pages[page_type][:pages] =
         Page.paginate_by_path(@naked_path.dup.add_types!(page_type.to_a),
                               options_for_me(options_for_options).
                               merge(:public => true)
                               ) # order in the path is important
-        @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
-      end
+      @internal_pages[page_type][:dom_id] = get_dom_id_for(page_type)
+    end
 
-      # Create the path for the external resources
-      # TODO implement some logic, that groups the external resources
-      # by their source
-      # this requires, that every source returns a collection, that
-      # lets us determine the Resource -Type (PageType) for every entry in the collection
-      @external_pages = {}
+    # Create the path for the external resources
+    # TODO implement some logic, that groups the external resources
+    # by their source
+    # this requires, that every source returns a collection, that
+    # lets us determine the Resource -Type (PageType) for every entry in the collection
+    @external_pages = {}
 
 
-      @page_type_groups[:external].each do |page_type|
-        @external_pages[page_type] =
+    @page_type_groups[:external].each do |page_type|
+      @external_pages[page_type] =
         { :pages => Crabgrass::ExternalPathFinder.paginate(page_type,@naked_path, pagination_params.merge({ :per_page => get_per_page, :page => (params[:page] || 1)})),
-          :dom_id => get_dom_id_for(page_type)}
-          #debugger
-          # sketches
-          #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
-          #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
-      end
-      @page_store = @page_store.merge(@external_pages).merge(@internal_pages)
+        :dom_id => get_dom_id_for(page_type)}
+      #debugger
+      # sketches
+      #Crabgrass::ExternalApi.for(page_type).model.call(:paginate, @external_path, { :page => params[:page], :per_page => get_per_page})
+      #Api.for(page_type).method(:paginate).call(@external_path, params[:page])
+    end
+    @page_store = @page_store.merge(@external_pages).merge(@internal_pages)
+    @pages = @page_store.map {|k,v| (v.kind_of?(Hash) && v[:pages]) || [] }.inject(:+)
     # TODO create WillPaginate::Collection
-      # NOTE this is the place, where the full WidgetTree
-      # would be available
-      #
-      # try something like @pages.to_json
+    # NOTE this is the place, where the full WidgetTree
+    # would be available
+    #
+    # try something like @pages.to_json
 
 
   end
@@ -212,35 +213,6 @@ class SearchController < ApplicationController
     ret
   end
 
-  # TODO somewhere else, more general
-  # determines the right list partial
-  #
-  # when there is a @widget recognized
-  # it takes the configured BOX_PARTIAL for that widget
-  #
-  # when there is ONE SINGLE @page_type
-  # (NOTE that means somehow 'pages/list')
-  # it renders the corresponding partial
-  #
-  # and when there is a @wraper
-  #
-  # it uses it as partial if it is legal
-  def list_partial
-    if @wrapper
-      if LEGAL_PARTIALS.keys.include?(@wrapper)
-        LEGAL_PARTIALS[@wrapper]
-      elsif LEGAL_PARTIALS.values.include?(@wrapper)
-        LEGAL_PARTIALS.values[LEGAL_PARTIALS.values.index(@wrapper)]
-      else
-        raise("you called an illegal partial #{@wrapper.to_s}")
-      end
-    elsif @widget
-      BOX_PARTIALS[@widget.to_s] || raise("you called an illegal widget #{@widget.to_s}")
-    elsif @page_type
-      PAGE_TYPE_PARTIALS[@page_type.to_s] || raise("you called an illegal partial #{@page_type.to_s}")
-    end
-
-  end
 
   # retrieve all options, we need to build a proper UI
   def get_options

@@ -14,8 +14,10 @@ class ExternalAPITest < Test::Unit::TestCase
     Crabgrass::ExternalAPI.register(
                                      :overlay, {
                                         :model => TestModel,
-                                        :methods =>
-                                        { :find => "paginate"},
+                                      :methods => {
+                                        :find => "find",
+                                        :paginate => "paginate"
+                                      },
                                         :query_builder => {
                                           :keywords => {
                                             "text" => "",
@@ -46,7 +48,7 @@ class ExternalAPITest < Test::Unit::TestCase
         should("have a name") {
             assert_equal @api.name, :overlay
           }
-         should("have a valid map table") {
+        should("have a valid map table") {
           assert_equal Crabgrass::ExternalAPI.registered_apis[:overlay], @api.map_table
         }
         should("assign a model") {
@@ -59,7 +61,9 @@ class ExternalAPITest < Test::Unit::TestCase
           assert @api.get_method(:paginate)
         }
         should("raise for a not defined method") { 
-          assert_raises @api.get_method(:not_defined)
+          assert_raise Crabgrass::ExternalAPI::APIMethodNotDefined do
+            @api.get_method(:not_defined)
+          end
         }
         should("return an argument separator ") {
           assert @api.argument_separator
@@ -70,7 +74,7 @@ class ExternalAPITest < Test::Unit::TestCase
 
         should("call the corresponding method on the Test-Model") {
           args = "bla"
-          assert_equal [args], @api.call(:find,args)
+          assert_equal "bla", @api.call(:find, args).first.name
         }
 
         # TODO test the load method!!
