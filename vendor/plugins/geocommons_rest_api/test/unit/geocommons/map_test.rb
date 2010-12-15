@@ -115,4 +115,22 @@ class Geocommons::MapTest < Test::Unit::TestCase
       assert_equal 'First description', @map.description
     }
   end
+
+  context "Finding a Map with format .kml" do
+    setup {
+      Geocommons::RestAPI.set_fake_get_data({
+                                              'id' => '1',
+                                              'author' => {
+                                                'name' => 'author1',
+                                                'url' => 'http://example.com/users/author1'
+                                              },
+                                              'title' => 'First map',
+                                              'description' => 'First description'
+                                            })
+      @map = Geocommons::Map.find(1, 'kml')
+    }
+    should ("return the map in kml format") {
+      assert @map
+    }
+  end
 end
