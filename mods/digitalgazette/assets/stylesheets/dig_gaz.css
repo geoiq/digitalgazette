@@ -578,10 +578,44 @@ h1.geocommons_map_title {
         background-repeat: no-repeat;
         background-position: 0 0;
 }
+
+
+#indent{
+        margin-left: 10px;
+        font-size: 12px;
+        line-height: 165%;
+        }
+#downloads{
+        margin-left: 55px;
+        }
+#downloads a{
+        background-position: center top;
+        display: inline-block;
+        height: 12px;
+        margin: 0px 0 0px 0;
+        padding: 0px 0 0px 0;
+        width: 70px;}
+#downloads a:hover{
+        background-position: center bottom;}
+
+#kml-download {
+    background-image: url(/plugin_assets/digitalgazette/images/kml_download.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+#csv-download {
+    background-image: url(/plugin_assets/digitalgazette/images/csv_download.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+
+
+
 #joinlink a{
         background-position: center top;
         display: inline-block;
-        height: 92px;
+        height: 92p
         margin: 0 0;
         width: 100px;
 }
@@ -715,7 +749,7 @@ everywhere
     font-size: 1.4em;
 }
 #details  {
-        padding-left: 0;
+        padding: 0 0 0 0;
 }
 .topic_header {
         background-image:url(../images/topic_header_bg.jpg);
@@ -1160,9 +1194,9 @@ div#main_full_home{
 a.inlineLinks {
     color:#2b693f;
 }
-/* ul.bullet_indent { */
-/*     list-style-image:url("img/ar.jpg"); */
-/* } */
+ul.bullet_indent {
+    list-style-image:url("img/ar.jpg");
+}
 .bullet_indent a {
     color: #000000;
 }
@@ -1305,5 +1339,3 @@ div.main_list_pagination div.pagination {
 .main_list_pagination div a {
   color: #333;
 }
-
-div.info_box { height:1.5em; }
